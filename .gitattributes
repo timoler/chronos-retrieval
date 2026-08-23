@@ -1,0 +1,7 @@
+# Normalize line endings across Windows / macOS / Linux
+* text=auto
+*.py text eol=lf
+*.txt text eol=lf
+*.md text eol=lf
+*.csv text eol=lf
+*.json text eol=lf
