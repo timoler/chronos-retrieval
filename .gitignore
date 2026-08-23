@@ -17,9 +17,6 @@ ENV/
 # ---- Claude Code (local, machine-specific absolute paths) ----
 .claude/
 
-# ---- Datasets (public ETT data, re-downloadable) ----
-data/
-
 # ---- Experiment outputs (regenerable) ----
 results/
 
