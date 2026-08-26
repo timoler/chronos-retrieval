@@ -18,7 +18,15 @@ ENV/
 .claude/
 
 # ---- Experiment outputs (regenerable) ----
-results/
+# Ignore everything inside results/ but keep the cache manifest tracked.
+results/*
+!results/README_CACHE.md
+
+# ---- LLM prior cache (regenerable via API) ----
+cache/
+
+# ---- Raw source downloads (large, regenerable; not for version control) ----
+data/_raw/
 
 # ---- Jupyter ----
 .ipynb_checkpoints/
