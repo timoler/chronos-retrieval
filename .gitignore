@@ -27,6 +27,11 @@ cache/
 
 # ---- Raw source downloads (large, regenerable; not for version control) ----
 data/_raw/
+data/learned_critic_datasets/
+
+# ---- Experiment run logs (regenerable; parallel to results/) ----
+experiments/results/
+scripts/*.log
 
 # ---- Jupyter ----
 .ipynb_checkpoints/

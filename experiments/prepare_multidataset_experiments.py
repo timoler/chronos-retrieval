@@ -96,6 +96,26 @@ DATASETS = {
             "Historical periods with similar network-level traffic dynamics can provide useful forecasting analogues."
         ),
     },
+    "weather": {
+        "candidates": ["data/weather.csv"],
+        "freq": "10min",
+        "domain": "weather_meteorological",
+        "expert_text": (
+            "Weather-station measurements evolve through diurnal and seasonal cycles "
+            "with short-term persistence. Historical periods with similar recent "
+            "meteorological dynamics may provide useful forecasting analogues."
+        ),
+    },
+    "exchange_rate": {
+        "candidates": ["data/exchange_rate.csv"],
+        "freq": "daily",
+        "domain": "daily_exchange_rate",
+        "expert_text": (
+            "Daily exchange rates show short-term persistence with weak weekly and "
+            "annual structure. Historical periods with similar recent rate dynamics "
+            "may provide useful forecasting analogues."
+        ),
+    },
 }
 
 def resolve_path(candidates):
