@@ -190,6 +190,15 @@ def compute(ds_name, pipeline, device):
     test_ts = [dates[s + context] for s in test_starts]
     stats = compute_training_stats(np.concatenate([X_bank, X_fit], axis=0))
 
+    # ---- 未来信息泄漏断言（显式，禁止 memory bank 的未来进入 val/test 预测区）----
+    max_mem_end = int(max(bank_starts.max(), fit_starts.max()) + context + horizon)
+    min_val_start = int(val_starts.min())
+    min_test_start = int(test_starts.min())
+    assert max_mem_end <= min_val_start, \
+        f"[{ds_name}] memory bank future end {max_mem_end} > val start {min_val_start} (LEAK)"
+    assert int(val_starts.max()) + context + horizon <= min_test_start, \
+        f"[{ds_name}] val future end leaks into test (LEAK)"
+
     raw_pool = load_raw_pool(ds_name)
     v1_pool = load_v1_pool(ds_name)
     v2_pool = load_v2_pool(ds_name)
@@ -228,7 +237,8 @@ def compute(ds_name, pipeline, device):
         print(f"    seed={seed} v2_mem TEST_MSE={mse(Y_test, pt):.6g} "
               f"VAL_MSE={mse(Y_val, pv):.6g}", flush=True)
 
-    # λ 在 VAL 上选（seed 42 的代表性 VAL 记忆，冻结配置）
+    # λ 在 VAL 上选（seed 42 的代表性 VAL 记忆，冻结配置）。此循环只用 VAL（mem_val/yc_val/Y_val），
+    # 绝不引用 TEST（Y_test/mem_test/yc_test），保证 λ 不因 TEST 泄漏。
     best_lam = None
     best_val_mse = None
     for lam in LAMBDA_GRID:

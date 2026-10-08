@@ -40,7 +40,9 @@ N_RAW_TARGET = v2p.N_RAW_TARGET
 D_ENC, D_EXP, D_Z, HIDDEN = v2p.D_ENC, v2p.D_EXP, v2p.D_Z, v2p.HIDDEN
 
 NAME = "exchange_rate"
-FROZEN_V2_MSE = 0.03647978603839874  # 来自 final_test_summary.csv
+# 严格复现基准：从冻结 result.json 读 seed42 的 v2 TEST MSE（非 seed-mean）
+_FROZEN_RESULT = REPO_ROOT / "results/reward_feedback_critic_v2_final_test" / NAME / "result.json"
+FROZEN_V2_MSE_SEED42 = json.loads(_FROZEN_RESULT.read_text(encoding="utf-8"))["summary"]["v2"]["seeds_mse"]["42"]
 
 
 def load_raw_pool(name):
@@ -66,7 +68,7 @@ def load_v2_pool(name):
 
 
 def main():
-    device = torch.device("cpu")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     ds_dir = REPO_ROOT / "results/multidataset" / NAME
     cfg = json.loads((ds_dir / "config.json").read_text(encoding="utf-8"))
     context = int(cfg["context"])
@@ -121,11 +123,11 @@ def main():
     pred = retrieve_conditional(mdl, X_test, X_bank, Y_bank, X_test_res, X_bank_res,
                                 v2_act["test"], v2_act["bank"], "full", TOPK, device)
     got = mse(Y_test, pred)
-    print(f"v2 memory pred TEST_MSE (seed42, CPU) = {got:.6f}")
-    print(f"frozen v2 TEST_MSE (seed-mean)     = {FROZEN_V2_MSE:.6f}")
-    print(f"repro delta = {abs(got - FROZEN_V2_MSE):.6f}")
-    # 注：CPU vs CUDA + seed42 vs seed-mean 会有小差异；这里只校验量级/接线对不对
-    print("RESULT:", "OK (wiring plausible)" if abs(got - FROZEN_V2_MSE) < 0.01 else "NEED CHECK")
+    print(f"v2 memory pred TEST_MSE (seed42, {device}) = {got:.6f}")
+    print(f"frozen v2 TEST_MSE (seed42)         = {FROZEN_V2_MSE_SEED42:.6f}")
+    print(f"repro delta = {abs(got - FROZEN_V2_MSE_SEED42):.6f}")
+    ok = abs(got - FROZEN_V2_MSE_SEED42) < 1e-3
+    print("RESULT:", "OK (bit-consistent, seed42 CUDA)" if ok else "MISMATCH (need investigate)")
 
 
 if __name__ == "__main__":
