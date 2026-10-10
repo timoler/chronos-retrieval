@@ -1,0 +1,16 @@
+\begin{table}[htbp]
+  \centering
+  \caption{附录 A3: 检索 Top-K 敏感性（VAL MSE）}
+  \label{tab:appendix_topk}
+  \begin{tabular}{lcccc}
+    \toprule
+    Dataset & K=1 & K=3 & K=5 (正式) & K=10 \\
+    \midrule
+    etth1 & 37.14$\pm$2.043 & 35.5$\pm$2.141 & 34.69$\pm$2.133 & 32.9$\pm$2.032 \\
+    etth2 & 172.3$\pm$27.28 & 135.2$\pm$21.9 & 121.8$\pm$19.74 & 109.7$\pm$16.88 \\
+    exchange\_rate & 0.03225$\pm$0.005818 & 0.03191$\pm$0.005682 & 0.03198$\pm$0.005662 & 0.03209$\pm$0.005559 \\
+    traffic & 0.001077$\pm$$1.98\times10^{-5}$ & 0.000787$\pm$$1.53\times10^{-5}$ & 0.000721$\pm$$6.97\times10^{-6}$ & 0.00069$\pm$$3.35\times10^{-6}$ \\
+    \bottomrule
+  \end{tabular}
+  {\footnotesize TRAIN/frozen VAL，mean±std（3 种子）。仅 4 快数据集；weather/solar/electricity 未完成。K=5 非窄峰，结果对 K 稳健。}
+\end{table}

@@ -1,0 +1,71 @@
+{
+  "seeds": [
+    42,
+    123,
+    2026
+  ],
+  "std_ddof": 0,
+  "ri_formula": "RI = (control_MSE - PAER_MSE) / control_MSE * 100%",
+  "summary": "7-dataset RI = equal-weight mean of per-dataset RI (not mean of raw MSE)",
+  "coverage_threshold": 0.5,
+  "tables": {
+    "table_1_datasets_protocol": {
+      "source": "results/multidataset/<ds>/config.json",
+      "fields": "source, target, frequency, context, horizon, num_windows, split"
+    },
+    "table_2_internal_retrieval_main": {
+      "source": "results/paper_completion/paper_main_ablation.csv (REUSE results/reward_feedback_critic_v2_final_test/final_test_ablation.csv)",
+      "split": "TEST",
+      "seeds": [
+        42,
+        123,
+        2026
+      ],
+      "std_ddof": 0
+    },
+    "table_3_equal_expert_control": {
+      "source": "results/paper_completion/paper_pool_size_control.csv",
+      "split": "VAL",
+      "random_control_seeds": [
+        11,
+        22,
+        33,
+        44,
+        55
+      ]
+    },
+    "table_4_knowledge_optimization": {
+      "source": "results/reward_feedback_critic_v2_full_cross_dataset/<ds>/{pool_reward_history.csv,raw_experts.json,final_expert_pool.json}"
+    },
+    "table_5_expert_cases": {
+      "source": "results/reward_feedback_critic_v2_full_cross_dataset/<ds>/pool_reward_history.csv"
+    },
+    "table_6_coverage_failure": {
+      "source": "results/diagnose_v2_failure_electricity_traffic/ + results/paper_completion/paper_pool_analysis.csv",
+      "coverage_threshold": 0.5
+    },
+    "appendix_a1_mae_seed": {
+      "source": "results/paper_completion/paper_main_ablation.csv",
+      "split": "TEST"
+    },
+    "appendix_a2_reward_alignment": {
+      "source": "results/reward_feedback_critic_v2_failure_diagnosis/reward_alignment_train_val.csv"
+    },
+    "appendix_a3_topk_sensitivity": {
+      "source": "results/paper_completion/paper_sensitivity.csv",
+      "split": "VAL"
+    },
+    "appendix_a4_efficiency": {
+      "source": "results/paper_completion/paper_efficiency.csv"
+    },
+    "appendix_a5_external_fusion": {
+      "source": "results/external_baselines/external_baseline_results_full.csv + results/paper_completion/phase1_external_baselines/ours_fusion_v2_results.csv"
+    }
+  },
+  "missing": {
+    "val_contribution_etth2_weather_exchange_rate": "未记录（仅 4/7 有）",
+    "topk_sensitivity_weather_solar_electricity": "未完成",
+    "traffic_avg_active_experts": "未记录",
+    "external_fusion_chronos2_ours": "未完成（后台续跑中）"
+  }
+}
