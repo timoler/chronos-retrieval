@@ -1,0 +1,65 @@
+[FROZEN FINAL TEST]
+method = v2_pool_aware
+datasets = 7
+seeds = [42,123,2026]
+expert_critic_calls = DISABLED
+pool_revision = DISABLED
+test_tuning = DISABLED
+eval_split = TEST (train bank/fit unchanged)
+device: cuda
+
+==============================================================================
+DATASET exchange_rate (TEST)
+==============================================================================
+  pools: raw=8 v1=2 v2=6
+  data: bank=3156 fit=789 test=911 (TEST used)
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 11016.25it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 10307.63it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 10307.14it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  determinism check: v2 seed2026 x2 = [0.0427042618393898, 0.0427042618393898] -> PASS
+    seed=42 [base] TEST_MSE=0.0405 TEST_MAE=0.1845
+    seed=42 [shape] TEST_MSE=0.0378 TEST_MAE=0.1787
+    seed=42 [raw] TEST_MSE=0.0374 TEST_MAE=0.1813
+    seed=42 [v1] TEST_MSE=0.0371 TEST_MAE=0.1796
+    seed=42 [v2] TEST_MSE=0.0347 TEST_MAE=0.1552
+    seed=123 [base] TEST_MSE=0.0300 TEST_MAE=0.1588
+    seed=123 [shape] TEST_MSE=0.0347 TEST_MAE=0.1763
+    seed=123 [raw] TEST_MSE=0.0367 TEST_MAE=0.1803
+    seed=123 [v1] TEST_MSE=0.0362 TEST_MAE=0.1771
+    seed=123 [v2] TEST_MSE=0.0320 TEST_MAE=0.1593
+    seed=2026 [base] TEST_MSE=0.0374 TEST_MAE=0.1795
+    seed=2026 [shape] TEST_MSE=0.0371 TEST_MAE=0.1826
+    seed=2026 [raw] TEST_MSE=0.0429 TEST_MAE=0.1934
+    seed=2026 [v1] TEST_MSE=0.0385 TEST_MAE=0.1840
+    seed=2026 [v2] TEST_MSE=0.0427 TEST_MAE=0.1900
+
+==============================================================================
+FROZEN FINAL TEST SUMMARY
+==============================================================================
+exchange_rate  raw=3.8995e-02 v1=3.7252e-02 v2=3.6480e-02 v2_vs_raw=+6.5% v2_vs_v1=+2.1% wins_raw=3/3
+
+TEST v2 æ¯” Raw å¥½ï¼š1/1ï¼›v2 æ¯” v1 å¥½ï¼š1/1
+mean RI vs Raw=+6.45%  median=+6.45%
+
+Saved to E:\GitHub_Project\chronos-retrieval\results\reward_feedback_critic_v2_final_test

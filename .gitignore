@@ -22,6 +22,19 @@ ENV/
 results/*
 !results/README_CACHE.md
 
+# ---- 冻结关键产物与正式协议数据（小、不可再生，纳入版本控制供复现）----
+# multidataset：只跟踪各数据集顶层 config/window_indices/series/expert_knowledge，不含嵌套实验产物
+!results/multidataset/
+results/multidataset/*
+!results/multidataset/*/
+results/multidataset/*/*/
+!results/reward_feedback_critic_v2_final_test/
+!results/reward_feedback_critic_v2_full_cross_dataset/
+!results/paper_completion/
+# 大预测缓存（可再生）与临时快照仍忽略
+results/paper_completion/phase1_external_baselines/fusion_reaudit_20261011/preds/
+results/**/*.snapshot
+
 # ---- LLM prior cache (regenerable via API) ----
 cache/
 

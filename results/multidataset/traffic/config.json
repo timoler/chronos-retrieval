@@ -1,0 +1,32 @@
+{
+  "dataset": "traffic",
+  "source": "data/traffic.csv",
+  "domain": "road_traffic_occupancy",
+  "frequency": "hourly",
+  "rows": 17544,
+  "context": 168,
+  "horizon": 24,
+  "stride": 1,
+  "split": {
+    "train": [
+      0,
+      10526
+    ],
+    "val": [
+      10526,
+      14035
+    ],
+    "test": [
+      14035,
+      17544
+    ]
+  },
+  "num_windows": {
+    "train": 10335,
+    "val": 3318,
+    "test": 3318
+  },
+  "target_selection_rule": "deterministic first-series: first series in original order with length >= (context+horizon)*6.0 and missing_ratio <= 0.25; missing values LOCF-forward-filled",
+  "target_series": "Sensor_000",
+  "test_policy": "indices prepared only; do not evaluate"
+}

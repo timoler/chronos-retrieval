@@ -1,0 +1,32 @@
+{
+  "dataset": "ETTm1",
+  "source": "data\\ETTm1.csv",
+  "domain": "transformer_temperature",
+  "frequency": "15min",
+  "rows": 69680,
+  "context": 512,
+  "horizon": 96,
+  "split": {
+    "train": [
+      0,
+      41808
+    ],
+    "val": [
+      41808,
+      55744
+    ],
+    "test": [
+      55744,
+      69680
+    ]
+  },
+  "num_windows": {
+    "train": 41201,
+    "val": 13329,
+    "test": 13329
+  },
+  "target": "OT",
+  "expert_pipeline": "expert_text -> agent_review -> text_embedding -> query_expert_attention -> retrieval",
+  "manual_expert_features": false,
+  "test_policy": "indices prepared only; do not evaluate until model is frozen"
+}

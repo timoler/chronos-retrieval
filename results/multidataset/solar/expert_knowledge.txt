@@ -1,0 +1,1 @@
+Solar generation is strongly affected by the current generation regime and short-term irradiance persistence. Historical periods with similar generation dynamics can provide useful forecasting analogues.

@@ -1,0 +1,32 @@
+{
+  "dataset": "wind_farms",
+  "source": "data/learned_critic_datasets/WindFarms/wind_farms_minutely_dataset_with_missing_values.tsf",
+  "domain": "wind_power_generation",
+  "frequency": "minutely",
+  "rows": 527040,
+  "context": 1440,
+  "horizon": 144,
+  "stride": 144,
+  "split": {
+    "train": [
+      0,
+      316224
+    ],
+    "val": [
+      316224,
+      421632
+    ],
+    "test": [
+      421632,
+      527040
+    ]
+  },
+  "num_windows": {
+    "train": 2186,
+    "val": 722,
+    "test": 722
+  },
+  "target_selection_rule": "deterministic first-series: first series in original order with length >= (context+horizon)*6.0 and missing_ratio <= 0.25; missing values LOCF-forward-filled",
+  "target_series": "T1",
+  "test_policy": "indices prepared only; do not evaluate"
+}

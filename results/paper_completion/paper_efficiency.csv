@@ -1,0 +1,8 @@
+dataset,raw_final_pool_size,v1_final_pool_size,v2_final_pool_size,raw_expert_evaluations,v1_expert_evaluations,v2_retriever_trainings_for_reward,retriever_training_time_sec,inference_time_per_window_ms,v1_expert_validation_time_sec_est,v2_expert_validation_time_sec_est,peak_mem_mb
+etth1,8,8,7,0,10,108,64.764,0.2889,80.95,6994.47,241.6
+etth2,8,8,6,0,16,108,64.764,0.2889,129.53,6994.47,241.6
+weather,8,3,7,0,18,108,64.764,0.2889,145.72,6994.47,241.6
+exchange_rate,8,2,6,0,22,108,64.764,0.2889,178.1,6994.47,241.6
+solar,8,5,5,0,22,108,64.764,0.2889,178.1,6994.47,241.6
+electricity,8,1,5,0,23,108,64.764,0.2889,186.2,6994.47,241.6
+traffic,8,4,5,0,20,108,64.764,0.2889,161.91,6994.47,241.6

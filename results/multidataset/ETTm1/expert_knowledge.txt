@@ -1,0 +1,1 @@
+Transformer oil temperature has thermal inertia. Recent operating state and load-related conditions can affect future oil temperature. Historical periods with similar thermal and operating dynamics may be more useful for forecasting.

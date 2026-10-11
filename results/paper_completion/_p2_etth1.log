@@ -1,0 +1,39 @@
+device: cuda
+
+======================================================================
+DATASET etth1
+======================================================================
+  raw=8 K_v2=7 v2_ids=['E1', 'E2', 'E3', 'E4', 'E5', 'E6', 'E7'] data_sec=0.9
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 4429.63it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 1899.37it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+    emb+act_sec=3.3  V2=34.6889 RAW=63.9024
+    RANDOM_K seed=11 subset=['E1', 'E3', 'E4', 'E5', 'E6', 'E7', 'E8'] mse=54.9182
+    RANDOM_K seed=22 subset=['E1', 'E2', 'E3', 'E4', 'E6', 'E7', 'E8'] mse=120.267
+    RANDOM_K seed=33 subset=['E2', 'E3', 'E4', 'E5', 'E6', 'E7', 'E8'] mse=70.0715
+    RANDOM_K seed=44 subset=['E1', 'E2', 'E3', 'E4', 'E5', 'E6', 'E8'] mse=57.8981
+    RANDOM_K seed=55 subset=['E2', 'E3', 'E4', 'E5', 'E6', 'E7', 'E8'] mse=70.0715
+    V1_SCORE_TOPK subset=['E2', 'E8', 'E5', 'E1', 'E3', 'E7', 'E4'] mse=56.2319
+  [part saved] E:\GitHub_Project\chronos-retrieval\results\paper_completion\_p2_parts\etth1.json
+
+======================================================================
+etth1          K=7 v2=3.4689e+01 raw=6.3902e+01 randK=7.4645e+01 v1topK=5.6232e+01 v2_vs_rand=+53.5% v2_vs_v1s=+38.3%
+etth2          K=6 v2=1.2185e+02 raw=2.0615e+02 randK=1.9034e+02 v1topK=2.0387e+02 v2_vs_rand=+36.0% v2_vs_v1s=+40.2%
+exchange_rate  K=6 v2=3.1983e-02 raw=3.6353e-02 randK=3.4229e-02 v1topK=3.3268e-02 v2_vs_rand=+6.6% v2_vs_v1s=+3.9%
+traffic        K=5 v2=7.2093e-04 raw=6.8426e-04 randK=7.0651e-04 v1topK=6.8664e-04 v2_vs_rand=-2.0% v2_vs_v1s=-5.0%
+
+v2>RANDOM_K: 3/4   v2>V1_SCORE_TOPK: 3/4
+Saved to E:\GitHub_Project\chronos-retrieval\results\paper_completion

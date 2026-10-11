@@ -1,0 +1,1 @@
+Aggregate electricity demand often shows recurring usage regimes and short-term persistence. Historical periods reflecting similar demand dynamics can be useful, while a small subset of individual users should not be assumed to represent the total population.

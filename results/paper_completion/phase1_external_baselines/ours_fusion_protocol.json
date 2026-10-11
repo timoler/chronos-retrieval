@@ -1,0 +1,46 @@
+{
+  "method": "Chronos-2 + Frozen Pool-Aware v2 Expert Memory/Fusion",
+  "generated": "2026-10-09",
+  "script": "experiments/external_baselines/run_ours_fusion_v2.py",
+  "backbone": "amazon/chronos-2",
+  "memory_source": "frozen Pool-Aware v2 expert pool (results/reward_feedback_critic_v2_full_cross_dataset/<ds>/final_expert_pool.json) via ConditionalExpertMLPRetriever",
+  "fusion_formula": "fused = (1 - lambda) * chronos2_pred + lambda * v2_memory_pred",
+  "lambda_grid": [0.0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.5, 0.7, 1.0],
+  "lambda_selection": "VAL only (seed 42 representative VAL memory pred); TEST evaluated once with frozen lambda",
+  "seeds": [42, 123, 2026],
+  "chronos2_determinism": "deterministic zero-shot (seed-independent; predict_quantiles mean)",
+  "v2_memory_seed_effect": "per-seed train_arm + retrieve_conditional (rng=default_rng(seed)); 3 seeds -> 3 memory preds",
+  "frozen_v2_reproduction": {
+    "n_slots": "max(raw=8, v1, v2)",
+    "use_shape": true,
+    "mode": "full",
+    "TOPK": 5,
+    "EPOCHS": 30,
+    "BATCH_SIZE": 64,
+    "CANDIDATES": 256,
+    "LR": 0.001,
+    "D_ENC": 128, "D_EXP": 128, "D_Z": 128, "HIDDEN": 32,
+    "check": "v2_repro_check compares seed42 TEST memory MSE vs frozen final_test_summary.csv v2_mean_mse (tolerance 1e-3)"
+  },
+  "data_protocol": {
+    "source": "results/multidataset/<ds>/series.csv (OT) + config.json + window_indices.npz",
+    "split": "train=idx[train], val=idx[val], test=idx[test]; bank=first 80% train, fit=last 20% train",
+    "context_horizon": "etth2/traffic=168/24, others=512/96",
+    "metric": "raw-value MSE (no scaler)",
+    "target": "OT (univariate)"
+  },
+  "environment": {
+    "python": "3.11.15",
+    "torch": "2.12.0.dev20260408+cu128",
+    "chronos": "2.3.1 (editable E:/GitHub_Project/chronos-forecasting-main/src)",
+    "transformers": "5.5.4",
+    "gpu": "NVIDIA GeForce RTX 5070 Ti (16GB)",
+    "chronos2_load": "VERIFIED OK (smoke_chronos2.py PASSED 2026-10-09)"
+  },
+  "outputs": {
+    "per_seed": "ours_fusion_v2_results.csv",
+    "summary": "ours_fusion_summary.csv",
+    "protocol": "ours_fusion_protocol.json (this file)",
+    "audit": "OURS_FUSION_AUDIT.md"
+  }
+}

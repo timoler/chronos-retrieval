@@ -1,0 +1,487 @@
+device: cuda
+
+==============================================================================
+DATASET etth2  domain=transformer_temperature freq=hourly
+==============================================================================
+  [v2 Round 0] pool=8 experts
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 11443.15it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+    fold1 E1: mse_full=4.1713e+02 mse_minus=3.8975e+02 pool_reward=-0.0703
+    fold1 E2: mse_full=4.1713e+02 mse_minus=4.2478e+02 pool_reward=+0.0180
+    fold1 E3: mse_full=4.1713e+02 mse_minus=4.4985e+02 pool_reward=+0.0727
+    fold1 E4: mse_full=4.1713e+02 mse_minus=4.1058e+02 pool_reward=-0.0159
+    fold1 E5: mse_full=4.1713e+02 mse_minus=4.0402e+02 pool_reward=-0.0324
+    fold1 E6: mse_full=4.1713e+02 mse_minus=4.1748e+02 pool_reward=+0.0009
+    fold1 E7: mse_full=4.1713e+02 mse_minus=4.0396e+02 pool_reward=-0.0326
+    fold1 E8: mse_full=4.1713e+02 mse_minus=3.9302e+02 pool_reward=-0.0613
+    fold2 E1: mse_full=4.9398e+02 mse_minus=5.1465e+02 pool_reward=+0.0402
+    fold2 E2: mse_full=4.9398e+02 mse_minus=5.1080e+02 pool_reward=+0.0329
+    fold2 E3: mse_full=4.9398e+02 mse_minus=5.3498e+02 pool_reward=+0.0766
+    fold2 E4: mse_full=4.9398e+02 mse_minus=5.4372e+02 pool_reward=+0.0915
+    fold2 E5: mse_full=4.9398e+02 mse_minus=4.9206e+02 pool_reward=-0.0039
+    fold2 E6: mse_full=4.9398e+02 mse_minus=5.2750e+02 pool_reward=+0.0635
+    fold2 E7: mse_full=4.9398e+02 mse_minus=4.2943e+02 pool_reward=-0.1503
+    fold2 E8: mse_full=4.9398e+02 mse_minus=4.7531e+02 pool_reward=-0.0393
+    fold3 E1: mse_full=8.9470e+01 mse_minus=8.9935e+01 pool_reward=+0.0052
+    fold3 E2: mse_full=8.9470e+01 mse_minus=9.6274e+01 pool_reward=+0.0707
+    fold3 E3: mse_full=8.9470e+01 mse_minus=1.0095e+02 pool_reward=+0.1137
+    fold3 E4: mse_full=8.9470e+01 mse_minus=8.4574e+01 pool_reward=-0.0579
+    fold3 E5: mse_full=8.9470e+01 mse_minus=1.0342e+02 pool_reward=+0.1349
+    fold3 E6: mse_full=8.9470e+01 mse_minus=8.7925e+01 pool_reward=-0.0176
+    fold3 E7: mse_full=8.9470e+01 mse_minus=8.3739e+01 pool_reward=-0.0684
+    fold3 E8: mse_full=8.9470e+01 mse_minus=1.0240e+02 pool_reward=+0.1263
+    fold4 E1: mse_full=1.4290e+02 mse_minus=8.3871e+01 pool_reward=-0.7038
+    fold4 E2: mse_full=1.4290e+02 mse_minus=1.5863e+02 pool_reward=+0.0992
+    fold4 E3: mse_full=1.4290e+02 mse_minus=1.9149e+02 pool_reward=+0.2538
+    fold4 E4: mse_full=1.4290e+02 mse_minus=1.2502e+02 pool_reward=-0.1430
+    fold4 E5: mse_full=1.4290e+02 mse_minus=1.4180e+02 pool_reward=-0.0077
+    fold4 E6: mse_full=1.4290e+02 mse_minus=1.3712e+02 pool_reward=-0.0421
+    fold4 E7: mse_full=1.4290e+02 mse_minus=1.4721e+02 pool_reward=+0.0293
+    fold4 E8: mse_full=1.4290e+02 mse_minus=1.1729e+02 pool_reward=-0.2183
+    E1: pool_reward mean=-0.1822 pfr=0.50 reward=-1 REVISE cov=0.491
+    E2: pool_reward mean=+0.0552 pfr=1.00 reward=+2 KEEP cov=0.204
+    E3: pool_reward mean=+0.1292 pfr=1.00 reward=+2 KEEP cov=0.344
+    E4: pool_reward mean=-0.0313 pfr=0.25 reward=-2 REJECT cov=0.303
+    E5: pool_reward mean=+0.0227 pfr=0.25 reward=-2 REJECT cov=0.152
+    E6: pool_reward mean=+0.0012 pfr=0.50 reward=+1 KEEP cov=1.000
+    E7: pool_reward mean=-0.0555 pfr=0.25 reward=-2 REJECT cov=0.250
+    E8: pool_reward mean=-0.0481 pfr=0.25 reward=-2 REJECT cov=0.446
+  [v2 Round 1] pool=5 experts
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 11446.79it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+    fold1 E1: mse_full=3.7286e+02 mse_minus=4.2878e+02 pool_reward=+0.1304
+    fold1 E4: mse_full=3.7286e+02 mse_minus=3.9053e+02 pool_reward=+0.0453
+    fold1 E5: mse_full=3.7286e+02 mse_minus=3.9683e+02 pool_reward=+0.0604
+    fold1 E7: mse_full=3.7286e+02 mse_minus=4.2419e+02 pool_reward=+0.1210
+    fold1 E8: mse_full=3.7286e+02 mse_minus=3.7274e+02 pool_reward=-0.0003
+    fold2 E1: mse_full=4.9737e+02 mse_minus=5.4027e+02 pool_reward=+0.0794
+    fold2 E4: mse_full=4.9737e+02 mse_minus=4.8470e+02 pool_reward=-0.0261
+    fold2 E5: mse_full=4.9737e+02 mse_minus=4.7478e+02 pool_reward=-0.0476
+    fold2 E7: mse_full=4.9737e+02 mse_minus=4.6570e+02 pool_reward=-0.0680
+    fold2 E8: mse_full=4.9737e+02 mse_minus=5.0674e+02 pool_reward=+0.0185
+    fold3 E1: mse_full=1.0722e+02 mse_minus=1.5947e+02 pool_reward=+0.3276
+    fold3 E4: mse_full=1.0722e+02 mse_minus=1.1189e+02 pool_reward=+0.0417
+    fold3 E5: mse_full=1.0722e+02 mse_minus=1.2550e+02 pool_reward=+0.1456
+    fold3 E7: mse_full=1.0722e+02 mse_minus=1.2544e+02 pool_reward=+0.1452
+    fold3 E8: mse_full=1.0722e+02 mse_minus=1.0302e+02 pool_reward=-0.0409
+    fold4 E1: mse_full=1.0020e+02 mse_minus=1.3591e+02 pool_reward=+0.2628
+    fold4 E4: mse_full=1.0020e+02 mse_minus=9.3250e+01 pool_reward=-0.0746
+    fold4 E5: mse_full=1.0020e+02 mse_minus=1.6532e+02 pool_reward=+0.3939
+    fold4 E7: mse_full=1.0020e+02 mse_minus=1.4920e+02 pool_reward=+0.3284
+    fold4 E8: mse_full=1.0020e+02 mse_minus=8.8181e+01 pool_reward=-0.1363
+    E1: pool_reward mean=+0.2000 pfr=1.00 reward=+2 KEEP cov=1.000
+    E4: pool_reward mean=-0.0034 pfr=0.50 reward=-1 REVISE cov=0.601
+    E5: pool_reward mean=+0.1381 pfr=0.75 reward=+2 KEEP cov=0.461
+    E7: pool_reward mean=+0.1317 pfr=0.75 reward=+2 KEEP cov=0.333
+    E8: pool_reward mean=-0.0398 pfr=0.25 reward=-2 REJECT cov=0.211
+  [v2 Round 2] pool=2 experts
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 11429.53it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+    fold1 E4: mse_full=4.6678e+02 mse_minus=4.3414e+02 pool_reward=-0.0752
+    fold1 E8: mse_full=4.6678e+02 mse_minus=4.2525e+02 pool_reward=-0.0977
+    fold2 E4: mse_full=4.6312e+02 mse_minus=4.9756e+02 pool_reward=+0.0692
+    fold2 E8: mse_full=4.6312e+02 mse_minus=4.6868e+02 pool_reward=+0.0119
+    fold3 E4: mse_full=1.0192e+02 mse_minus=1.0951e+02 pool_reward=+0.0694
+    fold3 E8: mse_full=1.0192e+02 mse_minus=1.0988e+02 pool_reward=+0.0725
+    fold4 E4: mse_full=2.1214e+02 mse_minus=1.4704e+02 pool_reward=-0.4427
+    fold4 E8: mse_full=2.1214e+02 mse_minus=1.9440e+02 pool_reward=-0.0913
+    E4: pool_reward mean=-0.0948 pfr=0.50 reward=-1 REVISE cov=0.491
+    E8: pool_reward mean=-0.0262 pfr=0.50 reward=-1 REVISE cov=0.715
+  [v2] final pool: 6 -> ['E1', 'E2', 'E3', 'E5', 'E6', 'E7']
+  v2 final pool: 6 -> ['E1', 'E2', 'E3', 'E5', 'E6', 'E7']
+  v1 final pool (frozen): 8 -> ['E1', 'E2', 'E3', 'E4', 'E5', 'E6', 'E7', 'E8']
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 10299.76it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 11441.64it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 8583.44it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  determinism check: v2 seed2026 x2 = [116.77302551269531, 116.77302551269531] -> PASS
+    seed=42 [base] MSE=207.3614
+    seed=42 [shape] MSE=217.8127
+    seed=42 [raw] MSE=190.0484
+    seed=42 [v1] MSE=187.4055
+    seed=42 [v2] MSE=100.6081
+    seed=123 [base] MSE=200.2676
+    seed=123 [shape] MSE=272.0074
+    seed=123 [raw] MSE=219.9250
+    seed=123 [v1] MSE=260.2779
+    seed=123 [v2] MSE=148.1579
+    seed=2026 [base] MSE=227.5862
+    seed=2026 [shape] MSE=220.4012
+    seed=2026 [raw] MSE=208.4734
+    seed=2026 [v1] MSE=197.1390
+    seed=2026 [v2] MSE=116.7730
+  -> saved to E:\GitHub_Project\chronos-retrieval\results\reward_feedback_critic_v2_full_cross_dataset\etth2
+
+==============================================================================
+DATASET solar  domain=aggregate_solar_generation freq=10-minute
+==============================================================================
+  [v2 Round 0] pool=8 experts
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 9363.71it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+    fold1 E1: mse_full=1.0187e+06 mse_minus=7.0494e+05 pool_reward=-0.4451
+    fold1 E2: mse_full=1.0187e+06 mse_minus=7.7112e+05 pool_reward=-0.3211
+    fold1 E3: mse_full=1.0187e+06 mse_minus=9.8029e+05 pool_reward=-0.0392
+    fold1 E4: mse_full=1.0187e+06 mse_minus=1.1962e+06 pool_reward=+0.1484
+    fold1 E5: mse_full=1.0187e+06 mse_minus=6.3558e+05 pool_reward=-0.6029
+    fold1 E6: mse_full=1.0187e+06 mse_minus=1.0187e+06 pool_reward=+0.0000
+    fold1 E7: mse_full=1.0187e+06 mse_minus=6.7281e+05 pool_reward=-0.5142
+    fold1 E8: mse_full=1.0187e+06 mse_minus=9.5671e+05 pool_reward=-0.0648
+    fold2 E1: mse_full=3.8328e+05 mse_minus=3.7135e+05 pool_reward=-0.0321
+    fold2 E2: mse_full=3.8328e+05 mse_minus=3.5073e+05 pool_reward=-0.0928
+    fold2 E3: mse_full=3.8328e+05 mse_minus=3.0751e+05 pool_reward=-0.2464
+    fold2 E4: mse_full=3.8328e+05 mse_minus=4.1677e+05 pool_reward=+0.0804
+    fold2 E5: mse_full=3.8328e+05 mse_minus=3.2940e+05 pool_reward=-0.1636
+    fold2 E6: mse_full=3.8328e+05 mse_minus=3.8328e+05 pool_reward=+0.0000
+    fold2 E7: mse_full=3.8328e+05 mse_minus=4.7536e+05 pool_reward=+0.1937
+    fold2 E8: mse_full=3.8328e+05 mse_minus=3.2874e+05 pool_reward=-0.1659
+    fold3 E1: mse_full=1.6375e+06 mse_minus=1.3897e+06 pool_reward=-0.1783
+    fold3 E2: mse_full=1.6375e+06 mse_minus=1.1689e+06 pool_reward=-0.4009
+    fold3 E3: mse_full=1.6375e+06 mse_minus=9.2800e+05 pool_reward=-0.7645
+    fold3 E4: mse_full=1.6375e+06 mse_minus=1.0534e+06 pool_reward=-0.5544
+    fold3 E5: mse_full=1.6375e+06 mse_minus=1.0686e+06 pool_reward=-0.5324
+    fold3 E6: mse_full=1.6375e+06 mse_minus=1.6332e+06 pool_reward=-0.0026
+    fold3 E7: mse_full=1.6375e+06 mse_minus=1.1647e+06 pool_reward=-0.4060
+    fold3 E8: mse_full=1.6375e+06 mse_minus=1.3705e+06 pool_reward=-0.1948
+    fold4 E1: mse_full=1.1610e+05 mse_minus=1.0861e+05 pool_reward=-0.0690
+    fold4 E2: mse_full=1.1610e+05 mse_minus=1.1691e+05 pool_reward=+0.0068
+    fold4 E3: mse_full=1.1610e+05 mse_minus=1.4116e+05 pool_reward=+0.1775
+    fold4 E4: mse_full=1.1610e+05 mse_minus=1.1634e+05 pool_reward=+0.0020
+    fold4 E5: mse_full=1.1610e+05 mse_minus=1.0528e+05 pool_reward=-0.1028
+    fold4 E6: mse_full=1.1610e+05 mse_minus=1.1016e+05 pool_reward=-0.0539
+    fold4 E7: mse_full=1.1610e+05 mse_minus=1.1834e+05 pool_reward=+0.0189
+    fold4 E8: mse_full=1.1610e+05 mse_minus=1.1200e+05 pool_reward=-0.0367
+    E1: pool_reward mean=-0.1811 pfr=0.00 reward=-2 REJECT cov=0.334
+    E2: pool_reward mean=-0.2020 pfr=0.25 reward=-2 REJECT cov=0.060
+    E3: pool_reward mean=-0.2182 pfr=0.25 reward=-2 REJECT cov=0.569
+    E4: pool_reward mean=-0.0809 pfr=0.75 reward=+2 KEEP cov=0.069
+    E5: pool_reward mean=-0.3504 pfr=0.00 reward=-2 REJECT cov=0.126
+    E6: pool_reward mean=-0.0141 pfr=0.00 reward=-2 REJECT cov=0.314
+    E7: pool_reward mean=-0.1769 pfr=0.50 reward=-1 REVISE cov=0.258
+    E8: pool_reward mean=-0.1155 pfr=0.00 reward=-2 REJECT cov=0.289
+  [v2 Round 1] pool=7 experts
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 8900.33it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+    fold1 E1: mse_full=8.2005e+05 mse_minus=7.7889e+05 pool_reward=-0.0528
+    fold1 E2: mse_full=8.2005e+05 mse_minus=6.3674e+05 pool_reward=-0.2879
+    fold1 E3: mse_full=8.2005e+05 mse_minus=8.5176e+05 pool_reward=+0.0372
+    fold1 E5: mse_full=8.2005e+05 mse_minus=8.2049e+05 pool_reward=+0.0005
+    fold1 E6: mse_full=8.2005e+05 mse_minus=8.2005e+05 pool_reward=+0.0000
+    fold1 E7: mse_full=8.2005e+05 mse_minus=6.0474e+05 pool_reward=-0.3560
+    fold1 E8: mse_full=8.2005e+05 mse_minus=6.6778e+05 pool_reward=-0.2280
+    fold2 E1: mse_full=2.9257e+05 mse_minus=3.1284e+05 pool_reward=+0.0648
+    fold2 E2: mse_full=2.9257e+05 mse_minus=2.9292e+05 pool_reward=+0.0012
+    fold2 E3: mse_full=2.9257e+05 mse_minus=3.0508e+05 pool_reward=+0.0410
+    fold2 E5: mse_full=2.9257e+05 mse_minus=3.1819e+05 pool_reward=+0.0805
+    fold2 E6: mse_full=2.9257e+05 mse_minus=2.9257e+05 pool_reward=+0.0000
+    fold2 E7: mse_full=2.9257e+05 mse_minus=3.1893e+05 pool_reward=+0.0826
+    fold2 E8: mse_full=2.9257e+05 mse_minus=3.1031e+05 pool_reward=+0.0571
+    fold3 E1: mse_full=6.4625e+05 mse_minus=9.6742e+05 pool_reward=+0.3320
+    fold3 E2: mse_full=6.4625e+05 mse_minus=4.7101e+05 pool_reward=-0.3720
+    fold3 E3: mse_full=6.4625e+05 mse_minus=1.0716e+06 pool_reward=+0.3969
+    fold3 E5: mse_full=6.4625e+05 mse_minus=7.1138e+05 pool_reward=+0.0916
+    fold3 E6: mse_full=6.4625e+05 mse_minus=6.4500e+05 pool_reward=-0.0019
+    fold3 E7: mse_full=6.4625e+05 mse_minus=5.7386e+05 pool_reward=-0.1261
+    fold3 E8: mse_full=6.4625e+05 mse_minus=1.4243e+06 pool_reward=+0.5463
+    fold4 E1: mse_full=1.1341e+05 mse_minus=1.0834e+05 pool_reward=-0.0468
+    fold4 E2: mse_full=1.1341e+05 mse_minus=1.2345e+05 pool_reward=+0.0813
+    fold4 E3: mse_full=1.1341e+05 mse_minus=1.1615e+05 pool_reward=+0.0236
+    fold4 E5: mse_full=1.1341e+05 mse_minus=1.2031e+05 pool_reward=+0.0574
+    fold4 E6: mse_full=1.1341e+05 mse_minus=1.0722e+05 pool_reward=-0.0577
+    fold4 E7: mse_full=1.1341e+05 mse_minus=1.1992e+05 pool_reward=+0.0543
+    fold4 E8: mse_full=1.1341e+05 mse_minus=1.1561e+05 pool_reward=+0.0190
+    E1: pool_reward mean=+0.0743 pfr=0.50 reward=+1 KEEP cov=0.334
+    E2: pool_reward mean=-0.1443 pfr=0.50 reward=-1 REVISE cov=0.431
+    E3: pool_reward mean=+0.1247 pfr=1.00 reward=+2 KEEP cov=0.353
+    E5: pool_reward mean=+0.0575 pfr=1.00 reward=+2 KEEP cov=0.395
+    E6: pool_reward mean=-0.0149 pfr=0.00 reward=-2 REJECT cov=0.314
+    E7: pool_reward mean=-0.0863 pfr=0.50 reward=-1 REVISE cov=0.258
+    E8: pool_reward mean=+0.0986 pfr=0.75 reward=+2 KEEP cov=0.647
+  [v2 Round 2] pool=3 experts
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 9359.04it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+    fold1 E2: mse_full=6.3236e+05 mse_minus=5.6187e+05 pool_reward=-0.1255
+    fold1 E6: mse_full=6.3236e+05 mse_minus=6.2319e+05 pool_reward=-0.0147
+    fold1 E7: mse_full=6.3236e+05 mse_minus=5.5262e+05 pool_reward=-0.1443
+    fold2 E2: mse_full=3.2455e+05 mse_minus=2.8666e+05 pool_reward=-0.1322
+    fold2 E6: mse_full=3.2455e+05 mse_minus=3.1282e+05 pool_reward=-0.0375
+    fold2 E7: mse_full=3.2455e+05 mse_minus=3.0129e+05 pool_reward=-0.0772
+    fold3 E2: mse_full=5.6864e+05 mse_minus=7.2312e+05 pool_reward=+0.2136
+    fold3 E6: mse_full=5.6864e+05 mse_minus=4.6137e+05 pool_reward=-0.2325
+    fold3 E7: mse_full=5.6864e+05 mse_minus=8.7365e+05 pool_reward=+0.3491
+    fold4 E2: mse_full=1.2792e+05 mse_minus=1.2900e+05 pool_reward=+0.0084
+    fold4 E6: mse_full=1.2792e+05 mse_minus=1.4446e+05 pool_reward=+0.1145
+    fold4 E7: mse_full=1.2792e+05 mse_minus=1.2284e+05 pool_reward=-0.0413
+    E2: pool_reward mean=-0.0089 pfr=0.50 reward=-1 REVISE cov=0.027
+    E6: pool_reward mean=-0.0426 pfr=0.25 reward=-2 REJECT cov=0.052
+    E7: pool_reward mean=+0.0216 pfr=0.25 reward=-2 REJECT cov=0.214
+  [v2] final pool: 5 -> ['E1', 'E3', 'E4', 'E5', 'E8']
+  v2 final pool: 5 -> ['E1', 'E3', 'E4', 'E5', 'E8']
+  v1 final pool (frozen): 5 -> ['E3', 'E4', 'E6', 'E7', 'E8']
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 8760.28it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 9407.34it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 11419.56it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  determinism check: v2 seed2026 x2 = [198712.0625, 198712.0625] -> PASS
+    seed=42 [base] MSE=197876.2344
+    seed=42 [shape] MSE=202304.2812
+    seed=42 [raw] MSE=182796.0781
+    seed=42 [v1] MSE=194199.4375
+    seed=42 [v2] MSE=204195.0938
+    seed=123 [base] MSE=196832.4844
+    seed=123 [shape] MSE=202118.3750
+    seed=123 [raw] MSE=221738.5625
+    seed=123 [v1] MSE=184549.7812
+    seed=123 [v2] MSE=188392.0781
+    seed=2026 [base] MSE=202108.0312
+    seed=2026 [shape] MSE=208135.6406
+    seed=2026 [raw] MSE=191942.8281
+    seed=2026 [v1] MSE=199370.6406
+    seed=2026 [v2] MSE=198712.0625
+  -> saved to E:\GitHub_Project\chronos-retrieval\results\reward_feedback_critic_v2_full_cross_dataset\solar
+
+==============================================================================
+DATASET traffic  domain=road_traffic_occupancy freq=hourly
+==============================================================================
+  [v2 Round 0] pool=8 experts
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 5711.59it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+    fold1 E1: mse_full=9.1190e-04 mse_minus=9.1708e-04 pool_reward=+0.0057
+    fold1 E2: mse_full=9.1190e-04 mse_minus=9.2258e-04 pool_reward=+0.0116
+    fold1 E3: mse_full=9.1190e-04 mse_minus=9.2643e-04 pool_reward=+0.0157
+    fold1 E4: mse_full=9.1190e-04 mse_minus=9.1939e-04 pool_reward=+0.0082
+    fold1 E5: mse_full=9.1190e-04 mse_minus=9.1205e-04 pool_reward=+0.0002
+    fold1 E6: mse_full=9.1190e-04 mse_minus=9.0745e-04 pool_reward=-0.0049
+    fold1 E7: mse_full=9.1190e-04 mse_minus=9.3556e-04 pool_reward=+0.0253
+    fold1 E8: mse_full=9.1190e-04 mse_minus=9.3231e-04 pool_reward=+0.0219
+    fold2 E1: mse_full=1.6893e-03 mse_minus=1.6610e-03 pool_reward=-0.0170
+    fold2 E2: mse_full=1.6893e-03 mse_minus=1.6029e-03 pool_reward=-0.0539
+    fold2 E3: mse_full=1.6893e-03 mse_minus=1.6388e-03 pool_reward=-0.0308
+    fold2 E4: mse_full=1.6893e-03 mse_minus=1.5870e-03 pool_reward=-0.0645
+    fold2 E5: mse_full=1.6893e-03 mse_minus=1.6404e-03 pool_reward=-0.0298
+    fold2 E6: mse_full=1.6893e-03 mse_minus=1.6756e-03 pool_reward=-0.0082
+    fold2 E7: mse_full=1.6893e-03 mse_minus=1.5753e-03 pool_reward=-0.0723
+    fold2 E8: mse_full=1.6893e-03 mse_minus=1.6998e-03 pool_reward=+0.0062
+    fold3 E1: mse_full=1.3109e-03 mse_minus=1.3146e-03 pool_reward=+0.0028
+    fold3 E2: mse_full=1.3109e-03 mse_minus=1.3297e-03 pool_reward=+0.0141
+    fold3 E3: mse_full=1.3109e-03 mse_minus=1.3305e-03 pool_reward=+0.0147
+    fold3 E4: mse_full=1.3109e-03 mse_minus=1.3239e-03 pool_reward=+0.0098
+    fold3 E5: mse_full=1.3109e-03 mse_minus=1.2955e-03 pool_reward=-0.0119
+    fold3 E6: mse_full=1.3109e-03 mse_minus=1.3173e-03 pool_reward=+0.0048
+    fold3 E7: mse_full=1.3109e-03 mse_minus=1.3243e-03 pool_reward=+0.0101
+    fold3 E8: mse_full=1.3109e-03 mse_minus=1.3054e-03 pool_reward=-0.0042
+    fold4 E1: mse_full=1.2881e-03 mse_minus=1.3326e-03 pool_reward=+0.0334
+    fold4 E2: mse_full=1.2881e-03 mse_minus=1.2836e-03 pool_reward=-0.0035
+    fold4 E3: mse_full=1.2881e-03 mse_minus=1.2807e-03 pool_reward=-0.0058
+    fold4 E4: mse_full=1.2881e-03 mse_minus=1.2756e-03 pool_reward=-0.0098
+    fold4 E5: mse_full=1.2881e-03 mse_minus=1.2761e-03 pool_reward=-0.0094
+    fold4 E6: mse_full=1.2881e-03 mse_minus=1.3298e-03 pool_reward=+0.0313
+    fold4 E7: mse_full=1.2881e-03 mse_minus=1.2740e-03 pool_reward=-0.0111
+    fold4 E8: mse_full=1.2881e-03 mse_minus=1.3120e-03 pool_reward=+0.0182
+    E1: pool_reward mean=+0.0062 pfr=0.75 reward=+2 KEEP cov=0.178
+    E2: pool_reward mean=-0.0079 pfr=0.50 reward=-1 REVISE cov=0.287
+    E3: pool_reward mean=-0.0015 pfr=0.50 reward=-1 REVISE cov=0.609
+    E4: pool_reward mean=-0.0141 pfr=0.50 reward=-1 REVISE cov=0.491
+    E5: pool_reward mean=-0.0127 pfr=0.25 reward=-2 REJECT cov=0.214
+    E6: pool_reward mean=+0.0058 pfr=0.50 reward=+1 KEEP cov=0.440
+    E7: pool_reward mean=-0.0120 pfr=0.50 reward=-1 REVISE cov=1.000
+    E8: pool_reward mean=+0.0105 pfr=0.75 reward=+2 KEEP cov=0.178
+  [v2 Round 1] pool=5 experts
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 11058.27it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+    fold1 E2: mse_full=9.2578e-04 mse_minus=9.4309e-04 pool_reward=+0.0183
+    fold1 E3: mse_full=9.2578e-04 mse_minus=9.3927e-04 pool_reward=+0.0144
+    fold1 E4: mse_full=9.2578e-04 mse_minus=9.4722e-04 pool_reward=+0.0226
+    fold1 E5: mse_full=9.2578e-04 mse_minus=8.9776e-04 pool_reward=-0.0312
+    fold1 E7: mse_full=9.2578e-04 mse_minus=9.4577e-04 pool_reward=+0.0211
+    fold2 E2: mse_full=1.7327e-03 mse_minus=1.5757e-03 pool_reward=-0.0997
+    fold2 E3: mse_full=1.7327e-03 mse_minus=1.7794e-03 pool_reward=+0.0262
+    fold2 E4: mse_full=1.7327e-03 mse_minus=1.7085e-03 pool_reward=-0.0142
+    fold2 E5: mse_full=1.7327e-03 mse_minus=1.7327e-03 pool_reward=-0.0000
+    fold2 E7: mse_full=1.7327e-03 mse_minus=1.5512e-03 pool_reward=-0.1170
+    fold3 E2: mse_full=1.3519e-03 mse_minus=1.3244e-03 pool_reward=-0.0207
+    fold3 E3: mse_full=1.3519e-03 mse_minus=1.2743e-03 pool_reward=-0.0608
+    fold3 E4: mse_full=1.3519e-03 mse_minus=1.3511e-03 pool_reward=-0.0006
+    fold3 E5: mse_full=1.3519e-03 mse_minus=1.3747e-03 pool_reward=+0.0166
+    fold3 E7: mse_full=1.3519e-03 mse_minus=1.4360e-03 pool_reward=+0.0586
+    fold4 E2: mse_full=1.2957e-03 mse_minus=1.2905e-03 pool_reward=-0.0040
+    fold4 E3: mse_full=1.2957e-03 mse_minus=1.3187e-03 pool_reward=+0.0175
+    fold4 E4: mse_full=1.2957e-03 mse_minus=1.3331e-03 pool_reward=+0.0281
+    fold4 E5: mse_full=1.2957e-03 mse_minus=1.2800e-03 pool_reward=-0.0122
+    fold4 E7: mse_full=1.2957e-03 mse_minus=1.2880e-03 pool_reward=-0.0060
+    E2: pool_reward mean=-0.0265 pfr=0.25 reward=-2 REJECT cov=0.287
+    E3: pool_reward mean=-0.0007 pfr=0.75 reward=+2 KEEP cov=0.609
+    E4: pool_reward mean=+0.0090 pfr=0.50 reward=+1 KEEP cov=0.491
+    E5: pool_reward mean=-0.0067 pfr=0.25 reward=-2 REJECT cov=0.250
+    E7: pool_reward mean=-0.0108 pfr=0.50 reward=-1 REVISE cov=1.000
+  [v2 Round 2] pool=3 experts
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 10297.31it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+    fold1 E2: mse_full=9.2153e-04 mse_minus=8.9928e-04 pool_reward=-0.0247
+    fold1 E5: mse_full=9.2153e-04 mse_minus=9.0681e-04 pool_reward=-0.0162
+    fold1 E7: mse_full=9.2153e-04 mse_minus=9.1340e-04 pool_reward=-0.0089
+    fold2 E2: mse_full=1.5297e-03 mse_minus=1.5459e-03 pool_reward=+0.0104
+    fold2 E5: mse_full=1.5297e-03 mse_minus=1.5145e-03 pool_reward=-0.0101
+    fold2 E7: mse_full=1.5297e-03 mse_minus=1.5409e-03 pool_reward=+0.0073
+    fold3 E2: mse_full=1.3551e-03 mse_minus=1.3504e-03 pool_reward=-0.0035
+    fold3 E5: mse_full=1.3551e-03 mse_minus=1.3349e-03 pool_reward=-0.0151
+    fold3 E7: mse_full=1.3551e-03 mse_minus=1.3199e-03 pool_reward=-0.0267
+    fold4 E2: mse_full=1.3274e-03 mse_minus=1.3424e-03 pool_reward=+0.0111
+    fold4 E5: mse_full=1.3274e-03 mse_minus=1.2796e-03 pool_reward=-0.0374
+    fold4 E7: mse_full=1.3274e-03 mse_minus=1.2638e-03 pool_reward=-0.0504
+    E2: pool_reward mean=-0.0017 pfr=0.50 reward=-1 REVISE cov=0.391
+    E5: pool_reward mean=-0.0197 pfr=0.00 reward=-2 REJECT cov=0.440
+    E7: pool_reward mean=-0.0197 pfr=0.25 reward=-2 REJECT cov=0.609
+  [v2] final pool: 5 -> ['E1', 'E3', 'E4', 'E6', 'E8']
+  v2 final pool: 5 -> ['E1', 'E3', 'E4', 'E6', 'E8']
+  v1 final pool (frozen): 4 -> ['E1', 'E2', 'E5', 'E7']
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 11698.80it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 9934.99it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 10300.01it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  determinism check: v2 seed2026 x2 = [0.0007241556304506958, 0.0007241556304506958] -> PASS
+    seed=42 [base] MSE=0.0008
+    seed=42 [shape] MSE=0.0007
+    seed=42 [raw] MSE=0.0007
+    seed=42 [v1] MSE=0.0007
+    seed=42 [v2] MSE=0.0007
+    seed=123 [base] MSE=0.0008
+    seed=123 [shape] MSE=0.0008
+    seed=123 [raw] MSE=0.0007
+    seed=123 [v1] MSE=0.0007
+    seed=123 [v2] MSE=0.0007
+    seed=2026 [base] MSE=0.0008
+    seed=2026 [shape] MSE=0.0008
+    seed=2026 [raw] MSE=0.0007
+    seed=2026 [v1] MSE=0.0007
+    seed=2026 [v2] MSE=0.0007
+  -> saved to E:\GitHub_Project\chronos-retrieval\results\reward_feedback_critic_v2_full_cross_dataset\traffic
+
+==============================================================================
+FULL CROSS-DATASET SUMMARY (v2)
+==============================================================================
+etth1          raw=6.3902e+01 v1=4.1294e+01 v2=3.4689e+01 v2_vs_raw=+45.7% v2_vs_v1=+16.0% pool=8->7 wins_raw=3/3
+electricity    raw=2.6854e+08 v1=9.7242e+08 v2=3.2772e+08 v2_vs_raw=-22.0% v2_vs_v1=+66.3% pool=1->5 wins_raw=1/3
+weather        raw=5.3095e+02 v1=4.6208e+02 v2=4.5895e+02 v2_vs_raw=+13.6% v2_vs_v1=+0.7% pool=3->7 wins_raw=3/3
+etth2          raw=2.0615e+02 v1=2.1494e+02 v2=1.2185e+02 v2_vs_raw=+40.9% v2_vs_v1=+43.3% pool=8->6 wins_raw=3/3
+solar          raw=1.9883e+05 v1=1.9271e+05 v2=1.9710e+05 v2_vs_raw=+0.9% v2_vs_v1=-2.3% pool=5->5 wins_raw=1/3
+exchange_rate  raw=3.6353e-02 v1=2.2278e-02 v2=3.1983e-02 v2_vs_raw=+12.0% v2_vs_v1=-43.6% pool=2->6 wins_raw=2/3
+traffic        raw=6.8426e-04 v1=7.1560e-04 v2=7.2093e-04 v2_vs_raw=-5.4% v2_vs_v1=-0.7% pool=4->5 wins_raw=0/3
+
+v2 æ¯” Raw å¥½ï¼š5/7ï¼›v2 æ¯” v1 å¥½ï¼š4/7
+mean RI vs Raw=+12.24%  median=+12.02%
+
+Saved to E:\GitHub_Project\chronos-retrieval\results\reward_feedback_critic_v2_full_cross_dataset

@@ -196,18 +196,47 @@ def make_chronos_predict_fn(model_name: str = "amazon/chronos-t5-small", device:
     return predict_fn
 
 
+CKPT_EVERY = 200  # save a partial checkpoint every N test windows (resumable, no algo change)
+
+
+def _load_ckpt(ckpt_path, n_total):
+    if ckpt_path and os.path.exists(ckpt_path):
+        ck = json.loads(open(ckpt_path, encoding="utf-8").read())
+        if int(ck.get("total", -1)) == n_total:
+            return ck
+    return None
+
+
 def rolling_eval(series, test_starts, train_end, H, L=48, k=5, use_dtw=False,
-                 predict_fn=None, lam=None, lambdas=None, max_windows=None, audit_path=None):
-    """Roll RAF over our test windows; metric on raw values. Returns (mse, mae, audit_rows)."""
+                 predict_fn=None, lam=None, lambdas=None, max_windows=None, audit_path=None,
+                 ckpt_path=None):
+    """Roll RAF over our test windows; metric on raw values. Resumable via ckpt_path.
+
+    Returns (mse, mae, n_windows, rows). The checkpoint only persists the accumulated
+    sq_err/abs_err/n and the loop cursor, so resuming continues the exact same loop and
+    the final result is bit-identical to an uninterrupted run.
+    """
+    starts = test_starts[:max_windows]
+    n_total = len(starts)
+    ck = _load_ckpt(ckpt_path, n_total)
     if lam is None:
-        lam = _grid_search_lambda(series[:train_end], predict_fn, L, H, k, use_dtw,
-                                  lambdas if lambdas is not None else np.linspace(0.0, 1.0, 21),
-                                  neighbor_fn=_neighbor_avg_vec)
+        lam = float(ck["lam"]) if ck is not None else _grid_search_lambda(
+            series[:train_end], predict_fn, L, H, k, use_dtw,
+            lambdas if lambdas is not None else np.linspace(0.0, 1.0, 21),
+            neighbor_fn=_neighbor_avg_vec)
     rows = []
     sq_err = 0.0
     abs_err = 0.0
     n = 0
-    for s in test_starts[:max_windows]:
+    i0 = 0
+    if ck is not None:
+        i0 = int(ck["done"])
+        sq_err = float(ck["sq_err"])
+        abs_err = float(ck["abs_err"])
+        n = int(ck["n"])
+        print(f"  [resume] checkpoint {i0}/{n_total} windows, lam={lam:.6f}")
+    for i in range(i0, n_total):
+        s = starts[i]
         hist = series[:s]
         # ---- leakage assertion ----
         assert len(hist) >= L + H, f"not enough history at start {s}"
@@ -225,15 +254,22 @@ def rolling_eval(series, test_starts, train_end, H, L=48, k=5, use_dtw=False,
         n += H
         rows.append({"start": int(s), "lam": float(lam), "bank_max_end": int(bank_max_future_end),
                      "leak_ok": True})
+        if ckpt_path and (i + 1) % CKPT_EVERY == 0:
+            with open(ckpt_path, "w", encoding="utf-8") as f:
+                json.dump({"done": i + 1, "sq_err": sq_err, "abs_err": abs_err, "n": n,
+                           "lam": float(lam), "total": n_total}, f)
+    n_windows = i0 + len(rows)
     if n == 0:
-        return float("nan"), float("nan"), rows
+        return float("nan"), float("nan"), n_windows, rows
     mse = sq_err / n
     mae = abs_err / n
     if audit_path:
         with open(audit_path, "w", encoding="utf-8") as f:
             json.dump({"lam": lam, "L": L, "H": H, "k": k,
-                       "n_windows": len(rows), "leakage_assertion": "PASS"}, f, indent=2)
-    return mse, mae, rows
+                       "n_windows": n_windows, "leakage_assertion": "PASS"}, f, indent=2)
+    if ckpt_path and os.path.exists(ckpt_path):
+        os.remove(ckpt_path)
+    return mse, mae, n_windows, rows
 
 
 def main():
@@ -268,20 +304,22 @@ def main():
     predict_fn = make_chronos_predict_fn(args.model, args.device, num_samples=args.num_samples)
     audit_path = os.path.join(REPO, "results", "external_baselines",
                               f"raf_{args.dataset}_leak_audit.json")
-    mse, mae, rows = rolling_eval(series, test_starts, train_end, H,
-                                  L=args.L, k=args.k, predict_fn=predict_fn,
-                                  max_windows=args.max_windows if args.max_windows else len(test_starts),
-                                  audit_path=audit_path)
+    ckpt_path = os.path.join(REPO, "results", "external_baselines",
+                             f"raf_ckpt_{args.dataset}.json")
+    mse, mae, n_windows, rows = rolling_eval(series, test_starts, train_end, H,
+                                             L=args.L, k=args.k, predict_fn=predict_fn,
+                                             max_windows=args.max_windows if args.max_windows else len(test_starts),
+                                             audit_path=audit_path, ckpt_path=ckpt_path)
     lam = rows[0]["lam"] if rows else None
     out = {"dataset": args.dataset, "model": args.model, "L": args.L, "k": args.k,
-           "H": H, "num_samples": args.num_samples, "lambda": lam, "n_windows": len(rows),
+           "H": H, "num_samples": args.num_samples, "lambda": lam, "n_windows": n_windows,
            "raw_mse": float(mse), "raw_mae": float(mae)}
     result_path = os.path.join(REPO, "results", "external_baselines",
                                f"raf_result_{args.dataset}.json")
     with open(result_path, "w", encoding="utf-8") as f:
         json.dump(out, f, indent=2)
     print(f"RAF rolling [{args.dataset}] backbone={args.model} L={args.L} k={args.k}")
-    print(f"  test windows evaluated: {len(rows)} / {len(test_starts)}")
+    print(f"  test windows evaluated: {n_windows} / {len(test_starts)}")
     print(f"  horizon H={H}, lambda={lam}, raw MSE={mse:.6f}, raw MAE={mae:.6f}")
     print(f"  leakage audit: {audit_path}")
     print(f"  result json: {result_path}")

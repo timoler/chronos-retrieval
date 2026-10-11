@@ -1,0 +1,1 @@
+Traffic occupancy exhibits recurring congestion regimes and short-term persistence. Historical periods with similar network-level traffic dynamics can provide useful forecasting analogues.

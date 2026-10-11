@@ -1,0 +1,32 @@
+{
+  "dataset": "electricity",
+  "source": "data\\electricity.csv",
+  "domain": "aggregate_electricity_load",
+  "frequency": "15min",
+  "rows": 140256,
+  "context": 512,
+  "horizon": 96,
+  "split": {
+    "train": [
+      0,
+      84153
+    ],
+    "val": [
+      84153,
+      112204
+    ],
+    "test": [
+      112204,
+      140256
+    ]
+  },
+  "num_windows": {
+    "train": 83546,
+    "val": 27444,
+    "test": 27445
+  },
+  "target": "OT",
+  "expert_pipeline": "expert_text -> agent_review -> text_embedding -> query_expert_attention -> retrieval",
+  "manual_expert_features": false,
+  "test_policy": "indices prepared only; do not evaluate until model is frozen"
+}

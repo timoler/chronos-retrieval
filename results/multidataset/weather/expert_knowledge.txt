@@ -1,0 +1,1 @@
+Weather-station measurements evolve through diurnal and seasonal cycles with short-term persistence. Historical periods with similar recent meteorological dynamics may provide useful forecasting analogues.

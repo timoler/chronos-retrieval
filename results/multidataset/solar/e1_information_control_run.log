@@ -1,0 +1,327 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device: cuda
+seeds: [42, 123, 2026]
+E1 accepted: NightZeroPersistence | activation_feature: daylight_level
+Critic decisions: {'E1': 'ACCEPT', 'E2': 'UNSUPPORTED', 'E3': 'UNSUPPORTED', 'E4': 'UNSUPPORTED', 'E5': 'UNSUPPORTED', 'E6': 'UNSUPPORTED'}
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 10459.36it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+e_E1 shape (1, 384), ||e_E1||=1.0000, dim=384
+bank=24743 fit=6000 val=9905 (TEST not read)
+[shuffle] seed=777 T=40648 corr(original, shuffled)=0.001276
+
+[seed 42] init hash identical=True max_diff=0.000e+00 (hash eeb64990...)
+[seed 42][zero] training ...
+epoch 01/30 loss=546418.945977 gamma=0.1272 beta=0.2047
+epoch 02/30 loss=64689.393700 gamma=0.1282 beta=0.2049
+epoch 03/30 loss=58945.252826 gamma=0.1286 beta=0.2050
+epoch 04/30 loss=57395.314578 gamma=0.1289 beta=0.2051
+epoch 05/30 loss=55583.196061 gamma=0.1289 beta=0.2052
+epoch 06/30 loss=55502.187458 gamma=0.1290 beta=0.2053
+epoch 07/30 loss=55263.844373 gamma=0.1291 beta=0.2055
+epoch 08/30 loss=53477.730760 gamma=0.1289 beta=0.2056
+epoch 09/30 loss=53400.236619 gamma=0.1288 beta=0.2058
+epoch 10/30 loss=51443.789603 gamma=0.1290 beta=0.2059
+epoch 11/30 loss=52742.382522 gamma=0.1286 beta=0.2060
+epoch 12/30 loss=51605.432596 gamma=0.1287 beta=0.2061
+epoch 13/30 loss=50853.454787 gamma=0.1287 beta=0.2063
+epoch 14/30 loss=51587.382106 gamma=0.1287 beta=0.2065
+epoch 15/30 loss=52127.585439 gamma=0.1287 beta=0.2067
+epoch 16/30 loss=50636.065326 gamma=0.1286 beta=0.2069
+epoch 17/30 loss=50399.097428 gamma=0.1285 beta=0.2071
+epoch 18/30 loss=49183.562375 gamma=0.1285 beta=0.2073
+epoch 19/30 loss=48936.747070 gamma=0.1283 beta=0.2073
+epoch 20/30 loss=49052.071061 gamma=0.1283 beta=0.2075
+epoch 21/30 loss=47960.382231 gamma=0.1281 beta=0.2076
+epoch 22/30 loss=47230.451089 gamma=0.1281 beta=0.2078
+epoch 23/30 loss=47428.029380 gamma=0.1279 beta=0.2080
+epoch 24/30 loss=47021.744681 gamma=0.1279 beta=0.2081
+epoch 25/30 loss=46821.885846 gamma=0.1277 beta=0.2084
+epoch 26/30 loss=46378.295504 gamma=0.1277 beta=0.2086
+epoch 27/30 loss=47136.817694 gamma=0.1275 beta=0.2088
+epoch 28/30 loss=45460.896173 gamma=0.1274 beta=0.2091
+epoch 29/30 loss=45893.099256 gamma=0.1276 beta=0.2093
+epoch 30/30 loss=45760.565388 gamma=0.1274 beta=0.2096
+    [zero] MSE=197676.52 MAE=230.44
+[seed 42][shuffled] training ...
+epoch 01/30 loss=568472.416805 gamma=0.1274 beta=0.2048
+epoch 02/30 loss=65523.199759 gamma=0.1284 beta=0.2049
+epoch 03/30 loss=59793.128408 gamma=0.1288 beta=0.2050
+epoch 04/30 loss=57147.296085 gamma=0.1288 beta=0.2051
+epoch 05/30 loss=55988.972739 gamma=0.1286 beta=0.2052
+epoch 06/30 loss=56077.924181 gamma=0.1286 beta=0.2053
+epoch 07/30 loss=54695.941739 gamma=0.1289 beta=0.2055
+epoch 08/30 loss=53526.115691 gamma=0.1285 beta=0.2056
+epoch 09/30 loss=53102.035655 gamma=0.1285 beta=0.2058
+epoch 10/30 loss=51468.080577 gamma=0.1285 beta=0.2059
+epoch 11/30 loss=52345.551446 gamma=0.1282 beta=0.2060
+epoch 12/30 loss=51099.238344 gamma=0.1282 beta=0.2061
+epoch 13/30 loss=50629.591485 gamma=0.1281 beta=0.2063
+epoch 14/30 loss=51916.527281 gamma=0.1280 beta=0.2065
+epoch 15/30 loss=51534.682513 gamma=0.1278 beta=0.2066
+epoch 16/30 loss=50309.274102 gamma=0.1278 beta=0.2068
+epoch 17/30 loss=49894.783307 gamma=0.1278 beta=0.2070
+epoch 18/30 loss=48342.058573 gamma=0.1278 beta=0.2071
+epoch 19/30 loss=48095.820915 gamma=0.1275 beta=0.2072
+epoch 20/30 loss=47252.068359 gamma=0.1275 beta=0.2073
+epoch 21/30 loss=46182.037276 gamma=0.1273 beta=0.2075
+epoch 22/30 loss=45941.370678 gamma=0.1273 beta=0.2077
+epoch 23/30 loss=45614.672041 gamma=0.1272 beta=0.2079
+epoch 24/30 loss=45595.487159 gamma=0.1271 beta=0.2081
+epoch 25/30 loss=45055.582862 gamma=0.1271 beta=0.2082
+epoch 26/30 loss=44338.544735 gamma=0.1271 beta=0.2084
+epoch 27/30 loss=44955.770425 gamma=0.1270 beta=0.2086
+epoch 28/30 loss=42589.398749 gamma=0.1271 beta=0.2087
+epoch 29/30 loss=42811.853931 gamma=0.1270 beta=0.2087
+epoch 30/30 loss=44266.844062 gamma=0.1271 beta=0.2089
+    [shuffled] MSE=200475.94 MAE=232.83
+[seed 42][real] training ...
+epoch 01/30 loss=527101.658868 gamma=0.1270 beta=0.2047
+epoch 02/30 loss=64366.664894 gamma=0.1273 beta=0.2049
+epoch 03/30 loss=58426.415683 gamma=0.1276 beta=0.2049
+epoch 04/30 loss=56589.475856 gamma=0.1280 beta=0.2051
+epoch 05/30 loss=55141.702252 gamma=0.1279 beta=0.2052
+epoch 06/30 loss=55291.519303 gamma=0.1282 beta=0.2053
+epoch 07/30 loss=54114.335023 gamma=0.1281 beta=0.2054
+epoch 08/30 loss=52970.375665 gamma=0.1280 beta=0.2055
+epoch 09/30 loss=52477.689578 gamma=0.1280 beta=0.2057
+epoch 10/30 loss=51172.102892 gamma=0.1279 beta=0.2058
+epoch 11/30 loss=51536.479845 gamma=0.1275 beta=0.2059
+epoch 12/30 loss=50869.121551 gamma=0.1277 beta=0.2060
+epoch 13/30 loss=49844.245304 gamma=0.1276 beta=0.2062
+epoch 14/30 loss=50351.378948 gamma=0.1274 beta=0.2063
+epoch 15/30 loss=50406.065637 gamma=0.1271 beta=0.2064
+epoch 16/30 loss=49917.516456 gamma=0.1272 beta=0.2066
+epoch 17/30 loss=49043.092919 gamma=0.1272 beta=0.2068
+epoch 18/30 loss=48672.062583 gamma=0.1274 beta=0.2070
+epoch 19/30 loss=48479.882168 gamma=0.1272 beta=0.2071
+epoch 20/30 loss=47180.027344 gamma=0.1271 beta=0.2073
+epoch 21/30 loss=46274.526575 gamma=0.1268 beta=0.2074
+epoch 22/30 loss=45135.054126 gamma=0.1269 beta=0.2075
+epoch 23/30 loss=44996.674971 gamma=0.1269 beta=0.2076
+epoch 24/30 loss=44624.397025 gamma=0.1267 beta=0.2078
+epoch 25/30 loss=44706.353765 gamma=0.1269 beta=0.2079
+epoch 26/30 loss=43877.433822 gamma=0.1269 beta=0.2080
+epoch 27/30 loss=43711.555207 gamma=0.1269 beta=0.2082
+epoch 28/30 loss=42358.639835 gamma=0.1269 beta=0.2083
+epoch 29/30 loss=42555.856923 gamma=0.1269 beta=0.2084
+epoch 30/30 loss=42862.323595 gamma=0.1270 beta=0.2084
+    [real] MSE=202716.77 MAE=231.67
+
+[seed 123] init hash identical=True max_diff=0.000e+00 (hash 51ac668b...)
+[seed 123][zero] training ...
+epoch 01/30 loss=540192.617478 gamma=0.1273 beta=0.2050
+epoch 02/30 loss=66880.302402 gamma=0.1286 beta=0.2051
+epoch 03/30 loss=59779.755901 gamma=0.1293 beta=0.2052
+epoch 04/30 loss=57371.072473 gamma=0.1296 beta=0.2053
+epoch 05/30 loss=56236.561004 gamma=0.1298 beta=0.2054
+epoch 06/30 loss=55691.592379 gamma=0.1299 beta=0.2055
+epoch 07/30 loss=55690.229430 gamma=0.1300 beta=0.2057
+epoch 08/30 loss=53991.907164 gamma=0.1299 beta=0.2058
+epoch 09/30 loss=53562.830078 gamma=0.1298 beta=0.2059
+epoch 10/30 loss=52523.394697 gamma=0.1300 beta=0.2060
+epoch 11/30 loss=53269.058594 gamma=0.1296 beta=0.2061
+epoch 12/30 loss=51931.558594 gamma=0.1297 beta=0.2063
+epoch 13/30 loss=50953.098051 gamma=0.1296 beta=0.2064
+epoch 14/30 loss=51600.509973 gamma=0.1297 beta=0.2066
+epoch 15/30 loss=51962.545192 gamma=0.1297 beta=0.2068
+epoch 16/30 loss=50601.771526 gamma=0.1298 beta=0.2069
+epoch 17/30 loss=50238.728100 gamma=0.1297 beta=0.2071
+epoch 18/30 loss=48962.610954 gamma=0.1298 beta=0.2073
+epoch 19/30 loss=48555.294257 gamma=0.1296 beta=0.2074
+epoch 20/30 loss=47946.157995 gamma=0.1295 beta=0.2075
+epoch 21/30 loss=47588.798101 gamma=0.1294 beta=0.2076
+epoch 22/30 loss=46805.997029 gamma=0.1294 beta=0.2077
+epoch 23/30 loss=46881.370907 gamma=0.1294 beta=0.2079
+epoch 24/30 loss=46027.909595 gamma=0.1295 beta=0.2080
+epoch 25/30 loss=45981.531811 gamma=0.1294 beta=0.2082
+epoch 26/30 loss=45920.004343 gamma=0.1294 beta=0.2084
+epoch 27/30 loss=46141.622403 gamma=0.1290 beta=0.2086
+epoch 28/30 loss=44575.822744 gamma=0.1289 beta=0.2087
+epoch 29/30 loss=44665.843937 gamma=0.1290 beta=0.2088
+epoch 30/30 loss=44391.643098 gamma=0.1287 beta=0.2089
+    [zero] MSE=190525.78 MAE=227.99
+[seed 123][shuffled] training ...
+epoch 01/30 loss=549283.925947 gamma=0.1274 beta=0.2050
+epoch 02/30 loss=68214.364985 gamma=0.1286 beta=0.2051
+epoch 03/30 loss=60359.655294 gamma=0.1291 beta=0.2052
+epoch 04/30 loss=57582.059134 gamma=0.1292 beta=0.2053
+epoch 05/30 loss=56457.623338 gamma=0.1293 beta=0.2054
+epoch 06/30 loss=55987.586270 gamma=0.1295 beta=0.2055
+epoch 07/30 loss=55768.516041 gamma=0.1295 beta=0.2057
+epoch 08/30 loss=53974.772897 gamma=0.1295 beta=0.2058
+epoch 09/30 loss=54083.031956 gamma=0.1293 beta=0.2059
+epoch 10/30 loss=52569.782871 gamma=0.1295 beta=0.2060
+epoch 11/30 loss=53369.549950 gamma=0.1290 beta=0.2062
+epoch 12/30 loss=52425.670337 gamma=0.1290 beta=0.2063
+epoch 13/30 loss=51047.176093 gamma=0.1290 beta=0.2065
+epoch 14/30 loss=52323.010493 gamma=0.1289 beta=0.2067
+epoch 15/30 loss=51566.963971 gamma=0.1290 beta=0.2068
+epoch 16/30 loss=51089.411320 gamma=0.1289 beta=0.2070
+epoch 17/30 loss=49997.431807 gamma=0.1287 beta=0.2071
+epoch 18/30 loss=49118.661444 gamma=0.1288 beta=0.2073
+epoch 19/30 loss=48620.540060 gamma=0.1285 beta=0.2074
+epoch 20/30 loss=48277.062874 gamma=0.1284 beta=0.2076
+epoch 21/30 loss=47181.390521 gamma=0.1280 beta=0.2076
+epoch 22/30 loss=46559.062687 gamma=0.1281 beta=0.2078
+epoch 23/30 loss=46555.208901 gamma=0.1280 beta=0.2079
+epoch 24/30 loss=45937.299576 gamma=0.1279 beta=0.2081
+epoch 25/30 loss=45943.747714 gamma=0.1278 beta=0.2083
+epoch 26/30 loss=45294.403507 gamma=0.1277 beta=0.2085
+epoch 27/30 loss=45192.463119 gamma=0.1276 beta=0.2086
+epoch 28/30 loss=43904.835210 gamma=0.1275 beta=0.2086
+epoch 29/30 loss=44359.791223 gamma=0.1277 beta=0.2087
+epoch 30/30 loss=44899.782517 gamma=0.1274 beta=0.2089
+    [shuffled] MSE=197732.28 MAE=232.10
+[seed 123][real] training ...
+epoch 01/30 loss=542473.627202 gamma=0.1274 beta=0.2051
+epoch 02/30 loss=66150.890874 gamma=0.1282 beta=0.2053
+epoch 03/30 loss=60108.802319 gamma=0.1290 beta=0.2054
+epoch 04/30 loss=57635.664769 gamma=0.1293 beta=0.2055
+epoch 05/30 loss=56684.824136 gamma=0.1293 beta=0.2056
+epoch 06/30 loss=56322.152344 gamma=0.1295 beta=0.2057
+epoch 07/30 loss=55707.473238 gamma=0.1296 beta=0.2059
+epoch 08/30 loss=53983.490151 gamma=0.1294 beta=0.2060
+epoch 09/30 loss=53574.290849 gamma=0.1292 beta=0.2061
+epoch 10/30 loss=51925.380070 gamma=0.1294 beta=0.2062
+epoch 11/30 loss=52372.719207 gamma=0.1292 beta=0.2063
+epoch 12/30 loss=52029.084234 gamma=0.1291 beta=0.2064
+epoch 13/30 loss=50970.293779 gamma=0.1291 beta=0.2066
+epoch 14/30 loss=51657.739112 gamma=0.1290 beta=0.2067
+epoch 15/30 loss=52037.895092 gamma=0.1289 beta=0.2069
+epoch 16/30 loss=50664.833029 gamma=0.1289 beta=0.2070
+epoch 17/30 loss=50437.087101 gamma=0.1288 beta=0.2072
+epoch 18/30 loss=49306.549410 gamma=0.1289 beta=0.2074
+epoch 19/30 loss=49065.186731 gamma=0.1286 beta=0.2074
+epoch 20/30 loss=47914.764004 gamma=0.1285 beta=0.2076
+epoch 21/30 loss=47271.940201 gamma=0.1283 beta=0.2077
+epoch 22/30 loss=46132.923994 gamma=0.1283 beta=0.2079
+epoch 23/30 loss=46043.181703 gamma=0.1282 beta=0.2080
+epoch 24/30 loss=45484.314931 gamma=0.1280 beta=0.2081
+epoch 25/30 loss=45663.371322 gamma=0.1280 beta=0.2083
+epoch 26/30 loss=44879.637654 gamma=0.1282 beta=0.2084
+epoch 27/30 loss=45388.018617 gamma=0.1279 beta=0.2087
+epoch 28/30 loss=43846.572847 gamma=0.1279 beta=0.2088
+epoch 29/30 loss=43605.297228 gamma=0.1280 beta=0.2089
+epoch 30/30 loss=43610.610019 gamma=0.1278 beta=0.2090
+    [real] MSE=194716.61 MAE=230.74
+
+[seed 2026] init hash identical=True max_diff=0.000e+00 (hash b13eac3f...)
+[seed 2026][zero] training ...
+epoch 01/30 loss=548844.679106 gamma=0.1272 beta=0.2049
+epoch 02/30 loss=66926.109707 gamma=0.1283 beta=0.2051
+epoch 03/30 loss=60304.647274 gamma=0.1287 beta=0.2051
+epoch 04/30 loss=57783.146900 gamma=0.1288 beta=0.2052
+epoch 05/30 loss=56207.443900 gamma=0.1290 beta=0.2053
+epoch 06/30 loss=55925.091589 gamma=0.1293 beta=0.2055
+epoch 07/30 loss=55392.758810 gamma=0.1294 beta=0.2056
+epoch 08/30 loss=53480.112409 gamma=0.1292 beta=0.2057
+epoch 09/30 loss=53317.101438 gamma=0.1292 beta=0.2059
+epoch 10/30 loss=51551.501912 gamma=0.1291 beta=0.2059
+epoch 11/30 loss=52696.571310 gamma=0.1287 beta=0.2060
+epoch 12/30 loss=51678.313123 gamma=0.1289 beta=0.2062
+epoch 13/30 loss=50520.466090 gamma=0.1287 beta=0.2063
+epoch 14/30 loss=51889.114798 gamma=0.1287 beta=0.2065
+epoch 15/30 loss=52031.046626 gamma=0.1285 beta=0.2067
+epoch 16/30 loss=50772.787525 gamma=0.1286 beta=0.2069
+epoch 17/30 loss=50073.530128 gamma=0.1283 beta=0.2070
+epoch 18/30 loss=49071.739840 gamma=0.1286 beta=0.2072
+epoch 19/30 loss=48663.995096 gamma=0.1281 beta=0.2073
+epoch 20/30 loss=48288.521443 gamma=0.1281 beta=0.2074
+epoch 21/30 loss=46851.491793 gamma=0.1278 beta=0.2076
+epoch 22/30 loss=46254.492188 gamma=0.1278 beta=0.2077
+epoch 23/30 loss=46653.516103 gamma=0.1277 beta=0.2079
+epoch 24/30 loss=45900.044382 gamma=0.1276 beta=0.2081
+epoch 25/30 loss=45680.246468 gamma=0.1275 beta=0.2083
+epoch 26/30 loss=45205.189349 gamma=0.1275 beta=0.2086
+epoch 27/30 loss=45221.235933 gamma=0.1272 beta=0.2088
+epoch 28/30 loss=43698.787837 gamma=0.1272 beta=0.2091
+epoch 29/30 loss=44364.091423 gamma=0.1271 beta=0.2091
+epoch 30/30 loss=44411.456408 gamma=0.1269 beta=0.2092
+    [zero] MSE=207589.88 MAE=235.68
+[seed 2026][shuffled] training ...
+epoch 01/30 loss=538897.105552 gamma=0.1272 beta=0.2048
+epoch 02/30 loss=67030.166722 gamma=0.1284 beta=0.2049
+epoch 03/30 loss=60000.337849 gamma=0.1290 beta=0.2050
+epoch 04/30 loss=57384.326546 gamma=0.1290 beta=0.2051
+epoch 05/30 loss=56026.254696 gamma=0.1292 beta=0.2052
+epoch 06/30 loss=55874.670005 gamma=0.1293 beta=0.2053
+epoch 07/30 loss=55030.844456 gamma=0.1293 beta=0.2055
+epoch 08/30 loss=53557.723238 gamma=0.1291 beta=0.2056
+epoch 09/30 loss=53047.230760 gamma=0.1291 beta=0.2057
+epoch 10/30 loss=51736.558012 gamma=0.1291 beta=0.2058
+epoch 11/30 loss=52686.484624 gamma=0.1288 beta=0.2060
+epoch 12/30 loss=51323.005610 gamma=0.1288 beta=0.2060
+epoch 13/30 loss=50412.827917 gamma=0.1289 beta=0.2062
+epoch 14/30 loss=51277.882958 gamma=0.1288 beta=0.2064
+epoch 15/30 loss=50997.964387 gamma=0.1285 beta=0.2065
+epoch 16/30 loss=50435.343688 gamma=0.1286 beta=0.2067
+epoch 17/30 loss=49395.944772 gamma=0.1285 beta=0.2068
+epoch 18/30 loss=48497.500665 gamma=0.1285 beta=0.2069
+epoch 19/30 loss=47919.042242 gamma=0.1283 beta=0.2070
+epoch 20/30 loss=47450.838514 gamma=0.1283 beta=0.2072
+epoch 21/30 loss=46948.724838 gamma=0.1281 beta=0.2073
+epoch 22/30 loss=45514.488053 gamma=0.1281 beta=0.2074
+epoch 23/30 loss=46169.644760 gamma=0.1280 beta=0.2076
+epoch 24/30 loss=45440.756316 gamma=0.1280 beta=0.2078
+epoch 25/30 loss=45408.956761 gamma=0.1278 beta=0.2079
+epoch 26/30 loss=45102.475711 gamma=0.1280 beta=0.2081
+epoch 27/30 loss=44816.918031 gamma=0.1277 beta=0.2084
+epoch 28/30 loss=43378.049119 gamma=0.1278 beta=0.2085
+epoch 29/30 loss=43675.305456 gamma=0.1278 beta=0.2086
+epoch 30/30 loss=44330.869141 gamma=0.1275 beta=0.2087
+    [shuffled] MSE=195814.33 MAE=229.60
+[seed 2026][real] training ...
+epoch 01/30 loss=505830.899061 gamma=0.1268 beta=0.2049
+epoch 02/30 loss=67287.676986 gamma=0.1275 beta=0.2050
+epoch 03/30 loss=60386.893451 gamma=0.1280 beta=0.2051
+epoch 04/30 loss=57875.837226 gamma=0.1283 beta=0.2052
+epoch 05/30 loss=56025.168467 gamma=0.1285 beta=0.2053
+epoch 06/30 loss=55835.935921 gamma=0.1285 beta=0.2055
+epoch 07/30 loss=54410.776845 gamma=0.1286 beta=0.2056
+epoch 08/30 loss=53293.544174 gamma=0.1286 beta=0.2057
+epoch 09/30 loss=53510.680311 gamma=0.1285 beta=0.2059
+epoch 10/30 loss=51642.512529 gamma=0.1285 beta=0.2060
+epoch 11/30 loss=52042.577169 gamma=0.1283 beta=0.2061
+epoch 12/30 loss=50826.677734 gamma=0.1284 beta=0.2062
+epoch 13/30 loss=50218.772440 gamma=0.1283 beta=0.2064
+epoch 14/30 loss=50993.011345 gamma=0.1283 beta=0.2065
+epoch 15/30 loss=51641.075424 gamma=0.1280 beta=0.2067
+epoch 16/30 loss=49996.152427 gamma=0.1281 beta=0.2068
+epoch 17/30 loss=49294.521567 gamma=0.1280 beta=0.2070
+epoch 18/30 loss=48009.645342 gamma=0.1281 beta=0.2071
+epoch 19/30 loss=48227.887467 gamma=0.1279 beta=0.2073
+epoch 20/30 loss=47425.856591 gamma=0.1278 beta=0.2075
+epoch 21/30 loss=45918.996218 gamma=0.1277 beta=0.2077
+epoch 22/30 loss=45548.451587 gamma=0.1278 beta=0.2078
+epoch 23/30 loss=45342.773666 gamma=0.1276 beta=0.2079
+epoch 24/30 loss=45258.875270 gamma=0.1275 beta=0.2081
+epoch 25/30 loss=44710.191635 gamma=0.1274 beta=0.2083
+epoch 26/30 loss=44802.724526 gamma=0.1274 beta=0.2085
+epoch 27/30 loss=44757.897482 gamma=0.1273 beta=0.2087
+epoch 28/30 loss=43461.676841 gamma=0.1272 beta=0.2089
+epoch 29/30 loss=43461.816198 gamma=0.1273 beta=0.2091
+epoch 30/30 loss=43610.902240 gamma=0.1271 beta=0.2091
+    [real] MSE=202064.03 MAE=233.95
+[diag] daylight_level over 100 VAL queries: mean=0.3237 std=0.3886 min=0.0000 max=1.0000
+
+==============================================================================
+E1 INFORMATION CONTROL (strict fair comparison)
+==============================================================================
+A. ZERO     MSE = 198597.39 ¡À 6996.75  MAE = 231.37
+B. SHUFFLED MSE = 198007.52 ¡À 1913.02  MAE = 231.51
+C. REAL E1  MSE = 199832.47 ¡À 3627.26  MAE = 232.12
+------------------------------------------------------------------------------
+REAL vs ZERO     gain = -0.62%
+REAL vs SHUFFLED gain = -0.92%
+shuffle corr(original, shuffled) = 0.001276
+param count identical = True | init identical = True
+conclusion = E1_INFORMATION_NEGATIVE
+==============================================================================
+Saved to: results\multidataset\solar\e1_information_control
+TEST NOT evaluated. Critic v4 NOT modified. No Attention. No regenerated expert.

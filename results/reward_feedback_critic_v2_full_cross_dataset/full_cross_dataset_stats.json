@@ -1,0 +1,14 @@
+{
+  "n": 7,
+  "mean_RI_vs_raw": 0.1223809949898372,
+  "median_RI_vs_raw": 0.12023231431465872,
+  "positive_dataset_ratio_vs_raw": 0.7142857142857143,
+  "mean_RI_vs_v1": 0.11385005405775539,
+  "median_RI_vs_v1": 0.006774661763341018,
+  "positive_dataset_ratio_vs_v1": 0.5714285714285714,
+  "better_raw": 5,
+  "better_v1": 4,
+  "full_wins_raw": 3,
+  "wins_23_raw": 4,
+  "std_lower": 4
+}

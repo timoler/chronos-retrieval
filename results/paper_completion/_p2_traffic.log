@@ -1,0 +1,37 @@
+device: cuda
+
+======================================================================
+DATASET traffic
+======================================================================
+  raw=8 K_v2=5 v2_ids=['E1', 'E3', 'E4', 'E6', 'E8'] data_sec=0.6
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 5553.73it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 8947.71it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+    emb+act_sec=2.4  V2=0.00072093 RAW=0.000684264
+    RANDOM_K seed=11 subset=['E1', 'E4', 'E5', 'E6', 'E8'] mse=0.000705861
+    RANDOM_K seed=22 subset=['E2', 'E4', 'E6', 'E7', 'E8'] mse=0.000708041
+    RANDOM_K seed=33 subset=['E3', 'E4', 'E6', 'E7', 'E8'] mse=0.000719654
+    RANDOM_K seed=44 subset=['E1', 'E2', 'E3', 'E5', 'E6'] mse=0.000716651
+    RANDOM_K seed=55 subset=['E2', 'E4', 'E5', 'E6', 'E7'] mse=0.000682366
+    V1_SCORE_TOPK subset=['E1', 'E2', 'E5', 'E7', 'E3'] mse=0.000686637
+  [part saved] E:\GitHub_Project\chronos-retrieval\results\paper_completion\_p2_parts\traffic.json
+
+======================================================================
+exchange_rate  K=6 v2=3.1983e-02 raw=3.6353e-02 randK=3.4229e-02 v1topK=3.3268e-02 v2_vs_rand=+6.6% v2_vs_v1s=+3.9%
+traffic        K=5 v2=7.2093e-04 raw=6.8426e-04 randK=7.0651e-04 v1topK=6.8664e-04 v2_vs_rand=-2.0% v2_vs_v1s=-5.0%
+
+v2>RANDOM_K: 1/2   v2>V1_SCORE_TOPK: 1/2
+Saved to E:\GitHub_Project\chronos-retrieval\results\paper_completion
