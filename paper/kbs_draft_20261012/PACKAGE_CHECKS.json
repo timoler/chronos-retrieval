@@ -6,5 +6,28 @@
   "table_count": 8,
   "formula_count": 9,
   "positive_groups": 25,
-  "unresolved_table_placeholders": false
+  "unresolved_table_placeholders": false,
+  "word": {
+    "pages": 15,
+    "editable_tables": 8,
+    "numbered_equations": 9,
+    "all_table_cells_match_source": true,
+    "visual_review_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ]
+  }
 }

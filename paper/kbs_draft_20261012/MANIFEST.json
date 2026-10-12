@@ -180,8 +180,8 @@
     "bytes": 1049
   },
   "AUTHOR_NOTES_zh.md": {
-    "sha256": "6d1206ec9d263f054c3332641c4b4e1448496046f37db6b64c1feb104d73cd41",
-    "bytes": 5077
+    "sha256": "fe8eb4a50051ab46dfc5713be1062e7e7603108390738da6a0bd7f8bc4a3ded8",
+    "bytes": 5040
   },
   "FIGURE_BRIEF_zh.md": {
     "sha256": "7d5000bda244d11a8645e456c7ae64a470d4e00aab16f87879d4ab1ee24cb061",
@@ -372,16 +372,20 @@
     "bytes": 39870
   },
   "PACKAGE_CHECKS.json": {
-    "sha256": "36f9ae2d8104cb131aeae1aeade8e4fd4ef1a97e4a42bc7348ef377b6614daf7",
-    "bytes": 199
+    "sha256": "60e9340bfadbc77f490dde309d7fb28660e7cebfa6be6d077cef336342d012f2",
+    "bytes": 506
+  },
+  "PAER_KBS_中文初稿.docx": {
+    "sha256": "a9028bbd59d323a033c14ac62a9a6ae81817edaceca57023d679d9931b1f5bab",
+    "bytes": 63266
   },
   "PROTOCOL.json": {
     "sha256": "089cbce82a8789e36092144706b47afa6a95c42383c907e971ef702d4a3de527",
     "bytes": 1939
   },
   "README.md": {
-    "sha256": "7de38077403e92621313e610b04238995b609f5e16a7b46fd62a547771652aa2",
-    "bytes": 1927
+    "sha256": "ec1ef90bd3368f5b4b9553b98a7307a3b0ac853d8f5f1bd03020660f3a0709cf",
+    "bytes": 2052
   },
   "tables/sources.json": {
     "sha256": "5afc718ba162f6875a98dd9c0eede8edfcd218ea381a1b48c6f2f744c3080aa1",
