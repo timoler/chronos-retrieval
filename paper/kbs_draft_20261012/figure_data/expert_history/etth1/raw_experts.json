@@ -1,0 +1,557 @@
+[
+  {
+    "id": "E1",
+    "mechanism": "Large thermal mass smooths short-lived fluctuations, so when recent volatility is low and autocorrelation is high the oil temperature is in a persistent, slowly evolving state.",
+    "scope": "global low-volatility high-persistence regime",
+    "activation_condition": "when recent_volatility is low and recent_autocorr is high",
+    "failure_condition": "when recent volatility is high or recent autocorrelation is low, indicating transient or noisy thermal conditions",
+    "observables": [
+      "recent_volatility",
+      "recent_autocorr"
+    ],
+    "retrieval_action": "Upweight historical windows that also had low recent volatility and high recent autocorrelation, and allow longer retrieval windows because the smooth thermal response remains informative over longer lags.",
+    "expected_effect": "Retrieved windows match the current persistent smooth dynamics, reducing noise and providing stable future trajectories instead of erratic short-term analogues.",
+    "reason": "Thermal inertia integrates heat input over time, so stable low-volatility states with high persistence are best represented by similarly smooth past periods.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "recent_volatility",
+          "qualifier": "low"
+        },
+        {
+          "feature": "recent_autocorr",
+          "qualifier": "high"
+        }
+      ]
+    },
+    "claim": "Large thermal mass smooths short-lived fluctuations, so when recent volatility is low and autocorrelation is high the oil temperature is in a persistent, slowly evolving state.",
+    "observable_features": [
+      "recent_volatility",
+      "recent_autocorr"
+    ],
+    "replaced": false,
+    "compiled": {
+      "status": "COMPILED",
+      "logic": "AND",
+      "negate": false,
+      "n_primitives": 2,
+      "primitives": [
+        {
+          "feature": "recent_volatility",
+          "qualifier": "low",
+          "rule": 2.823302984237671,
+          "kind": "continuous",
+          "op": "<="
+        },
+        {
+          "feature": "recent_autocorr",
+          "qualifier": "high",
+          "rule": 0.9659447073936462,
+          "kind": "continuous",
+          "op": ">="
+        }
+      ],
+      "uncompilable": [],
+      "features_compiled": [
+        "recent_volatility",
+        "recent_autocorr"
+      ],
+      "repairs": []
+    },
+    "retrieval_spec": {
+      "status": "COMPILED",
+      "ops": [
+        {
+          "type": "lag",
+          "direction": "allow_long"
+        }
+      ],
+      "notes": [],
+      "uncompilable": []
+    }
+  },
+  {
+    "id": "E2",
+    "mechanism": "A sudden load change puts the transformer in a transient heating or cooling phase whose trajectory depends on the recent rate and size of change.",
+    "scope": "transient heating/cooling phases",
+    "activation_condition": "when recent_slope_magnitude is high and recent_diff_magnitude is high",
+    "failure_condition": "when slope or diff magnitude is low, or when a high slope is only an isolated noisy spike rather than a sustained thermal transient",
+    "observables": [
+      "recent_slope_magnitude",
+      "recent_diff_magnitude",
+      "recent_level"
+    ],
+    "retrieval_action": "Retrieve short historical windows that also had high recent_slope_magnitude and high recent_diff_magnitude, and prefer windows with a similar recent_level to match the direction/state of the transient.",
+    "expected_effect": "Historical transients with similar recent change characteristics capture the lagged thermal response and present cooling/heating path, improving forecasts of the continuing transient curve.",
+    "reason": "Steady-state histories are misleading during thermal transients; past periods with similarly strong recent changes better represent the short-term oil temperature trajectory.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "recent_slope_magnitude",
+          "qualifier": "high"
+        },
+        {
+          "feature": "recent_diff_magnitude",
+          "qualifier": "high"
+        }
+      ]
+    },
+    "claim": "A sudden load change puts the transformer in a transient heating or cooling phase whose trajectory depends on the recent rate and size of change.",
+    "observable_features": [
+      "recent_slope_magnitude",
+      "recent_diff_magnitude",
+      "recent_level"
+    ],
+    "replaced": false,
+    "compiled": {
+      "status": "COMPILED",
+      "logic": "AND",
+      "negate": false,
+      "n_primitives": 2,
+      "primitives": [
+        {
+          "feature": "recent_slope_magnitude",
+          "qualifier": "high",
+          "rule": 2.8626925945281982,
+          "kind": "continuous",
+          "op": ">="
+        },
+        {
+          "feature": "recent_diff_magnitude",
+          "qualifier": "high",
+          "rule": 0.9149999618530273,
+          "kind": "continuous",
+          "op": ">="
+        }
+      ],
+      "uncompilable": [],
+      "features_compiled": [
+        "recent_slope_magnitude",
+        "recent_diff_magnitude"
+      ],
+      "repairs": []
+    },
+    "retrieval_spec": {
+      "status": "COMPILED",
+      "ops": [
+        {
+          "type": "lag",
+          "direction": "short",
+          "weight": 0.5,
+          "cap": 720.0
+        },
+        {
+          "type": "prefer_similar",
+          "feature": "recent_level",
+          "weight": 0.5
+        }
+      ],
+      "notes": [],
+      "uncompilable": []
+    }
+  },
+  {
+    "id": "E3",
+    "mechanism": "Under steady load the transformer approaches thermal equilibrium, so the current level is near a stable plateau and the future should remain close to that plateau.",
+    "scope": "near-equilibrium steady-load periods",
+    "activation_condition": "when recent_slope_magnitude is low and recent_volatility is low",
+    "failure_condition": "when load is changing after a recent disturbance or when volatility increases, because the equilibrium assumption breaks down",
+    "observables": [
+      "recent_slope_magnitude",
+      "recent_volatility",
+      "recent_level"
+    ],
+    "retrieval_action": "Retrieve historical windows with low recent_slope_magnitude and low recent_volatility, and match recent_level to select stable plateaus; downweight windows with trends or high variance.",
+    "expected_effect": "Retrieved stable equilibrium windows prevent false trend extrapolation and anchor the forecast near the current stable temperature level.",
+    "reason": "With near-constant load, resistive heating and cooling balance, so past equilibrium periods are the most appropriate analogues for the current state.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "recent_slope_magnitude",
+          "qualifier": "low"
+        },
+        {
+          "feature": "recent_volatility",
+          "qualifier": "low"
+        }
+      ]
+    },
+    "claim": "Under steady load the transformer approaches thermal equilibrium, so the current level is near a stable plateau and the future should remain close to that plateau.",
+    "observable_features": [
+      "recent_slope_magnitude",
+      "recent_volatility",
+      "recent_level"
+    ],
+    "replaced": false,
+    "compiled": {
+      "status": "COMPILED",
+      "logic": "AND",
+      "negate": false,
+      "n_primitives": 2,
+      "primitives": [
+        {
+          "feature": "recent_slope_magnitude",
+          "qualifier": "low",
+          "rule": 0.9131624698638916,
+          "kind": "continuous",
+          "op": "<="
+        },
+        {
+          "feature": "recent_volatility",
+          "qualifier": "low",
+          "rule": 2.823302984237671,
+          "kind": "continuous",
+          "op": "<="
+        }
+      ],
+      "uncompilable": [],
+      "features_compiled": [
+        "recent_slope_magnitude",
+        "recent_volatility"
+      ],
+      "repairs": []
+    },
+    "retrieval_spec": {
+      "status": "COMPILED",
+      "ops": [
+        {
+          "type": "prefer_similar",
+          "feature": "recent_level",
+          "weight": 0.5
+        }
+      ],
+      "notes": [],
+      "uncompilable": []
+    }
+  },
+  {
+    "id": "E4",
+    "mechanism": "High recent volatility implies rapidly varying load and intermittent heat input, so only short-term local dynamics and similarly erratic histories are informative.",
+    "scope": "high-volatility fluctuating-load regime",
+    "activation_condition": "when recent_volatility is high",
+    "failure_condition": "when recent volatility is low or the transformer is in a stable equilibrium state",
+    "observables": [
+      "recent_volatility"
+    ],
+    "retrieval_action": "Restrict retrieval to recent local windows and historical segments with high recent_volatility; use short matching horizons and downweight long stable windows.",
+    "expected_effect": "Matched high-variance historical segments reflect the current fluctuating heat input and avoid averaging with stable periods that have different short-term dynamics.",
+    "reason": "High volatility is a marker of rapidly changing load/current, producing intermittent resistive heating that only similarly erratic periods share.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "recent_volatility",
+          "qualifier": "high"
+        }
+      ]
+    },
+    "claim": "High recent volatility implies rapidly varying load and intermittent heat input, so only short-term local dynamics and similarly erratic histories are informative.",
+    "observable_features": [
+      "recent_volatility"
+    ],
+    "replaced": false,
+    "compiled": {
+      "status": "COMPILED",
+      "logic": "AND",
+      "negate": false,
+      "n_primitives": 1,
+      "primitives": [
+        {
+          "feature": "recent_volatility",
+          "qualifier": "high",
+          "rule": 3.728785276412964,
+          "kind": "continuous",
+          "op": ">="
+        }
+      ],
+      "uncompilable": [],
+      "features_compiled": [
+        "recent_volatility"
+      ],
+      "repairs": []
+    },
+    "retrieval_spec": {
+      "status": "COMPILED",
+      "ops": [
+        {
+          "type": "lag",
+          "direction": "short",
+          "weight": 0.5,
+          "cap": 720.0
+        }
+      ],
+      "notes": [],
+      "uncompilable": []
+    }
+  },
+  {
+    "id": "E5",
+    "mechanism": "High summer ambient temperature reduces the oil-to-air heat transfer efficiency, so load-driven temperature increases are larger and cooling is slower.",
+    "scope": "summer season",
+    "activation_condition": "when seasonal_level is summer",
+    "failure_condition": "in cooler seasons where cooling is more effective and the thermal response differs",
+    "observables": [
+      "seasonal_level"
+    ],
+    "retrieval_action": "Retrieve historical summer windows, prioritizing those with similar hour_of_day and recent_level, instead of pooling all seasons.",
+    "expected_effect": "Season-matched retrieval captures the reduced cooling efficiency and higher ambient baseline, avoiding winter or spring analogues that would underpredict heat accumulation.",
+    "reason": "Seasonal ambient temperature changes alter the cooling side of the thermal balance, so summer-specific histories better represent the expected oil temperature response.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "seasonal_level",
+          "qualifier": "summer"
+        }
+      ]
+    },
+    "claim": "High summer ambient temperature reduces the oil-to-air heat transfer efficiency, so load-driven temperature increases are larger and cooling is slower.",
+    "observable_features": [
+      "seasonal_level"
+    ],
+    "replaced": false,
+    "compiled": {
+      "status": "COMPILED",
+      "logic": "AND",
+      "negate": false,
+      "n_primitives": 1,
+      "primitives": [
+        {
+          "feature": "seasonal_level",
+          "qualifier": "summer",
+          "rule": [
+            6,
+            7,
+            8
+          ],
+          "kind": "calendar",
+          "op": "in"
+        }
+      ],
+      "uncompilable": [],
+      "features_compiled": [
+        "seasonal_level"
+      ],
+      "repairs": []
+    },
+    "retrieval_spec": {
+      "status": "COMPILED",
+      "ops": [
+        {
+          "type": "prefer_similar",
+          "feature": "recent_level",
+          "weight": 0.5
+        },
+        {
+          "type": "prefer_same",
+          "feature": "hour_of_day",
+          "weight": 0.3
+        }
+      ],
+      "notes": [],
+      "uncompilable": []
+    }
+  },
+  {
+    "id": "E6",
+    "mechanism": "Cold winter ambient air increases heat loss from the transformer, shifting the equilibrium temperature lower and accelerating recovery after load peaks.",
+    "scope": "winter season",
+    "activation_condition": "when seasonal_level is winter",
+    "failure_condition": "in warm seasons where cooling is weaker and baseline temperature is higher",
+    "observables": [
+      "seasonal_level"
+    ],
+    "retrieval_action": "Retrieve historical winter windows, ideally combining with low recent_level to match the colder baseline, rather than using all-season history.",
+    "expected_effect": "Cold-season analogues capture stronger cooling dynamics and lower equilibrium levels, avoiding warm-season histories that would overpredict temperature persistence or level.",
+    "reason": "Ambient temperature directly affects the cooling term of the thermal energy balance, making winter histories more representative of the current thermal environment.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "seasonal_level",
+          "qualifier": "winter"
+        }
+      ]
+    },
+    "claim": "Cold winter ambient air increases heat loss from the transformer, shifting the equilibrium temperature lower and accelerating recovery after load peaks.",
+    "observable_features": [
+      "seasonal_level"
+    ],
+    "replaced": false,
+    "compiled": {
+      "status": "COMPILED",
+      "logic": "AND",
+      "negate": false,
+      "n_primitives": 1,
+      "primitives": [
+        {
+          "feature": "seasonal_level",
+          "qualifier": "winter",
+          "rule": [
+            12,
+            1,
+            2
+          ],
+          "kind": "calendar",
+          "op": "in"
+        }
+      ],
+      "uncompilable": [],
+      "features_compiled": [
+        "seasonal_level"
+      ],
+      "repairs": []
+    },
+    "retrieval_spec": {
+      "status": "COMPILED",
+      "ops": [],
+      "notes": [
+        "retrieval_action subsumed by activation scope; no additional executable transform"
+      ],
+      "uncompilable": []
+    }
+  },
+  {
+    "id": "E7",
+    "mechanism": "Working days have a systematic industrial/commercial load profile, producing a recurring daily cycle in transformer oil temperature with a lagged response.",
+    "scope": "workdays",
+    "activation_condition": "when working_day is workday",
+    "failure_condition": "on non-working days, where the load profile is flatter or shifted and the daily oil-temperature pattern differs",
+    "observables": [
+      "working_day",
+      "hour_of_day"
+    ],
+    "retrieval_action": "Restrict retrieval to historical workday segments and match hour_of_day to use the day-type-specific daily thermal cycle.",
+    "expected_effect": "Retrieved workday patterns capture the typical morning rise, midday/evening peak, and overnight cooling of similar days, improving within-day forecasts.",
+    "reason": "The daily load schedule on workdays drives a repeatable oil-temperature cycle through the transformer thermal lag, so same day-type histories are more analogous.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "working_day",
+          "qualifier": "workday"
+        }
+      ]
+    },
+    "claim": "Working days have a systematic industrial/commercial load profile, producing a recurring daily cycle in transformer oil temperature with a lagged response.",
+    "observable_features": [
+      "working_day",
+      "hour_of_day"
+    ],
+    "replaced": false,
+    "compiled": {
+      "status": "COMPILED",
+      "logic": "AND",
+      "negate": false,
+      "n_primitives": 1,
+      "primitives": [
+        {
+          "feature": "working_day",
+          "qualifier": "workday",
+          "rule": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "kind": "calendar",
+          "op": "in"
+        }
+      ],
+      "uncompilable": [],
+      "features_compiled": [
+        "working_day"
+      ],
+      "repairs": []
+    },
+    "retrieval_spec": {
+      "status": "COMPILED",
+      "ops": [
+        {
+          "type": "prefer_same",
+          "feature": "hour_of_day",
+          "weight": 0.3
+        }
+      ],
+      "notes": [],
+      "uncompilable": []
+    }
+  },
+  {
+    "id": "E8",
+    "mechanism": "Evening hours often follow the daily load peak, so the oil temperature may be near its maximum or beginning to cool, a distinct phase of the daily thermal cycle.",
+    "scope": "evening hours",
+    "activation_condition": "when hour_of_day is evening",
+    "failure_condition": "outside evening hours, where the thermal phase within the daily cycle is different",
+    "observables": [
+      "hour_of_day",
+      "recent_level"
+    ],
+    "retrieval_action": "Retrieve historical evening segments, preferably matching recent_level and working_day, to capture the specific post-peak cooling or plateau behavior.",
+    "expected_effect": "Same-hour histories share the daily thermal phase, reducing error caused by mixing morning heating, midday peak, or overnight cooling analogues.",
+    "reason": "The oil temperature response lags the daily load cycle, so the thermal state at evening is comparable across days with similar load schedules.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "hour_of_day",
+          "qualifier": "evening"
+        }
+      ]
+    },
+    "claim": "Evening hours often follow the daily load peak, so the oil temperature may be near its maximum or beginning to cool, a distinct phase of the daily thermal cycle.",
+    "observable_features": [
+      "hour_of_day",
+      "recent_level"
+    ],
+    "replaced": false,
+    "compiled": {
+      "status": "COMPILED",
+      "logic": "AND",
+      "negate": false,
+      "n_primitives": 1,
+      "primitives": [
+        {
+          "feature": "hour_of_day",
+          "qualifier": "evening",
+          "rule": [
+            16,
+            17,
+            18,
+            19,
+            20,
+            21
+          ],
+          "kind": "calendar",
+          "op": "in"
+        }
+      ],
+      "uncompilable": [],
+      "features_compiled": [
+        "hour_of_day"
+      ],
+      "repairs": []
+    },
+    "retrieval_spec": {
+      "status": "COMPILED",
+      "ops": [
+        {
+          "type": "prefer_similar",
+          "feature": "recent_level",
+          "weight": 0.5
+        },
+        {
+          "type": "prefer_same",
+          "feature": "working_day",
+          "weight": 0.3
+        }
+      ],
+      "notes": [],
+      "uncompilable": []
+    }
+  }
+]

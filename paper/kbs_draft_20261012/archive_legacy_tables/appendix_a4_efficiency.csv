@@ -1,0 +1,8 @@
+Dataset,Pool size raw/v1/v2,v2 reward retriever trainings,Retriever train time (s/arm),Inference (ms/window),Peak mem (MB)
+etth1,8/8/7,108,64.764,0.2889,241.6
+etth2,8/8/6,108,64.764,0.2889,241.6
+exchange_rate,8/2/6,108,64.764,0.2889,241.6
+traffic,8/4/5,108,64.764,0.2889,241.6
+weather,8/3/7,108,64.764,0.2889,241.6
+solar,8/5/5,108,64.764,0.2889,241.6
+electricity,8/1/5,108,64.764,0.2889,241.6

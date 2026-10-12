@@ -1,0 +1,21 @@
+{
+  "checks": 1311,
+  "passed": 1311,
+  "failed": 0,
+  "matrix_rows": 84,
+  "matrix_groups": 28,
+  "positive_groups": 25,
+  "internal_mean_ri_pct": 13.400215765616693,
+  "backbone_mean_ri_pct": {
+    "Chronos-2": 6.271642691757228,
+    "PatchTST": 4.139303342905732,
+    "iTransformer": 1.933822466599716,
+    "RAFT": 7.0357110079612175
+  },
+  "limitations": [
+    "Cache-level verification; no GPU inference or training rerun.",
+    "Chronology of protocol choice is not established by cache arithmetic.",
+    "Matrix has PAER only; does not isolate expert optimization contribution.",
+    "No independent-window significance claims."
+  ]
+}

@@ -1,3 +1,5 @@
+> 版本提示：本目录为旧论文表格；最新中文稿采用 [2026-10-12 表格与作图包](../kbs_draft_20261012/README.md)。旧外部融合表、效率表和机制归因说明的限制见新包作者说明。
+
 # PAER 论文实验表（paper/tables/）
 
 本目录由 `regenerate_tables.py` 从仓库原始产物重新汇总生成，每张表输出三种格式：`.csv`、`.md`（Markdown）、`.tex`（LaTeX 三线表）。数据来源路径、配置、种子、split 与统计方式见 `sources.json`。

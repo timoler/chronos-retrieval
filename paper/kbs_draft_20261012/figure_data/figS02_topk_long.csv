@@ -1,0 +1,17 @@
+﻿dataset,k,val_mse_mean,val_std_ddof0,n_seeds,protocol,precision
+etth1,1,37.14,2.043,3,internal-original,legacy-formatted
+etth1,3,35.5,2.141,3,internal-original,legacy-formatted
+etth1,5,34.69,2.133,3,internal-original,legacy-formatted
+etth1,10,32.9,2.032,3,internal-original,legacy-formatted
+etth2,1,172.3,27.28,3,internal-original,legacy-formatted
+etth2,3,135.2,21.9,3,internal-original,legacy-formatted
+etth2,5,121.8,19.74,3,internal-original,legacy-formatted
+etth2,10,109.7,16.88,3,internal-original,legacy-formatted
+exchange_rate,1,0.03225,0.005818,3,internal-original,legacy-formatted
+exchange_rate,3,0.03191,0.005682,3,internal-original,legacy-formatted
+exchange_rate,5,0.03198,0.005662,3,internal-original,legacy-formatted
+exchange_rate,10,0.03209,0.005559,3,internal-original,legacy-formatted
+traffic,1,0.001077,1.98e-05,3,internal-original,legacy-formatted
+traffic,3,0.000787,1.53e-05,3,internal-original,legacy-formatted
+traffic,5,0.000721,6.97e-06,3,internal-original,legacy-formatted
+traffic,10,0.00069,3.35e-06,3,internal-original,legacy-formatted

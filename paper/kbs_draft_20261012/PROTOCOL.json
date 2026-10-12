@@ -1,0 +1,30 @@
+{
+  "plugin_version": "PAER_original_training_mean_aligned_v1",
+  "plugin_definition": {
+    "expert_pool": "各数据集原正式冻结 PAER 专家池 final_expert_pool.json（不重新生成/不重选/不重算奖励）",
+    "training": "原 softmax-256 训练方式 + 对应 seed 检索器（_init_state + train_arm）",
+    "retrieval": "原检索评分与 Top-5 候选（retrieve_dual）",
+    "inference_aggregation": "均值对齐 memory = candidate_futures.mean(1) + query_context.mean(1)[:,None] - candidate_contexts.mean(2).mean(1)[:,None]",
+    "excluded": "top-k 新训练 / 动态门控 / 融合损失训练 / 新生成专家 / Raw Expert / 形状近邻拆分"
+  },
+  "fusion": "fused = (1-lambda)*backbone_prediction + lambda*memory",
+  "lambda_grid": [0.0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.5, 0.7, 1.0],
+  "lambda_rule": "每 dataset×backbone×seed 在完整 VAL 网格选最小 λ（平局取较小），冻结后评估 TEST；不按 TEST 调参",
+  "backbones": ["PatchTST", "iTransformer", "RAFT", "Chronos-2"],
+  "datasets": ["etth1", "etth2", "exchange_rate", "traffic", "weather", "solar", "electricity"],
+  "seeds": [42, 123, 2026],
+  "protocol": {
+    "target": "OT",
+    "split": "window_indices.npz 的 train/val/test 起始下标",
+    "metric": "原始单位 MSE；逐 seed 计算后 mean±std(ddof=1)",
+    "inference": "VAL/TEST shuffle=False, drop_last=False，完整正式窗口",
+    "checkpoint": "原协议 VAL-selected checkpoint（RAFT 需核对并单独记录修正）",
+    "chronos2_seed_independence": "Chronos-2 底座预测 seed 无关，共享同一份；插件记忆仍逐 seed"
+  },
+  "notes": [
+    "etth2 PatchTST 旧表 14.50 对应丢弃尾部窗口，完整约 14.7618",
+    "traffic PatchTST 旧表 0.001499 亦尾部丢弃，完整约 0.00146160",
+    "其他底座/数据集逐项检查同类尾部丢弃问题",
+    "TEST 已观察过的组合复用并注明，不称全新盲测"
+  ]
+}

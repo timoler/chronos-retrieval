@@ -1,0 +1,58 @@
+[
+  {
+    "file": "table01_datasets",
+    "protocol": "shared-outer-split",
+    "split": "TRAIN/VAL/TEST",
+    "source": "archive_legacy_tables/table_1_datasets_protocol.csv",
+    "note": "TRAIN、VAL、TEST 列均为完整窗口数；不同数据变体与物理量不可混同。"
+  },
+  {
+    "file": "table02_backbone_matrix",
+    "protocol": "PAER_original_training_mean_aligned_v1",
+    "split": "TEST",
+    "source": "figure_data/matrix_summary.csv",
+    "note": "均值 ± 三种子样本标准差（ddof=1）。Chronos-2 底座共享一份预测；不同底座训练方式不同。本表比较各底座加装前后的变化。"
+  },
+  {
+    "file": "table03_relative_improvement",
+    "protocol": "PAER_original_training_mean_aligned_v1",
+    "split": "TEST",
+    "source": "figure_data/matrix_summary.csv",
+    "note": "单位为百分比；先求种子 MSE 均值再计算 RI。正值表示误差下降。"
+  },
+  {
+    "file": "table04_internal_original",
+    "protocol": "internal-original",
+    "split": "TEST",
+    "source": "figure_data/internal_original_per_seed_full_precision.csv",
+    "note": "均值 ± 三种子总体标准差（ddof=0），沿用原实验统计方式；从冻结 result.json 的种子值计算，避免旧汇总 CSV 的小数截断。本表为原始聚合的 TEST，不与表 2 的均值对齐记忆直接混比。"
+  },
+  {
+    "file": "table05_equal_size_val",
+    "protocol": "internal-original",
+    "split": "VAL",
+    "source": "figure_data/paper_pool_size_control.csv",
+    "note": "原始聚合协议，VAL MSE。随机项为五个子集各自三模型种子均值的平均与总体标准差（ddof=0）；不表示五个独立数据集。知识版本与选择同时变化。"
+  },
+  {
+    "file": "table06_raw_paer_aligned_pairs",
+    "protocol": "raw-paer-aligned-paired",
+    "split": "TEST",
+    "source": "figure_data/raw_paer_pairs.csv",
+    "note": "TEST MSE 均值 ± 三种子样本标准差（ddof=1）。两侧均值对齐，各自从 VAL 选择 λ。仅三个数据集已完成。"
+  },
+  {
+    "file": "table07_pool_changes",
+    "protocol": "frozen-expert-history",
+    "split": "TRAIN",
+    "source": "figure_data/table_4_knowledge_optimization.csv",
+    "note": "各轮评价池与最终合并池不同。评价训练数按四折、每轮完整池加留一池计算，不包含最终训练和底座训练。"
+  },
+  {
+    "file": "tableS01_topk_original_val",
+    "protocol": "internal-original",
+    "split": "VAL",
+    "source": "figure_data/appendix_a3_topk_sensitivity.csv",
+    "note": "仅四个数据集已完成；数值为三种子 VAL MSE 均值 ± 总体标准差（ddof=0），由冻结旧表保留。"
+  }
+]

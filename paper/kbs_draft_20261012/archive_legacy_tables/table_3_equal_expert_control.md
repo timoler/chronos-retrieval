@@ -1,0 +1,14 @@
+# Table 3: 等专家数量对照（VAL MSE，越低越好）
+
+| Dataset | K (PAER) | PAER | RAW_ALL | RANDOM_K (mean±std) | PAER vs RANDOM_K (RI) |
+|---|---|---|---|---|---|
+| etth1 | 7 | 34.69 | 63.9 | 74.65±23.63 | +53.5% |
+| etth2 | 6 | 121.8 | 206.1 | 190.3±7.313 | +36.0% |
+| exchange_rate | 6 | 0.03198 | 0.03635 | 0.03423±0.001963 | +6.6% |
+| traffic | 5 | 0.000721 | 0.000684 | 0.000707±1.31e-05 | -2.0% |
+| weather | 7 | 459 | 531 | 502±26.01 | +8.6% |
+| solar | 5 | 1.971e+05 | 1.988e+05 | 2.017e+05±7804 | +2.3% |
+| electricity | 5 | 3.28e+08 | 2.69e+08 | 1.15e+09±1.31e+09 | +71.5% |
+| 7-dataset (equal-weight RI) | — | — | — | — | +25.2% |
+
+TRAIN-only / frozen VAL；每数据集固定 K=PAER 最终专家数，比较 PAER 选池 vs 同 K 随机子集 RANDOM_K（control seeds=[11,22,33,44,55]） vs RAW_ALL(8)。RANDOM_K 标准差为 5 个随机子集间的 std（与模型种子 std 区分）。旧 v1 评分选池 V1_SCORE_TOPK 见附录（历史控制身份）。

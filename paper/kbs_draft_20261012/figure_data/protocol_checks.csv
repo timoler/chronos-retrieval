@@ -1,0 +1,8 @@
+﻿dataset,context,horizon,n_val,n_test,bank_future_unavailable_at_first_fit,test_stride
+etth1,512,96,2877,2877,95,1
+etth2,168,24,3293,3293,23,1
+exchange_rate,512,96,911,911,95,1
+traffic,168,24,3318,3318,23,1
+weather,512,96,9932,9933,95,1
+solar,512,96,9905,9905,95,1
+electricity,512,96,27444,27445,95,1

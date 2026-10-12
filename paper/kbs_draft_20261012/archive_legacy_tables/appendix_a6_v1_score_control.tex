@@ -1,0 +1,20 @@
+\begin{table}[htbp]
+  \centering
+  \caption{附录 A6: 旧 v1 评分选池（历史控制，VAL MSE）}
+  \label{tab:appendix_v1score}
+  \begin{tabular}{lcccc}
+    \toprule
+    Dataset & K & PAER (pool-aware) & V1\_SCORE\_TOPK (historical v1) & PAER vs V1\_SCORE\_TOPK (RI) \\
+    \midrule
+    etth1 & 7 & 34.69 & 56.23 & +38.3\% \\
+    etth2 & 6 & 121.8 & 203.9 & +40.2\% \\
+    exchange\_rate & 6 & 0.03198 & 0.03327 & +3.9\% \\
+    traffic & 5 & 0.000721 & 0.000687 & -5.0\% \\
+    weather & 7 & 459 & 534.5 & +14.1\% \\
+    solar & 5 & $1.971\times10^{5}$ & $2.082\times10^{5}$ & +5.3\% \\
+    electricity & 5 & $3.28\times10^{8}$ & $2.74\times10^{8}$ & -19.8\% \\
+    7-dataset (equal-weight RI) & — & — & — & +11.0\% \\
+    \bottomrule
+  \end{tabular}
+  {\footnotesize 历史控制：v1 逐条 individual reward 评分取 Top-K 选池（V1\_SCORE\_TOPK），与 PAER(pool-aware) 同 K 对照。V1\_SCORE\_TOPK 为旧 v1 评分结果，仅作历史控制，不纳入正式方法排名。}
+\end{table}

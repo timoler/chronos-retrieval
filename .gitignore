@@ -54,3 +54,21 @@ scripts/*.log
 Thumbs.db
 .idea/
 .vscode/
+
+# ---- Small 2026-10-12 result metadata; prediction arrays remain local ----
+!results/README.md
+!results/paer_aligned_backbone_matrix/
+results/paer_aligned_backbone_matrix/*
+!results/paer_aligned_backbone_matrix/*.csv
+!results/paer_aligned_backbone_matrix/*.json
+!results/paer_aligned_backbone_matrix/*.md
+!results/paer_core_contribution_audit/
+results/paer_core_contribution_audit/*
+!results/paer_core_contribution_audit/*.csv
+!results/paer_core_contribution_audit/*.json
+!results/paer_core_contribution_audit/*.md
+!results/paer_plugin_evidence_audit/
+results/paer_plugin_evidence_audit/*
+!results/paer_plugin_evidence_audit/*.csv
+!results/paer_plugin_evidence_audit/*.json
+!results/paer_plugin_evidence_audit/*.md
