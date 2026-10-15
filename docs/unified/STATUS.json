@@ -2,11 +2,11 @@
   "protocol": "paer-unified-four-backbone-clean-v1",
   "protocol_hash": "e8f32754ff5001d1f9adc4e9b277d233abd1182d5cee67ed3ee015b626494d0b",
   "state": "RUNNING",
-  "current_job": "fold-iTransformer-etth1-1",
-  "updated_utc": "2026-10-15T02:17:05Z",
+  "current_job": "fold-iTransformer-etth1-2",
+  "updated_utc": "2026-10-15T02:22:06Z",
   "phases": {
     "backbones": {
-      "completed": 53,
+      "completed": 57,
       "total": 182
     },
     "pools": {
