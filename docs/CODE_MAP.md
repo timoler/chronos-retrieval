@@ -1,17 +1,15 @@
-# 代码导航
+# 当前代码结构
 
-| 用途 | 入口 | 注意事项 |
-|---|---|---|
-| 独立结果复算 | scripts/audit_results.py | 读取缓存；显式--repo与--out；无GPU前向 |
-| 最新插件矩阵融合 | experiments/external_baselines/run_paer_backbone_matrix.py | PAER-Aligned；部分记忆依赖历史Codex工作区 |
-| 最新底座前向 | experiments/external_baselines/infer_patchtst_matrix.py、infer_itransformer_matrix.py、infer_raft_matrix.py | 本地外部仓库和checkpoint；前向会写实验目录 |
-| 双聚合检索 | experiments/external_baselines/etth2_agg_alignment.py | retrieve_dual输出同Top-K下原始/均值对齐预测 |
-| 原始平均融合 | experiments/external_baselines/run_ours_fusion_v3.py | 原聚合、逐seed λ；不是新版对齐插件 |
-| 原始平均融合核验 | experiments/external_baselines/verify_fusion_results.py | 默认写历史目录，审计时请用独立--out |
-| 奖励和专家修订 | experiments/run_reward_feedback_critic_v2_poolaware_pilot.py | 原始平均奖励、内部时间折限制、最终池未重验 |
-| 条件检索模型 | experiments/run_conditional_expert_mlp_v4.py | 固定文本embedding×激活→可训练投影 |
-| 等数量对照 | experiments/run_pool_size_control.py | Raw子集与修订PAER混合比较，不是评分单因素 |
-| RAF适配 | experiments/external_baselines/raf_rolling.py | 已知目标错位，待独立修正 |
-| 旧数据准备 | experiments/prepare_multidataset_experiments.py | Traffic为传感器均值；不匹配冻结Sensor_000 |
+- experiments/unified/common.py：运行身份、输入及严格时间划分。
+- experiments/unified/backbone.py：四底座拟合与预测。
+- experiments/unified/reward_core.py、pools.py：TRAIN 折内反馈、独立融合奖励、Critic 和专家池维护。
+- experiments/unified/final.py：完整 VAL 选择与冻结后的 TEST 读出。
+- experiments/unified/unified_retrieval.py：Top5 等权均值平移及检索索引保存。
+- experiments/unified/runner.py：可恢复单 GPU 队列及所有 VAL 选择的统一冻结。
+- experiments/unified/verify.py：从保存的预测与标签重算指标和融合选择。
+- experiments/unified/initialize.py：为全新输出目录建立运行清单，不启动训练。
+- paer_core/：从已审查实现提取的实际复用组件；不包含旧实验命令入口。
 
-实验路径本次保留，避免破坏硬编码导入、缓存依赖和可追溯性。历史代码继续置于既有archive；新增导航不改变运行语义。大型缓存不得用git clean清除。
+数据在 data/processed/；原始 Raw8 在 data/experts/；输入迁移相对整理前 Git 快照保持字节一致；与现有运行输入的文本换行可能不同，数值、索引和专家内容已独立核对一致，新运行须重建字节清单。data/ 下的原始 CSV 和其他既存数据输入保留。它们不代表当前协议扩大到更多数据集。
+
+来源行号、文件哈希和组件等价检查见 docs/unified/。正在执行的实验快照另见 execution_snapshot/IDENTITY.json。

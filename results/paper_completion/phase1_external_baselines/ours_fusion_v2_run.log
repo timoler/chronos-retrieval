@@ -1,131 +1,0 @@
-Loading amazon/chronos-2 ...
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Loading weights:   0%|          | 0/170 [00:00<?, ?it/s]Loading weights:  13%|█▎        | 22/170 [00:00<00:00, 215.40it/s]Loading weights:  30%|███       | 51/170 [00:00<00:00, 247.74it/s]Loading weights:  50%|█████     | 85/170 [00:00<00:00, 286.78it/s]Loading weights:  67%|██████▋   | 114/170 [00:00<00:00, 282.56it/s]Loading weights:  84%|████████▍ | 143/170 [00:00<00:00, 263.98it/s]Loading weights: 100%|██████████| 170/170 [00:00<00:00, 278.02it/s]
-
-==============================================================================
-DATASET etth1
-==============================================================================
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 4755.71it/s]
-[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
-Key                     | Status     |  | 
-------------------------+------------+--+-
-embeddings.position_ids | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-  [Chronos-2] val=2877 test=2877 ...
-    seed=42 v2_mem TEST_MSE=40.6596 VAL_MSE=32.0307
-    seed=123 v2_mem TEST_MSE=47.3351 VAL_MSE=37.2525
-    seed=2026 v2_mem TEST_MSE=39.2566 VAL_MSE=34.7835
-  selected lambda=0.0 (VAL MSE=5.63255)
-[etth1] chronos_raw=7.960533 fusion=7.960533±0.000000 lambda=0.000 v2_repro=MISMATCH
-
-==============================================================================
-DATASET etth2
-==============================================================================
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 9118.82it/s]
-[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
-Key                     | Status     |  | 
-------------------------+------------+--+-
-embeddings.position_ids | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-  [Chronos-2] val=3293 test=3293 ...
-    seed=42 v2_mem TEST_MSE=85.1149 VAL_MSE=100.608
-    seed=123 v2_mem TEST_MSE=111.937 VAL_MSE=148.158
-    seed=2026 v2_mem TEST_MSE=98.3722 VAL_MSE=116.773
-  selected lambda=0.05 (VAL MSE=10.3527)
-[etth2] chronos_raw=18.084631 fusion=17.696821±0.047477 lambda=0.050 v2_repro=MISMATCH
-
-==============================================================================
-DATASET weather
-==============================================================================
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 6864.87it/s]
-[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
-Key                     | Status     |  | 
-------------------------+------------+--+-
-embeddings.position_ids | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-  [Chronos-2] val=9932 test=9933 ...
-    seed=42 v2_mem TEST_MSE=638.158 VAL_MSE=464.52
-    seed=123 v2_mem TEST_MSE=480.662 VAL_MSE=442.56
-    seed=2026 v2_mem TEST_MSE=561.009 VAL_MSE=469.772
-  selected lambda=0.2 (VAL MSE=197.703)
-[weather] chronos_raw=129.194412 fusion=134.285815±3.187661 lambda=0.200 v2_repro=MISMATCH
-
-==============================================================================
-DATASET exchange_rate
-==============================================================================
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 5467.00it/s]
-[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
-Key                     | Status     |  | 
-------------------------+------------+--+-
-embeddings.position_ids | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-  [Chronos-2] val=911 test=911 ...
-    seed=42 v2_mem TEST_MSE=0.034738 VAL_MSE=0.0246092
-    seed=123 v2_mem TEST_MSE=0.0319971 VAL_MSE=0.0383743
-    seed=2026 v2_mem TEST_MSE=0.0427043 VAL_MSE=0.0329643
-  selected lambda=0.0 (VAL MSE=0.00125615)
-[exchange_rate] chronos_raw=0.000957 fusion=0.000957±0.000000 lambda=0.000 v2_repro=MISMATCH
-
-==============================================================================
-DATASET solar
-==============================================================================
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 10445.70it/s]
-[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
-Key                     | Status     |  | 
-------------------------+------------+--+-
-embeddings.position_ids | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-  [Chronos-2] val=9905 test=9905 ...
-    seed=42 v2_mem TEST_MSE=319388 VAL_MSE=204195
-    seed=123 v2_mem TEST_MSE=323479 VAL_MSE=188392
-    seed=2026 v2_mem TEST_MSE=303382 VAL_MSE=198712
-  selected lambda=0.3 (VAL MSE=106204)
-[solar] chronos_raw=210842.718750 fusion=176076.677590±2236.440960 lambda=0.300 v2_repro=MISMATCH
-
-==============================================================================
-DATASET electricity
-==============================================================================
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 4788.34it/s]
-[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
-Key                     | Status     |  | 
-------------------------+------------+--+-
-embeddings.position_ids | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-  [Chronos-2] val=27444 test=27445 ...
-    seed=42 v2_mem TEST_MSE=3.16321e+08 VAL_MSE=2.78161e+08
-    seed=123 v2_mem TEST_MSE=4.30808e+08 VAL_MSE=4.37749e+08
-    seed=2026 v2_mem TEST_MSE=3.19565e+08 VAL_MSE=2.67247e+08
-  selected lambda=0.1 (VAL MSE=1.0313e+08)
-[electricity] chronos_raw=98080136.000000 fusion=97223316.506071±886878.773951 lambda=0.100 v2_repro=MISMATCH
-
-==============================================================================
-DATASET traffic
-==============================================================================
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 4981.65it/s]
-[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
-Key                     | Status     |  | 
-------------------------+------------+--+-
-embeddings.position_ids | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-  [Chronos-2] val=3318 test=3318 ...
-    seed=42 v2_mem TEST_MSE=0.00155507 VAL_MSE=0.000711253
-    seed=123 v2_mem TEST_MSE=0.00155207 VAL_MSE=0.000727382
-    seed=2026 v2_mem TEST_MSE=0.00153426 VAL_MSE=0.000724156
-  selected lambda=0.5 (VAL MSE=0.000574466)
-[traffic] chronos_raw=0.001684 fusion=0.001291±0.000004 lambda=0.500 v2_repro=OK
-
-Done. Results -> E:\GitHub_Project\chronos-retrieval\results\paper_completion\phase1_external_baselines\ours_fusion_v2_results.csv

@@ -1,0 +1,7 @@
+{
+  "audited_reward_source": "previously independently audited run_reward_alignment.py",
+  "audited_reward_sha256": "3c32165f56337b58ce99d406ec298fa3e7b92fc2956d0256219d00e70558a9cf",
+  "retrieval_source": "previously independently audited retrieval_instrumentation.py",
+  "base_commit": "5ce382b6df45bf154420968d09d252dae6f15522",
+  "description": "Shared compiler/model and verified purged reward structure; new four-backbone drivers and provenance required."
+}

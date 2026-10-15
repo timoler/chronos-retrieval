@@ -1,0 +1,1279 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "source_hash:experiments/run_expert_attention_retrieval_v2.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_expert_attention_retrieval_v2.py:75",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_expert_attention_retrieval_v2.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_expert_attention_retrieval_v2.py:217",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_conditional_expert_mlp_v4.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_conditional_expert_mlp_v4.py:48",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_conditional_expert_mlp_v4.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_conditional_expert_mlp_v4.py:52",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_conditional_expert_mlp_v4.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_conditional_expert_mlp_v4.py:62",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_conditional_expert_mlp_v4.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_conditional_expert_mlp_v4.py:124",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_etth1_prediction_validation.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_etth1_prediction_validation.py:62",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_etth1_prediction_validation.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_etth1_prediction_validation.py:77",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_etth1_prediction_validation.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_etth1_prediction_validation.py:101",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_etth1_prediction_validation.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_etth1_prediction_validation.py:128",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_expert_agent_closed_loop_v6.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_expert_agent_closed_loop_v6.py:56",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_expert_agent_closed_loop_v6.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_expert_agent_closed_loop_v6.py:96",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_expert_agent_closed_loop_v6.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_expert_agent_closed_loop_v6.py:110",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_expert_agent_closed_loop_v6.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_expert_agent_closed_loop_v6.py:122",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_expert_agent_closed_loop_v6.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_expert_agent_closed_loop_v6.py:126",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_expert_agent_closed_loop_v6.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_expert_agent_closed_loop_v6.py:362",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_expert_agent_closed_loop_v6.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_expert_agent_closed_loop_v6.py:384",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_expert_agent_closed_loop_v6.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_expert_agent_closed_loop_v6.py:430",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:priors/schema.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:priors/schema.py:72",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:priors/schema.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:priors/schema.py:111",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_agent_v2_electricity.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_agent_v2_electricity.py:296",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_etth1_reward_feedback_critic_v1.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_etth1_reward_feedback_critic_v1.py:76",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_etth1_reward_feedback_critic_v1.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_etth1_reward_feedback_critic_v1.py:88",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_etth1_reward_feedback_critic_v1.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_etth1_reward_feedback_critic_v1.py:89",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_etth1_reward_feedback_critic_v1.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_etth1_reward_feedback_critic_v1.py:90",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_etth1_reward_feedback_critic_v1.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_etth1_reward_feedback_critic_v1.py:100",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_etth1_reward_feedback_critic_v1.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_etth1_reward_feedback_critic_v1.py:119",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_etth1_reward_feedback_critic_v1.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_etth1_reward_feedback_critic_v1.py:120",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_etth1_reward_feedback_critic_v1.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_etth1_reward_feedback_critic_v1.py:224",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_etth1_reward_feedback_critic_v1.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_etth1_reward_feedback_critic_v1.py:242",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_etth1_reward_feedback_critic_v1.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_etth1_reward_feedback_critic_v1.py:253",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_etth1_reward_feedback_critic_v1.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_etth1_reward_feedback_critic_v1.py:265",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_etth1_reward_feedback_critic_v1.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_etth1_reward_feedback_critic_v1.py:521",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_etth1_reward_feedback_critic_v1.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_etth1_reward_feedback_critic_v1.py:532",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_etth1_reward_feedback_critic_v1.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_etth1_reward_feedback_critic_v1.py:562",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_reward_feedback_critic_v2_poolaware_pilot.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_reward_feedback_critic_v2_poolaware_pilot.py:65",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_reward_feedback_critic_v2_poolaware_pilot.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_reward_feedback_critic_v2_poolaware_pilot.py:68",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_reward_feedback_critic_v2_poolaware_pilot.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_reward_feedback_critic_v2_poolaware_pilot.py:69",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_reward_feedback_critic_v2_poolaware_pilot.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_reward_feedback_critic_v2_poolaware_pilot.py:79",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_reward_feedback_critic_v2_poolaware_pilot.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_reward_feedback_critic_v2_poolaware_pilot.py:119",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_reward_feedback_critic_v2_poolaware_pilot.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_reward_feedback_critic_v2_poolaware_pilot.py:239",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_expert_embedding_mlp.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_expert_embedding_mlp.py:117",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/run_solar_same_val_baselines.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/run_solar_same_val_baselines.py:56",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/external_baselines/run_ours_fusion_v2.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/external_baselines/run_ours_fusion_v2.py:57",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/external_baselines/run_ours_fusion_v2.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/external_baselines/run_ours_fusion_v2.py:60",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/external_baselines/run_ours_fusion_v2.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/external_baselines/run_ours_fusion_v2.py:117",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/external_baselines/run_ours_fusion_v2.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/external_baselines/run_ours_fusion_v2.py:149",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/external_baselines/infer_patchtst_matrix.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/external_baselines/infer_patchtst_matrix.py:29",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/external_baselines/infer_itransformer_matrix.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/external_baselines/infer_itransformer_matrix.py:29",
+      "status": "PASS"
+    },
+    {
+      "check": "source_hash:experiments/external_baselines/infer_raft_matrix.py",
+      "status": "PASS"
+    },
+    {
+      "check": "definition_ast:experiments/external_baselines/infer_raft_matrix.py:29",
+      "status": "PASS"
+    },
+    {
+      "check": "cuda_disabled",
+      "status": "PASS"
+    },
+    {
+      "check": "feature_registry",
+      "status": "PASS"
+    },
+    {
+      "check": "compiler_config",
+      "status": "PASS"
+    },
+    {
+      "check": "training_statistics",
+      "status": "PASS"
+    },
+    {
+      "check": "compiler_train_evidence",
+      "status": "PASS"
+    },
+    {
+      "check": "catalog_prompt",
+      "status": "PASS"
+    },
+    {
+      "check": "schema_prompt",
+      "status": "PASS"
+    },
+    {
+      "check": "expert_order:etth1",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:etth1:E1",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:etth1:E1",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:etth1:E2",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:etth1:E2",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:etth1:E3",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:etth1:E3",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:etth1:E4",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:etth1:E4",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:etth1:E5",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:etth1:E5",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:etth1:E6",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:etth1:E6",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:etth1:E7",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:etth1:E7",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:etth1:E8",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:etth1:E8",
+      "status": "PASS"
+    },
+    {
+      "check": "activations:etth1",
+      "status": "PASS",
+      "max_abs_error": 0.0
+    },
+    {
+      "check": "expert_order:etth2",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:etth2:E1",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:etth2:E1",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:etth2:E2",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:etth2:E2",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:etth2:E3",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:etth2:E3",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:etth2:E4",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:etth2:E4",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:etth2:E5",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:etth2:E5",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:etth2:E6",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:etth2:E6",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:etth2:E7",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:etth2:E7",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:etth2:E8",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:etth2:E8",
+      "status": "PASS"
+    },
+    {
+      "check": "activations:etth2",
+      "status": "PASS",
+      "max_abs_error": 0.0
+    },
+    {
+      "check": "expert_order:traffic",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:traffic:E1",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:traffic:E1",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:traffic:E2",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:traffic:E2",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:traffic:E3",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:traffic:E3",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:traffic:E4",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:traffic:E4",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:traffic:E5",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:traffic:E5",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:traffic:E6",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:traffic:E6",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:traffic:E7",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:traffic:E7",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:traffic:E8",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:traffic:E8",
+      "status": "PASS"
+    },
+    {
+      "check": "activations:traffic",
+      "status": "PASS",
+      "max_abs_error": 0.0
+    },
+    {
+      "check": "expert_order:exchange_rate",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:exchange_rate:E1",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:exchange_rate:E1",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:exchange_rate:E2",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:exchange_rate:E2",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:exchange_rate:E3",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:exchange_rate:E3",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:exchange_rate:E4",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:exchange_rate:E4",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:exchange_rate:E5",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:exchange_rate:E5",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:exchange_rate:E6",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:exchange_rate:E6",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:exchange_rate:E7",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:exchange_rate:E7",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:exchange_rate:E8",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:exchange_rate:E8",
+      "status": "PASS"
+    },
+    {
+      "check": "activations:exchange_rate",
+      "status": "PASS",
+      "max_abs_error": 0.0
+    },
+    {
+      "check": "expert_order:weather",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:weather:E1",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:weather:E1",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:weather:E2",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:weather:E2",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:weather:E3",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:weather:E3",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:weather:E4",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:weather:E4",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:weather:E5",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:weather:E5",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:weather:E6",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:weather:E6",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:weather:E7",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:weather:E7",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:weather:E8",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:weather:E8",
+      "status": "PASS"
+    },
+    {
+      "check": "activations:weather",
+      "status": "PASS",
+      "max_abs_error": 0.0
+    },
+    {
+      "check": "expert_order:solar",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:solar:E1",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:solar:E1",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:solar:E2",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:solar:E2",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:solar:E3",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:solar:E3",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:solar:E4",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:solar:E4",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:solar:E5",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:solar:E5",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:solar:E6",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:solar:E6",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:solar:E7",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:solar:E7",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:solar:E8",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:solar:E8",
+      "status": "PASS"
+    },
+    {
+      "check": "activations:solar",
+      "status": "PASS",
+      "max_abs_error": 0.0
+    },
+    {
+      "check": "expert_order:electricity",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:electricity:E1",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:electricity:E1",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:electricity:E2",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:electricity:E2",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:electricity:E3",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:electricity:E3",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:electricity:E4",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:electricity:E4",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:electricity:E5",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:electricity:E5",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:electricity:E6",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:electricity:E6",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:electricity:E7",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:electricity:E7",
+      "status": "PASS"
+    },
+    {
+      "check": "compiled:electricity:E8",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval_spec:electricity:E8",
+      "status": "PASS"
+    },
+    {
+      "check": "activations:electricity",
+      "status": "PASS",
+      "max_abs_error": 0.0
+    },
+    {
+      "check": "compiler_edge:recent_level:high",
+      "status": "PASS"
+    },
+    {
+      "check": "compiler_edge:recent_level:large",
+      "status": "PASS"
+    },
+    {
+      "check": "compiler_edge:recent_volatility:low",
+      "status": "PASS"
+    },
+    {
+      "check": "compiler_edge:hour_of_day:night",
+      "status": "PASS"
+    },
+    {
+      "check": "compiler_edge:recent_level:medium",
+      "status": "PASS"
+    },
+    {
+      "check": "compiler_edge:future_target:high",
+      "status": "PASS"
+    },
+    {
+      "check": "compiler_edge:hour_of_day:undefined",
+      "status": "PASS"
+    },
+    {
+      "check": "residual_shape",
+      "status": "PASS"
+    },
+    {
+      "check": "windows",
+      "status": "PASS"
+    },
+    {
+      "check": "state_dict:42",
+      "status": "PASS"
+    },
+    {
+      "check": "encoder_and_expert_mlp:42",
+      "status": "PASS"
+    },
+    {
+      "check": "pair_scores:42",
+      "status": "PASS"
+    },
+    {
+      "check": "fused_scores:42:full",
+      "status": "PASS"
+    },
+    {
+      "check": "fused_scores:42:shape",
+      "status": "PASS"
+    },
+    {
+      "check": "fused_scores:42:expert",
+      "status": "PASS"
+    },
+    {
+      "check": "state_dict:123",
+      "status": "PASS"
+    },
+    {
+      "check": "encoder_and_expert_mlp:123",
+      "status": "PASS"
+    },
+    {
+      "check": "pair_scores:123",
+      "status": "PASS"
+    },
+    {
+      "check": "fused_scores:123:full",
+      "status": "PASS"
+    },
+    {
+      "check": "fused_scores:123:shape",
+      "status": "PASS"
+    },
+    {
+      "check": "fused_scores:123:expert",
+      "status": "PASS"
+    },
+    {
+      "check": "state_dict:2026",
+      "status": "PASS"
+    },
+    {
+      "check": "encoder_and_expert_mlp:2026",
+      "status": "PASS"
+    },
+    {
+      "check": "pair_scores:2026",
+      "status": "PASS"
+    },
+    {
+      "check": "fused_scores:2026:full",
+      "status": "PASS"
+    },
+    {
+      "check": "fused_scores:2026:shape",
+      "status": "PASS"
+    },
+    {
+      "check": "fused_scores:2026:expert",
+      "status": "PASS"
+    },
+    {
+      "check": "two_cpu_optimizer_steps",
+      "status": "PASS"
+    },
+    {
+      "check": "top5_and_predictions:full",
+      "status": "PASS"
+    },
+    {
+      "check": "top5_and_predictions:shape",
+      "status": "PASS"
+    },
+    {
+      "check": "top5_and_predictions:expert",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(None, 1.0, 0.2, 0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(None, 0.75, -0.1, 0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(None, 0.5, 0.1, -0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(None, 0.25, -0.1, -0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(None, 0.0, 0.1, 0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(0.0, 1.0, 0.2, 0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(0.0, 0.75, -0.1, 0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(0.0, 0.5, 0.1, -0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(0.0, 0.25, -0.1, -0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(0.0, 0.0, 0.1, 0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(0.005, 1.0, 0.2, 0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(0.005, 0.75, -0.1, 0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(0.005, 0.5, 0.1, -0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(0.005, 0.25, -0.1, -0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(0.005, 0.0, 0.1, 0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(0.01, 1.0, 0.2, 0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(0.01, 0.75, -0.1, 0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(0.01, 0.5, 0.1, -0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(0.01, 0.25, -0.1, -0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(0.01, 0.0, 0.1, 0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(0.7, 1.0, 0.2, 0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(0.7, 0.75, -0.1, 0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(0.7, 0.5, 0.1, -0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(0.7, 0.25, -0.1, -0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "reward_rule:(0.7, 0.0, 0.1, 0.1)",
+      "status": "PASS"
+    },
+    {
+      "check": "json_parser:{\"experts\":[{\"id\":\"E1\"}]}",
+      "status": "PASS"
+    },
+    {
+      "check": "json_parser:```json\n{\"experts\":[]}\n```",
+      "status": "PASS"
+    },
+    {
+      "check": "json_parser:[{\"id\":\"E1\"}]",
+      "status": "PASS"
+    },
+    {
+      "check": "json_parser:prefix {\"experts\":[1,2]} trailing",
+      "status": "PASS"
+    },
+    {
+      "check": "json_parser:{\"experts\":[1,2",
+      "status": "PASS"
+    },
+    {
+      "check": "json_parser:invalid",
+      "status": "PASS"
+    },
+    {
+      "check": "backbone_config:PatchTST:(64, 8)",
+      "status": "PASS"
+    },
+    {
+      "check": "backbone_config:PatchTST:(512, 96)",
+      "status": "PASS"
+    },
+    {
+      "check": "backbone_config:PatchTST:(96, 24)",
+      "status": "PASS"
+    },
+    {
+      "check": "backbone_config:iTransformer:(64, 8)",
+      "status": "PASS"
+    },
+    {
+      "check": "backbone_config:iTransformer:(512, 96)",
+      "status": "PASS"
+    },
+    {
+      "check": "backbone_config:iTransformer:(96, 24)",
+      "status": "PASS"
+    },
+    {
+      "check": "backbone_config:RAFT:(64, 8)",
+      "status": "PASS"
+    },
+    {
+      "check": "backbone_config:RAFT:(512, 96)",
+      "status": "PASS"
+    },
+    {
+      "check": "backbone_config:RAFT:(96, 24)",
+      "status": "PASS"
+    },
+    {
+      "check": "chronos_batch",
+      "status": "PASS"
+    },
+    {
+      "check": "chronos_batch",
+      "status": "PASS"
+    },
+    {
+      "check": "chronos_prediction_adapter",
+      "status": "PASS"
+    },
+    {
+      "check": "raw8_io_adapter:etth1",
+      "status": "PASS"
+    },
+    {
+      "check": "raw8_io_adapter:etth2",
+      "status": "PASS"
+    },
+    {
+      "check": "raw8_io_adapter:traffic",
+      "status": "PASS"
+    },
+    {
+      "check": "raw8_io_adapter:exchange_rate",
+      "status": "PASS"
+    },
+    {
+      "check": "raw8_io_adapter:weather",
+      "status": "PASS"
+    },
+    {
+      "check": "raw8_io_adapter:solar",
+      "status": "PASS"
+    },
+    {
+      "check": "raw8_io_adapter:electricity",
+      "status": "PASS"
+    }
+  ],
+  "count": 314,
+  "device": "cpu",
+  "torch_version": "2.12.0.dev20260408+cu128",
+  "gpu_used": false,
+  "full_training_performed": false,
+  "experiment_results_generated": false,
+  "checked_utc": "2026-10-14T16:28:04Z",
+  "limitations": [
+    "Synthetic CPU equivalence does not constitute a new full experiment or independent GPU reproduction.",
+    "The frozen run snapshot remains unchanged; packaging relocation has its own source derivation."
+  ]
+}

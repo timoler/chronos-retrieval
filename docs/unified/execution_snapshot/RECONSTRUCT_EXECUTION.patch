@@ -1,0 +1,1104 @@
+diff --git a/experiments/unified/SOURCE_DERIVATION.json b/experiments/unified/SOURCE_DERIVATION.json
+new file mode 100644
+index 0000000..40e354e
+--- /dev/null
++++ b/experiments/unified/SOURCE_DERIVATION.json
+@@ -0,0 +1,7 @@
++{
++  "audited_reward_source": "previously independently audited run_reward_alignment.py",
++  "audited_reward_sha256": "3c32165f56337b58ce99d406ec298fa3e7b92fc2956d0256219d00e70558a9cf",
++  "retrieval_source": "previously independently audited retrieval_instrumentation.py",
++  "base_commit": "5ce382b6df45bf154420968d09d252dae6f15522",
++  "description": "Shared compiler/model and verified purged reward structure; new four-backbone drivers and provenance required."
++}
+\ No newline at end of file
+diff --git a/experiments/unified/backbone.py b/experiments/unified/backbone.py
+new file mode 100644
+index 0000000..df66ece
+--- /dev/null
++++ b/experiments/unified/backbone.py
+@@ -0,0 +1,188 @@
++# -*- coding: utf-8 -*-
++"""Fresh backbone fits on the frozen outer/fold splits. No TEST during fitting."""
++from common import *
++import argparse,random,importlib.util,ast
++import torch
++from sklearn.preprocessing import StandardScaler
++from torch.utils.data import Dataset,DataLoader
++torch.set_num_threads(4)
++DEVICE=torch.device('cuda')
++
++def seed_all(seed):
++    random.seed(seed);np.random.seed(seed);torch.manual_seed(seed);torch.cuda.manual_seed_all(seed)
++    torch.backends.cudnn.benchmark=False;torch.backends.cudnn.deterministic=True
++
++class Windows(Dataset):
++    def __init__(self,d,starts,scaled):
++        self.d=d;self.starts=np.asarray(starts);self.values=scaled
++        self.seq_len=d['L'];self.pred_len=d['H'];self.label_len=48
++    def __len__(self):return len(self.starts)
++    def __getitem__(self,index):
++        s=int(self.starts[index]);end=s+self.seq_len
++        return (index,self.values[s:end,None].astype(np.float32),
++                self.values[end-48:end+self.pred_len,None].astype(np.float32),
++                np.zeros((self.seq_len,4),np.float32),np.zeros((48+self.pred_len,4),np.float32))
++
++def module_from_file(name,path):
++    spec=importlib.util.spec_from_file_location(name,path);mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod);return mod
++
++def make_model(backbone,l,h):
++    fn={'PatchTST':'infer_patchtst_matrix.py','iTransformer':'infer_itransformer_matrix.py','RAFT':'infer_raft_matrix.py'}[backbone]
++    # Extract only the reviewed argument builder, never execute a retired runner.
++    source=BASE/'experiments/external_baselines'/fn
++    tree=ast.parse(source.read_text(encoding='utf-8-sig'))
++    function=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='build_args')
++    namespace={'argparse':argparse,'BATCH':128 if backbone=='PatchTST' else 32}
++    exec(compile(ast.Module(body=[function],type_ignores=[]),str(source),'exec'),namespace)
++    args=namespace['build_args'](l,h)
++    folder={'PatchTST':'PatchTST/PatchTST_supervised','iTransformer':'iTransformer','RAFT':'RAFT'}[backbone]
++    sys.path.insert(0,str(EXTERNAL/folder))
++    if backbone=='PatchTST':
++        from models.PatchTST import Model
++    elif backbone=='iTransformer':
++        from model.iTransformer import Model
++    else:
++        from models.RAFT import Model
++    model=Model(args)
++    return model.float().to(DEVICE)
++
++def prepare_raft(model,train,sets,cache_dir,cache_identity):
++    """Keep upstream retrieval arithmetic; use bounded batches and no worker processes."""
++    cache_dir.mkdir(parents=True,exist_ok=True)
++    idpath=cache_dir/'identity.json'
++    if idpath.exists():assert read(idpath)==cache_identity
++    else:dump(idpath,cache_identity)
++    pending={k:v for k,v in sets.items() if not (cache_dir/(k+'.pt')).exists()}
++    if pending:
++        model.rt.prepare_dataset(train)
++        for key,ds in pending.items():
++            pieces=[];loader=DataLoader(ds,batch_size=64,shuffle=False,num_workers=0,drop_last=False)
++            with torch.no_grad():
++                for j,(index,x,*_) in enumerate(loader):
++                    p=model.rt.retrieve(x.to(DEVICE),index,train=(key=='train')).cpu()
++                    assert torch.isfinite(p).all(),'RAFT retrieved nonfinite values'
++                    pieces.append(p)
++                    if j%50==0:print('RAFT RETRIEVAL',key,j,len(loader),flush=True)
++            torch.save(torch.cat(pieces,dim=1),cache_dir/(key+'.pt'))
++    model.retrieval_dict={k:torch.load(cache_dir/(k+'.pt'),map_location='cpu',weights_only=True) for k in sets}
++    del model.rt;torch.cuda.empty_cache()
++
++def call(model,bb,batch,h,mode):
++    index,x,y,xm,ym=batch;x=x.to(DEVICE)
++    if bb=='PatchTST':out=model(x)
++    elif bb=='iTransformer':
++        # The decoder receives only already-observed label_len context and zero future.
++        dec=torch.cat([y[:,:48,:],torch.zeros_like(y[:,-h:,:])],1).to(DEVICE)
++        out=model(x,xm.to(DEVICE),dec,ym.to(DEVICE))
++    else:out=model(x,index,mode=mode)
++    return out[:,-h:,:],y[:,-h:,:].to(DEVICE)
++
++def evaluate(model,bb,ds,batch_size,mode,return_predictions=False):
++    model.eval();total=0.;count=0;pieces=[]
++    with torch.no_grad():
++        for batch in DataLoader(ds,batch_size=batch_size,shuffle=False,num_workers=0,drop_last=False):
++            pred,y=call(model,bb,batch,ds.pred_len,mode)
++            assert pred.shape==y.shape and torch.isfinite(pred).all()
++            total+=float(torch.square(pred-y).double().sum());count+=y.numel()
++            if return_predictions:pieces.append(pred.cpu().numpy()[:,:,0])
++    return (total/count,np.concatenate(pieces)) if return_predictions else total/count
++
++def fit_or_predict(bb,d,fold,seed,stage):
++    path=ART/'backbones'/bb/d['ds']/(f'fold{fold}' if fold else f'final/seed{seed}')
++    path.mkdir(parents=True,exist_ok=True)
++    spec=fold_spec(d,fold) if fold else final_spec(d)
++    train_starts=spec['bank'] if fold else d['starts']['train']
++    select_starts=spec['fit'] if fold else spec['val']
++    assert train_starts[-1]+d['H']<=select_starts[0]
++    keys=['cal','eval'] if fold else (['test'] if stage=='test' else ['val'])
++    signature=dict(protocol_hash=digest(PLAN),input=identity(d),backbone=bb,fold=fold,seed=seed,
++                   train_starts=train_starts.tolist(),selection_starts=select_starts.tolist())
++    if (path/'identity.json').exists():assert read(path/'identity.json')==signature
++    else:dump(path/'identity.json',signature)
++    target=path/('test_predictions.npz' if stage=='test' else 'predictions.npz')
++    marker=path/('test_completed.json' if stage=='test' else 'completed.json')
++    if marker.exists():
++        assert read(marker)['protocol_hash']==digest(PLAN) and target.exists();return
++    scaler=StandardScaler()
++    # Scale only rows whose labels belong to this fit, never future CAL/EVAL.
++    first=int(train_starts[0]);end=int(train_starts[-1])+d['L']+d['H']
++    scaler.fit(d['series'][first:end,None].astype(np.float64))
++    scaled=scaler.transform(d['series'][:,None].astype(np.float64))[:,0]
++    dump(path/'scaler.json',{'fit_row_interval':[first,end],'mean':scaler.mean_.tolist(),'scale':scaler.scale_.tolist()})
++    train=Windows(d,train_starts,scaled);selection=Windows(d,select_starts,scaled)
++    sets={k:Windows(d,spec[k],scaled) for k in keys}
++    seed_all(seed);model=make_model(bb,d['L'],d['H'])
++    batch_size=128 if bb=='PatchTST' else 32
++    checkpoint=path/'checkpoint.pt'
++    if bb=='RAFT':
++        allsets={'train':train,'selection':selection,**sets}
++        ci=dict(backbone=bb,dataset=d['ds'],fold=fold,input=identity(d),train=train_starts.tolist(),selection=select_starts.tolist(),protocol=digest(PLAN))
++        # Retrieval has no fitted parameters and is shared between random seeds.
++        cache=ART/'raft_retrieval'/d['ds']/(f'fold{fold}' if fold else 'final')
++        prepare_raft(model,train,allsets,cache,ci)
++    if stage=='test':assert checkpoint.exists() and (path/'completed.json').exists(),'Fit/VAL checkpoint must be frozen before TEST'
++    if not checkpoint.exists():
++        assert stage!='test'
++        opt=torch.optim.Adam(model.parameters(),lr=1e-4)
++        generator=torch.Generator().manual_seed(seed)
++        loader=DataLoader(train,batch_size=batch_size,shuffle=True,num_workers=0,drop_last=False,generator=generator)
++        best=float('inf');history=[];epochs=PLAN['backbone_epochs']
++        for epoch in range(1,epochs+1):
++            start=time.monotonic();model.train();total=0.;n=0
++            for batch in loader:
++                pred,y=call(model,bb,batch,d['H'],'train');loss=torch.nn.functional.mse_loss(pred,y)
++                assert torch.isfinite(loss),'Nonfinite training loss'
++                opt.zero_grad();loss.backward();opt.step();total+=float(loss.detach())*len(pred);n+=len(pred)
++            val=evaluate(model,bb,selection,batch_size,'selection')
++            if val<best:
++                best=val;torch.save(model.state_dict(),path/'best_in_progress.pt');best_epoch=epoch
++            lr=(1e-4 if epoch<3 else 1e-4*.9**(epoch-3)) if bb=='PatchTST' else 1e-4*.5**(epoch-1)
++            for group in opt.param_groups:group['lr']=lr
++            row=dict(epoch=epoch,train_loss=total/n,selection_loss=val,best_loss=best,seconds=time.monotonic()-start)
++            history.append(row);dump(path/'training_history.json',history)
++            print('EPOCH',bb,d['ds'],fold,seed,row,flush=True)
++        (path/'best_in_progress.pt').replace(checkpoint)
++        dump(path/'training_complete.json',dict(epochs=epochs,best_epoch=best_epoch,best_selection_mse=best,checkpoint_sha256=sha(checkpoint)))
++    model.load_state_dict(torch.load(checkpoint,map_location=DEVICE,weights_only=True))
++    arrays={}
++    for k,ds in sets.items():
++        _,p=evaluate(model,bb,ds,batch_size,k,True)
++        p=scaler.inverse_transform(p.reshape(-1,1)).reshape(p.shape).astype(np.float32)
++        _,truth=windows(d['series'],spec[k],d['L'],d['H'])
++        assert p.shape==truth.shape and np.isfinite(p).all()
++        arrays['yc_'+k]=p;arrays['Y_'+k]=truth;arrays[k+'_starts']=spec[k]
++    np.savez_compressed(target,**arrays)
++    meta=dict(protocol_hash=digest(PLAN),input=identity(d),backbone=bb,dataset=d['ds'],fold=fold,seed=seed,
++              fresh_fit=True,checkpoint_sha256=sha(checkpoint),prediction_sha256=sha(target),source_code_sha256=sha(Path(__file__)))
++    dump(marker,meta);print('BACKBONE COMPLETE',bb,d['ds'],fold,seed,stage,flush=True)
++
++def chronos(d,fold,stage):
++    from chronos import Chronos2Pipeline
++    path=ART/'backbones'/'Chronos-2'/d['ds']/(f'fold{fold}' if fold else 'final/shared')
++    path.mkdir(parents=True,exist_ok=True)
++    spec=fold_spec(d,fold) if fold else final_spec(d)
++    keys=['cal','eval'] if fold else (['test'] if stage=='test' else ['val'])
++    target=path/('test_predictions.npz' if stage=='test' else 'predictions.npz')
++    marker=path/('test_completed.json' if stage=='test' else 'completed.json')
++    if marker.exists():assert read(marker)['protocol_hash']==digest(PLAN);return
++    pipe=Chronos2Pipeline.from_pretrained(str(CHRONOS),device_map='cuda')
++    sys.path.insert(0,str(BASE/'experiments/external_baselines'))
++    from run_ours_fusion_v2 import run_chronos
++    arrays={}
++    for k in keys:
++        x,y=windows(d['series'],spec[k],d['L'],d['H'])
++        print('CHRONOS INFERENCE',d['ds'],fold,k,len(x),flush=True)
++        p=run_chronos(pipe,list(x),d['H']);assert p.shape==y.shape and np.isfinite(p).all()
++        arrays['yc_'+k]=p;arrays['Y_'+k]=y;arrays[k+'_starts']=spec[k]
++    np.savez_compressed(target,**arrays)
++    dump(marker,dict(protocol_hash=digest(PLAN),input=identity(d),model_snapshot=str(CHRONOS),model_config_hash=sha(CHRONOS/'config.json'),fresh_inference=True,fresh_fit=False,prediction_sha256=sha(target)))
++    print('BACKBONE COMPLETE Chronos-2',d['ds'],fold,stage,flush=True)
++
++def main():
++    ap=argparse.ArgumentParser();ap.add_argument('--dataset',required=True);ap.add_argument('--backbone',required=True)
++    ap.add_argument('--fold',type=int,default=0);ap.add_argument('--seed',type=int,default=42);ap.add_argument('--stage',choices=['val','test'],default='val')
++    a=ap.parse_args();assert_frozen();assert torch.cuda.is_available()
++    d=data(a.dataset)
++    if a.backbone=='Chronos-2':chronos(d,a.fold,a.stage)
++    else:fit_or_predict(a.backbone,d,a.fold,a.seed,a.stage)
++if __name__=='__main__':main()
+diff --git a/experiments/unified/common.py b/experiments/unified/common.py
+new file mode 100644
+index 0000000..5d1293f
+--- /dev/null
++++ b/experiments/unified/common.py
+@@ -0,0 +1,82 @@
++# -*- coding: utf-8 -*-
++"""Frozen run identity and chronological splits, shared by every backbone."""
++import os
++os.environ.setdefault('HF_HUB_OFFLINE','1')
++os.environ.setdefault('TRANSFORMERS_OFFLINE','1')
++os.environ.setdefault('PYTHONDONTWRITEBYTECODE','1')
++os.environ.setdefault('CUBLAS_WORKSPACE_CONFIG',':4096:8')
++import sys,json,hashlib,time,copy,gc
++from pathlib import Path
++import numpy as np
++import pandas as pd
++
++BASE=Path(__file__).resolve().parents[2]
++CONFIG_PATH=Path(os.environ['PAER_RUN_CONFIG']).resolve()
++CONFIG=json.loads(CONFIG_PATH.read_text(encoding='utf-8-sig'))
++PLAN=CONFIG['protocol'];ART=Path(CONFIG['run_root']);OUT=Path(CONFIG['report_root'])
++ROOT=Path(CONFIG['input_repo']);DATA_ROOT=ROOT/'results/multidataset'
++EXTERNAL=Path(CONFIG['external_root']);EMBED=Path(CONFIG['embedding_snapshot']);CHRONOS=Path(CONFIG['chronos_snapshot'])
++MODEL=PLAN['llm_model'];SEEDS=PLAN['seeds'];DSLIST=PLAN['datasets'];GRID=PLAN['lambda_grid'];SLOTS=8
++
++def dump(p,x):
++    p=Path(p);p.parent.mkdir(parents=True,exist_ok=True)
++    tmp=p.with_suffix(p.suffix+'.tmp')
++    tmp.write_text(json.dumps(x,ensure_ascii=False,indent=2,default=str),encoding='utf-8')
++    # Windows readers/security scanners may briefly deny atomic replacement.
++    # Keep the old valid file and retry; permanent errors still stop the run.
++    for attempt in range(12):
++        try:
++            tmp.replace(p)
++            return
++        except PermissionError:
++            if attempt==11:raise
++            time.sleep(min(.05*2**attempt,.5))
++def read(p):return json.loads(Path(p).read_text(encoding='utf-8-sig'))
++def digest(x):return hashlib.sha256(json.dumps(x,sort_keys=True,ensure_ascii=False,default=str).encode()).hexdigest()
++def sha(p):
++    h=hashlib.sha256()
++    with Path(p).open('rb') as f:
++        for c in iter(lambda:f.read(1024*1024),b''):h.update(c)
++    return h.hexdigest()
++def mse(p,y):return float(np.mean((np.asarray(p,np.float64)-np.asarray(y,np.float64))**2))
++def mae(p,y):return float(np.mean(np.abs(np.asarray(p,np.float64)-np.asarray(y,np.float64))))
++def select(c,m,y):
++    if np.array_equal(c,m):return 0.,[mse(c,y)]*len(GRID)
++    values=[mse((1-l)*c+l*m,y) for l in GRID]
++    return GRID[int(np.argmin(values))],values
++def available(earlier,later,h):
++    earlier=np.asarray(earlier,dtype=np.int64);later=np.asarray(later,dtype=np.int64)
++    assert len(earlier) and len(later)
++    a=earlier[earlier+h<=later[0]]
++    assert len(a) and a[-1]+h<=later[0]
++    return a
++def data(ds):
++    dd=DATA_ROOT/ds;cfg=read(dd/'config.json');df=pd.read_csv(dd/'series.csv')
++    with np.load(dd/'window_indices.npz') as z:starts={k:z[k].astype(np.int64) for k in ['train','val','test']}
++    return dict(ds=ds,dd=dd,cfg=cfg,series=df.OT.to_numpy(np.float32),dates=pd.to_datetime(df.date),starts=starts,L=int(cfg['context']),H=int(cfg['horizon']))
++def fold_spec(d,fold):
++    t=d['starts']['train'];h=d['H'];edges=np.linspace(len(t)//2,len(t),5).astype(int)
++    prefix=t[:edges[fold-1]];block=t[edges[fold-1]:edges[fold]];mid=len(block)//2
++    ev=block[mid::h];cal=available(block[:mid],ev,h)[::h]
++    prefix=available(prefix,cal,h);cut=int(len(prefix)*.8)
++    fit=prefix[cut:];bank=available(prefix[:cut],fit,h)
++    return dict(bank=bank,fit=fit,cal=cal,eval=ev)
++def final_spec(d):
++    train=available(d['starts']['train'],d['starts']['val'],d['H']);cut=int(len(train)*.8)
++    return dict(bank=available(train[:cut],train[cut:],d['H']),fit=train[cut:],val=d['starts']['val'],test=d['starts']['test'])
++def windows(series,starts,l,h):
++    x=np.stack([series[s:s+l] for s in starts]);y=np.stack([series[s+l:s+l+h] for s in starts])
++    return x.astype(np.float32),y.astype(np.float32)
++def identity(d):
++    return {n:sha(d['dd']/n) for n in ['series.csv','window_indices.npz','config.json']}
++def assert_frozen():
++    assert read(ART/'protocol.json')==PLAN,'Protocol changed: allocate a new run directory'
++    for rel,value in read(ART/'code_manifest.json').items():
++        assert sha(BASE/rel)==value,'Frozen code changed: '+rel
++    for rel,value in read(ART/'input_bytes_manifest.json').items():
++        assert sha(ROOT/rel)==value,'Frozen input changed: '+rel
++    for rel,value in read(ART/'external_code_manifest.json').items():
++        assert sha(EXTERNAL/rel)==value,'Frozen external architecture changed: '+rel
++def complete(path,extra):
++    dump(Path(path)/'completed.json',dict(protocol_hash=digest(PLAN),finished_utc=time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),**extra))
++
+diff --git a/experiments/unified/final.py b/experiments/unified/final.py
+new file mode 100644
+index 0000000..09852c0
+--- /dev/null
++++ b/experiments/unified/final.py
+@@ -0,0 +1,121 @@
++# -*- coding: utf-8 -*-
++"""Train matched retrievers and freeze all per-backbone VAL choices before TEST."""
++from common import *
++from runtime import *
++from reward_core import load_data,semantic,new_model
++import argparse
++from sentence_transformers import SentenceTransformer
++
++def pool_map(d,backbone):
++    pools={'NoExpertMLP':[],'Raw':d['raw']}
++    for arm,obj in [('MemoryReward','memory'),('FusionReward','fusion'),('FusionReward_NoCritic','fusion_no_critic'),('FusionReward_Independent','fusion_independent')]:
++        p=ART/'pools'/d['ds']/obj/('shared' if obj=='memory' else backbone)
++        assert read(p/'completed.json')['protocol_hash']==digest(PLAN)
++        pools[arm]=read(p/'final_pool.json')
++    return pools
++
++def prepare(d,seed,pool,split,encoder):
++    spec=final_spec(d);path=ART/'memories'/d['ds']/f'seed{seed}'/digest(semantic(pool))[:24]
++    path.mkdir(parents=True,exist_ok=True)
++    signature=dict(protocol_hash=digest(PLAN),data=identity(d),seed=seed,pool=semantic(pool),source=sha(Path(__file__)))
++    if (path/'identity.json').exists():assert read(path/'identity.json')==signature
++    else:dump(path/'identity.json',signature)
++    predpath=path/(split+'.npz')
++    if predpath.exists():
++        with np.load(predpath) as z:return z['transferred'],path
++    X={};Y={};R={};ts={}
++    for k in ['bank','fit',split]:
++        X[k],Y[k]=windows(d['series'],spec[k],d['L'],d['H']);R[k]=v2.residualize(X[k]);ts[k]=[d['dates'][int(s)+d['L']] for s in spec[k]]
++    hist=np.concatenate([X['bank'],X['fit']]);stats=v2.compute_training_stats(hist)
++    evidence={'feature_distributions':v1._raw_feature_quantiles(hist),'temporal_coverage':v1._temporal_coverage(d['dates'].iloc[:int(spec['fit'][-1])+d['L']])}
++    compiled=semantic(pool);emb=np.zeros((8,384),np.float32);acts={k:np.zeros((len(x),8),np.float32) for k,x in X.items()}
++    v1.CONTEXT=d['L'];v1.HORIZON=d['H']
++    for e in compiled:
++        e['compiled']=v1.compile_condition_v6(e,v1.FEATURE_REGISTRY,evidence,v1.COMPILER_CONFIG)
++        e['retrieval_spec']=v1.derive_retrieval_spec(e,v1.FEATURE_REGISTRY)
++    if compiled:
++        encoded=encoder.encode([e['claim'] for e in compiled],normalize_embeddings=True,convert_to_numpy=True).astype(np.float32)
++        for j,e in enumerate(compiled):emb[d['ids'].index(e['id'])]=encoded[j]
++        for k in X:
++            aa=v1.build_activation_matrix(compiled,X[k],ts[k],stats)
++            for j,e in enumerate(compiled):acts[k][:,d['ids'].index(e['id'])]=aa[:,j]
++    checkpoint=path/'model.pt';model=new_model(d['L'],emb,seed)
++    if checkpoint.exists():model.load_state_dict(torch.load(checkpoint,map_location=DEVICE,weights_only=True))
++    else:
++        assert split=='val','No new fitting after global VAL freeze'
++        print('TRAIN FINAL RETRIEVER',d['ds'],seed,len(pool),path.name,flush=True)
++        v2p.train_arm(model,X['bank'],Y['bank'],X['fit'],Y['fit'],R['bank'],R['fit'],acts['bank'],acts['fit'],True,DEVICE,seed)
++        torch.save(model.state_dict(),checkpoint);np.save(path/'embeddings.npy',emb);dump(path/'compiled_pool.json',compiled)
++    plain,transfer,index=RETRIEVE(model,X[split],X['bank'],Y['bank'],R[split],R['bank'],acts[split],acts['bank'],'full',5,DEVICE)
++    assert np.isfinite(transfer).all()
++    np.savez_compressed(predpath,prediction=plain,transferred=transfer,indices=index,bank_starts=spec['bank'],query_starts=spec[split],truth=Y[split])
++    np.savez_compressed(path/(split+'_activations.npz'),**acts)
++    complete(path,dict(seed=seed,pool_size=len(pool),checkpoint_sha256=sha(checkpoint),last_prediction_split=split))
++    del model;gc.collect();torch.cuda.empty_cache()
++    return transfer,path
++
++def shape(d,seed,split,encoder):
++    _,zero_path=prepare(d,seed,[],split,encoder)
++    path=ART/'memories'/d['ds']/'Shape';path.mkdir(parents=True,exist_ok=True)
++    target=path/(split+'.npz')
++    if target.exists():
++        with np.load(target) as z:return z['transferred'],path
++    spec=final_spec(d);x,y=windows(d['series'],spec[split],d['L'],d['H']);xb,yb=windows(d['series'],spec['bank'],d['L'],d['H'])
++    model=new_model(d['L'],np.zeros((8,384),np.float32),seed)
++    plain,transfer,index=RETRIEVE(model,x,xb,yb,v2.residualize(x),v2.residualize(xb),np.zeros((len(x),8),np.float32),np.zeros((len(xb),8),np.float32),'shape',5,DEVICE)
++    np.savez_compressed(target,prediction=plain,transferred=transfer,indices=index,bank_starts=spec['bank'],query_starts=spec[split],truth=y)
++    del model;torch.cuda.empty_cache()
++    return transfer,path
++
++def run(ds,seed,split):
++    assert_frozen();d=load_data(ds)
++    if split=='test':
++        for p,h in read(ART/'READOUT_FROZEN.json')['val_files'].items():assert sha(p)==h,'VAL choice changed after freeze'
++    encoder=SentenceTransformer(str(EMBED),device='cuda',local_files_only=True)
++    _,truth=windows(d['series'],d['starts'][split],d['L'],d['H']);result_rows=[]
++    memory_cache={}
++    shape_pred,shape_path=shape(d,seed,split,encoder)
++    for bb in PLAN['backbones']:
++        sd=ART/'final'/ds/bb/f'seed{seed}';sd.mkdir(parents=True,exist_ok=True)
++        base=ART/'backbones'/bb/ds/'final'/('shared' if bb=='Chronos-2' else f'seed{seed}')
++        bp=base/('predictions.npz' if split=='val' else 'test_predictions.npz')
++        with np.load(bp) as z:
++            b=z['yc_'+split].astype(np.float64)
++            assert np.array_equal(z['Y_'+split],truth) and np.array_equal(z[split+'_starts'],d['starts'][split])
++        pools=pool_map(d,bb);preds={'Backbone':b,'Shape':shape_pred};sources={'Backbone':str(bp),'Shape':str(shape_path/(split+'.npz'))}
++        for arm,pool in pools.items():
++            ph=digest(semantic(pool))
++            if ph not in memory_cache:memory_cache[ph]=prepare(d,seed,pool,split,encoder)
++            p,mp=memory_cache[ph];preds[arm]=p;sources[arm]=str(mp/(split+'.npz'))
++        if split=='val':
++            choices={}
++            for arm,p in preds.items():
++                l,grid=select(b,p,truth)
++                choices[arm]=dict(lambda_value=l,grid=grid,val_memory_mse=mse(p,truth),val_fusion_mse=mse((1-l)*b+l*p,truth),
++                    memory_path=sources[arm],memory_sha256=sha(sources[arm]),backbone_path=str(bp),backbone_sha256=sha(bp),
++                    pool_size=len(pools[arm]) if arm in pools else None,pool_hash=digest(semantic(pools[arm])) if arm in pools else None)
++            frozen=sd/'VAL_CHOICES.json'
++            if frozen.exists():assert read(frozen)==choices
++            else:dump(frozen,choices)
++            print('VAL FROZEN',ds,bb,seed,{a:r['lambda_value'] for a,r in choices.items()},flush=True)
++        else:
++            choices=read(sd/'VAL_CHOICES.json');rows=[]
++            for arm,p in preds.items():
++                c=choices[arm];l=c['lambda_value'];fusion=(1-l)*b+l*p
++                if arm in pools:assert c['pool_hash']==digest(semantic(pools[arm]))
++                row=dict(dataset=ds,backbone=bb,seed=seed,arm=arm,lambda_value=l,pool_size=c['pool_size'],
++                    backbone_mse=mse(b,truth),backbone_mae=mae(b,truth),memory_mse=mse(p,truth),memory_mae=mae(p,truth),
++                    fusion_mse=mse(fusion,truth),fusion_mae=mae(fusion,truth),val_fusion_mse=c['val_fusion_mse'],
++                    memory_path=sources[arm],memory_sha256=sha(sources[arm]),backbone_path=str(bp),backbone_sha256=sha(bp),
++                    val_choices_path=str(sd/'VAL_CHOICES.json'),val_choices_sha256=sha(sd/'VAL_CHOICES.json'),n=len(truth),
++                    protocol_hash=digest(PLAN),empty_pool_alias=(arm in pools and not pools[arm]))
++                row['ri_pct']=100*(row['backbone_mse']-row['fusion_mse'])/row['backbone_mse'];rows.append(row)
++            dump(sd/'TEST_METRICS.json',rows);result_rows.extend(rows)
++            print('TEST COMPLETE',ds,bb,seed,flush=True)
++    if split=='test':
++        dest=ART/'final'/ds/f'seed{seed}_metrics.json';dump(dest,result_rows)
++    complete(ART/'final'/ds/f'{split}_seed{seed}',dict(dataset=ds,seed=seed,split=split))
++
++if __name__=='__main__':
++    ap=argparse.ArgumentParser();ap.add_argument('--dataset',required=True);ap.add_argument('--seed',type=int,required=True);ap.add_argument('--split',choices=['val','test'],required=True)
++    a=ap.parse_args();run(a.dataset,a.seed,a.split)
+diff --git a/experiments/unified/llm_adapter.py b/experiments/unified/llm_adapter.py
+new file mode 100644
+index 0000000..e496106
+--- /dev/null
++++ b/experiments/unified/llm_adapter.py
+@@ -0,0 +1,73 @@
++# -*- coding: utf-8 -*-
++"""Isolated GPT text calls via logged-in Codex CLI; no API credential export."""
++import hashlib, json, os, subprocess, time, shutil
++from pathlib import Path
++
++class CodexTextAdapter:
++    def __init__(self,root,model):
++        self.root=Path(root);self.root.mkdir(parents=True,exist_ok=True)
++        self.model=model
++        self.node=Path(os.environ.get('PAER_NODE') or shutil.which('node') or 'node')
++        self.cli=Path(os.environ.get('PAER_CODEX_CLI') or (Path(os.environ['APPDATA'])/'npm/node_modules/@openai/codex/bin/codex.js'))
++        self.schema={'type':'object','properties':{'raw_response':{'type':'string'}},'required':['raw_response'],'additionalProperties':False}
++    def call(self,system,user,stage,model):
++        assert model==self.model
++        obj={'stage':stage,'system':system,'user':user,'model':model}
++        key=hashlib.sha256(json.dumps(obj,sort_keys=True,ensure_ascii=False).encode()).hexdigest()[:16]
++        cache=self.root/'cache'/f'{key}.json';cache.parent.mkdir(exist_ok=True)
++        if cache.exists():
++            result=json.loads(cache.read_text(encoding='utf-8'))
++            return result['raw_response'],str(cache),True
++        run=self.root/'calls'/key;run.mkdir(parents=True,exist_ok=True)
++        dump=lambda p,x:p.write_text(json.dumps(x,ensure_ascii=False,indent=2),encoding='utf-8')
++        dump(run/'request.json',obj);dump(run/'schema.json',self.schema)
++        prompt=('You are a text-only component in a frozen forecasting experiment. '
++                'Use only the SYSTEM and USER payloads below. Do not use tools, read files, browse, '
++                'run commands, or access other sessions. Do not infer validation or test performance. '
++                'Return the requested complete JSON object as a string in the outer raw_response field; '
++                'the outer wrapper is only transport. No markdown or commentary.\n\n'
++                'SYSTEM PAYLOAD:\n'+system+'\n\nUSER PAYLOAD:\n'+user)
++        (run/'prompt.txt').write_text(prompt,encoding='utf-8')
++        args=[str(self.node),str(self.cli),'exec','--ignore-user-config','--ephemeral',
++              '--model',model,'--sandbox','read-only','--skip-git-repo-check',
++              '--config','model_reasoning_effort="medium"','--json','--color','never',
++              '--cd',str(run),'--output-schema',str(run/'schema.json'),
++              '--output-last-message',str(run/'answer.json'),'-']
++        dump(run/'invocation.json',{'model':model,'reasoning_effort':'medium','sandbox':'read-only','ephemeral':True,'tools_allowed_by_experiment':False,'docs':'https://developers.openai.com/cookbook/examples/codex/build_iterative_repair_loops_with_codex'})
++        print('GPT REQUEST',stage,model,key,flush=True)
++        start=time.monotonic()
++        # Auth remains inside the existing Codex login; no token is copied out.
++        env=os.environ.copy();env['PYTHONIOENCODING']='utf-8'
++        # Honor the user's enabled Windows proxy only in this child process.
++        # No system setting or login credential is changed.
++        import winreg
++        with winreg.OpenKey(winreg.HKEY_CURRENT_USER,r'Software\Microsoft\Windows\CurrentVersion\Internet Settings') as reg:
++            enabled=winreg.QueryValueEx(reg,'ProxyEnable')[0]
++            proxy=winreg.QueryValueEx(reg,'ProxyServer')[0] if enabled else ''
++        if proxy and '=' not in proxy and not env.get('HTTPS_PROXY'):
++            env['HTTPS_PROXY']='http://'+proxy
++            env['HTTP_PROXY']='http://'+proxy
++        with (run/'stdout.jsonl').open('w',encoding='utf-8') as stdout,(run/'stderr.log').open('w',encoding='utf-8') as stderr:
++            proc=subprocess.Popen(args,stdin=subprocess.PIPE,stdout=stdout,stderr=stderr,text=True,
++                                  encoding='utf-8',env=env,creationflags=subprocess.CREATE_NO_WINDOW)
++            try: proc.communicate(prompt,timeout=900)
++            except subprocess.TimeoutExpired:
++                proc.kill();proc.wait();raise RuntimeError('GPT request timed out; do not regenerate by score')
++        if proc.returncode!=0:
++            raise RuntimeError(f'GPT CLI failed (exit {proc.returncode}); inspect saved non-secret CLI status')
++        events=[]
++        for line in (run/'stdout.jsonl').read_text(encoding='utf-8').splitlines():
++            try: events.append(json.loads(line))
++            except json.JSONDecodeError: continue
++        prohibited={'command_execution','mcp_tool_call','web_search','file_change','collab_tool_call'}
++        assert not any(e.get('item',{}).get('type') in prohibited for e in events),'GPT used a tool; invalidate this call'
++        answer=json.loads((run/'answer.json').read_text(encoding='utf-8'))
++        raw=answer['raw_response']
++        assert raw.strip()
++        obj['raw_response']=raw;obj['transport']='codex exec ephemeral JSON wrapper'
++        obj['elapsed_seconds']=time.monotonic()-start
++        obj['usage']=[e.get('usage') for e in events if e.get('type')=='turn.completed']
++        obj['tools_used']=False
++        dump(cache,obj)
++        print('GPT RESPONSE',stage,'elapsed',round(obj['elapsed_seconds'],1),'usage',obj['usage'],flush=True)
++        return raw,str(cache),False
+diff --git a/experiments/unified/pools.py b/experiments/unified/pools.py
+new file mode 100644
+index 0000000..2e034c7
+--- /dev/null
++++ b/experiments/unified/pools.py
+@@ -0,0 +1,19 @@
++# -*- coding: utf-8 -*-
++from common import *
++import argparse
++from reward_core import Fold,load_data,optimize
++from sentence_transformers import SentenceTransformer
++
++def main():
++    ap=argparse.ArgumentParser();ap.add_argument('--dataset',required=True);ap.add_argument('--backbone',required=True)
++    ap.add_argument('--objective',required=True,choices=['memory','fusion','fusion_no_critic','fusion_independent'])
++    a=ap.parse_args();assert_frozen()
++    d=load_data(a.dataset)
++    encoder=SentenceTransformer(str(EMBED),device='cuda',local_files_only=True)
++    folds=[Fold(d,i,encoder,a.backbone) for i in range(1,5)]
++    pool=optimize(d,folds,a.objective)
++    path=ART/'pools'/a.dataset/a.objective/('shared' if a.objective=='memory' else a.backbone)
++    complete(path,dict(dataset=a.dataset,backbone=a.backbone,objective=a.objective,pool_size=len(pool),pool_sha256=sha(path/'final_pool.json')))
++    print('POOL COMPLETE',a.dataset,a.backbone,a.objective,len(pool),flush=True)
++if __name__=='__main__':main()
++
+diff --git a/experiments/unified/publish.py b/experiments/unified/publish.py
+new file mode 100644
+index 0000000..a4bb02f
+--- /dev/null
++++ b/experiments/unified/publish.py
+@@ -0,0 +1,45 @@
++# -*- coding: utf-8 -*-
++"""Publish only run status/results; never force-push or stage unrelated work."""
++import json, os, subprocess, time
++from pathlib import Path
++
++def publish(repo, artifacts, output, state, phase=None):
++    if os.environ.get('PAER_PUBLISH_PROGRESS') != '1':
++        return
++    marker = artifacts / 'PUBLISH_STATUS.json'
++    previous = json.loads(marker.read_text(encoding='utf-8')) if marker.exists() else {}
++    changed = (state, phase) != (previous.get('state'), previous.get('phase'))
++    if not changed and time.time() - previous.get('attempt_epoch', 0) < 300:
++        return
++    report = dict(state=state, phase=phase, attempt_epoch=time.time(), ok=False)
++    env = os.environ.copy()
++    env['GIT_TERMINAL_PROMPT'] = '0'
++    git = ['git', '--git-dir=' + str(repo / '.git'), '--work-tree=' + str(repo)]
++    def run(*args, allow=()):
++        proc = subprocess.run(git + list(args), cwd=repo, env=env,
++                              capture_output=True, text=True, encoding='utf-8',
++                              errors='replace', timeout=90,
++                              creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
++        if proc.returncode != 0 and proc.returncode not in allow:
++            raise RuntimeError('git ' + args[0] + ': ' + proc.stderr[-1500:])
++        return proc
++    try:
++        # Refuse to commit someone else's staged changes in this isolated checkout.
++        staged = run('diff', '--cached', '--name-only').stdout.splitlines()
++        assert all(p == 'docs/unified/STATUS.json' or p.startswith('docs/unified/results/') for p in staged), 'Unrelated staged changes'
++        paths = ['docs/unified/STATUS.json']
++        if (repo / 'docs/unified/results').exists():
++            paths.append('docs/unified/results')
++        run('add', '--', *paths)
++        if run('diff', '--cached', '--quiet', allow=(1,)).returncode == 1:
++            run('commit', '-m', 'Update unified PAER run progress: ' + state + ' ' + str(phase or ''))
++        run('push', 'origin', 'HEAD:refs/heads/unified-paer-20261014', 'HEAD:refs/heads/main')
++        report.update(ok=True, commit=run('rev-parse', 'HEAD').stdout.strip())
++    except Exception as exc:
++        # A remote change/auth failure never changes an experiment or triggers force-push.
++        report['error'] = str(exc)
++        print('PROGRESS PUBLISH FAILED:', str(exc), flush=True)
++    for target in [marker, output / 'REPOSITORY_STATUS.json']:
++        temp = target.with_suffix('.json.tmp')
++        temp.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
++        temp.replace(target)
+diff --git a/experiments/unified/reward_core.py b/experiments/unified/reward_core.py
+new file mode 100644
+index 0000000..c9c09a8
+--- /dev/null
++++ b/experiments/unified/reward_core.py
+@@ -0,0 +1,217 @@
++# -*- coding: utf-8 -*-
++from common import *
++from runtime import *
++
++def semantic(pool):
++    keys=['id','mechanism','scope','activation_condition','failure_condition','observables','retrieval_action','expected_effect','reason','condition_spec','replaced']
++    result=[]
++    for e in v1._sorted_experts(copy.deepcopy(pool)):
++        d={k:e[k] for k in keys if k in e}
++        d['claim']=e.get('mechanism',e.get('claim',e.get('reason','')))
++        d['observable_features']=list(e.get('observables',e.get('observable_features',[])))
++        result.append(d)
++    return result
++
++def load_data(ds):
++    dd=DATA_ROOT/ds;cfg=read(dd/'config.json')
++    df=pd.read_csv(dd/'series.csv');series=df.OT.to_numpy(np.float32);dates=pd.to_datetime(df.date)
++    z=np.load(dd/'window_indices.npz');starts={k:z[k].astype(np.int64) for k in ['train','val','test']}
++    pool=semantic(v2.load_raw_pool(ds));ids=[e['id'] for e in pool]
++    assert len(pool)==8 and len(set(ids))==8
++    return dict(ds=ds,dd=dd,cfg=cfg,series=series,dates=dates,starts=starts,raw=pool,ids=ids,L=cfg['context'],H=cfg['horizon'])
++
++def available(earlier,later,H):
++    """Allow only continuations ending at/before first later forecast origin."""
++    assert len(earlier) and len(later)
++    a=np.asarray(earlier)[np.asarray(earlier)+H<=int(later[0])]
++    assert len(a)>0 and int(a[-1])+H<=int(later[0])
++    return a
++
++def fold_spec(data,fold):
++    from common import fold_spec as shared_spec
++    return shared_spec(data,fold)
++
++def final_spec(data):
++    train=available(data['starts']['train'],data['starts']['val'],data['H'])
++    cut=int(len(train)*.8);fit=train[cut:];bank=available(train[:cut],fit,data['H'])
++    return dict(bank=bank,fit=fit,val=data['starts']['val'],test=data['starts']['test'])
++
++
++class Fold:
++    def __init__(self,data,number,encoder,backbone):
++        self.data=data;self.number=number;self.encoder=encoder
++        self.path=ART/data['ds']/f'fold{number}';self.spec=fold_spec(data,number)
++        self.X={};self.Y={};self.R={};self.ts={}
++        for k,a in self.spec.items():
++            self.X[k],self.Y[k]=v2.build_windows(data['series'],a,data['L'],data['H'])
++            self.R[k]=v2.residualize(self.X[k]);self.ts[k]=[data['dates'][int(s)+data['L']] for s in a]
++        hist=np.concatenate([self.X['bank'],self.X['fit']])
++        self.stats=v2.compute_training_stats(hist)
++        self.evidence={'feature_distributions':v1._raw_feature_quantiles(hist),'temporal_coverage':v1._temporal_coverage(data['dates'].iloc[:int(self.spec['fit'][-1])+data['L']])}
++        self.backbone=backbone
++        bp=ART/'backbones'/backbone/data['ds']/f'fold{number}'
++        self.c=np.load(bp/'predictions.npz')
++        assert read(bp/'completed.json')['protocol_hash']==digest(PLAN)
++        for k in ['cal','eval']:
++            assert np.array_equal(self.c[f'{k}_starts'],self.spec[k])
++            assert np.array_equal(self.c[f'Y_{k}'],self.Y[k])
++        self.signature=digest({'plan':PLAN,'data':read(ART/'data_provenance.json')[data['ds']],'spec':{k:a.tolist() for k,a in self.spec.items()},'runner':sha(Path(__file__)),'common':sha(Path(__file__).with_name('common.py')),'retrieval':sha(Path(__file__).with_name('unified_retrieval.py'))})
++    def compile(self,pool):
++        v1.CONTEXT=self.data['L'];v1.HORIZON=self.data['H']
++        pool=semantic(pool)
++        for e in pool:
++            e['compiled']=v1.compile_condition_v6(e,v1.FEATURE_REGISTRY,self.evidence,v1.COMPILER_CONFIG)
++            e['retrieval_spec']=v1.derive_retrieval_spec(e,v1.FEATURE_REGISTRY)
++        return pool
++    def arrays(self,pool):
++        compiled=self.compile(pool);ids=self.data['ids']
++        emb=np.zeros((8,384),np.float32);acts={k:np.zeros((len(x),8),np.float32) for k,x in self.X.items()}
++        if compiled:
++            e=self.encoder.encode([p['claim'] for p in compiled],normalize_embeddings=True,convert_to_numpy=True).astype(np.float32)
++            for k in acts:
++                a=v1.build_activation_matrix(compiled,self.X[k],self.ts[k],self.stats)
++                for j,p in enumerate(compiled):acts[k][:,ids.index(p['id'])]=a[:,j]
++            for j,p in enumerate(compiled):emb[ids.index(p['id'])]=e[j]
++        return compiled,emb,acts
++    def predict(self,pool):
++        key=digest({'signature':self.signature,'pool':semantic(pool),'seed':42})[:24]
++        p=self.path/'retrievers'/key;result=p/'predictions.npz'
++        if result.exists():
++            meta=read(p/'metadata.json');assert meta['key']==key and meta['signature']==self.signature
++            return {k:v for k,v in np.load(result).items()}
++        p.mkdir(parents=True,exist_ok=True)
++        compiled,emb,acts=self.arrays(pool)
++        m=new_model(self.data['L'],emb,42)
++        print('TRAIN REWARD',self.data['ds'],'fold',self.number,'experts',[e['id'] for e in pool],flush=True)
++        v2p.train_arm(m,self.X['bank'],self.Y['bank'],self.X['fit'],self.Y['fit'],self.R['bank'],self.R['fit'],acts['bank'],acts['fit'],True,DEVICE,42)
++        torch.save(m.state_dict(),p/'model.pt');np.save(p/'embeddings.npy',emb)
++        np.savez_compressed(p/'activations.npz',**acts)
++        preds={}
++        for k in ['cal','eval']:
++            plain,transferred,indices=RETRIEVE(m,self.X[k],self.X['bank'],self.Y['bank'],self.R[k],self.R['bank'],acts[k],acts['bank'],'full',5,DEVICE)
++            preds[k]=transferred.astype(np.float64)
++            np.savez_compressed(p/f'{k}_retrieval.npz',indices=indices,bank_starts=self.spec['bank'],query_starts=self.spec[k],prediction=plain,transferred=transferred)
++        cov=np.mean(np.concatenate([acts['bank'],acts['fit']])>=.5,axis=0)
++        preds['coverage']=cov
++        np.savez_compressed(result,**preds)
++        dump(p/'metadata.json',{'key':key,'signature':self.signature,'pool':semantic(pool),'compiled':compiled,'fold':self.number,'seed':42})
++        del m;torch.cuda.empty_cache()
++        return preds
++
++def new_model(context,emb,seed):
++    state=v2._init_state(seed,context,384,8,DEVICE);v2p.seed_everything(seed)
++    m=v2.ConditionalExpertMLPRetriever(context=context,expert_dim=384,n_experts=8,d_enc=v2.D_ENC,d_exp=v2.D_EXP,d_z=v2.D_Z,hidden=v2.HIDDEN).to(DEVICE)
++    m.load_state_dict(state);m.set_expert_embeddings(emb)
++    return m
++
++
++def score_pool(data,folds,pool,objective,stage,path):
++    result=path/'reward.json';signature=digest({'plan':PLAN,'pool':semantic(pool),'objective':objective,'folds':[f.signature for f in folds],'backbone':folds[0].backbone})
++    if result.exists():
++        saved=read(result);assert saved['signature']==signature
++        return saved['records']
++    points=[];per={e['id']:[] for e in pool};cov={e['id']:[] for e in pool}
++    for fold in folds:
++        independent=objective=='fusion_independent'
++        full=fold.predict([] if independent else pool);cf=fold.c['yc_cal'].astype(np.float64);ce=fold.c['yc_eval'].astype(np.float64)
++        lf,gf=select(cf,full['cal'],fold.Y['cal'])
++        full_fusion=mse((1-lf)*ce+lf*full['eval'],fold.Y['eval'])
++        full_memory=mse(full['eval'],fold.Y['eval'])
++        for e in pool:
++            if independent:
++                full=fold.predict([e]);minus=fold.predict([])
++                lf,gf=select(cf,full['cal'],fold.Y['cal'])
++                full_fusion=mse((1-lf)*ce+lf*full['eval'],fold.Y['eval'])
++                full_memory=mse(full['eval'],fold.Y['eval'])
++            else:
++                minus=fold.predict([p for p in pool if p['id']!=e['id']])
++            lm,gm=select(cf,minus['cal'],fold.Y['cal'])
++            minus_fusion=mse((1-lm)*ce+lm*minus['eval'],fold.Y['eval'])
++            minus_memory=mse(minus['eval'],fold.Y['eval'])
++            fixed=mse((1-lf)*ce+lf*minus['eval'],fold.Y['eval'])
++            mr=(minus_memory-full_memory)/max(minus_memory,1e-15)
++            fr=(minus_fusion-full_fusion)/max(minus_fusion,1e-15)
++            reward=mr if objective=='memory' else fr
++            per[e['id']].append(reward);cov[e['id']].append(float(full['coverage'][data['ids'].index(e['id'])]))
++            row={'dataset':data['ds'],'objective':objective,'stage':stage,'fold':fold.number,'expert_id':e['id'],'full_lambda':lf,'minus_lambda':lm,'chronos_eval_mse':mse(ce,fold.Y['eval']),'full_memory_mse':full_memory,'minus_memory_mse':minus_memory,'full_fusion_mse':full_fusion,'minus_fusion_mse':minus_fusion,'minus_fusion_fixed_full_lambda_mse':fixed,'memory_reward':mr,'fusion_reward':fr,'chosen_reward':reward,'n_cal':len(cf),'n_eval':len(ce)}
++            points.append(row)
++    records=[]
++    for e in pool:
++        r=np.asarray(per[e['id']]);st={'fold_rewards':r.tolist(),'mean_pool_reward':float(r.mean()),'median_pool_reward':float(np.median(r)),'positive_fold_ratio':float((r>0).mean()),'worst_pool_reward':float(r.min())}
++        coverage=float(np.mean(cov[e['id']]));reward,verdict=v2p.v2_reward_rule(st,coverage)
++        records.append({'expert':semantic([e])[0],'pool_stats':st,'coverage':coverage,'reward':reward,'verdict':verdict,'pool_size':len(pool),'single_effect':None,'synergy_flag':None})
++    dump(result,{'signature':signature,'records':records,'pool':semantic(pool),'objective':objective,'stage':stage})
++    pd.DataFrame(points).to_csv(path/'fold_effects.csv',index=False,encoding='utf-8-sig')
++    print('REWARD DONE',data['ds'],objective,stage,[(r['expert']['id'],r['reward'],round(r['pool_stats']['mean_pool_reward'],5)) for r in records],flush=True)
++    return records
++
++def critic(records,objective,stage,backbone):
++    definition=('the standalone mean-transferred Top5 MEMORY MSE' if objective=='memory' else f'the FINAL {backbone} plus mean-transferred Top5 MEMORY FUSION MSE; FULL and MINUS lambda are separately CAL-selected and frozen on EVAL')
++    system=('You are a rigorous critic for an expert-conditioned retrieval forecaster. '
++      'The supplied marginal reward compares '+definition+'. The evaluation design supplied below defines the comparison; do not reinterpret singleton comparisons as pool interactions. '
++      'KEEP experts remain in the full pool during all later revisions. All numeric evidence is TRAIN-only. '
++      'Respect the supplied verdict and do not recompute data, infer VAL/TEST outcomes, invent patterns, or claim significance. '
++      'single_effect and synergy_flag are unknown: do not assert proven synergy. Output strict JSON only.')
++    system+=(' This ablation compares each SINGLETON expert against the zero-expert retriever; it does not measure marginal pool contribution.' if objective=='fusion_independent' else ' FULL versus MINUS is a leave-one-out pool comparison.')
++    evidence=[{'expert':r['expert'],'reward_stats':r['pool_stats'],'coverage':r['coverage'],'reward':r['reward'],'verdict':r['verdict'],'pool_size':r['pool_size']} for r in records]
++    user='OBJECTIVE: '+definition+'\nEVIDENCE:\n'+json.dumps(evidence,ensure_ascii=False,indent=2)+'\nReturn {"critiques":[{"expert_id":"...","verdict":"same as given","pool_contribution":"positive|negative|neutral","synergy_interpretation":"unverified","diagnosis":"2-3 sentences citing supplied numbers","revision_instruction":"TRAIN-verifiable refinement for failed experts"}]}. Include every expert ID once.'
++    result,_=v1._call_llm_list(system,user,'reward_alignment_'+objective+'_'+stage+'_critic','critiques',MODEL)
++    assert len(result)==len(records) and {r.get('expert_id') for r in result}=={r['expert']['id'] for r in records}
++    return {r['expert_id']:r for r in result}
++
++def revision(records,objective,stage,backbone):
++    definition='standalone memory accuracy' if objective=='memory' else f'extra reduction in final {backbone}-plus-memory fusion error'
++    comparison=('SINGLETON expert versus the zero-expert retriever' if objective=='fusion_independent' else 'FULL pool versus MINUS one expert')
++    system=('You revise conditional retrieval experts after a TRAIN-only review using '+comparison+'. '
++      'Improve each failed expert\'s contribution under this comparison to '+definition+'. KEEP experts are retained unchanged. '
++      'Do not merely add AND conditions or invent numeric data patterns. You may replace an unsupported mechanism using only supplied TRAIN evidence and the feature catalog; mark replaced=true. '
++      'Do not infer or use external VAL/TEST performance. Return strict JSON only.')
++    feedback=[{'expert':r['expert'],'pool_reward_evidence':r['pool_stats'],'critic':r['critic'],'verdict':r['verdict']} for r in records]
++    user=v1._catalog_text()+'\n'+v1._expert_schema_text()+'\nOBJECTIVE: '+definition+'\nFEEDBACK:\n'+json.dumps(feedback,ensure_ascii=False,indent=2)+'\nReturn {"experts":[...]}, the same IDs, all required expert fields plus replaced:boolean. No extra IDs.'
++    result,_=v1._call_llm_list(system,user,'reward_alignment_'+objective+'_'+stage+'_revision','experts',MODEL)
++    assert len(result)==len(records) and {e['id'] for e in result}=={r['expert']['id'] for r in records}
++    return semantic(result)
++
++def optimize(data,folds,objective):
++    backbone=folds[0].backbone
++    path=ART/'pools'/data['ds']/objective/('shared' if objective=='memory' else backbone);final=path/'final_pool.json'
++    path.mkdir(parents=True,exist_ok=True)
++    if final.exists():return read(final)
++    pool=copy.deepcopy(data['raw']);history=[]
++    for rnd in range(3):
++        stage=f'round{rnd}';p=path/stage;p.mkdir(parents=True,exist_ok=True)
++        records=score_pool(data,folds,pool,objective,stage,p)
++        if (p/'critiques.json').exists():cr=read(p/'critiques.json')
++        elif objective=='fusion_no_critic':
++            cr={r['expert']['id']:{'expert_id':r['expert']['id'],'verdict':r['verdict'],'critic_omitted':True,'revision_instruction':'Use only the supplied numeric TRAIN reward evidence; no separate Critic analysis was performed.'} for r in records}
++            dump(p/'critiques.json',cr)
++        else:cr=critic(records,objective,data['ds']+'_'+backbone+'_'+stage,backbone);dump(p/'critiques.json',cr)
++        for r in records:r['critic']=cr[r['expert']['id']];r['critic']['verdict']=r['verdict']
++        dump(p/'records_with_critic.json',records);history.extend([dict(stage=stage,expert_id=r['expert']['id'],reward=r['reward'],verdict=r['verdict'],coverage=r['coverage'],**r['pool_stats']) for r in records])
++        failed=[r for r in records if r['reward']<=0]
++        if rnd==2 or not failed:break
++        if (p/'revisions.json').exists():revised=read(p/'revisions.json')
++        else:revised=revision(failed,objective,data['ds']+'_'+backbone+'_'+stage,backbone);dump(p/'revisions.json',revised)
++        updates={e['id']:e for e in revised}
++        # KEEP experts stay; every slot corresponds to its original lineage.
++        pool=semantic([updates.get(e['id'],e) for e in pool])
++        assert {e['id'] for e in pool}==set(data['ids'])
++    pool=semantic([r['expert'] for r in records if r['reward']>0])
++    for step in range(9):
++        if not pool:
++            dump(path/'final_audit.json',{'empty':True,'method':'NoExpertMLP','all_retained_positive':True});break
++        stage=f'final_audit{step}';p=path/stage;p.mkdir(parents=True,exist_ok=True)
++        checked=score_pool(data,folds,pool,objective,stage,p)
++        history.extend([dict(stage=stage,expert_id=r['expert']['id'],reward=r['reward'],verdict=r['verdict'],coverage=r['coverage'],**r['pool_stats']) for r in checked])
++        failed=[r for r in checked if r['reward']<=0]
++        if not failed:
++            dump(path/'final_audit.json',{'empty':False,'all_retained_positive':True,'records':checked});break
++        assert step<8
++        # Fixed deterministic removal rule; no VAL or TEST data involved.
++        worst=sorted(failed,key=lambda r:(r['reward'],r['pool_stats']['mean_pool_reward'],r['expert']['id']))[0]
++        pool=semantic([e for e in pool if e['id']!=worst['expert']['id']])
++    dump(final,pool)
++    pd.DataFrame(history).to_csv(path/'history.csv',index=False,encoding='utf-8-sig')
++    print('FINAL POOL FROZEN',data['ds'],objective,[e['id'] for e in pool],flush=True)
++    return pool
++
+diff --git a/experiments/unified/runner.py b/experiments/unified/runner.py
+new file mode 100644
+index 0000000..0c5747f
+--- /dev/null
++++ b/experiments/unified/runner.py
+@@ -0,0 +1,108 @@
++# -*- coding: utf-8 -*-
++"""Single-GPU resumable queue; reports real completed jobs, never inherited scores."""
++from common import *
++import argparse,subprocess,shutil,csv
++
++def jobs():
++    result=[]
++    order=['traffic','exchange_rate','etth1','etth2','weather','solar','electricity']
++    for ds in order:
++        for fold in range(1,5):
++            for bb in ['PatchTST','iTransformer','RAFT','Chronos-2']:
++                result.append(dict(id=f'fold-{bb}-{ds}-{fold}',phase='backbones',script='backbone.py',args=['--dataset',ds,'--backbone',bb,'--fold',str(fold),'--seed','42'],marker=str(ART/'backbones'/bb/ds/f'fold{fold}/completed.json')))
++        for bb in PLAN['backbones']:
++            for seed in ([42] if bb=='Chronos-2' else SEEDS):
++                marker=ART/'backbones'/bb/ds/'final'/('shared' if bb=='Chronos-2' else f'seed{seed}')/'completed.json'
++                result.append(dict(id=f'base-val-{bb}-{ds}-{seed}',phase='backbones',script='backbone.py',args=['--dataset',ds,'--backbone',bb,'--seed',str(seed)],marker=str(marker)))
++    for ds in order:
++        for objective in ['memory','fusion','fusion_no_critic','fusion_independent']:
++            for bb in (['Chronos-2'] if objective=='memory' else PLAN['backbones']):
++                marker=ART/'pools'/ds/objective/('shared' if objective=='memory' else bb)/'completed.json'
++                result.append(dict(id=f'pool-{objective}-{bb}-{ds}',phase='pools',script='pools.py',args=['--dataset',ds,'--backbone',bb,'--objective',objective],marker=str(marker)))
++    for ds in order:
++        for seed in SEEDS:
++            result.append(dict(id=f'val-{ds}-{seed}',phase='val',script='final.py',args=['--dataset',ds,'--seed',str(seed),'--split','val'],marker=str(ART/'final'/ds/f'val_seed{seed}/completed.json')))
++    result.append(dict(id='freeze-all-val',phase='freeze',script=None,args=[],marker=str(ART/'READOUT_FROZEN.json')))
++    for ds in order:
++        for bb in PLAN['backbones']:
++            for seed in ([42] if bb=='Chronos-2' else SEEDS):
++                marker=ART/'backbones'/bb/ds/'final'/('shared' if bb=='Chronos-2' else f'seed{seed}')/'test_completed.json'
++                result.append(dict(id=f'base-test-{bb}-{ds}-{seed}',phase='test',script='backbone.py',args=['--dataset',ds,'--backbone',bb,'--seed',str(seed),'--stage','test'],marker=str(marker)))
++        for seed in SEEDS:
++            result.append(dict(id=f'test-{ds}-{seed}',phase='test',script='final.py',args=['--dataset',ds,'--seed',str(seed),'--split','test'],marker=str(ART/'final'/ds/f'test_seed{seed}/completed.json')))
++    result.append(dict(id='independent-verification',phase='verify',script='verify.py',args=[],marker=str(ART/'VERIFIED_COMPLETE.json')))
++    return result
++
++def is_done(job):
++    p=Path(job['marker'])
++    if not p.exists():return False
++    assert read(p)['protocol_hash']==digest(PLAN),'Marker has wrong protocol: '+str(p)
++    return True
++
++def status(alljobs,state,current=None,pid=None,error=None):
++    counts={}
++    for j in alljobs:
++        c=counts.setdefault(j['phase'],{'completed':0,'total':0});c['total']+=1;c['completed']+=int(is_done(j))
++    s=dict(protocol=PLAN['version'],protocol_hash=digest(PLAN),state=state,current_job=current,worker_pid=pid,
++           updated_utc=time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),phases=counts,
++           target_test_rows=672,test_readout_started=(ART/'READOUT_FROZEN.json').exists(),error=error,
++           note='Counts are pipeline jobs; shared deterministic predictions are not independent training runs.')
++    for p in [ART/'STATUS.json',OUT/'STATUS.json',BASE/'docs/unified/STATUS.json']:dump(p,s)
++    from publish import publish
++    phase=next((j['phase'] for j in alljobs if j['id']==current),None)
++    publish(BASE,ART,OUT,state,phase)
++
++def freeze():
++    files={}
++    for ds in DSLIST:
++        for bb in PLAN['backbones']:
++            for seed in SEEDS:
++                p=ART/'final'/ds/bb/f'seed{seed}/VAL_CHOICES.json';choices=read(p)
++                assert set(choices)==set(PLAN['core_arms'])
++                files[str(p)]=sha(p)
++                for choice in choices.values():
++                    for field in ['memory','backbone']:
++                        source=Path(choice[field+'_path'])
++                        assert sha(source)==choice[field+'_sha256']
++                        files[str(source)]=sha(source)
++                        for name in ['checkpoint.pt','model.pt','embeddings.npy','compiled_pool.json','training_complete.json']:
++                            artifact=source.parent/name
++                            if artifact.exists():files[str(artifact)]=sha(artifact)
++    for p in (ART/'pools').rglob('final_pool.json'):files[str(p)]=sha(p)
++    dump(ART/'READOUT_FROZEN.json',dict(protocol_hash=digest(PLAN),val_files=files,frozen_utc=time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime())))
++
++def main():
++    ap=argparse.ArgumentParser();ap.add_argument('--phase',choices=['all','backbones'],default='all');a=ap.parse_args()
++    assert_frozen();alljobs=jobs();dump(ART/'JOBS.json',alljobs)
++    lock=ART/'runner.lock'
++    if lock.exists():raise RuntimeError('Queue lock exists: inspect the saved controller PID before restarting')
++    fd=os.open(lock,os.O_CREAT|os.O_EXCL|os.O_WRONLY);os.write(fd,str(os.getpid()).encode());os.close(fd)
++    dump(ART/'controller.json',dict(pid=os.getpid(),command='experiments/unified/runner.py --phase '+a.phase))
++    current=None
++    try:
++        for job in alljobs:
++            if a.phase=='backbones' and job['phase']!='backbones':continue
++            if is_done(job):continue
++            current=job['id']
++            if shutil.disk_usage(ART).free<3*1024**3:raise RuntimeError('Less than 3GiB free; stopping before artifact writes')
++            if job['phase']=='pools' and not (ART/'LLM_NETWORK_READY.json').exists():
++                status(alljobs,'WAITING_FOR_LLM_NETWORK',current,error='LLM transport not enabled; local backbone phase finished')
++                return
++            if job['phase']=='freeze':freeze();continue
++            if job['phase']=='test':assert (ART/'READOUT_FROZEN.json').exists()
++            log=ART/'logs'/(job['id']+'.log');log.parent.mkdir(exist_ok=True)
++            command=[sys.executable,'-B','-X','utf8',str(Path(__file__).with_name(job['script'])),*job['args']]
++            with log.open('a',encoding='utf-8') as f:
++                proc=subprocess.Popen(command,stdout=f,stderr=subprocess.STDOUT,cwd=BASE,env=os.environ.copy(),creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
++                status(alljobs,'RUNNING',current,proc.pid)
++                while proc.poll() is None:
++                    time.sleep(20);status(alljobs,'RUNNING',current,proc.pid)
++                assert proc.returncode==0,f'{current} exited {proc.returncode}; inspect {log}'
++            assert is_done(job),'Worker exited without valid completion marker: '+current
++            status(alljobs,'RUNNING',current)
++        status(alljobs,'COMPLETE' if a.phase=='all' else 'BACKBONES_COMPLETE')
++    except Exception as e:
++        status(alljobs,'FAILED',current,error=str(e));raise
++    finally:
++        lock.unlink(missing_ok=True)
++if __name__=='__main__':main()
+diff --git a/experiments/unified/runtime.py b/experiments/unified/runtime.py
+new file mode 100644
+index 0000000..603766e
+--- /dev/null
++++ b/experiments/unified/runtime.py
+@@ -0,0 +1,21 @@
++# -*- coding: utf-8 -*-
++"""Audited PAER model components. Legacy experiment main functions are never called."""
++from common import *
++import torch
++sys.dont_write_bytecode=True
++sys.path.insert(0,str(BASE/'experiments'))
++sys.path.insert(0,str(BASE/'experiments/external_baselines'))
++import run_ours_fusion_v2 as v2
++import run_conditional_expert_mlp_v4 as cm
++v1=v2.v1;v2p=v2.v2p;av2=v2p.av2
++v2.FROZEN_ROOT=ROOT/'results/reward_feedback_critic_v2_full_cross_dataset'
++v2p.LLM_CACHE_ROOT=ART/'llm_compat_cache'
++v2p.EPOCHS=PLAN['retriever_epochs']
++from llm_adapter import CodexTextAdapter
++av2._call_llm=CodexTextAdapter(ART/'llm_calls',MODEL).call
++av2._default_model=lambda:MODEL
++DEVICE=torch.device('cuda')
++torch.set_num_threads(4)
++assert torch.cuda.is_available(),'The frozen protocol requires CUDA; do not silently switch to CPU'
++from unified_retrieval import retrieve_capture as RETRIEVE
++
+diff --git a/experiments/unified/unified_retrieval.py b/experiments/unified/unified_retrieval.py
+new file mode 100644
+index 0000000..7e3485b
+--- /dev/null
++++ b/experiments/unified/unified_retrieval.py
+@@ -0,0 +1,66 @@
++# -*- coding: utf-8 -*-
++import torch
++import numpy as np
++@torch.no_grad()
++def retrieve_capture(model, X_val, X_bank, Y_bank, X_val_res, X_bank_res,
++                         val_act, bank_act, mode, topk, device, q_chunk=128, bank_chunk=4096):
++    L = X_val.shape[1]
++    model.eval()
++    bank_act_t = torch.tensor(bank_act, dtype=torch.float32, device=device)
++    # 预计算 bank 张量 + 编码（逐样本、eval 模式，位一致）。
++    # 原实现在每个 query 块内都重新编码整个 bank（O(test*bank) 冗余），
++    # 这里只在 query 循环外编码一次，按相同的 bank_chunk 分块保证逐位一致。
++    X_bank_gpu = torch.tensor(X_bank, dtype=torch.float32, device=device)
++    X_bank_res_gpu = torch.tensor(X_bank_res, dtype=torch.float32, device=device)
++    z_bank = None
++    if mode != "shape":
++        z_chunks = []
++        for bs in range(0, len(X_bank), bank_chunk):
++            be = min(bs + bank_chunk, len(X_bank))
++            z_chunks.append(model.encode(X_bank_gpu[bs:be], bank_act_t[bs:be]))
++        z_bank = torch.cat(z_chunks, dim=0)
++
++    preds = []
++    transferred_preds = []
++    selected = []
++    for qs in range(0, len(X_val), q_chunk):
++        qe = min(qs + q_chunk, len(X_val))
++        nq = qe - qs
++        best_scores = np.full((nq, topk), -np.inf, dtype=np.float32)
++        best_idx = np.full((nq, topk), -1, dtype=np.int64)
++
++        x_q = torch.tensor(X_val[qs:qe], dtype=torch.float32, device=device)
++        act_q = torch.tensor(val_act[qs:qe], dtype=torch.float32, device=device)
++        res_q = torch.tensor(X_val_res[qs:qe], dtype=torch.float32, device=device)
++        z_q = model.encode(x_q, act_q) if mode != "shape" else None
++
++        for bs in range(0, len(X_bank), bank_chunk):
++            be = min(bs + bank_chunk, len(X_bank))
++            res_c = X_bank_res_gpu[bs:be]
++            shape = (res_q @ res_c.T) / L
++            if mode == "shape":
++                s = shape
++            else:
++                z_c = z_bank[bs:be]
++                delta = model.delta(z_q, z_c)
++                s = model.combine(delta, shape, mode)
++
++            s_np = s.cpu().numpy()
++            kk = min(topk, be - bs)
++            local_part = np.argpartition(s_np, -kk, axis=1)[:, -kk:]
++            local_scores = np.take_along_axis(s_np, local_part, axis=1)
++            local_idx = local_part + bs
++            comb_scores = np.concatenate([best_scores, local_scores], axis=1)
++            comb_idx = np.concatenate([best_idx, local_idx], axis=1)
++            part = np.argpartition(comb_scores, -topk, axis=1)[:, -topk:]
++            best_scores = np.take_along_axis(comb_scores, part, axis=1)
++            best_idx = np.take_along_axis(comb_idx, part, axis=1)
++
++        order = np.argsort(best_scores, axis=1)[:, ::-1]
++        best_idx = np.take_along_axis(best_idx, order, axis=1)
++        pred = Y_bank[best_idx].mean(axis=1)
++        transfer = pred + X_val[qs:qe].mean(axis=1)[:, None] - X_bank[best_idx].mean(axis=2).mean(axis=1)[:, None]
++        transferred_preds.append(transfer)
++        selected.append(best_idx)
++        preds.append(pred)
++    return np.concatenate(preds, axis=0), np.concatenate(transferred_preds, axis=0), np.concatenate(selected, axis=0)
+\ No newline at end of file
+diff --git a/experiments/unified/verify.py b/experiments/unified/verify.py
+new file mode 100644
+index 0000000..f11fcd1
+--- /dev/null
++++ b/experiments/unified/verify.py
+@@ -0,0 +1,83 @@
++# -*- coding: utf-8 -*-
++"""Independent saved-array verification and full 672-row readout."""
++import os,json,hashlib,csv
++from pathlib import Path
++import numpy as np
++import pandas as pd
++
++def read(p):return json.loads(Path(p).read_text(encoding='utf-8'))
++def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
++def score(p,y):
++    e=np.asarray(p,dtype=np.float64)-np.asarray(y,dtype=np.float64)
++    return float(np.dot(e.ravel(),e.ravel())/e.size),float(np.abs(e).sum()/e.size)
++def writecsv(p,rows):
++    with p.open('w',encoding='utf-8-sig',newline='') as f:
++        w=csv.DictWriter(f,fieldnames=list(dict.fromkeys(k for r in rows for k in r)));w.writeheader();w.writerows(rows)
++
++def main():
++    config=read(os.environ['PAER_RUN_CONFIG']);plan=config['protocol'];root=Path(config['run_root']);out=Path(config['report_root'])
++    repo=Path(__file__).resolve().parents[2];inputs=Path(config['input_repo'])/'results/multidataset'
++    frozen=read(root/'READOUT_FROZEN.json')
++    for p,h in frozen['val_files'].items():assert sha(p)==h
++    rows=[];checks=[];traces=[];cache={}
++    def arrays(path):
++        if path not in cache:
++            with np.load(path) as z:cache[path]={k:z[k] for k in z.files}
++        return cache[path]
++    for ds in plan['datasets']:
++        dd=inputs/ds;cfg=read(dd/'config.json');series=pd.read_csv(dd/'series.csv').OT.to_numpy(np.float32)
++        with np.load(dd/'window_indices.npz') as z:starts={k:z[k] for k in ['val','test']}
++        labels={k:np.stack([series[s+cfg['context']:s+cfg['context']+cfg['horizon']] for s in starts[k]]) for k in starts}
++        for seed in plan['seeds']:
++            records=read(root/'final'/ds/f'seed{seed}_metrics.json')
++            assert len(records)==len(plan['backbones'])*len(plan['core_arms'])
++            for r in records:
++                choice=read(r['val_choices_path'])[r['arm']];l=float(choice['lambda_value'])
++                assert sha(r['val_choices_path'])==r['val_choices_sha256']
++                for record in [choice,r]:
++                    for field in ['memory','backbone']:
++                        assert sha(record[field+'_path'])==record[field+'_sha256']
++                memories={};bases={}
++                for split,mp,bp in [('val',choice['memory_path'],choice['backbone_path']),('test',r['memory_path'],r['backbone_path'])]:
++                    b=arrays(bp);assert np.array_equal(b[split+'_starts'],starts[split]) and np.array_equal(b['Y_'+split],labels[split])
++                    bases[split]=b['yc_'+split].astype(np.float64)
++                    m=arrays(mp)
++                    if r['arm']=='Backbone':memories[split]=m['yc_'+split].astype(np.float64)
++                    else:
++                        assert np.array_equal(m['query_starts'],starts[split]) and np.array_equal(m['truth'],labels[split])
++                        idx=m['indices'];bs=m['bank_starts'];assert idx.min()>=0 and idx.max()<len(bs)
++                        assert bs.max()+cfg['context']+cfg['horizon']<=starts[split].min()+cfg['context']
++                        # Reconstruct mean-transfer predictions using only saved selected candidates.
++                        qb=np.stack([series[s:s+cfg['context']] for s in starts[split]])
++                        bx=np.stack([series[s:s+cfg['context']] for s in bs]);by=np.stack([series[s+cfg['context']:s+cfg['context']+cfg['horizon']] for s in bs])
++                        reconstructed=by[idx].mean(axis=1)+qb.mean(axis=1)[:,None]-bx[idx].mean(axis=2).mean(axis=1)[:,None]
++                        assert np.array_equal(reconstructed,m['transferred']),f'Top5 reconstruction {ds}/{seed}/{r["arm"]}'
++                        memories[split]=m['transferred'].astype(np.float64)
++                vg=[score((1-g)*bases['val']+g*memories['val'],labels['val'])[0] for g in plan['lambda_grid']]
++                selected=0. if np.array_equal(bases['val'],memories['val']) else plan['lambda_grid'][int(np.argmin(vg))]
++                assert selected==l
++                fusion=(1-l)*bases['test']+l*memories['test'];metrics=score(fusion,labels['test'])
++                for name,value in zip(['fusion_mse','fusion_mae'],metrics):
++                    old=float(r[name]);passed=bool(np.isclose(value,old,rtol=5e-10,atol=1e-12))
++                    checks.append(dict(dataset=ds,backbone=r['backbone'],seed=seed,arm=r['arm'],metric=name,reported=old,recomputed=value,abs_diff=abs(value-old),status='PASS' if passed else 'FAIL'))
++                    assert passed
++                rows.append(r)
++                traces.append(dict(dataset=ds,backbone=r['backbone'],seed=seed,arm=r['arm'],lambda_value=l,mse=metrics[0],mae=metrics[1],
++                    backbone_path=r['backbone_path'],backbone_sha256=sha(r['backbone_path']),memory_path=r['memory_path'],memory_sha256=sha(r['memory_path']),
++                    series_sha256=sha(dd/'series.csv'),indices_sha256=sha(dd/'window_indices.npz'),val_choices_path=r['val_choices_path'],val_choices_sha256=sha(r['val_choices_path']),evidence='fresh_run_and_independent_array_recalculation'))
++            cache.clear()
++    assert len(rows)==672
++    df=pd.DataFrame(rows);groups=[]
++    for (ds,bb,arm),g in df.groupby(['dataset','backbone','arm']):
++        assert sorted(g.seed.tolist())==[42,123,2026]
++        base=g.backbone_mse.mean();mean=g.fusion_mse.mean()
++        groups.append(dict(dataset=ds,backbone=bb,arm=arm,n_seeds=3,mse_mean=mean,mse_std_ddof1=g.fusion_mse.std(ddof=1),mse_std_ddof0=g.fusion_mse.std(ddof=0),
++            mae_mean=g.fusion_mae.mean(),mae_std_ddof1=g.fusion_mae.std(ddof=1),mae_std_ddof0=g.fusion_mae.std(ddof=0),base_mse_mean=base,ri_pct=100*(base-mean)/base))
++    for name,data in [('PER_SEED.csv',rows),('SUMMARY.csv',groups),('INDEPENDENT_CHECKS.csv',checks),('RESULT_TRACE.csv',traces)]:writecsv(out/name,data)
++    public=repo/'docs/unified/results';public.mkdir(parents=True,exist_ok=True)
++    publicrows=[{k:v for k,v in r.items() if not k.endswith('_path')} for r in rows]
++    writecsv(public/'PER_SEED.csv',publicrows);writecsv(public/'SUMMARY.csv',groups);writecsv(public/'INDEPENDENT_CHECKS.csv',checks)
++    done=dict(protocol_hash=frozen['protocol_hash'],status='PASS',rows=len(rows),groups=len(groups),metric_checks=len(checks),scope='fresh fits/inference plus independent cache, labels, Top5 and VAL-grid verification; no significance or blind-test claim')
++    (root/'VERIFIED_COMPLETE.json').write_text(json.dumps(done,indent=2),encoding='utf-8');(out/'VERIFIED_COMPLETE.json').write_text(json.dumps(done,indent=2),encoding='utf-8')
++    print(json.dumps(done),flush=True)
++if __name__=='__main__':main()

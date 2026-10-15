@@ -1,0 +1,15 @@
+{
+  "updated_utc": "2026-10-15T09:58:37.755152+08:00",
+  "gpu_queue": "RUNNING",
+  "github": {
+    "state": "NATIVE_ACCESS_VERIFIED",
+    "actual_push": "Latest successful synchronization is represented by the repository main history; only sanitized main updates are permitted.",
+    "native_credentials": "Normal user Git login succeeds; no credential export"
+  },
+  "llm": {
+    "state": "READY",
+    "fresh_preflight": "PASS",
+    "model": "gpt-6-astra",
+    "tools_used": false
+  }
+}

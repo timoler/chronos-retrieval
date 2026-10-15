@@ -1,0 +1,12 @@
+{
+  "initial_execution_commit": "3f45a01c8e1c4003221c82bed00f5ce0e69df2cb",
+  "first_26_completed_jobs": "Initial execution commit; unchanged predictions/checkpoints preserved",
+  "continued_execution_commit": "e53736ad11545075c537318ee5aacb8266e74b5f",
+  "amendment": "Bounded atomic JSON replacement retry only; see ../IO_RECOVERY.json",
+  "current_execution_manifest": "after_io_retry/CODE_MANIFEST.json",
+  "publication_refactor_is_not_the_execution_snapshot": true,
+  "manifest_scope_gap": "Initial 118-file manifest omitted transitively imported priors/*.py; late hash observation cannot prove the past state.",
+  "local_commit_ids_are_not_published_refs": true,
+  "public_reconstruction": "Apply RECONSTRUCT_EXECUTION.patch to public base 5ce382b; see RECONSTRUCTION_CHECK.json.",
+  "scope": "Public repository receives a single main commit. Original unsynchronized local history is retained locally."
+}

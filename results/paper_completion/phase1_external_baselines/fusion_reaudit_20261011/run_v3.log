@@ -1,125 +1,0 @@
-Loading amazon/chronos-2 ...
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Loading weights:   0%|          | 0/170 [00:00<?, ?it/s]Loading weights:  17%|¨€¨ƒ        | 29/170 [00:00<00:00, 285.84it/s]Loading weights:  36%|¨€¨€¨€¨„      | 61/170 [00:00<00:00, 291.72it/s]Loading weights:  54%|¨€¨€¨€¨€¨€¨†    | 91/170 [00:00<00:00, 209.90it/s]Loading weights:  67%|¨€¨€¨€¨€¨€¨€¨ƒ   | 114/170 [00:00<00:00, 208.72it/s]Loading weights:  81%|¨€¨€¨€¨€¨€¨€¨€¨€  | 137/170 [00:00<00:00, 195.07it/s]Loading weights:  93%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨†| 158/170 [00:00<00:00, 183.07it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 170/170 [00:00<00:00, 201.21it/s]
-
-==============================================================================
-DATASET etth2
-==============================================================================
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 2865.59it/s]
-[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
-Key                     | Status     |  | 
-------------------------+------------+--+-
-embeddings.position_ids | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-  [Chronos-2] val=3293 test=3293 ...
-    seed=42 v2_mem TEST_MSE=85.1149 VAL_MSE=100.608
-    seed=123 v2_mem TEST_MSE=111.937 VAL_MSE=148.158
-    seed=2026 v2_mem TEST_MSE=98.3722 VAL_MSE=116.773
-    seed=42 per-seed Î»=0.05 (VAL MSE=10.3527)
-    seed=123 per-seed Î»=0.0 (VAL MSE=10.5116)
-    seed=2026 per-seed Î»=0.05 (VAL MSE=10.4038)
-[etth2] chronos=18.084631 per-seed-fusion=17.808773Â±0.197366 Î»=(0.050,0.000,0.050) repro=(OK,OK,OK)
-
-==============================================================================
-DATASET weather
-==============================================================================
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 9778.26it/s]
-[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
-Key                     | Status     |  | 
-------------------------+------------+--+-
-embeddings.position_ids | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-  [Chronos-2] val=9932 test=9933 ...
-    seed=42 v2_mem TEST_MSE=638.158 VAL_MSE=464.52
-    seed=123 v2_mem TEST_MSE=480.662 VAL_MSE=442.56
-    seed=2026 v2_mem TEST_MSE=561.009 VAL_MSE=469.772
-    seed=42 per-seed Î»=0.2 (VAL MSE=197.703)
-    seed=123 per-seed Î»=0.2 (VAL MSE=199.551)
-    seed=2026 per-seed Î»=0.3 (VAL MSE=194.581)
-[weather] chronos=129.194412 per-seed-fusion=140.274611Â±9.427381 Î»=(0.200,0.200,0.300) repro=(OK,OK,OK)
-
-==============================================================================
-DATASET exchange_rate
-==============================================================================
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 4363.07it/s]
-[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
-Key                     | Status     |  | 
-------------------------+------------+--+-
-embeddings.position_ids | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-  [Chronos-2] val=911 test=911 ...
-    seed=42 v2_mem TEST_MSE=0.034738 VAL_MSE=0.0246092
-    seed=123 v2_mem TEST_MSE=0.0319971 VAL_MSE=0.0383743
-    seed=2026 v2_mem TEST_MSE=0.0427043 VAL_MSE=0.0329643
-    seed=42 per-seed Î»=0.0 (VAL MSE=0.00125615)
-    seed=123 per-seed Î»=0.0 (VAL MSE=0.00125615)
-    seed=2026 per-seed Î»=0.0 (VAL MSE=0.00125615)
-[exchange_rate] chronos=0.000957 per-seed-fusion=0.000957Â±0.000000 Î»=(0.000,0.000,0.000) repro=(OK,OK,OK)
-
-==============================================================================
-DATASET solar
-==============================================================================
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 7353.17it/s]
-[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
-Key                     | Status     |  | 
-------------------------+------------+--+-
-embeddings.position_ids | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-  [Chronos-2] val=9905 test=9905 ...
-    seed=42 v2_mem TEST_MSE=319388 VAL_MSE=204195
-    seed=123 v2_mem TEST_MSE=323479 VAL_MSE=188392
-    seed=2026 v2_mem TEST_MSE=303382 VAL_MSE=198712
-    seed=42 per-seed Î»=0.3 (VAL MSE=106204)
-    seed=123 per-seed Î»=0.3 (VAL MSE=104785)
-    seed=2026 per-seed Î»=0.3 (VAL MSE=103581)
-[solar] chronos=210842.718750 per-seed-fusion=176076.677590Â±2236.440960 Î»=(0.300,0.300,0.300) repro=(FAIL,FAIL,FAIL)
-
-==============================================================================
-DATASET electricity
-==============================================================================
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 4965.61it/s]
-[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
-Key                     | Status     |  | 
-------------------------+------------+--+-
-embeddings.position_ids | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-  [Chronos-2] val=27444 test=27445 ...
-    seed=42 v2_mem TEST_MSE=3.16321e+08 VAL_MSE=2.78161e+08
-    seed=123 v2_mem TEST_MSE=4.30808e+08 VAL_MSE=4.37749e+08
-    seed=2026 v2_mem TEST_MSE=3.19565e+08 VAL_MSE=2.67247e+08
-    seed=42 per-seed Î»=0.1 (VAL MSE=1.0313e+08)
-    seed=123 per-seed Î»=0.05 (VAL MSE=1.03816e+08)
-    seed=2026 per-seed Î»=0.1 (VAL MSE=1.03609e+08)
-[electricity] chronos=98080136.000000 per-seed-fusion=96864534.795701Â±445034.271988 Î»=(0.100,0.050,0.100) repro=(FAIL,FAIL,FAIL)
-
-==============================================================================
-DATASET traffic
-==============================================================================
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 6306.86it/s]
-[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
-Key                     | Status     |  | 
-------------------------+------------+--+-
-embeddings.position_ids | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-  [Chronos-2] val=3318 test=3318 ...
-    seed=42 v2_mem TEST_MSE=0.00155507 VAL_MSE=0.000711253
-    seed=123 v2_mem TEST_MSE=0.00155207 VAL_MSE=0.000727382
-    seed=2026 v2_mem TEST_MSE=0.00153426 VAL_MSE=0.000724156
-    seed=42 per-seed Î»=0.5 (VAL MSE=0.000574466)
-    seed=123 per-seed Î»=0.5 (VAL MSE=0.000583133)
-    seed=2026 per-seed Î»=0.5 (VAL MSE=0.000586604)
-[traffic] chronos=0.001684 per-seed-fusion=0.001291Â±0.000004 Î»=(0.500,0.500,0.500) repro=(OK,OK,OK)
-
-Done. Results -> E:\GitHub_Project\chronos-retrieval\results\paper_completion\phase1_external_baselines\fusion_reaudit_20261011\fusion_per_seed_results.csv

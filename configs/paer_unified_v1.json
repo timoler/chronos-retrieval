@@ -1,0 +1,67 @@
+{
+  "version": "paer-unified-four-backbone-clean-v1",
+  "datasets": [
+    "etth1",
+    "etth2",
+    "exchange_rate",
+    "traffic",
+    "weather",
+    "solar",
+    "electricity"
+  ],
+  "backbones": [
+    "Chronos-2",
+    "PatchTST",
+    "iTransformer",
+    "RAFT"
+  ],
+  "seeds": [
+    42,
+    123,
+    2026
+  ],
+  "reward_seed": 42,
+  "core_arms": [
+    "Backbone",
+    "Shape",
+    "NoExpertMLP",
+    "Raw",
+    "MemoryReward",
+    "FusionReward",
+    "FusionReward_NoCritic",
+    "FusionReward_Independent"
+  ],
+  "outer_task": "Frozen single-variable series, original context/horizon and exact complete official VAL/TEST window indices; no raw data preparation scripts",
+  "inner_folds": "TRAIN first50% warmup, remaining50% split into four expanding chronological folds; each later block half CAL/half EVAL; purge H at bank/fit, fit/CAL, CAL/EVAL boundaries; CAL/EVAL stride H. Same folds for every backbone.",
+  "warmup_reason": "RAFT non-overlap self mask needs >2*(L+H)-1+20 bank windows; original20% prefix invalid on Exchange. Freeze50% uniformly before new outcomes.",
+  "fold_backbone_fit": "Fresh supervised fit on bank; epoch selection on fit; CAL selects fusion lambda; EVAL scores reward. No full-TRAIN checkpoint for inner predictions. Chronos uses frozen local pretrained snapshot.",
+  "final_backbone_fit": "Fresh supervised training on full official TRAIN, selection on full official VAL; no TEST during fitting. Final three seeds. Chronos fresh inference shared across seeds, not three independent fits.",
+  "backbone_epochs": 100,
+  "backbone_optimizer": "Adam lr1e-4; PatchTST type3, iTransformer/RAFT type1; original architecture; all complete windows; checkpoint min selection MSE; no TEST selection",
+  "retriever_epochs": 30,
+  "retriever_optimizer": "AdamW lr.001 wd.0001 batch64 candidates256 clip5; fixed8 expert slots; same initialization/draws per seed; softmax mean-transfer memory MSE",
+  "aggregation": "hard Top5 equal-weight mean-transfer for all final memories and all reward evaluations; preserve softmax-training/hard-inference limitation",
+  "lambda_grid": [
+    0.0,
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.3,
+    0.5,
+    0.7,
+    1.0
+  ],
+  "lambda_selection": "each backbone/arm/seed full VAL only; freeze all before TEST readout; identity baseline canonical lambda0",
+  "statistics": "Compiler/activation stats use current fold bank+fit contexts only; backbone scaler uses fit TRAIN rows only; final stats use TRAIN only; population and sample std both saved; primary ddof1",
+  "initial_experts": "Same original frozen Raw8 per dataset; no source/model selection using TEST; new optimization rerun in this run",
+  "pool_maintenance": "KEEP stays in later rounds; max2 revisions; final iterative reward re-audit and deterministic deletion until positive or empty; record empty-pool alias to NoExpertMLP",
+  "reward_objectives": "MemoryReward shared across backbones; FusionReward separately optimized for each backbone using own fold predictions; full/minus CAL-selected separately",
+  "ablation_no_critic": "Same fusion leave-one reward, compiler, revision budget and final filter; skip separate Critic call, feed numeric evidence directly to revision",
+  "ablation_independent": "Same fusion objective/LLM/maintenance, but score each singleton expert against NoExpertMLP instead of full-minus pool reward; fixed8 slots. Final checks use declared independent objective.",
+  "llm_model": "gpt-6-astra",
+  "llm_budget": "one initial knowledge path per dataset/objective/backbone; cache prompts/responses; no regenerate-by-test; 3 seeds refer to retriever training, not independent LLM draws",
+  "retired": "No RAF, old unpurged reward, original-value memory aggregation, seed42 shared lambda, old-pool reference, old Gate/Switch/loss pilots in active core table. History retained.",
+  "interpretation": "Previously observed TEST; exploratory unified rerun, not new blind test. Include negative results and empty pools. No cross-protocol best-value splicing.",
+  "authorization": "User explicitly requested all models under unified latest protocol, selected per-backbone fusion rewards, and requested repository updates."
+}

@@ -1,8 +1,0 @@
-dataset,raw_pool_size,v1_pool_size,v2_pool_size,union_coverage_raw,union_coverage_v1,union_coverage_v2,pool_retention_ratio,coverage_retention_ratio,v1_pool_collapse
-etth1,8,8,7,,,,0.875,,False
-etth2,8,8,6,,,,0.75,,False
-weather,8,3,7,,,,0.875,,False
-exchange_rate,8,2,6,,,,0.75,,False
-solar,8,5,5,,,,0.625,,False
-electricity,8,1,5,1.0,,0.692,0.625,0.692,True
-traffic,8,4,5,1.0,,0.974,0.625,0.974,False

@@ -1,74 +1,27 @@
-# ---- Python ----
+# Python / environments
 __pycache__/
 *.py[cod]
-*$py.class
-*.so
+.venv/
+venv/
 *.egg-info/
 build/
 dist/
-.eggs/
 
-# ---- Virtual environments ----
-.venv/
-venv/
-env/
-ENV/
-
-# ---- Claude Code (local, machine-specific absolute paths) ----
+# Machine-specific paths, credentials and generated outputs
+.env
+.env.*
+!.env.example
 .claude/
-
-# ---- Experiment outputs (regenerable) ----
-# Ignore everything inside results/ but keep the cache manifest tracked.
-results/*
-!results/README_CACHE.md
-
-# ---- 冻结关键产物与正式协议数据（小、不可再生，纳入版本控制供复现）----
-# multidataset：只跟踪各数据集顶层 config/window_indices/series/expert_knowledge，不含嵌套实验产物
-!results/multidataset/
-results/multidataset/*
-!results/multidataset/*/
-results/multidataset/*/*/
-!results/reward_feedback_critic_v2_final_test/
-!results/reward_feedback_critic_v2_full_cross_dataset/
-!results/paper_completion/
-# 大预测缓存（可再生）与临时快照仍忽略
-results/paper_completion/phase1_external_baselines/fusion_reaudit_20261011/preds/
-results/**/*.snapshot
-
-# ---- LLM prior cache (regenerable via API) ----
+configs/run_paths.local.json
+runs/
 cache/
-
-# ---- Raw source downloads (large, regenerable; not for version control) ----
+results/*
+!results/README.md
 data/_raw/
 data/learned_critic_datasets/
 
-# ---- Experiment run logs (regenerable; parallel to results/) ----
-experiments/results/
-scripts/*.log
-
-# ---- Jupyter ----
-.ipynb_checkpoints/
-
-# ---- OS / editor ----
+# Editors
 .DS_Store
 Thumbs.db
 .idea/
 .vscode/
-
-# ---- Small 2026-10-12 result metadata; prediction arrays remain local ----
-!results/README.md
-!results/paer_aligned_backbone_matrix/
-results/paer_aligned_backbone_matrix/*
-!results/paer_aligned_backbone_matrix/*.csv
-!results/paer_aligned_backbone_matrix/*.json
-!results/paer_aligned_backbone_matrix/*.md
-!results/paer_core_contribution_audit/
-results/paer_core_contribution_audit/*
-!results/paer_core_contribution_audit/*.csv
-!results/paer_core_contribution_audit/*.json
-!results/paer_core_contribution_audit/*.md
-!results/paer_plugin_evidence_audit/
-results/paer_plugin_evidence_audit/*
-!results/paer_plugin_evidence_audit/*.csv
-!results/paer_plugin_evidence_audit/*.json
-!results/paer_plugin_evidence_audit/*.md

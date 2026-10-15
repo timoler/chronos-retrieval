@@ -1,0 +1,12 @@
+{
+  "observed_utc": "2026-10-14T16:32:21.939685+00:00",
+  "retroactive_freeze_claim": false,
+  "files": {
+    "priors/executable.py": "420bf5571690256c86d22fac4b16ee6ad68c598364385cbf02dafa2ed6c0ec47",
+    "priors/llm_prior.py": "6761d967128c4b3f829a4047df0e2e06e74dafcf48224e237f72674fe21aa30c",
+    "priors/prompts.py": "51ce33e248eed4169f6403777b223625da82b36599a8c3fa83c3c1e247d7ce90",
+    "priors/schema.py": "a6924d4282378d515acd387502722bfc3cb77080cd1911e3430be624eb1f6788",
+    "priors/validator.py": "c94365dff7de64ec604b59c765ac71fb0a466b454f798adf4502deaf494b3c6f",
+    "priors/__init__.py": "deb91e743c3dac285286873e40be8d521771b5412477183e5d85d62725b3a194"
+  }
+}

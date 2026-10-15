@@ -1,0 +1,9 @@
+{
+  "protocol_file": "paer_unified_v1.json",
+  "input_repo": "..",
+  "external_root": "../../external_architectures",
+  "embedding_snapshot": "../../model_snapshots/all-MiniLM-L6-v2",
+  "chronos_snapshot": "../../model_snapshots/chronos-2",
+  "run_root": "../../paer_runs/new_run_001",
+  "report_root": "../../paer_reports/new_run_001"
+}

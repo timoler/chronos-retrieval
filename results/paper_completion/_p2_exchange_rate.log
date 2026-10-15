@@ -1,36 +1,0 @@
-device: cuda
-
-======================================================================
-DATASET exchange_rate
-======================================================================
-  raw=8 K_v2=6 v2_ids=['E1', 'E2', 'E3', 'E4', 'E5', 'E8'] data_sec=0.4
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 2831.17it/s]
-[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
-Key                     | Status     |  | 
-------------------------+------------+--+-
-embeddings.position_ids | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|¨€¨€¨€¨€¨€¨€¨€¨€¨€¨€| 103/103 [00:00<00:00, 2572.18it/s]
-[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
-Key                     | Status     |  | 
-------------------------+------------+--+-
-embeddings.position_ids | UNEXPECTED |  | 
-
-Notes:
-- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
-    emb+act_sec=2.3  V2=0.0319826 RAW=0.0363535
-    RANDOM_K seed=11 subset=['E1', 'E3', 'E4', 'E5', 'E7', 'E8'] mse=0.0348435
-    RANDOM_K seed=22 subset=['E1', 'E2', 'E3', 'E4', 'E6', 'E7'] mse=0.0373809
-    RANDOM_K seed=33 subset=['E2', 'E3', 'E4', 'E5', 'E6', 'E8'] mse=0.0321336
-    RANDOM_K seed=44 subset=['E1', 'E2', 'E3', 'E4', 'E5', 'E7'] mse=0.0346515
-    RANDOM_K seed=55 subset=['E2', 'E3', 'E4', 'E5', 'E6', 'E8'] mse=0.0321336
-    V1_SCORE_TOPK subset=['E2', 'E7', 'E4', 'E5', 'E6', 'E3'] mse=0.033268
-  [part saved] E:\GitHub_Project\chronos-retrieval\results\paper_completion\_p2_parts\exchange_rate.json
-
-======================================================================
-exchange_rate  K=6 v2=3.1983e-02 raw=3.6353e-02 randK=3.4229e-02 v1topK=3.3268e-02 v2_vs_rand=+6.6% v2_vs_v1s=+3.9%
-
-v2>RANDOM_K: 1/1   v2>V1_SCORE_TOPK: 1/1
-Saved to E:\GitHub_Project\chronos-retrieval\results\paper_completion

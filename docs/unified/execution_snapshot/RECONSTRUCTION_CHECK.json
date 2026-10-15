@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "public_base_commit": "5ce382b6df45bf154420968d09d252dae6f15522",
+  "local_execution_commit": "e53736ad11545075c537318ee5aacb8266e74b5f",
+  "patch": "RECONSTRUCT_EXECUTION.patch",
+  "patch_sha256": "6d290cf39f6505f5d4b4d32287d5cd7c6c359027ffc2435792add4fdac49e91e",
+  "verified_source_files": 118,
+  "method": "git apply to files from public base; restore only matching LF/CRLF variants with restore_source_bytes.py; verify all execution source SHA256 values",
+  "limitations": "Reconstructs recorded source bytes only, not an independent full experiment."
+}

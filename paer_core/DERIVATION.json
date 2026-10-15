@@ -1,0 +1,688 @@
+{
+  "source_repository_commit": "5ce382b6df45bf154420968d09d252dae6f15522",
+  "extraction": "Definition-level AST selection; source function/class text preserved exactly.",
+  "definitions": [
+    {
+      "output": "paer_core/encoder.py",
+      "source": "experiments/run_expert_attention_retrieval_v2.py",
+      "source_sha256": "59f7d1b179e4a65c3775e1492bab9bda65817e322f90aea5e67624b8fbcc668f",
+      "start_line": 75,
+      "end_line": 78,
+      "symbols": [
+        "zscore_window"
+      ],
+      "source_segment_sha256": "9ef1e31838bbeb0df5007b65ca7db85d635b0a16a11268023ca10dc63ff37427",
+      "definition_ast_sha256": "2ef3580d2be4cdd54d5511ac853c42c704d03fccf4610158f13856a7cddaa58a",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/encoder.py",
+      "source": "experiments/run_expert_attention_retrieval_v2.py",
+      "source_sha256": "59f7d1b179e4a65c3775e1492bab9bda65817e322f90aea5e67624b8fbcc668f",
+      "start_line": 217,
+      "end_line": 234,
+      "symbols": [
+        "QueryEncoder"
+      ],
+      "source_segment_sha256": "c11aba57b9dd434e5cd562e2bcad9c7885fc8d7b68447772b13a56f3ceee0a35",
+      "definition_ast_sha256": "20a023fd9fe531c5d789285408c136f6bd858ae71a33b64d46e96f0704711b47",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/model.py",
+      "source": "experiments/run_conditional_expert_mlp_v4.py",
+      "source_sha256": "d7fcd62e3535aaba09ad169874d88c5af88b162283b2c979baf44bf4f37b08cf",
+      "start_line": 48,
+      "end_line": 49,
+      "symbols": [
+        "_sigmoid"
+      ],
+      "source_segment_sha256": "aa27c9e43b08039891d9570d690c1afb1e17313a52f9bff05fdab41c78cb75a8",
+      "definition_ast_sha256": "d7df0cd08fae4889747ea8f1ad5181bb1fcf345341ebc1a214814a6a0ddef9f6",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/model.py",
+      "source": "experiments/run_conditional_expert_mlp_v4.py",
+      "source_sha256": "d7fcd62e3535aaba09ad169874d88c5af88b162283b2c979baf44bf4f37b08cf",
+      "start_line": 52,
+      "end_line": 59,
+      "symbols": [
+        "_linear_slope_vec"
+      ],
+      "source_segment_sha256": "cb54f8c9b524fa635570a0f3fc4cef4a471f891c86da52d65aef62b957ac1b3a",
+      "definition_ast_sha256": "3840f78ad37666f165b62f69b1de1ab7d7ee3ad6ca5552d6377103245daeee11",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/model.py",
+      "source": "experiments/run_conditional_expert_mlp_v4.py",
+      "source_sha256": "d7fcd62e3535aaba09ad169874d88c5af88b162283b2c979baf44bf4f37b08cf",
+      "start_line": 62,
+      "end_line": 69,
+      "symbols": [
+        "_lag1_autocorr_vec"
+      ],
+      "source_segment_sha256": "483f9a7732d56fff32af936593474a3276ac8f165fbbbdf38adfb923b6f36c6d",
+      "definition_ast_sha256": "7e95905d5bd6571f3a3df12c442aa1a5365e32c31c77d9196c9cb3595c6e446c",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/model.py",
+      "source": "experiments/run_conditional_expert_mlp_v4.py",
+      "source_sha256": "d7fcd62e3535aaba09ad169874d88c5af88b162283b2c979baf44bf4f37b08cf",
+      "start_line": 124,
+      "end_line": 180,
+      "symbols": [
+        "ConditionalExpertMLPRetriever"
+      ],
+      "source_segment_sha256": "5cf5d291e1e6b31599a3ad5be0bc6c245d76a8326029a983a0650333b8701100",
+      "definition_ast_sha256": "d235c3f662565b92eb57a32c4c367a4f86e29e66eb0a4034ce4b59a2b7b48d09",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/activation.py",
+      "source": "experiments/run_etth1_prediction_validation.py",
+      "source_sha256": "37f6fc5650d4c8d54a734f8b0bf821163e8a7fcc9059eea41373e47ea5a80116",
+      "start_line": 62,
+      "end_line": 74,
+      "symbols": [
+        "compute_training_stats"
+      ],
+      "source_segment_sha256": "e756490dda831a43efa1fb20973ba37352fc980616bcfebeb284d4f40fa365ac",
+      "definition_ast_sha256": "de0eccd7f4263cc47da706e445ad895196d0b262a4190defdbb3ba100ab50bba",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/activation.py",
+      "source": "experiments/run_etth1_prediction_validation.py",
+      "source_sha256": "37f6fc5650d4c8d54a734f8b0bf821163e8a7fcc9059eea41373e47ea5a80116",
+      "start_line": 77,
+      "end_line": 98,
+      "symbols": [
+        "compute_window_feats"
+      ],
+      "source_segment_sha256": "f470b3232e53e1009c1b95c21f6aa8d7034531b8a2aafd8e94bce1534e1e6ab8",
+      "definition_ast_sha256": "763614ecc53ea35cbb3663d57f5624050393c17f9a3c24e3ec75eebf931c8857",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/activation.py",
+      "source": "experiments/run_etth1_prediction_validation.py",
+      "source_sha256": "37f6fc5650d4c8d54a734f8b0bf821163e8a7fcc9059eea41373e47ea5a80116",
+      "start_line": 101,
+      "end_line": 125,
+      "symbols": [
+        "expert_activation"
+      ],
+      "source_segment_sha256": "bceb37aabefef1f168f30af43070c2725a874b7fcb58ddabf237890e27c9165b",
+      "definition_ast_sha256": "0203cb6a510c2cd972b41b6fa043855bd7e7c0f746e6102fafcdeb3c05547c0f",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/activation.py",
+      "source": "experiments/run_etth1_prediction_validation.py",
+      "source_sha256": "37f6fc5650d4c8d54a734f8b0bf821163e8a7fcc9059eea41373e47ea5a80116",
+      "start_line": 128,
+      "end_line": 137,
+      "symbols": [
+        "build_activation_matrix"
+      ],
+      "source_segment_sha256": "3c9509f30c2d6b457e1e784fb2cd9cfba1900474634fee621e8b5e6e1cf16e2f",
+      "definition_ast_sha256": "7f7ec871a1f4bff10b70c9e85b20ee1e327e47b4e25709a89bf231a0e6ff8c9c",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/compiler.py",
+      "source": "experiments/run_expert_agent_closed_loop_v6.py",
+      "source_sha256": "806cf547523df4115ea3476e2f890e939f4ed8d510efa85152ae546b72f45e1f",
+      "start_line": 56,
+      "end_line": 60,
+      "symbols": [
+        "COMPILER_CONFIG"
+      ],
+      "source_segment_sha256": "8e4e615a1185574032775ba115b80718f7d50152c349e35360a4ce17488894f1",
+      "definition_ast_sha256": "b7e21790f8ab7c48412b0721ddbb55372d1f450599e1f146b3a1c8a314481fb9",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/compiler.py",
+      "source": "experiments/run_expert_agent_closed_loop_v6.py",
+      "source_sha256": "806cf547523df4115ea3476e2f890e939f4ed8d510efa85152ae546b72f45e1f",
+      "start_line": 96,
+      "end_line": 108,
+      "symbols": [
+        "QUALIFIER_SYNONYMS"
+      ],
+      "source_segment_sha256": "226988b259bd699a8ee58def20a0c96b62e09c4347f4940eda594cd7ac1de91b",
+      "definition_ast_sha256": "81a12baf3bf40e10c1981426b346dc06008af781c583a76cd70aaaada028863b",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/compiler.py",
+      "source": "experiments/run_expert_agent_closed_loop_v6.py",
+      "source_sha256": "806cf547523df4115ea3476e2f890e939f4ed8d510efa85152ae546b72f45e1f",
+      "start_line": 110,
+      "end_line": 110,
+      "symbols": [
+        "CONTINUOUS_CANONICAL_QUALIFIERS"
+      ],
+      "source_segment_sha256": "af587450c4c22d33514c668c35b2d527bc9e8e3a8b98d590b8c0b38354225b2a",
+      "definition_ast_sha256": "aa458daeaf8432f5d69ca8b3186f4ba2584a594656e508b119efda683564276f",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/compiler.py",
+      "source": "experiments/run_expert_agent_closed_loop_v6.py",
+      "source_sha256": "806cf547523df4115ea3476e2f890e939f4ed8d510efa85152ae546b72f45e1f",
+      "start_line": 122,
+      "end_line": 123,
+      "symbols": [
+        "_q_key"
+      ],
+      "source_segment_sha256": "61a1237781a9869a75afce124a71e1984c28d7561c9cf5bdc016562a18b2f568",
+      "definition_ast_sha256": "25b4eb3146c4ee02fe7bfc36ac3d8fc710c38e798b447460da6e79dd32f4a35f",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/compiler.py",
+      "source": "experiments/run_expert_agent_closed_loop_v6.py",
+      "source_sha256": "806cf547523df4115ea3476e2f890e939f4ed8d510efa85152ae546b72f45e1f",
+      "start_line": 126,
+      "end_line": 132,
+      "symbols": [
+        "_normalize_qualifier"
+      ],
+      "source_segment_sha256": "38000927206bc704e30128fe5e9a67e924370babdeb76c66f3cae1cb17cbde8a",
+      "definition_ast_sha256": "db52a9956ae8f24c852825ed093e405f63882d2e2984667a2d59bd749c57eca6",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/compiler.py",
+      "source": "experiments/run_expert_agent_closed_loop_v6.py",
+      "source_sha256": "806cf547523df4115ea3476e2f890e939f4ed8d510efa85152ae546b72f45e1f",
+      "start_line": 362,
+      "end_line": 381,
+      "symbols": [
+        "_resolve_continuous"
+      ],
+      "source_segment_sha256": "087acf7da842e192a18db2cad54932971c709a068e37fd28da82f5992fcae39c",
+      "definition_ast_sha256": "238f0911b1ff4c049b2696e29ba9fbe67daaa4bc6c9a9f75ddb2f51661b5fa57",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/compiler.py",
+      "source": "experiments/run_expert_agent_closed_loop_v6.py",
+      "source_sha256": "806cf547523df4115ea3476e2f890e939f4ed8d510efa85152ae546b72f45e1f",
+      "start_line": 384,
+      "end_line": 427,
+      "symbols": [
+        "_resolve_primitive_v6"
+      ],
+      "source_segment_sha256": "c602defc11dd50cbf637745a570f9c1c9812d3b50f623dfa38c2ff6d79b27133",
+      "definition_ast_sha256": "363cb1fdf572bbed9e91f9f4896aaa65248d5dccab1a0c3de931461dc88f1f3f",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/compiler.py",
+      "source": "experiments/run_expert_agent_closed_loop_v6.py",
+      "source_sha256": "806cf547523df4115ea3476e2f890e939f4ed8d510efa85152ae546b72f45e1f",
+      "start_line": 430,
+      "end_line": 465,
+      "symbols": [
+        "compile_condition_v6"
+      ],
+      "source_segment_sha256": "84a400f085991a7495a0ff38b083102823e7eadb0492c71ef1bfd491677e1328",
+      "definition_ast_sha256": "3b3e77766434ba51ae9d97d488fbb4034e09781899207639b932013721af3da4",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/json_parser.py",
+      "source": "priors/schema.py",
+      "source_sha256": "a6924d4282378d515acd387502722bfc3cb77080cd1911e3430be624eb1f6788",
+      "start_line": 72,
+      "end_line": 108,
+      "symbols": [
+        "_close_unbalanced"
+      ],
+      "source_segment_sha256": "f6eaf254594d5e6291a02ff71025786a9825c00ebd9a00f4a8b9fb1661c005be",
+      "definition_ast_sha256": "23a2eb7804cc01b45a7a6ec15fe137f7e0373d860751531ac4189260d696dfd0",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/json_parser.py",
+      "source": "priors/schema.py",
+      "source_sha256": "a6924d4282378d515acd387502722bfc3cb77080cd1911e3430be624eb1f6788",
+      "start_line": 111,
+      "end_line": 165,
+      "symbols": [
+        "_extract_json"
+      ],
+      "source_segment_sha256": "d8bd5061139fb3c429e1117fa221c5822db778b047823e4b703fcf95a4a80ce9",
+      "definition_ast_sha256": "599933a6237f2bcf563096c10e40d5bd11a4f2f89874b85fd24052b0a6b781ca",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/llm_transport.py",
+      "source": "experiments/run_agent_v2_electricity.py",
+      "source_sha256": "a8ce79e633a0849287e2438b501044e35ebc2e7f98abb11759534a9c2bb8c081",
+      "start_line": 296,
+      "end_line": 302,
+      "symbols": [
+        "_list_from"
+      ],
+      "source_segment_sha256": "650f19208bf07598fb7e2ef3c088308e010a4758cdbfe43fed57cdbe325eedbd",
+      "definition_ast_sha256": "a4eb34a9b65e81a44f0fc50a606827584b117cf90c32c4ddae5c08986b6fb6ff",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/experts.py",
+      "source": "experiments/run_etth1_reward_feedback_critic_v1.py",
+      "source_sha256": "d61040d171d875fa44feffa40b677fbd31a2bacc862ea75c5aa6cae8589e7441",
+      "start_line": 76,
+      "end_line": 76,
+      "symbols": [
+        "CONTEXT",
+        "HORIZON",
+        "TOPK"
+      ],
+      "source_segment_sha256": "e4afc15ed721f2995d3a28e64f82cd76d4866cc4293dd37d4e743c7f9d4ce3bf",
+      "definition_ast_sha256": "df2e423e51cb38f71b3545bfd78232afdc52876e411db3d5315cbee2c74958d2",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/experts.py",
+      "source": "experiments/run_etth1_reward_feedback_critic_v1.py",
+      "source_sha256": "d61040d171d875fa44feffa40b677fbd31a2bacc862ea75c5aa6cae8589e7441",
+      "start_line": 88,
+      "end_line": 88,
+      "symbols": [
+        "PREF_SIM_WEIGHT"
+      ],
+      "source_segment_sha256": "bbf07ce54c30b422427a5b791581dd4679ef3485e4d8528054cb68fd0dc2d8b0",
+      "definition_ast_sha256": "85f78feee0330843d908a88a3d6931261b6d934ab26fad334cb86f1a38856d2e",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/experts.py",
+      "source": "experiments/run_etth1_reward_feedback_critic_v1.py",
+      "source_sha256": "d61040d171d875fa44feffa40b677fbd31a2bacc862ea75c5aa6cae8589e7441",
+      "start_line": 89,
+      "end_line": 89,
+      "symbols": [
+        "PREF_SAME_WEIGHT"
+      ],
+      "source_segment_sha256": "a25607f04141b69ad353bc671903efa019ad49b3c6eabb2906bc3044b570a2a2",
+      "definition_ast_sha256": "dce41680a904bcc057b5b0ccf448752d6c3684204a52a9e81d31b70aeea99c72",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/experts.py",
+      "source": "experiments/run_etth1_reward_feedback_critic_v1.py",
+      "source_sha256": "d61040d171d875fa44feffa40b677fbd31a2bacc862ea75c5aa6cae8589e7441",
+      "start_line": 90,
+      "end_line": 90,
+      "symbols": [
+        "LAG_CAP_HOURS"
+      ],
+      "source_segment_sha256": "b0364147923e257f5aaad14eef0c045b773e4ab9109e2de33b7c80c7f049e33b",
+      "definition_ast_sha256": "fbe3bc60b1249e4bba92f326da13db79bb9b54c26dd87e1df5e5e09fcbb86f6e",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/experts.py",
+      "source": "experiments/run_etth1_reward_feedback_critic_v1.py",
+      "source_sha256": "d61040d171d875fa44feffa40b677fbd31a2bacc862ea75c5aa6cae8589e7441",
+      "start_line": 100,
+      "end_line": 117,
+      "symbols": [
+        "FEATURE_REGISTRY"
+      ],
+      "source_segment_sha256": "10d9e3dc7e0ee6bbacc5c2a047d6cc76bab90354dc6741a360d4d1b578db32c6",
+      "definition_ast_sha256": "4b1a26b2b8137021fb30df24e63009c795dd188d9e2c5b8d7cc3d3af25b57f9c",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/experts.py",
+      "source": "experiments/run_etth1_reward_feedback_critic_v1.py",
+      "source_sha256": "d61040d171d875fa44feffa40b677fbd31a2bacc862ea75c5aa6cae8589e7441",
+      "start_line": 119,
+      "end_line": 119,
+      "symbols": [
+        "CONTINUOUS_FEATURES"
+      ],
+      "source_segment_sha256": "5ee31e3301333967726314b12eb56593dbfad12fa514a25535b52675d15cd554",
+      "definition_ast_sha256": "54fa8f8624ff44e5980e38470ca4b6888efb0a683b0c2bae1c6ea949f70ff20c",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/experts.py",
+      "source": "experiments/run_etth1_reward_feedback_critic_v1.py",
+      "source_sha256": "d61040d171d875fa44feffa40b677fbd31a2bacc862ea75c5aa6cae8589e7441",
+      "start_line": 120,
+      "end_line": 120,
+      "symbols": [
+        "CALENDAR_FEATURES"
+      ],
+      "source_segment_sha256": "19abba56f3aa2f4beb716a9e864a8e57dd8507836cbd80dc2dd50978803b1174",
+      "definition_ast_sha256": "0ff3a66df22479f13373cf1291fed369c792b5a2b069b698460d2e081e613d7c",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/experts.py",
+      "source": "experiments/run_etth1_reward_feedback_critic_v1.py",
+      "source_sha256": "d61040d171d875fa44feffa40b677fbd31a2bacc862ea75c5aa6cae8589e7441",
+      "start_line": 224,
+      "end_line": 239,
+      "symbols": [
+        "_raw_feature_quantiles"
+      ],
+      "source_segment_sha256": "6c3cd2c57e18b9d7cc207120b2f175b9e6a857b39d68d395733336de5f054c52",
+      "definition_ast_sha256": "e8ae1f865ec2e041d6fb06c45938ab3ce4af8ae4432381b4bafc17e412984737",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/experts.py",
+      "source": "experiments/run_etth1_reward_feedback_critic_v1.py",
+      "source_sha256": "d61040d171d875fa44feffa40b677fbd31a2bacc862ea75c5aa6cae8589e7441",
+      "start_line": 242,
+      "end_line": 250,
+      "symbols": [
+        "_temporal_coverage"
+      ],
+      "source_segment_sha256": "eef96803475260a303acd948111e24fbcb4532617cc92ec8282bd055592f037e",
+      "definition_ast_sha256": "db6fd2761d61782376671a1537e59e1850dd8d55c42f798bd3f4a169b5209963",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/experts.py",
+      "source": "experiments/run_etth1_reward_feedback_critic_v1.py",
+      "source_sha256": "d61040d171d875fa44feffa40b677fbd31a2bacc862ea75c5aa6cae8589e7441",
+      "start_line": 253,
+      "end_line": 255,
+      "symbols": [
+        "_sorted_experts"
+      ],
+      "source_segment_sha256": "84acb6835c836d0aea65fad3469625110923f0bf593928aaafd871efeb4ba54f",
+      "definition_ast_sha256": "a84c33bd2d5c2b85a37328995aeb56cfe495ebc950119f98d81a14e4fee2429e",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/experts.py",
+      "source": "experiments/run_etth1_reward_feedback_critic_v1.py",
+      "source_sha256": "d61040d171d875fa44feffa40b677fbd31a2bacc862ea75c5aa6cae8589e7441",
+      "start_line": 265,
+      "end_line": 346,
+      "symbols": [
+        "derive_retrieval_spec"
+      ],
+      "source_segment_sha256": "0ec770f7c023968af2b310508052a96f669cbf47478122e9ac7f94b23224125b",
+      "definition_ast_sha256": "f5520f73534d0033c9d138b9c9abb750302946a8c52f6a6472f9a6fa16f6ed84",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/experts.py",
+      "source": "experiments/run_etth1_reward_feedback_critic_v1.py",
+      "source_sha256": "d61040d171d875fa44feffa40b677fbd31a2bacc862ea75c5aa6cae8589e7441",
+      "start_line": 521,
+      "end_line": 529,
+      "symbols": [
+        "_catalog_text"
+      ],
+      "source_segment_sha256": "516ad09f1db3c3afa94891f5403223e5d191fba058e54b041667cb518dbf3254",
+      "definition_ast_sha256": "e3b2dd1a312a1fa35c04c327055f3f2c6286ee3f0f322097201b2c2066c040c7",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/experts.py",
+      "source": "experiments/run_etth1_reward_feedback_critic_v1.py",
+      "source_sha256": "d61040d171d875fa44feffa40b677fbd31a2bacc862ea75c5aa6cae8589e7441",
+      "start_line": 532,
+      "end_line": 559,
+      "symbols": [
+        "_expert_schema_text"
+      ],
+      "source_segment_sha256": "3f2d11565a6a6112798d4f2219aa7604129dd4e1068908606e1e03f7df3faa5e",
+      "definition_ast_sha256": "0e216edcddfb22c2c45f5cb68f6b1ae4678c546a803c37f4b88086c78231d4ea",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/experts.py",
+      "source": "experiments/run_etth1_reward_feedback_critic_v1.py",
+      "source_sha256": "d61040d171d875fa44feffa40b677fbd31a2bacc862ea75c5aa6cae8589e7441",
+      "start_line": 562,
+      "end_line": 577,
+      "symbols": [
+        "_call_llm_list"
+      ],
+      "source_segment_sha256": "5c924c94dde8e9c2960a5ceba0e540833220e77cb3a3daf2b4412f141eeae647",
+      "definition_ast_sha256": "47c7626c92eb3297d2914be7c20cbf2671166572590ac0f7dcd83b8374acfb7e",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/training.py",
+      "source": "experiments/run_reward_feedback_critic_v2_poolaware_pilot.py",
+      "source_sha256": "d57bd2499f1935f51f092a4a185da449cf4adc24ffc06393ebe2da0d5b93a862",
+      "start_line": 65,
+      "end_line": 65,
+      "symbols": [
+        "MIN_COVERAGE"
+      ],
+      "source_segment_sha256": "2dd4c7c4c4848c97363e290bd5a0eb66b4085b1306697a9778e65f93f541ae00",
+      "definition_ast_sha256": "ea73b706e66dc8202cbb4cb9a285415f8b8455b55b07604201f463bd29b78305",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/training.py",
+      "source": "experiments/run_reward_feedback_critic_v2_poolaware_pilot.py",
+      "source_sha256": "d57bd2499f1935f51f092a4a185da449cf4adc24ffc06393ebe2da0d5b93a862",
+      "start_line": 68,
+      "end_line": 68,
+      "symbols": [
+        "BATCH_SIZE",
+        "CANDIDATES",
+        "EPOCHS",
+        "LR"
+      ],
+      "source_segment_sha256": "612a6031d0d7ae7ae02321ba4f7c6487098d5d4f47ced22f53c0fc588a3c94c9",
+      "definition_ast_sha256": "483a1be326bef191a4f189cac82aaeacc91558f34348a167f63c0442d32437cb",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/training.py",
+      "source": "experiments/run_reward_feedback_critic_v2_poolaware_pilot.py",
+      "source_sha256": "d57bd2499f1935f51f092a4a185da449cf4adc24ffc06393ebe2da0d5b93a862",
+      "start_line": 69,
+      "end_line": 69,
+      "symbols": [
+        "D_ENC",
+        "D_EXP",
+        "D_Z",
+        "HIDDEN"
+      ],
+      "source_segment_sha256": "f0ae107328fc02491484a8193412bf198589d308e9e462d4db832d9617adce3c",
+      "definition_ast_sha256": "6d62a2950811dea93e22e1f3de053285c9ed61bd4a3a90a6dcf64ea48a689f92",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/training.py",
+      "source": "experiments/run_reward_feedback_critic_v2_poolaware_pilot.py",
+      "source_sha256": "d57bd2499f1935f51f092a4a185da449cf4adc24ffc06393ebe2da0d5b93a862",
+      "start_line": 79,
+      "end_line": 89,
+      "symbols": [
+        "seed_everything"
+      ],
+      "source_segment_sha256": "3380e03ac048e15ca65df95e8854d470e24f3b8d2eee8cd5036ba5c77f898023",
+      "definition_ast_sha256": "4c60dfe0019028bdcaad3c9be21caca4fe603546834068066ad6e4369572f910",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/training.py",
+      "source": "experiments/run_reward_feedback_critic_v2_poolaware_pilot.py",
+      "source_sha256": "d57bd2499f1935f51f092a4a185da449cf4adc24ffc06393ebe2da0d5b93a862",
+      "start_line": 119,
+      "end_line": 156,
+      "symbols": [
+        "train_arm"
+      ],
+      "source_segment_sha256": "03d3ebc89b9a56ceeb35d4caad2c6e84c3ae7a0f5aa11c4f1c90383d5f412dd5",
+      "definition_ast_sha256": "9f3f900da8e0dbe597a506a0e745ed85c0039343163bcd18d549aea33d278f06",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/training.py",
+      "source": "experiments/run_reward_feedback_critic_v2_poolaware_pilot.py",
+      "source_sha256": "d57bd2499f1935f51f092a4a185da449cf4adc24ffc06393ebe2da0d5b93a862",
+      "start_line": 239,
+      "end_line": 251,
+      "symbols": [
+        "v2_reward_rule"
+      ],
+      "source_segment_sha256": "5b4bcb9db343bf77fc698ba3e12ce37c54c153697bda68026211b984f394b8b4",
+      "definition_ast_sha256": "d89312e36b7a92d5367fb59581b4615625b945c514886043837b3fd4d093bb81",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/windows.py",
+      "source": "experiments/run_expert_embedding_mlp.py",
+      "source_sha256": "79a2118f28cf431d1b3037066d889ec59e57023f02f5fef14865ab0a7d53a446",
+      "start_line": 117,
+      "end_line": 121,
+      "symbols": [
+        "build_windows"
+      ],
+      "source_segment_sha256": "64aa6c04371ef9720f5f33804f90330ee05e5a34d53b105bf345fa98f47dcad1",
+      "definition_ast_sha256": "923b0186859dfe4ff55ace5937fa0606b642d2da29cf0db6a801ac27fe581a9e",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/shape.py",
+      "source": "experiments/run_solar_same_val_baselines.py",
+      "source_sha256": "cbf3b8dd601ab7649a41939694c5b349210d4002386c3f589d8e3fbfc4e50a9a",
+      "start_line": 56,
+      "end_line": 76,
+      "symbols": [
+        "residualize"
+      ],
+      "source_segment_sha256": "970ce47c15460c62408e9e235734ff05f179e463c2e93e29df383dc54f602d8d",
+      "definition_ast_sha256": "be835dff6fb0cd00b83fd8ab6fbe277fcdfa2c320ca77882122b5b2286c02248",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/forecasting.py",
+      "source": "experiments/external_baselines/run_ours_fusion_v2.py",
+      "source_sha256": "546607e23c07c026dde431f5fff7e50d793571f2e500372afe726b66953c5312",
+      "start_line": 57,
+      "end_line": 57,
+      "symbols": [
+        "D_ENC",
+        "D_EXP",
+        "D_Z",
+        "HIDDEN"
+      ],
+      "source_segment_sha256": "8ee306b73225d138a3b7c3ab1a3b0bcb43d95cec14c6e94733bb043588d18df4",
+      "definition_ast_sha256": "3939afe5301e1a52cf53958ed65c5c09ea3d75fdffe3c7597c22eea407ec3d7f",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/forecasting.py",
+      "source": "experiments/external_baselines/run_ours_fusion_v2.py",
+      "source_sha256": "546607e23c07c026dde431f5fff7e50d793571f2e500372afe726b66953c5312",
+      "start_line": 60,
+      "end_line": 60,
+      "symbols": [
+        "BATCH"
+      ],
+      "source_segment_sha256": "8be0a82eab0c7c01b8cb569d1d0c9a67f53cb86598373586abee4eaad5c1703a",
+      "definition_ast_sha256": "502d87b3c9c876edb9aae5f978e254ede72c61966c23c414afbfc4cedc93547c",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/forecasting.py",
+      "source": "experiments/external_baselines/run_ours_fusion_v2.py",
+      "source_sha256": "546607e23c07c026dde431f5fff7e50d793571f2e500372afe726b66953c5312",
+      "start_line": 117,
+      "end_line": 121,
+      "symbols": [
+        "run_chronos"
+      ],
+      "source_segment_sha256": "b6518ea1c19b909e6715009ec61d6823c712de0d31424725f264cca140ac5b81",
+      "definition_ast_sha256": "4e51f70c409f1ef697122c740d6b15373f11bea60afa93cd636e898cb73b2de8",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/forecasting.py",
+      "source": "experiments/external_baselines/run_ours_fusion_v2.py",
+      "source_sha256": "546607e23c07c026dde431f5fff7e50d793571f2e500372afe726b66953c5312",
+      "start_line": 149,
+      "end_line": 154,
+      "symbols": [
+        "_init_state"
+      ],
+      "source_segment_sha256": "8e84c2dc40cb42384b68e6609c5409cdb77a6ecb2b7df01dacde153907489ec2",
+      "definition_ast_sha256": "3e887f748d6bb4aef5369213313828818a8e52350502385e7b7dc263e7aeb7d7",
+      "extraction": "verbatim definition; imports moved to explicit package dependencies"
+    },
+    {
+      "output": "paer_core/backbone_config.py",
+      "source": "experiments/external_baselines/infer_patchtst_matrix.py",
+      "source_sha256": "affbcf9796ecce1a9a1d06a653270b49d75dcdc236d8f989de67ac8ae4a1d9d3",
+      "start_line": 29,
+      "end_line": 41,
+      "symbols": [
+        "build_args"
+      ],
+      "export": "build_patchtst_args",
+      "definition_ast_sha256": "25539a14670a3c0ba6d96b5a138f0a65174f0d2d30f0f7e2e00fc889df4a7fc1",
+      "extraction": "verbatim build_args nested under factory with original per-backbone BATCH binding"
+    },
+    {
+      "output": "paer_core/backbone_config.py",
+      "source": "experiments/external_baselines/infer_itransformer_matrix.py",
+      "source_sha256": "f8707e97f274285a0c6271bd948bda064850985f846354c5cb7573336fcea4b1",
+      "start_line": 29,
+      "end_line": 40,
+      "symbols": [
+        "build_args"
+      ],
+      "export": "build_itransformer_args",
+      "definition_ast_sha256": "ea576eb6b0de0fc983b0f5d995324b8c8a91b9f79041b663e083201f85c62559",
+      "extraction": "verbatim build_args nested under factory with original per-backbone BATCH binding"
+    },
+    {
+      "output": "paer_core/backbone_config.py",
+      "source": "experiments/external_baselines/infer_raft_matrix.py",
+      "source_sha256": "e5bc315e9dba377f79cd89b258111eeb06f0d02d53c85f71cf62ab2395ad422e",
+      "start_line": 29,
+      "end_line": 45,
+      "symbols": [
+        "build_args"
+      ],
+      "export": "build_raft_args",
+      "definition_ast_sha256": "6f880af1ca9094dce42100bee2f32992ef9a966eff104984c4cc08649851a70c",
+      "extraction": "verbatim build_args nested under factory with original per-backbone BATCH binding"
+    }
+  ],
+  "intentional_adapter_changes": [
+    "Absolute historical output paths, main programs, and import-time mkdir removed.",
+    "Raw8 reader requires explicit configured root; removed legacy fallback branches (all seven required inputs exist).",
+    "LLM transport functions fail closed until the unchanged unified adapter is attached.",
+    "Backbone argument functions isolated in factories to preserve BATCH constants without changing function bodies."
+  ],
+  "files": {
+    "__init__.py": "f8bdd7a31d0824b07371fccfbdf87dc12430c4fa7f91a989bed9be755905e1b1",
+    "activation.py": "02900ee878778051fa2ff4b4ea5aa648cbbf1ee4b0c01f15197a6cb1107bc595",
+    "backbone_config.py": "d25254aff4c08757753065840424db7ae9a77191d0decf3cc047546e62e06b09",
+    "compiler.py": "85280618e73a0f04fcf8c16b87cb8b5d06d6d88d8836e8fcdc3d68e1c439e0cf",
+    "encoder.py": "caf047e0ae270acbfcf15a1886beb14f696719657a20f018f5ce05aa6403b1fa",
+    "experts.py": "8df86a6dd2ae48775b92b8757b60c350057246481a1aeafafc863dd2b43c93e4",
+    "forecasting.py": "4196585df9571d244db4503d51218bb5d8318a979db023e4d1f61d768212a769",
+    "json_parser.py": "8cef0184c0a2585562ca62b39244a1b2b1f53070c51c2458a84187837cb848f3",
+    "llm_transport.py": "2cd5d9c99f2da2fde0c2346fe50d97ffd38c2dfa13dc0791887f476898c535aa",
+    "model.py": "18e09ef6128ce6fa7445bec8d77b19f97f2f5d7cfac4755c19ab33e57ad55cbc",
+    "shape.py": "306fcc1af0bd7c432ed257efd15a68c439a8344261a1aa64bf58b95ad1ab344b",
+    "training.py": "3b721b63d30197a23eea3ce3d21f99f364e4a582909ca9bb6e8360e8b40d88ee",
+    "windows.py": "bc27c56c8d8a7edde4d1214a8d43993c55c72cbf0a1183a243258b2d63eddb0d"
+  }
+}

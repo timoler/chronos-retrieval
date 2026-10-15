@@ -1,0 +1,362 @@
+{
+  "reviewed_utc": "2026-10-14T16:33:18Z",
+  "scope": "CPU imports of paer_core only; AST scan of unified; document target checks; no runtime/GPU import or active training logs read",
+  "core_imports": {
+    "paer_core": "PASS",
+    "paer_core.activation": "PASS",
+    "paer_core.backbone_config": "PASS",
+    "paer_core.compiler": "PASS",
+    "paer_core.encoder": "PASS",
+    "paer_core.experts": "PASS",
+    "paer_core.forecasting": "PASS",
+    "paer_core.json_parser": "PASS",
+    "paer_core.llm_transport": "PASS",
+    "paer_core.model": "PASS",
+    "paer_core.shape": "PASS",
+    "paer_core.training": "PASS",
+    "paer_core.windows": "PASS"
+  },
+  "unified_symbol_checks": [
+    {
+      "file": "experiments/unified/final.py",
+      "line": 29,
+      "symbol": "v2.compute_training_stats",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/final.py",
+      "line": 28,
+      "symbol": "v2.residualize",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/final.py",
+      "line": 30,
+      "symbol": "v1._raw_feature_quantiles",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/final.py",
+      "line": 30,
+      "symbol": "v1._temporal_coverage",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/final.py",
+      "line": 34,
+      "symbol": "v1.compile_condition_v6",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/final.py",
+      "line": 34,
+      "symbol": "v1.FEATURE_REGISTRY",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/final.py",
+      "line": 34,
+      "symbol": "v1.COMPILER_CONFIG",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/final.py",
+      "line": 35,
+      "symbol": "v1.derive_retrieval_spec",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/final.py",
+      "line": 35,
+      "symbol": "v1.FEATURE_REGISTRY",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/final.py",
+      "line": 47,
+      "symbol": "v2p.train_arm",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/final.py",
+      "line": 65,
+      "symbol": "v2.residualize",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/final.py",
+      "line": 65,
+      "symbol": "v2.residualize",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/final.py",
+      "line": 40,
+      "symbol": "v1.build_activation_matrix",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 8,
+      "symbol": "v1._sorted_experts",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 102,
+      "symbol": "v2._init_state",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 102,
+      "symbol": "v2p.seed_everything",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 158,
+      "symbol": "v1._call_llm_list",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 171,
+      "symbol": "v1._call_llm_list",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 19,
+      "symbol": "v2.load_raw_pool",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 49,
+      "symbol": "v2.compute_training_stats",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 86,
+      "symbol": "v2p.train_arm",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 141,
+      "symbol": "v2p.v2_reward_rule",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 46,
+      "symbol": "v2.build_windows",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 47,
+      "symbol": "v2.residualize",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 50,
+      "symbol": "v1._raw_feature_quantiles",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 50,
+      "symbol": "v1._temporal_coverage",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 63,
+      "symbol": "v1.compile_condition_v6",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 63,
+      "symbol": "v1.FEATURE_REGISTRY",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 63,
+      "symbol": "v1.COMPILER_CONFIG",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 64,
+      "symbol": "v1.derive_retrieval_spec",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 64,
+      "symbol": "v1.FEATURE_REGISTRY",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 103,
+      "symbol": "v2.ConditionalExpertMLPRetriever",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 72,
+      "symbol": "v1.build_activation_matrix",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 103,
+      "symbol": "v2.D_ENC",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 103,
+      "symbol": "v2.D_EXP",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 103,
+      "symbol": "v2.D_Z",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 103,
+      "symbol": "v2.HIDDEN",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 170,
+      "symbol": "v1._expert_schema_text",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/reward_core.py",
+      "line": 170,
+      "symbol": "v1._catalog_text",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/runtime.py",
+      "line": 9,
+      "symbol": "v2.v1",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/runtime.py",
+      "line": 9,
+      "symbol": "v2.v2p",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/runtime.py",
+      "line": 9,
+      "symbol": "v2p.av2",
+      "exported": true
+    }
+  ],
+  "direct_core_import_checks": [
+    {
+      "file": "experiments/unified/backbone.py",
+      "line": 31,
+      "symbol": "paer_core.backbone_config.build_args",
+      "exported": true
+    },
+    {
+      "file": "experiments/unified/backbone.py",
+      "line": 164,
+      "symbol": "paer_core.forecasting.run_chronos",
+      "exported": true
+    }
+  ],
+  "retired_runtime_imports": [],
+  "missing_symbols": [],
+  "markdown_links": [
+    {
+      "file": "README.md",
+      "target": "docs/unified/PROTOCOL.md",
+      "exists": true
+    },
+    {
+      "file": "README.md",
+      "target": "docs/unified/STATUS.json",
+      "exists": true
+    },
+    {
+      "file": "README.md",
+      "target": "docs/REPRODUCIBILITY.md",
+      "exists": true
+    },
+    {
+      "file": "README.md",
+      "target": "docs/CODE_MAP.md",
+      "exists": true
+    },
+    {
+      "file": "README.md",
+      "target": "docs/RESULTS_INDEX.md",
+      "exists": true
+    },
+    {
+      "file": "README.md",
+      "target": "docs/unified/CLEANUP.md",
+      "exists": true
+    }
+  ],
+  "broken_markdown_links": [],
+  "documented_artifact_presence": {
+    "experiments/unified/initialize.py": true,
+    "configs/run_paths.example.json": true,
+    "tests/verify_core_extraction.py": true,
+    "docs/unified/CLEANUP.md": true,
+    "docs/unified/INPUT_MIGRATION.json": true,
+    "docs/unified/INPUT_MIGRATION_CHECKS.json": true,
+    "docs/unified/CURRENT_CODE_MANIFEST.json": true,
+    "docs/unified/execution_snapshot/IDENTITY.json": true,
+    "docs/unified/IO_RECOVERY.json": true
+  },
+  "removed_legacy_paths": {
+    "priors": true,
+    "retrieval": true,
+    "experiments/external_baselines": false,
+    "archive": false,
+    "paper": false,
+    "figures": false
+  },
+  "overall": "PASS",
+  "legacy_directory_contents": {
+    "experiments/external_baselines": {
+      "file_count": 0,
+      "files": []
+    },
+    "archive": {
+      "file_count": 0,
+      "files": []
+    },
+    "paper": {
+      "file_count": 1,
+      "files": [
+        "paper/README.md"
+      ]
+    },
+    "figures": {
+      "file_count": 0,
+      "files": []
+    }
+  }
+}

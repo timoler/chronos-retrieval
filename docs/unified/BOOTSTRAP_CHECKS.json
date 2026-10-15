@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "initialization": {
+    "state": "INITIALIZED_NOT_STARTED",
+    "created_utc": "2026-10-14T16:26:01.648229+00:00",
+    "protocol_hash": "e8f32754ff5001d1f9adc4e9b277d233abd1182d5cee67ed3ee015b626494d0b",
+    "run_config": "<WORKSPACE>\\work\\bootstrap_test_v3\\run\\run_config.json",
+    "test_readout_started": false,
+    "llm_preflight_verified": false,
+    "counts": {
+      "code_files": 4,
+      "input_files": 28,
+      "external_files": 116
+    }
+  },
+  "raw_semantic_hash_matches_active_run_all_datasets": true,
+  "data_content_matches_active_input_after_newline_normalization": true,
+  "no_existing_output_changes": true,
+  "training_started": false,
+  "llm_ready_declared": false,
+  "refusal_cases": [
+    {
+      "check": "no_existing_run_overwrite",
+      "status": "PASS",
+      "reason": "Output must be new or empty; will not overwrite: <WORKSPACE>\\work\\bootstrap_test_v3\\run"
+    },
+    {
+      "check": "no_output_inside_input",
+      "status": "PASS",
+      "reason": "Output overlaps protected input_repo: <PUBLICATION_ROOT>\\new_run"
+    },
+    {
+      "check": "no_output_inside_source",
+      "status": "PASS",
+      "reason": "Output overlaps protected repository: <WORKSPACE>\\work\\bootstrap_test_v3\\repository\\new_run"
+    },
+    {
+      "check": "no_changed_protocol",
+      "status": "PASS",
+      "reason": "Inline protocol differs from protocol_file"
+    },
+    {
+      "check": "no_active_run_reuse",
+      "status": "PASS",
+      "reason": "Output must be new or empty; will not overwrite: <RUN_ROOT>"
+    },
+    {
+      "check": "no_new_output_inside_active_run",
+      "status": "PASS",
+      "reason": "Output is inside an existing run: <RUN_ROOT>"
+    },
+    {
+      "check": "no_report_overwrite",
+      "status": "PASS",
+      "reason": "Output must be new or empty; will not overwrite: <WORKSPACE>\\work\\bootstrap_test_v3\\reports"
+    }
+  ]
+}

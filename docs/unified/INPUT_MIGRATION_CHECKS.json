@@ -1,0 +1,1141 @@
+{
+  "review": "Read-only input migration review; publication files still being edited concurrently",
+  "checked_files": 53,
+  "files": [
+    {
+      "new": "data/processed/electricity/config.json",
+      "original": "results/multidataset/electricity/config.json",
+      "sha256": "fc6253b3dd06ba7b520c140b63d1d41b2b292fb2ed9266af688025155b728cd3",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "8266cbe64a6ad35eb06510e0759367f723cc21e608f2661226f8e1f8ce011eeb",
+          "json_semantic_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "fc6253b3dd06ba7b520c140b63d1d41b2b292fb2ed9266af688025155b728cd3",
+          "json_semantic_equal": true
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "8266cbe64a6ad35eb06510e0759367f723cc21e608f2661226f8e1f8ce011eeb",
+        "matches_new_bytes": false,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/processed/electricity/expert_knowledge.txt",
+      "original": "results/multidataset/electricity/expert_knowledge.txt",
+      "sha256": "3b91e555f02a4554978832cb5c1b4342bd14050b25d7869e84f32d8ea47989bf",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "b7059c4de3fb306ede667c83e774d8dcded16fd04cb71ab647ebbb1aa9ffa4c4",
+          "normalized_newline_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "3b91e555f02a4554978832cb5c1b4342bd14050b25d7869e84f32d8ea47989bf",
+          "normalized_newline_equal": true
+        }
+      }
+    },
+    {
+      "new": "data/processed/electricity/series.csv",
+      "original": "results/multidataset/electricity/series.csv",
+      "sha256": "da9fa95bb78ef7eece19e178a984bd9c776e3779d8b30aa1160bb1bb5b5273ef",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "fd3b98ac7587d463f8e897446e01c674185591059d648c14b4e12b76936c837c",
+          "normalized_newline_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "da9fa95bb78ef7eece19e178a984bd9c776e3779d8b30aa1160bb1bb5b5273ef",
+          "normalized_newline_equal": true
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "fd3b98ac7587d463f8e897446e01c674185591059d648c14b4e12b76936c837c",
+        "matches_new_bytes": false,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/processed/electricity/window_indices.npz",
+      "original": "results/multidataset/electricity/window_indices.npz",
+      "sha256": "6d33b546224f98fb2ec68ba9c24e9e3c4f2f18d53d52502d18009339c56e9904",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "6d33b546224f98fb2ec68ba9c24e9e3c4f2f18d53d52502d18009339c56e9904"
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "6d33b546224f98fb2ec68ba9c24e9e3c4f2f18d53d52502d18009339c56e9904"
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "6d33b546224f98fb2ec68ba9c24e9e3c4f2f18d53d52502d18009339c56e9904",
+        "matches_new_bytes": true,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/processed/etth1/config.json",
+      "original": "results/multidataset/ETTh1/config.json",
+      "sha256": "f3762ccfdc141280e512672173fc87a30ab65d721c8415e4c5434a0f844ec622",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "6ba357dd9bde51fa0fdf59e7509589879e19c1bbee1c426560a8db0728869356",
+          "json_semantic_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "f3762ccfdc141280e512672173fc87a30ab65d721c8415e4c5434a0f844ec622",
+          "json_semantic_equal": true
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "6ba357dd9bde51fa0fdf59e7509589879e19c1bbee1c426560a8db0728869356",
+        "matches_new_bytes": false,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/processed/etth1/expert_knowledge.txt",
+      "original": "results/multidataset/ETTh1/expert_knowledge.txt",
+      "sha256": "cd6d020de29950f49c6bbae4772ee6deb8696522f9bdb090feb6e1c388a422a7",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "11436ca91f6514bc5db52be9a22183046a904196a409f3d34434105150b62d59",
+          "normalized_newline_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "cd6d020de29950f49c6bbae4772ee6deb8696522f9bdb090feb6e1c388a422a7",
+          "normalized_newline_equal": true
+        }
+      }
+    },
+    {
+      "new": "data/processed/etth1/series.csv",
+      "original": "results/multidataset/ETTh1/series.csv",
+      "sha256": "bd68686f8812b9995e03f944a69cffa9cb30da8be9f7b7649c458b15f281ca86",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "44b0cbae91e66e1d8d5e4986927d88fede6ea25fc912e6971e365dcd75516148",
+          "normalized_newline_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "bd68686f8812b9995e03f944a69cffa9cb30da8be9f7b7649c458b15f281ca86",
+          "normalized_newline_equal": true
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "44b0cbae91e66e1d8d5e4986927d88fede6ea25fc912e6971e365dcd75516148",
+        "matches_new_bytes": false,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/processed/etth1/window_indices.npz",
+      "original": "results/multidataset/ETTh1/window_indices.npz",
+      "sha256": "26540006f92d9781ed59ba328b1d5bcb666b15e1820be8e07ec20543c93d68ed",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "26540006f92d9781ed59ba328b1d5bcb666b15e1820be8e07ec20543c93d68ed"
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "26540006f92d9781ed59ba328b1d5bcb666b15e1820be8e07ec20543c93d68ed"
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "26540006f92d9781ed59ba328b1d5bcb666b15e1820be8e07ec20543c93d68ed",
+        "matches_new_bytes": true,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/processed/etth2/config.json",
+      "original": "results/multidataset/ETTh2/config.json",
+      "sha256": "ed22a62e57024af44aa6aa2ec42143b6138473c531bf887712b5268f101daf74",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "93063bc2a181439971d8c61cfb9b62a023b03679826be44e0414e13beec6cc26",
+          "json_semantic_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "ed22a62e57024af44aa6aa2ec42143b6138473c531bf887712b5268f101daf74",
+          "json_semantic_equal": true
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "93063bc2a181439971d8c61cfb9b62a023b03679826be44e0414e13beec6cc26",
+        "matches_new_bytes": false,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/processed/etth2/expert_knowledge.txt",
+      "original": "results/multidataset/ETTh2/expert_knowledge.txt",
+      "sha256": "cd6d020de29950f49c6bbae4772ee6deb8696522f9bdb090feb6e1c388a422a7",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "11436ca91f6514bc5db52be9a22183046a904196a409f3d34434105150b62d59",
+          "normalized_newline_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "cd6d020de29950f49c6bbae4772ee6deb8696522f9bdb090feb6e1c388a422a7",
+          "normalized_newline_equal": true
+        }
+      }
+    },
+    {
+      "new": "data/processed/etth2/series.csv",
+      "original": "results/multidataset/ETTh2/series.csv",
+      "sha256": "2020cdf32154ca29fbe8fc396e252822d7490efb4922b5d85e21b9dbf50d8399",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "ab66fef3c2a622c606d5ad9d1622917bb6bc5918fb34b697c1b92e968168a56c",
+          "normalized_newline_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "2020cdf32154ca29fbe8fc396e252822d7490efb4922b5d85e21b9dbf50d8399",
+          "normalized_newline_equal": true
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "ab66fef3c2a622c606d5ad9d1622917bb6bc5918fb34b697c1b92e968168a56c",
+        "matches_new_bytes": false,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/processed/etth2/window_indices.npz",
+      "original": "results/multidataset/ETTh2/window_indices.npz",
+      "sha256": "e94c13b4fb6c585dc3c526b194a18174cc66747988a477ca0b476a690ab45811",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "e94c13b4fb6c585dc3c526b194a18174cc66747988a477ca0b476a690ab45811"
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "e94c13b4fb6c585dc3c526b194a18174cc66747988a477ca0b476a690ab45811"
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "e94c13b4fb6c585dc3c526b194a18174cc66747988a477ca0b476a690ab45811",
+        "matches_new_bytes": true,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/processed/ETTm1/config.json",
+      "original": "results/multidataset/ETTm1/config.json",
+      "sha256": "d9abd3234d97c67489841472e6b3581b7e4cafb9b310995176bda2eb514a91c5",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "57a5c9a5bbe6e89e69b2bfb99dde8e92290d4f4fb7c5db1de4c7471f2992a2b1",
+          "json_semantic_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "d9abd3234d97c67489841472e6b3581b7e4cafb9b310995176bda2eb514a91c5",
+          "json_semantic_equal": true
+        }
+      }
+    },
+    {
+      "new": "data/processed/ETTm1/expert_knowledge.txt",
+      "original": "results/multidataset/ETTm1/expert_knowledge.txt",
+      "sha256": "cd6d020de29950f49c6bbae4772ee6deb8696522f9bdb090feb6e1c388a422a7",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "11436ca91f6514bc5db52be9a22183046a904196a409f3d34434105150b62d59",
+          "normalized_newline_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "cd6d020de29950f49c6bbae4772ee6deb8696522f9bdb090feb6e1c388a422a7",
+          "normalized_newline_equal": true
+        }
+      }
+    },
+    {
+      "new": "data/processed/ETTm1/series.csv",
+      "original": "results/multidataset/ETTm1/series.csv",
+      "sha256": "5513c2ddf5a10951931152787132bd57218126aaf487a7b9c787e6c359fdbcb6",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "0501530dc4fb90f800a612e9231f6ebcad31db2351b81182abec4032629b4607",
+          "normalized_newline_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "5513c2ddf5a10951931152787132bd57218126aaf487a7b9c787e6c359fdbcb6",
+          "normalized_newline_equal": true
+        }
+      }
+    },
+    {
+      "new": "data/processed/ETTm1/window_indices.npz",
+      "original": "results/multidataset/ETTm1/window_indices.npz",
+      "sha256": "396ef96b61771cdd2832669cd7b7afca67e31fbafd5ab6017cab5c8a19ca9ed6",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "396ef96b61771cdd2832669cd7b7afca67e31fbafd5ab6017cab5c8a19ca9ed6"
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "396ef96b61771cdd2832669cd7b7afca67e31fbafd5ab6017cab5c8a19ca9ed6"
+        }
+      }
+    },
+    {
+      "new": "data/processed/ETTm2/config.json",
+      "original": "results/multidataset/ETTm2/config.json",
+      "sha256": "4f37e0dde8fe88767bcf7b302717a9981c2c4e14942cabc32c4910bbb70322de",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "c63eef6fc7f178e2677f7d6c01088e7d5085b3cbddc1bbea69cb798b130ae945",
+          "json_semantic_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "4f37e0dde8fe88767bcf7b302717a9981c2c4e14942cabc32c4910bbb70322de",
+          "json_semantic_equal": true
+        }
+      }
+    },
+    {
+      "new": "data/processed/ETTm2/expert_knowledge.txt",
+      "original": "results/multidataset/ETTm2/expert_knowledge.txt",
+      "sha256": "cd6d020de29950f49c6bbae4772ee6deb8696522f9bdb090feb6e1c388a422a7",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "11436ca91f6514bc5db52be9a22183046a904196a409f3d34434105150b62d59",
+          "normalized_newline_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "cd6d020de29950f49c6bbae4772ee6deb8696522f9bdb090feb6e1c388a422a7",
+          "normalized_newline_equal": true
+        }
+      }
+    },
+    {
+      "new": "data/processed/ETTm2/series.csv",
+      "original": "results/multidataset/ETTm2/series.csv",
+      "sha256": "a748d4de0760687a01b0eba1eab66cd6d0619a3b90a9196470de426a93d17a1f",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "8d2e6fe0638466ee081dba867b1ab082a44beaf2af0447c0f250fe73a6fdbdbe",
+          "normalized_newline_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "a748d4de0760687a01b0eba1eab66cd6d0619a3b90a9196470de426a93d17a1f",
+          "normalized_newline_equal": true
+        }
+      }
+    },
+    {
+      "new": "data/processed/ETTm2/window_indices.npz",
+      "original": "results/multidataset/ETTm2/window_indices.npz",
+      "sha256": "396ef96b61771cdd2832669cd7b7afca67e31fbafd5ab6017cab5c8a19ca9ed6",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "396ef96b61771cdd2832669cd7b7afca67e31fbafd5ab6017cab5c8a19ca9ed6"
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "396ef96b61771cdd2832669cd7b7afca67e31fbafd5ab6017cab5c8a19ca9ed6"
+        }
+      }
+    },
+    {
+      "new": "data/processed/exchange_rate/config.json",
+      "original": "results/multidataset/exchange_rate/config.json",
+      "sha256": "1861feb6d55d77147867f84103cfc7ec3936b6438bcce0a36b7dffedb177dbca",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "7356e1453ec5c68fa53895a467d554c73b3f68629ed18c9f971c32523384b537",
+          "json_semantic_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "1861feb6d55d77147867f84103cfc7ec3936b6438bcce0a36b7dffedb177dbca",
+          "json_semantic_equal": true
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "7356e1453ec5c68fa53895a467d554c73b3f68629ed18c9f971c32523384b537",
+        "matches_new_bytes": false,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/processed/exchange_rate/expert_knowledge.txt",
+      "original": "results/multidataset/exchange_rate/expert_knowledge.txt",
+      "sha256": "fcd5dd926771acf206eea1c8d719b7e9de37c9d8adefb42f6a79ab93cb24caec",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "740b1c69289f1fa7e71639869f8b2538bce1491e04772d685bc5cdb1394f6630",
+          "normalized_newline_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "fcd5dd926771acf206eea1c8d719b7e9de37c9d8adefb42f6a79ab93cb24caec",
+          "normalized_newline_equal": true
+        }
+      }
+    },
+    {
+      "new": "data/processed/exchange_rate/series.csv",
+      "original": "results/multidataset/exchange_rate/series.csv",
+      "sha256": "b9e05258548003355408c04c4ac5bde6344fb7f0aa46955bd3881da25c3e8e26",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "937fb091e76d6f165566c0b5e48db90293cbb8307e6ff8874735fa242e0936a1",
+          "normalized_newline_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "b9e05258548003355408c04c4ac5bde6344fb7f0aa46955bd3881da25c3e8e26",
+          "normalized_newline_equal": true
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "937fb091e76d6f165566c0b5e48db90293cbb8307e6ff8874735fa242e0936a1",
+        "matches_new_bytes": false,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/processed/exchange_rate/window_indices.npz",
+      "original": "results/multidataset/exchange_rate/window_indices.npz",
+      "sha256": "0d229ebba641059777bd1d677e9001c99136c295da840c6582a5df19ef92c2e3",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "0d229ebba641059777bd1d677e9001c99136c295da840c6582a5df19ef92c2e3"
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "0d229ebba641059777bd1d677e9001c99136c295da840c6582a5df19ef92c2e3"
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "0d229ebba641059777bd1d677e9001c99136c295da840c6582a5df19ef92c2e3",
+        "matches_new_bytes": true,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/processed/LondonSmartMeters/config.json",
+      "original": "results/multidataset/LondonSmartMeters/config.json",
+      "sha256": "8fb1cce9bb7c75f8a843cfde058015232d09b30209c828c6272858289e501a7e",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "5a4cb2c33814e0dadd8937021f701e6d9ff9e04536f953cc2fe863982c2d0aee",
+          "json_semantic_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "8fb1cce9bb7c75f8a843cfde058015232d09b30209c828c6272858289e501a7e",
+          "json_semantic_equal": true
+        }
+      }
+    },
+    {
+      "new": "data/processed/LondonSmartMeters/series.csv",
+      "original": "results/multidataset/LondonSmartMeters/series.csv",
+      "sha256": "c687d88e3fd43dda29a3d5417e6a1bd59fad6ee5ddb6dd5a11220263fbddee4c",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "fed58f87605aeee01e0dd5f5feca00b88e10ce6fcf5bdd86ff98849334548031",
+          "normalized_newline_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "c687d88e3fd43dda29a3d5417e6a1bd59fad6ee5ddb6dd5a11220263fbddee4c",
+          "normalized_newline_equal": true
+        }
+      }
+    },
+    {
+      "new": "data/processed/LondonSmartMeters/window_indices.npz",
+      "original": "results/multidataset/LondonSmartMeters/window_indices.npz",
+      "sha256": "e4756caab111165cb0444a990b75c591e48a2628b8238863b579faa00c36efa3",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "e4756caab111165cb0444a990b75c591e48a2628b8238863b579faa00c36efa3"
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "e4756caab111165cb0444a990b75c591e48a2628b8238863b579faa00c36efa3"
+        }
+      }
+    },
+    {
+      "new": "data/processed/solar/config.json",
+      "original": "results/multidataset/solar/config.json",
+      "sha256": "c4358900646750afbb834a704fecff81acf2eb68c19c247696664bf3754ebd96",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "3c94209cf602ac57a75063874cec875169dd9bc48b6dc695da562c8b5b51d0ee",
+          "json_semantic_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "c4358900646750afbb834a704fecff81acf2eb68c19c247696664bf3754ebd96",
+          "json_semantic_equal": true
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "3c94209cf602ac57a75063874cec875169dd9bc48b6dc695da562c8b5b51d0ee",
+        "matches_new_bytes": false,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/processed/solar/e1_information_control_run.log",
+      "original": "results/multidataset/solar/e1_information_control_run.log",
+      "sha256": "e7fb118c42894c68240fe8e96c577099dffac0991a1d20087cee1d6aba34d797",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "e7fb118c42894c68240fe8e96c577099dffac0991a1d20087cee1d6aba34d797",
+          "normalized_newline_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "e7fb118c42894c68240fe8e96c577099dffac0991a1d20087cee1d6aba34d797",
+          "normalized_newline_equal": true
+        }
+      }
+    },
+    {
+      "new": "data/processed/solar/expert_knowledge.txt",
+      "original": "results/multidataset/solar/expert_knowledge.txt",
+      "sha256": "69e29862d39d7bc35d65b54f6444077355070d538907f269a40f801ec8ee6563",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "2eb97c718b180e21df79a48359f5c9f3f229af4c5c70659cc71bd16b956b2110",
+          "normalized_newline_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "69e29862d39d7bc35d65b54f6444077355070d538907f269a40f801ec8ee6563",
+          "normalized_newline_equal": true
+        }
+      }
+    },
+    {
+      "new": "data/processed/solar/series.csv",
+      "original": "results/multidataset/solar/series.csv",
+      "sha256": "1425678a97814e440391305f1f0a9962aff1c9d602e3b5758b871949b9d8eb55",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "2f8be7d58f2f50c475671de1508ead550436816d3d40bd133cd54e6f74df7e8c",
+          "normalized_newline_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "1425678a97814e440391305f1f0a9962aff1c9d602e3b5758b871949b9d8eb55",
+          "normalized_newline_equal": true
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "2f8be7d58f2f50c475671de1508ead550436816d3d40bd133cd54e6f74df7e8c",
+        "matches_new_bytes": false,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/processed/solar/window_indices.npz",
+      "original": "results/multidataset/solar/window_indices.npz",
+      "sha256": "cda19db052105f73535498d04fb3f5e1a8a42cee93e684ce59fc4e82ccac1a9b",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "cda19db052105f73535498d04fb3f5e1a8a42cee93e684ce59fc4e82ccac1a9b"
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "cda19db052105f73535498d04fb3f5e1a8a42cee93e684ce59fc4e82ccac1a9b"
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "cda19db052105f73535498d04fb3f5e1a8a42cee93e684ce59fc4e82ccac1a9b",
+        "matches_new_bytes": true,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/processed/Tourism/config.json",
+      "original": "results/multidataset/Tourism/config.json",
+      "sha256": "96ba805aae44785ca08f7228b5559d608d9f3a8f12482fffee9bdadab912f470",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "5755498bc82f9c6d7686622d8d4427a52e32effa4ccdfc4eb2fe9976a73329ab",
+          "json_semantic_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "96ba805aae44785ca08f7228b5559d608d9f3a8f12482fffee9bdadab912f470",
+          "json_semantic_equal": true
+        }
+      }
+    },
+    {
+      "new": "data/processed/Tourism/series.csv",
+      "original": "results/multidataset/Tourism/series.csv",
+      "sha256": "bdeeb45bd76fe5b0d256db01914189b6a6cabf366e815d9c3d533ad8baad519a",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "b19be2ff94c4d955d6a6bf41ebb099550ac6731fa7cbbd37aa7eb2e133217670",
+          "normalized_newline_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "bdeeb45bd76fe5b0d256db01914189b6a6cabf366e815d9c3d533ad8baad519a",
+          "normalized_newline_equal": true
+        }
+      }
+    },
+    {
+      "new": "data/processed/Tourism/window_indices.npz",
+      "original": "results/multidataset/Tourism/window_indices.npz",
+      "sha256": "c50f6b04ac87546e1a8963623284e0015800ebdfc37c57941bafe1f6e11a479b",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "c50f6b04ac87546e1a8963623284e0015800ebdfc37c57941bafe1f6e11a479b"
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "c50f6b04ac87546e1a8963623284e0015800ebdfc37c57941bafe1f6e11a479b"
+        }
+      }
+    },
+    {
+      "new": "data/processed/traffic/config.json",
+      "original": "results/multidataset/traffic/config.json",
+      "sha256": "9bc29fa646b8118898670443751d959726fc5118f0ff20804655693f7d65bfed",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "b3ccd6bab2769714af053028066baaadc326c22c4ffebf93d09b4a91b63e4c56",
+          "json_semantic_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "9bc29fa646b8118898670443751d959726fc5118f0ff20804655693f7d65bfed",
+          "json_semantic_equal": true
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "b3ccd6bab2769714af053028066baaadc326c22c4ffebf93d09b4a91b63e4c56",
+        "matches_new_bytes": false,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/processed/traffic/expert_knowledge.txt",
+      "original": "results/multidataset/traffic/expert_knowledge.txt",
+      "sha256": "4a6edd21d0f57665c92f2285b77aeed7658651810f07eaa5ad10d3ddc36f2945",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "b06b81c996fcc65ff40afa1e812aba2d965c8f876c9b3d9ae74a499479c2f51a",
+          "normalized_newline_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "4a6edd21d0f57665c92f2285b77aeed7658651810f07eaa5ad10d3ddc36f2945",
+          "normalized_newline_equal": true
+        }
+      }
+    },
+    {
+      "new": "data/processed/traffic/series.csv",
+      "original": "results/multidataset/traffic/series.csv",
+      "sha256": "39f2ba5c32b0c7ec6eeb786fc2c945ef16763658b8322363201a76dbceaca4d0",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "c20ffa64d441ab6e427fc5680df801568c97f1a672c1b03fc07acf32afffef30",
+          "normalized_newline_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "39f2ba5c32b0c7ec6eeb786fc2c945ef16763658b8322363201a76dbceaca4d0",
+          "normalized_newline_equal": true
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "c20ffa64d441ab6e427fc5680df801568c97f1a672c1b03fc07acf32afffef30",
+        "matches_new_bytes": false,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/processed/traffic/window_indices.npz",
+      "original": "results/multidataset/traffic/window_indices.npz",
+      "sha256": "d714e1bfe6b901403aa54e32dc8db3a999a3bcf909871f481e0b93cdfc267072",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "d714e1bfe6b901403aa54e32dc8db3a999a3bcf909871f481e0b93cdfc267072"
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "d714e1bfe6b901403aa54e32dc8db3a999a3bcf909871f481e0b93cdfc267072"
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "d714e1bfe6b901403aa54e32dc8db3a999a3bcf909871f481e0b93cdfc267072",
+        "matches_new_bytes": true,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/processed/weather/config.json",
+      "original": "results/multidataset/weather/config.json",
+      "sha256": "fc12c8cbbb2ba0e82577b1badf9044eab99022f025740b934c44ca0e8ed06b2d",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "51e9fe850843874a58cb6202880b6ea6b365999c0e81b630b6734209b23b0bc5",
+          "json_semantic_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "fc12c8cbbb2ba0e82577b1badf9044eab99022f025740b934c44ca0e8ed06b2d",
+          "json_semantic_equal": true
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "51e9fe850843874a58cb6202880b6ea6b365999c0e81b630b6734209b23b0bc5",
+        "matches_new_bytes": false,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/processed/weather/expert_knowledge.txt",
+      "original": "results/multidataset/weather/expert_knowledge.txt",
+      "sha256": "6d8c1e4d40c524d97268b54a542007fd339b5ba0a474546a31d77c7aae000fb0",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "3f21d9f4569e6318f4825c73abbe638f84ca9280dde769a90da525efa4b3c8ff",
+          "normalized_newline_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "6d8c1e4d40c524d97268b54a542007fd339b5ba0a474546a31d77c7aae000fb0",
+          "normalized_newline_equal": true
+        }
+      }
+    },
+    {
+      "new": "data/processed/weather/series.csv",
+      "original": "results/multidataset/weather/series.csv",
+      "sha256": "306ef19c36ab8e36bac1c8775f333e411fdf95e08c8f0d4141e4466555143ed3",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "4206352d11a8e48f7ea793ece73913391ce2fbfb77d5e8eba9dec1d7562edb1c",
+          "normalized_newline_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "306ef19c36ab8e36bac1c8775f333e411fdf95e08c8f0d4141e4466555143ed3",
+          "normalized_newline_equal": true
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "4206352d11a8e48f7ea793ece73913391ce2fbfb77d5e8eba9dec1d7562edb1c",
+        "matches_new_bytes": false,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/processed/weather/window_indices.npz",
+      "original": "results/multidataset/weather/window_indices.npz",
+      "sha256": "06416be7b7399c37530c478b72b6eb66dfb1a4118f7579a32cedc6d95c4ad671",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "06416be7b7399c37530c478b72b6eb66dfb1a4118f7579a32cedc6d95c4ad671"
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "06416be7b7399c37530c478b72b6eb66dfb1a4118f7579a32cedc6d95c4ad671"
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "06416be7b7399c37530c478b72b6eb66dfb1a4118f7579a32cedc6d95c4ad671",
+        "matches_new_bytes": true,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/processed/WindFarms/config.json",
+      "original": "results/multidataset/WindFarms/config.json",
+      "sha256": "d33620cb4c24d59f56714d7732e48923dfeeb487a2859a7dfb49154eaa598f27",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "1d8bcfb5297405811ce0e941963c2d7c174bf2b8b2df892d2c0c57ab6701d9fa",
+          "json_semantic_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "d33620cb4c24d59f56714d7732e48923dfeeb487a2859a7dfb49154eaa598f27",
+          "json_semantic_equal": true
+        }
+      }
+    },
+    {
+      "new": "data/processed/WindFarms/series.csv",
+      "original": "results/multidataset/WindFarms/series.csv",
+      "sha256": "ddec009f7f08816de61542aef2d950c52d7b8d878261c494c44bd9b1ef6d78e6",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "4e23e01264e1013dc353a34e480321755e28ff5025fb60cb63593931bf6a2e94",
+          "normalized_newline_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "ddec009f7f08816de61542aef2d950c52d7b8d878261c494c44bd9b1ef6d78e6",
+          "normalized_newline_equal": true
+        }
+      }
+    },
+    {
+      "new": "data/processed/WindFarms/window_indices.npz",
+      "original": "results/multidataset/WindFarms/window_indices.npz",
+      "sha256": "5591321154f7b584141aeae7057cabe9ce9cf347109372447683ebc83f09affd",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "5591321154f7b584141aeae7057cabe9ce9cf347109372447683ebc83f09affd"
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "5591321154f7b584141aeae7057cabe9ce9cf347109372447683ebc83f09affd"
+        }
+      }
+    },
+    {
+      "new": "data/experts/electricity/raw_experts.json",
+      "original": "results/reward_feedback_critic_v2_full_cross_dataset/electricity/raw_experts.json",
+      "sha256": "a9a52242a54a42d95060b8b9ab99e5c4e912299176bdd65ede194670003a5d5e",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "8cce1737ec4a0910111c5b57c77a7e017db8e09b39e54c892fa0e0826e6ceb11",
+          "json_semantic_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "a9a52242a54a42d95060b8b9ab99e5c4e912299176bdd65ede194670003a5d5e",
+          "json_semantic_equal": true
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "8cce1737ec4a0910111c5b57c77a7e017db8e09b39e54c892fa0e0826e6ceb11",
+        "matches_new_bytes": false,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/experts/etth1/raw_experts.json",
+      "original": "results/reward_feedback_critic_v2_full_cross_dataset/etth1/raw_experts.json",
+      "sha256": "930ab1ae0d567f469fceba431481b239c57e7a31a8b92038d8dd41b1dceb68d9",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "7f6b8c9dc929a203909610f2124bfc0f99793af792a3400617d70d3d72d8406b",
+          "json_semantic_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "930ab1ae0d567f469fceba431481b239c57e7a31a8b92038d8dd41b1dceb68d9",
+          "json_semantic_equal": true
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "7f6b8c9dc929a203909610f2124bfc0f99793af792a3400617d70d3d72d8406b",
+        "matches_new_bytes": false,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/experts/etth2/raw_experts.json",
+      "original": "results/reward_feedback_critic_v2_full_cross_dataset/etth2/raw_experts.json",
+      "sha256": "8a37f5b0bb18ec2fb01cddc4983d4927ffe53c254a0ef27d754c7469e8e98cd9",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "317b9b5e423858c07b7fc619e74acf99e024c3180519afbea2231744f4cadf35",
+          "json_semantic_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "8a37f5b0bb18ec2fb01cddc4983d4927ffe53c254a0ef27d754c7469e8e98cd9",
+          "json_semantic_equal": true
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "317b9b5e423858c07b7fc619e74acf99e024c3180519afbea2231744f4cadf35",
+        "matches_new_bytes": false,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/experts/exchange_rate/raw_experts.json",
+      "original": "results/reward_feedback_critic_v2_full_cross_dataset/exchange_rate/raw_experts.json",
+      "sha256": "03123780b08c8cc72173bd3e982d89b22f59c555c95ad847a8482765a7161835",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "51880027dd8fbd2e67e3b180c399daf19ef4982da29336d0dc3ec70ee112a43d",
+          "json_semantic_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "03123780b08c8cc72173bd3e982d89b22f59c555c95ad847a8482765a7161835",
+          "json_semantic_equal": true
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "51880027dd8fbd2e67e3b180c399daf19ef4982da29336d0dc3ec70ee112a43d",
+        "matches_new_bytes": false,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/experts/solar/raw_experts.json",
+      "original": "results/reward_feedback_critic_v2_full_cross_dataset/solar/raw_experts.json",
+      "sha256": "673d7f5c094b1758a39380fdd1895e958cb2849ad97c998f369d36e7db63fc98",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "7465ce99882aa6270db5cede3ca4790bae8cf8cebb65f5189160b9b76986f18b",
+          "json_semantic_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "673d7f5c094b1758a39380fdd1895e958cb2849ad97c998f369d36e7db63fc98",
+          "json_semantic_equal": true
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "7465ce99882aa6270db5cede3ca4790bae8cf8cebb65f5189160b9b76986f18b",
+        "matches_new_bytes": false,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/experts/traffic/raw_experts.json",
+      "original": "results/reward_feedback_critic_v2_full_cross_dataset/traffic/raw_experts.json",
+      "sha256": "bb23ac4916bd51ba939dbb975e5a0d2790732b3c026287622146dd053cc43f3c",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "d97a474403d24968fce0253c66f794a1532d1212a336d87c4acc633414f40892",
+          "json_semantic_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "bb23ac4916bd51ba939dbb975e5a0d2790732b3c026287622146dd053cc43f3c",
+          "json_semantic_equal": true
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "d97a474403d24968fce0253c66f794a1532d1212a336d87c4acc633414f40892",
+        "matches_new_bytes": false,
+        "matches_original_current_bytes": true
+      }
+    },
+    {
+      "new": "data/experts/weather/raw_experts.json",
+      "original": "results/reward_feedback_critic_v2_full_cross_dataset/weather/raw_experts.json",
+      "sha256": "88f6195ffd3f65d0dfa7be8c18156b7639f1c85ac38cbb01d1532edf9ceebc4e",
+      "comparisons": {
+        "original_input": {
+          "exists": true,
+          "bytes_equal": false,
+          "sha256": "f4e75f6a5cfff2397dc9f374a4a912284a972e4636e1a21623db9b58c8702103",
+          "json_semantic_equal": true
+        },
+        "execution_checkout": {
+          "exists": true,
+          "bytes_equal": true,
+          "sha256": "88f6195ffd3f65d0dfa7be8c18156b7639f1c85ac38cbb01d1532edf9ceebc4e",
+          "json_semantic_equal": true
+        }
+      },
+      "execution_input_manifest": {
+        "sha256": "f4e75f6a5cfff2397dc9f374a4a912284a972e4636e1a21623db9b58c8702103",
+        "matches_new_bytes": false,
+        "matches_original_current_bytes": true
+      }
+    }
+  ],
+  "summary": {
+    "original_input": {
+      "semantic_equal": 40,
+      "byte_equal": 13
+    },
+    "execution_checkout": {
+      "byte_equal": 53
+    }
+  },
+  "execution_manifest_files": 28,
+  "execution_manifest_original_match": 28,
+  "execution_manifest_publication_byte_match": 7
+}

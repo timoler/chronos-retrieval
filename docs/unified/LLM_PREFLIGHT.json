@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "model": "gpt-6-astra",
+  "fresh_call": true,
+  "checked_utc": "2026-10-15T01:56:58.939661+00:00",
+  "cache_path": "<RUN_ROOT>\\llm_preflight\\resume_20261015\\cache\\6863154caeb6767a.json",
+  "cache_sha256": "5c18572b16a716728cc13f272ea8683625f555d43dad8b455411617e9a186dbd",
+  "tools_used": false,
+  "experiment_outputs_used": false,
+  "scope": "Transport readiness only; no expert generation/revision or forecast score was supplied."
+}

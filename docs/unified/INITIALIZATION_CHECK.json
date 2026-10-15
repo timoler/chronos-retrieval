@@ -1,0 +1,13 @@
+{
+  "state": "INITIALIZED_NOT_STARTED",
+  "created_utc": "2026-10-14T16:32:44.121875+00:00",
+  "protocol_hash": "e8f32754ff5001d1f9adc4e9b277d233abd1182d5cee67ed3ee015b626494d0b",
+  "run_config": "<WORKSPACE>\\work\\clean_init_check_run_v2\\run_config.json",
+  "test_readout_started": false,
+  "llm_preflight_verified": false,
+  "counts": {
+    "code_files": 26,
+    "input_files": 28,
+    "external_files": 116
+  }
+}

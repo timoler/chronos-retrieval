@@ -1,0 +1,146 @@
+{
+  "status": "PASS",
+  "count": 25,
+  "sources": [
+    {
+      "path": "<EXECUTION_SOURCE_ROOT>\\experiments\\unified\\common.py",
+      "sha256": "df3b280546a18a1c1b5ad968d6f6e236de9765166f1437cde75490c1fd4b7d75",
+      "dump_ast_sha256": "b99524de7ad4dbee9e28f8c31fc418d67d7687e9aecf9a08f50aa1af057f5213",
+      "source_start_line": 21,
+      "source_end_line": 33
+    },
+    {
+      "path": "<PUBLICATION_ROOT>\\experiments\\unified\\common.py",
+      "sha256": "f2e835142f943d5ac200334bdca587eda7fa44ca3f94db85428375aa87c4f236",
+      "dump_ast_sha256": "b99524de7ad4dbee9e28f8c31fc418d67d7687e9aecf9a08f50aa1af057f5213",
+      "source_start_line": 21,
+      "source_end_line": 33
+    }
+  ],
+  "checks": [
+    {
+      "check": "unified_protocol_repo:immediate_success",
+      "status": "PASS"
+    },
+    {
+      "check": "unified_protocol_repo:success_replaces_target_atomically",
+      "status": "PASS"
+    },
+    {
+      "check": "unified_protocol_repo:three_transient_errors_recover",
+      "status": "PASS"
+    },
+    {
+      "check": "unified_protocol_repo:bounded_initial_delays",
+      "status": "PASS",
+      "delays": [
+        0.05,
+        0.1,
+        0.2
+      ]
+    },
+    {
+      "check": "unified_protocol_repo:target_preserved_during_transient_errors",
+      "status": "PASS"
+    },
+    {
+      "check": "unified_protocol_repo:persistent_error_propagates_original_exception",
+      "status": "PASS"
+    },
+    {
+      "check": "unified_protocol_repo:persistent_failure_exactly_12_attempts",
+      "status": "PASS",
+      "attempts": 12
+    },
+    {
+      "check": "unified_protocol_repo:persistent_failure_retains_target_and_tmp",
+      "status": "PASS"
+    },
+    {
+      "check": "unified_protocol_repo:persistent_failure_delay_cap",
+      "status": "PASS",
+      "total_simulated_seconds": 4.25,
+      "max_delay_seconds": 0.5
+    },
+    {
+      "check": "unified_protocol_repo:other_exception_not_swallowed:FileNotFoundError",
+      "status": "PASS"
+    },
+    {
+      "check": "unified_protocol_repo:other_exception_not_swallowed:OSError",
+      "status": "PASS"
+    },
+    {
+      "check": "unified_protocol_repo:other_exception_not_swallowed:ValueError",
+      "status": "PASS"
+    },
+    {
+      "check": "clean_publication_repo:immediate_success",
+      "status": "PASS"
+    },
+    {
+      "check": "clean_publication_repo:success_replaces_target_atomically",
+      "status": "PASS"
+    },
+    {
+      "check": "clean_publication_repo:three_transient_errors_recover",
+      "status": "PASS"
+    },
+    {
+      "check": "clean_publication_repo:bounded_initial_delays",
+      "status": "PASS",
+      "delays": [
+        0.05,
+        0.1,
+        0.2
+      ]
+    },
+    {
+      "check": "clean_publication_repo:target_preserved_during_transient_errors",
+      "status": "PASS"
+    },
+    {
+      "check": "clean_publication_repo:persistent_error_propagates_original_exception",
+      "status": "PASS"
+    },
+    {
+      "check": "clean_publication_repo:persistent_failure_exactly_12_attempts",
+      "status": "PASS",
+      "attempts": 12
+    },
+    {
+      "check": "clean_publication_repo:persistent_failure_retains_target_and_tmp",
+      "status": "PASS"
+    },
+    {
+      "check": "clean_publication_repo:persistent_failure_delay_cap",
+      "status": "PASS",
+      "total_simulated_seconds": 4.25,
+      "max_delay_seconds": 0.5
+    },
+    {
+      "check": "clean_publication_repo:other_exception_not_swallowed:FileNotFoundError",
+      "status": "PASS"
+    },
+    {
+      "check": "clean_publication_repo:other_exception_not_swallowed:OSError",
+      "status": "PASS"
+    },
+    {
+      "check": "clean_publication_repo:other_exception_not_swallowed:ValueError",
+      "status": "PASS"
+    },
+    {
+      "check": "both_source_dump_asts_identical",
+      "status": "PASS"
+    }
+  ],
+  "method": "Execute only the actual dump FunctionDef AST; in-memory Path and sleep mocks.",
+  "gpu_used": false,
+  "run_files_modified": false,
+  "source_files_modified": false,
+  "limitations": [
+    "Simulated replace exceptions verify control flow and retention semantics; this is not a reproduction of the Windows locking event.",
+    "The existing single-writer assumption remains: concurrent writers to the same .tmp path are not made safe by retry."
+  ]
+}

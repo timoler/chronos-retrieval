@@ -1,0 +1,405 @@
+{
+  "public_base_commit": "5ce382b6df45bf154420968d09d252dae6f15522",
+  "publication_ref": "refs/heads/main",
+  "additional_remote_branches": false,
+  "unsynchronized_local_ancestors_included": false,
+  "input_files": 52,
+  "new_input_blobs": 0,
+  "exact_public_input_matches": [
+    {
+      "path": "data/processed/electricity/config.json",
+      "blob_oid": "122480711dc57252f9db3bde5e3eaab531c862e8",
+      "public_paths": [
+        "results/multidataset/electricity/config.json"
+      ]
+    },
+    {
+      "path": "data/processed/electricity/expert_knowledge.txt",
+      "blob_oid": "49f7d9c566bde1323cb7e5a1f5a0e7276f3aed7e",
+      "public_paths": [
+        "results/multidataset/electricity/expert_knowledge.txt"
+      ]
+    },
+    {
+      "path": "data/processed/electricity/series.csv",
+      "blob_oid": "b6bd166edd029006d46aa817f0d4c8fddf2cf4c4",
+      "public_paths": [
+        "results/multidataset/electricity/series.csv"
+      ]
+    },
+    {
+      "path": "data/processed/electricity/window_indices.npz",
+      "blob_oid": "91ee0c6851e3a808d02c7940781629faf80e1323",
+      "public_paths": [
+        "results/multidataset/electricity/window_indices.npz"
+      ]
+    },
+    {
+      "path": "data/processed/etth1/config.json",
+      "blob_oid": "4cb8ab3890cbbf7ca08b53b30787472076742bc9",
+      "public_paths": [
+        "results/multidataset/ETTh1/config.json"
+      ]
+    },
+    {
+      "path": "data/processed/etth1/expert_knowledge.txt",
+      "blob_oid": "5c641ca79f78b53112e99342e7cf443f7ef39b56",
+      "public_paths": [
+        "results/multidataset/ETTh1/expert_knowledge.txt",
+        "results/multidataset/ETTh2/expert_knowledge.txt",
+        "results/multidataset/ETTm1/expert_knowledge.txt",
+        "results/multidataset/ETTm2/expert_knowledge.txt"
+      ]
+    },
+    {
+      "path": "data/processed/etth1/series.csv",
+      "blob_oid": "6fe444f027d46e2306f44c5f1c1b9aa239275db1",
+      "public_paths": [
+        "results/multidataset/ETTh1/series.csv"
+      ]
+    },
+    {
+      "path": "data/processed/etth1/window_indices.npz",
+      "blob_oid": "bd62257ed635b24d2551f59048544f556b3ad66c",
+      "public_paths": [
+        "results/multidataset/ETTh1/window_indices.npz"
+      ]
+    },
+    {
+      "path": "data/processed/etth2/config.json",
+      "blob_oid": "3236368987260c6f7fb0d96660daedbe1dd23e6f",
+      "public_paths": [
+        "results/multidataset/ETTh2/config.json"
+      ]
+    },
+    {
+      "path": "data/processed/etth2/expert_knowledge.txt",
+      "blob_oid": "5c641ca79f78b53112e99342e7cf443f7ef39b56",
+      "public_paths": [
+        "results/multidataset/ETTh1/expert_knowledge.txt",
+        "results/multidataset/ETTh2/expert_knowledge.txt",
+        "results/multidataset/ETTm1/expert_knowledge.txt",
+        "results/multidataset/ETTm2/expert_knowledge.txt"
+      ]
+    },
+    {
+      "path": "data/processed/etth2/series.csv",
+      "blob_oid": "60c9423bcf19b6b951eca65b64298a9e5c77a89d",
+      "public_paths": [
+        "results/multidataset/ETTh2/series.csv"
+      ]
+    },
+    {
+      "path": "data/processed/etth2/window_indices.npz",
+      "blob_oid": "9a0b84424c8df80582dfd479a47c8535755a8b9c",
+      "public_paths": [
+        "results/multidataset/ETTh2/window_indices.npz"
+      ]
+    },
+    {
+      "path": "data/processed/ETTm1/config.json",
+      "blob_oid": "67637872476f042a9334a1a5e4fc585754973777",
+      "public_paths": [
+        "results/multidataset/ETTm1/config.json"
+      ]
+    },
+    {
+      "path": "data/processed/ETTm1/expert_knowledge.txt",
+      "blob_oid": "5c641ca79f78b53112e99342e7cf443f7ef39b56",
+      "public_paths": [
+        "results/multidataset/ETTh1/expert_knowledge.txt",
+        "results/multidataset/ETTh2/expert_knowledge.txt",
+        "results/multidataset/ETTm1/expert_knowledge.txt",
+        "results/multidataset/ETTm2/expert_knowledge.txt"
+      ]
+    },
+    {
+      "path": "data/processed/ETTm1/series.csv",
+      "blob_oid": "2cb622bb898e8a929aabf0faa20a11731a82f01b",
+      "public_paths": [
+        "results/multidataset/ETTm1/series.csv"
+      ]
+    },
+    {
+      "path": "data/processed/ETTm1/window_indices.npz",
+      "blob_oid": "98573f78c8af443b07560c37b232e0a30a7bed58",
+      "public_paths": [
+        "results/multidataset/ETTm1/window_indices.npz",
+        "results/multidataset/ETTm2/window_indices.npz"
+      ]
+    },
+    {
+      "path": "data/processed/ETTm2/config.json",
+      "blob_oid": "14935e667d3b53d8489ca0a7258a3a4622f9ec3f",
+      "public_paths": [
+        "results/multidataset/ETTm2/config.json"
+      ]
+    },
+    {
+      "path": "data/processed/ETTm2/expert_knowledge.txt",
+      "blob_oid": "5c641ca79f78b53112e99342e7cf443f7ef39b56",
+      "public_paths": [
+        "results/multidataset/ETTh1/expert_knowledge.txt",
+        "results/multidataset/ETTh2/expert_knowledge.txt",
+        "results/multidataset/ETTm1/expert_knowledge.txt",
+        "results/multidataset/ETTm2/expert_knowledge.txt"
+      ]
+    },
+    {
+      "path": "data/processed/ETTm2/series.csv",
+      "blob_oid": "9f25405eaae55cd8fc61e9a9cabfd2e153a3ab99",
+      "public_paths": [
+        "results/multidataset/ETTm2/series.csv"
+      ]
+    },
+    {
+      "path": "data/processed/ETTm2/window_indices.npz",
+      "blob_oid": "98573f78c8af443b07560c37b232e0a30a7bed58",
+      "public_paths": [
+        "results/multidataset/ETTm1/window_indices.npz",
+        "results/multidataset/ETTm2/window_indices.npz"
+      ]
+    },
+    {
+      "path": "data/processed/exchange_rate/config.json",
+      "blob_oid": "10708f6d90d1d7697174ba8fffe31737e8b53597",
+      "public_paths": [
+        "results/multidataset/exchange_rate/config.json"
+      ]
+    },
+    {
+      "path": "data/processed/exchange_rate/expert_knowledge.txt",
+      "blob_oid": "851fec580ee29033a2e6e2da18bf3635922d0099",
+      "public_paths": [
+        "results/multidataset/exchange_rate/expert_knowledge.txt"
+      ]
+    },
+    {
+      "path": "data/processed/exchange_rate/series.csv",
+      "blob_oid": "eed147e15ddfa7f7c9da9c4d785748b29bceef21",
+      "public_paths": [
+        "results/multidataset/exchange_rate/series.csv"
+      ]
+    },
+    {
+      "path": "data/processed/exchange_rate/window_indices.npz",
+      "blob_oid": "f7ef328fa3fd9c5eabfd1cc35deeb86da5fb0884",
+      "public_paths": [
+        "results/multidataset/exchange_rate/window_indices.npz"
+      ]
+    },
+    {
+      "path": "data/processed/LondonSmartMeters/config.json",
+      "blob_oid": "b9a0c0cd781cc72b2a8a75ee4bf040daf0fc8f99",
+      "public_paths": [
+        "results/multidataset/LondonSmartMeters/config.json"
+      ]
+    },
+    {
+      "path": "data/processed/LondonSmartMeters/series.csv",
+      "blob_oid": "940b71cf55336d50ad3f513cfe1c6e0ce5306cd1",
+      "public_paths": [
+        "results/multidataset/LondonSmartMeters/series.csv"
+      ]
+    },
+    {
+      "path": "data/processed/LondonSmartMeters/window_indices.npz",
+      "blob_oid": "4cd8fa046985f5b93419c91d523a3fb871ab0ff3",
+      "public_paths": [
+        "results/multidataset/LondonSmartMeters/window_indices.npz"
+      ]
+    },
+    {
+      "path": "data/processed/solar/config.json",
+      "blob_oid": "a23c87b0a201d33e7ba4d9703509283695348125",
+      "public_paths": [
+        "results/multidataset/solar/config.json"
+      ]
+    },
+    {
+      "path": "data/processed/solar/expert_knowledge.txt",
+      "blob_oid": "ebc9eeb02bd68aeea058c89698d65642e49f0fb6",
+      "public_paths": [
+        "results/multidataset/solar/expert_knowledge.txt"
+      ]
+    },
+    {
+      "path": "data/processed/solar/series.csv",
+      "blob_oid": "93425b775f748f67b588083161169cd03cd8c31a",
+      "public_paths": [
+        "results/multidataset/solar/series.csv"
+      ]
+    },
+    {
+      "path": "data/processed/solar/window_indices.npz",
+      "blob_oid": "83642afd2a56d83c6aa48838e583ba416d6cea84",
+      "public_paths": [
+        "results/multidataset/solar/window_indices.npz"
+      ]
+    },
+    {
+      "path": "data/processed/Tourism/config.json",
+      "blob_oid": "8ec4437f8c47c2d9d812bc245fe9049f9bd2e871",
+      "public_paths": [
+        "results/multidataset/Tourism/config.json"
+      ]
+    },
+    {
+      "path": "data/processed/Tourism/series.csv",
+      "blob_oid": "5176f774b064dce4cec7ad027326012a9c5ddd8a",
+      "public_paths": [
+        "results/multidataset/Tourism/series.csv"
+      ]
+    },
+    {
+      "path": "data/processed/Tourism/window_indices.npz",
+      "blob_oid": "3d7528a07d3115d0d1f40da5af52e32f02e9f67a",
+      "public_paths": [
+        "results/multidataset/Tourism/window_indices.npz"
+      ]
+    },
+    {
+      "path": "data/processed/traffic/config.json",
+      "blob_oid": "e6a8a360748105f654df614fe0fceec28d49a202",
+      "public_paths": [
+        "results/multidataset/traffic/config.json"
+      ]
+    },
+    {
+      "path": "data/processed/traffic/expert_knowledge.txt",
+      "blob_oid": "1f3da6319449445d98bcf8aa72c65895f2ba448d",
+      "public_paths": [
+        "results/multidataset/traffic/expert_knowledge.txt"
+      ]
+    },
+    {
+      "path": "data/processed/traffic/series.csv",
+      "blob_oid": "d64ab32324ca13e22e0ddf597464426e591f51a5",
+      "public_paths": [
+        "results/multidataset/traffic/series.csv"
+      ]
+    },
+    {
+      "path": "data/processed/traffic/window_indices.npz",
+      "blob_oid": "91d09621194cd05c2871ecf7017a400dfbd866f5",
+      "public_paths": [
+        "results/multidataset/traffic/window_indices.npz"
+      ]
+    },
+    {
+      "path": "data/processed/weather/config.json",
+      "blob_oid": "90acc959c6981840ca3fdebddfca0a23276d020f",
+      "public_paths": [
+        "results/multidataset/weather/config.json"
+      ]
+    },
+    {
+      "path": "data/processed/weather/expert_knowledge.txt",
+      "blob_oid": "d39a0f9a92de1f9e6b668172b9d9f8f2ddbcbff0",
+      "public_paths": [
+        "results/multidataset/weather/expert_knowledge.txt"
+      ]
+    },
+    {
+      "path": "data/processed/weather/series.csv",
+      "blob_oid": "3ab97075e29b380a88b1a6a69fbe34c4cd8b87f5",
+      "public_paths": [
+        "results/multidataset/weather/series.csv"
+      ]
+    },
+    {
+      "path": "data/processed/weather/window_indices.npz",
+      "blob_oid": "bdd4f8778111567c9242434ca79100f346eda892",
+      "public_paths": [
+        "results/multidataset/weather/window_indices.npz"
+      ]
+    },
+    {
+      "path": "data/processed/WindFarms/config.json",
+      "blob_oid": "a3c21c31e01723e393781027f1fa19494272a5d9",
+      "public_paths": [
+        "results/multidataset/WindFarms/config.json"
+      ]
+    },
+    {
+      "path": "data/processed/WindFarms/series.csv",
+      "blob_oid": "58031c6203b8cb3c51a3a322d5be59255dd2eb3b",
+      "public_paths": [
+        "results/multidataset/WindFarms/series.csv"
+      ]
+    },
+    {
+      "path": "data/processed/WindFarms/window_indices.npz",
+      "blob_oid": "f8a18620401e5af99045c04a1f6d18f49cc58efd",
+      "public_paths": [
+        "results/multidataset/WindFarms/window_indices.npz"
+      ]
+    },
+    {
+      "path": "data/experts/electricity/raw_experts.json",
+      "blob_oid": "f118bdd7cb406aa24a73648ae4b375ddf6b09140",
+      "public_paths": [
+        "paper/kbs_draft_20261012/figure_data/expert_history/electricity/raw_experts.json",
+        "results/reward_feedback_critic_v2_full_cross_dataset/electricity/raw_experts.json"
+      ]
+    },
+    {
+      "path": "data/experts/etth1/raw_experts.json",
+      "blob_oid": "546f49c71bd8dc676dcbf2f4db56c88dca8c87d9",
+      "public_paths": [
+        "paper/kbs_draft_20261012/figure_data/expert_history/etth1/raw_experts.json",
+        "results/reward_feedback_critic_v2_full_cross_dataset/etth1/raw_experts.json"
+      ]
+    },
+    {
+      "path": "data/experts/etth2/raw_experts.json",
+      "blob_oid": "45e543424d20407072873ed7f4696e2c99fbc646",
+      "public_paths": [
+        "paper/kbs_draft_20261012/figure_data/expert_history/etth2/raw_experts.json",
+        "results/reward_feedback_critic_v2_full_cross_dataset/etth2/raw_experts.json"
+      ]
+    },
+    {
+      "path": "data/experts/exchange_rate/raw_experts.json",
+      "blob_oid": "7cc5ca990044899e1d013905e7d368a54e1efdac",
+      "public_paths": [
+        "paper/kbs_draft_20261012/figure_data/expert_history/exchange_rate/raw_experts.json",
+        "results/reward_feedback_critic_v2_full_cross_dataset/exchange_rate/raw_experts.json"
+      ]
+    },
+    {
+      "path": "data/experts/solar/raw_experts.json",
+      "blob_oid": "e9c29fbb67c5d4113c47cf487e6f588e5a0cbc74",
+      "public_paths": [
+        "paper/kbs_draft_20261012/figure_data/expert_history/solar/raw_experts.json",
+        "results/reward_feedback_critic_v2_full_cross_dataset/solar/raw_experts.json"
+      ]
+    },
+    {
+      "path": "data/experts/traffic/raw_experts.json",
+      "blob_oid": "4b6ffa3d177cef582af9ee5bd38507052df79bd0",
+      "public_paths": [
+        "paper/kbs_draft_20261012/figure_data/expert_history/traffic/raw_experts.json",
+        "results/reward_feedback_critic_v2_full_cross_dataset/traffic/raw_experts.json"
+      ]
+    },
+    {
+      "path": "data/experts/weather/raw_experts.json",
+      "blob_oid": "c451e65a745fda6cfd31fc44109fdbf82e3a2d0d",
+      "public_paths": [
+        "paper/kbs_draft_20261012/figure_data/expert_history/weather/raw_experts.json",
+        "results/reward_feedback_critic_v2_full_cross_dataset/weather/raw_experts.json"
+      ]
+    }
+  ],
+  "machine_paths_redacted": [
+    "docs/unified/BOOTSTRAP_CHECKS.json",
+    "docs/unified/INITIALIZATION_CHECK.json",
+    "docs/unified/IO_RECOVERY.json",
+    "docs/unified/IO_RETRY_CHECKS.json",
+    "docs/unified/LLM_PREFLIGHT.json",
+    "docs/unified/RESUME_VERIFICATION.json"
+  ],
+  "execution_reconstruction_sources_verified": 118,
+  "note": "Only the sanitized current tree is exported; local intermediate history is not sent."
+}

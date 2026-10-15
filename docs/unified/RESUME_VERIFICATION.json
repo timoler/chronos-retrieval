@@ -1,0 +1,1059 @@
+{
+  "checked_utc": "2026-10-15T01:55:31.873244+00:00",
+  "scope": "Only 31 markers frozen in PAUSED_BY_USER.json and their completed files; no live training histories read; no TEST readout; no project imports or GPU",
+  "source_pause_record": "<RUN_ROOT>\\paused_attempts\\20261015_user_rest\\PAUSED_BY_USER.json",
+  "source_pause_sha256": "4ceb9057a99e1eb4b6ea080269da435824b8f19a31eee06d28540a5a8ca277c9",
+  "status": "PASS",
+  "rows": [
+    {
+      "marker": "<RUN_ROOT>\\backbones\\PatchTST\\traffic\\fold1\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "9019d57758ade3ebe67a63271edfe5b9929e285c76e1df5fc88a1a202a171450",
+      "backbone": "PatchTST",
+      "dataset": "traffic",
+      "fold": 1,
+      "seed": 42,
+      "prediction_sha256": "98febb061e9442d8265115d8a4c4a86d27ee9b3d10a2558b526eb535ed87e63e",
+      "checkpoint_sha256": "b7c289047e7c0d418c4f324d3d69304858dac7b22cb4354f7023f9bd57cc10bc",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "cal",
+          "shape": [
+            26,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0011204307057499558,
+          "mae": 0.013892526241901439
+        },
+        {
+          "split": "eval",
+          "shape": [
+            27,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.001903054711130181,
+          "mae": 0.0186658962412355
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\iTransformer\\traffic\\fold1\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "0774d611e4ef22705d7e7c195ed30a5f682117cacf70abd48f1e7c7d315fe4ae",
+      "backbone": "iTransformer",
+      "dataset": "traffic",
+      "fold": 1,
+      "seed": 42,
+      "prediction_sha256": "48ad21c9e92ab33c922b60aa4a5e604f2011236d13af98684d0f9f78398e1837",
+      "checkpoint_sha256": "e8dc7c6f3e96e6b868550a059c4c3142a9d3913c8e7cfd6e45bba80d45c26a2a",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "cal",
+          "shape": [
+            26,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0012170442343163277,
+          "mae": 0.015209613150942367
+        },
+        {
+          "split": "eval",
+          "shape": [
+            27,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.002024896680828849,
+          "mae": 0.019863544130247993
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\RAFT\\traffic\\fold1\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "bcfcc1fcbb5e17f2431febccc7c49703092a797608122a7dc7f5dccbb2eb603b",
+      "backbone": "RAFT",
+      "dataset": "traffic",
+      "fold": 1,
+      "seed": 42,
+      "prediction_sha256": "0d253424928927390411107956d7c46b67de8445a9bd29d85a49c33dd3ea2d13",
+      "checkpoint_sha256": "088827a6b3e170213e4ebd244b6ebf38648e783e33e7b91ea7831472dbd202f4",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "cal",
+          "shape": [
+            26,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0017567059971447308,
+          "mae": 0.02642513125129671
+        },
+        {
+          "split": "eval",
+          "shape": [
+            27,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.004647265432377007,
+          "mae": 0.0351541189239346
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\Chronos-2\\traffic\\fold1\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "ae981cd3844dee43337daeb7a236fd8e6d7774815637ad44c59defccbf1cea9b",
+      "backbone": "Chronos-2",
+      "dataset": "traffic",
+      "fold": 1,
+      "seed": null,
+      "prediction_sha256": "74b8b54174328376bb40278a2addaa43084b5a69db75ec33519c32fa3295224a",
+      "splits": [
+        {
+          "split": "cal",
+          "shape": [
+            26,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0010910129239134424,
+          "mae": 0.010107413054263303
+        },
+        {
+          "split": "eval",
+          "shape": [
+            27,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0017956956448682412,
+          "mae": 0.014800532633132578
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\PatchTST\\traffic\\fold2\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "bc0d41bcc3c1a7af1adef9ae36ecda58598ee305b9b2477dfbc9fc4f846d1932",
+      "backbone": "PatchTST",
+      "dataset": "traffic",
+      "fold": 2,
+      "seed": 42,
+      "prediction_sha256": "d6a8e6ecd81952c687719032ccb2864f89e053855d028d9d601b11351dd23b2a",
+      "checkpoint_sha256": "ab96c6f67cddc1c41f1bd8a5c1cb9d8679465f126579a09f51416292ed5b7701",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "cal",
+          "shape": [
+            26,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0008930428978558109,
+          "mae": 0.012132787141756406
+        },
+        {
+          "split": "eval",
+          "shape": [
+            27,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0020293492472532554,
+          "mae": 0.01788893220464722
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\iTransformer\\traffic\\fold2\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "4fe2775c77910a1b7c3bd85e2e04d3e58511ab0357b36c26223ce13a0ec06226",
+      "backbone": "iTransformer",
+      "dataset": "traffic",
+      "fold": 2,
+      "seed": 42,
+      "prediction_sha256": "5b4bdc73949ae4b91c9862f24e5aede0edd31853ca227c8378601b58fdb52284",
+      "checkpoint_sha256": "8d09e295b167a44b92232766b6a86b5a5dc80558f639f68959c1d0e26265cd86",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "cal",
+          "shape": [
+            26,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0008017661503872525,
+          "mae": 0.011080490576904804
+        },
+        {
+          "split": "eval",
+          "shape": [
+            27,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.00190258349098895,
+          "mae": 0.016353024423113784
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\RAFT\\traffic\\fold2\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "d716abcf457811b62c5773a6861b734a25c6f49c625359d32ce5ebbc9e16a330",
+      "backbone": "RAFT",
+      "dataset": "traffic",
+      "fold": 2,
+      "seed": 42,
+      "prediction_sha256": "890940c8cde12ab56fd2c2bda82fff4933c5b7ce42821843dcfd1581b42dfedb",
+      "checkpoint_sha256": "54a7aba7302da61cbd5b69f6b3fdb8577d17bbec31f80559255ebb4e95e525e8",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "cal",
+          "shape": [
+            26,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0038985299858933066,
+          "mae": 0.03148158941099283
+        },
+        {
+          "split": "eval",
+          "shape": [
+            27,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0031376917175965345,
+          "mae": 0.033138770411397546
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\Chronos-2\\traffic\\fold2\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "22ae7424c82dcf73d94222c1d0fc00d89fdecad75958e6e862b4725601b106e8",
+      "backbone": "Chronos-2",
+      "dataset": "traffic",
+      "fold": 2,
+      "seed": null,
+      "prediction_sha256": "b228bea18e1fd173b27db8a675234f445bfc3b46b13ef053ab09c726cfaad624",
+      "splits": [
+        {
+          "split": "cal",
+          "shape": [
+            26,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.001532557164514358,
+          "mae": 0.0124619421536082
+        },
+        {
+          "split": "eval",
+          "shape": [
+            27,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0022509978475952304,
+          "mae": 0.015480122331710946
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\PatchTST\\traffic\\fold3\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "42fb91e1caab6c9f403a73eda52e357b251ba811c6d4fbefb682319312687344",
+      "backbone": "PatchTST",
+      "dataset": "traffic",
+      "fold": 3,
+      "seed": 42,
+      "prediction_sha256": "abf832b8cef7dcec885fcf4cc92f97009e5d7e9e7eb1e23c5402feff3ff0cd42",
+      "checkpoint_sha256": "b0d3ba6f5474d30d1735d0197280a12fc2b7142264ac624078d1c63f01fc9626",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "cal",
+          "shape": [
+            26,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0011026832170155114,
+          "mae": 0.012491824741002161
+        },
+        {
+          "split": "eval",
+          "shape": [
+            27,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0013893274959828688,
+          "mae": 0.013880684715264512
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\iTransformer\\traffic\\fold3\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "4abb811a2b088e17e8972f8072326d2301b9807f06eedf2d72379ccfe11319e0",
+      "backbone": "iTransformer",
+      "dataset": "traffic",
+      "fold": 3,
+      "seed": 42,
+      "prediction_sha256": "8132cb09e1d1cffe2b22d6a5fae9800f83b64b52ca80943a879f9af9dfa0a400",
+      "checkpoint_sha256": "6c0b9b455832e9779d3940e314abeb7ea88a144831b6771419fe7435b39ae42c",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "cal",
+          "shape": [
+            26,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0010887950876112317,
+          "mae": 0.012633829852394486
+        },
+        {
+          "split": "eval",
+          "shape": [
+            27,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.001322010726581486,
+          "mae": 0.014062781470402339
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\RAFT\\traffic\\fold3\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "26f176fb4ea536229951d82dc0f52b5eb9714f1e5d34d39b23d774f65de2ce99",
+      "backbone": "RAFT",
+      "dataset": "traffic",
+      "fold": 3,
+      "seed": 42,
+      "prediction_sha256": "75970e6abee45cd754e299c0b6216e8519741bdc077044f4e03d54223bacd9d3",
+      "checkpoint_sha256": "859b1bededd91b92bf2af5e76e016a5c4cf5c37bd0291d597629f9980cf68818",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "cal",
+          "shape": [
+            26,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.002151246165425035,
+          "mae": 0.025617701249034442
+        },
+        {
+          "split": "eval",
+          "shape": [
+            27,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.002172403582125697,
+          "mae": 0.02236326402886828
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\Chronos-2\\traffic\\fold3\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "0aade2bf100de8b101074b352baa32a6d93818ab0f4a0aa43965d52edfee0e68",
+      "backbone": "Chronos-2",
+      "dataset": "traffic",
+      "fold": 3,
+      "seed": null,
+      "prediction_sha256": "27c5001d0e75ea99ef1d58869bf99e7a62cf17c1ce97afeecadf731222cc7140",
+      "splits": [
+        {
+          "split": "cal",
+          "shape": [
+            26,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0013041813627423056,
+          "mae": 0.012041910665105276
+        },
+        {
+          "split": "eval",
+          "shape": [
+            27,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0021268090360071798,
+          "mae": 0.013679961202505194
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\PatchTST\\traffic\\fold4\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "758bbda218ac3bc074ac99af5001fa47e3734c6ac7c05acddd5452e18eb651c2",
+      "backbone": "PatchTST",
+      "dataset": "traffic",
+      "fold": 4,
+      "seed": 42,
+      "prediction_sha256": "85687e1651050b9761fac0e4db14afc37160547327f7e5c9170b4612781f54c7",
+      "checkpoint_sha256": "3a544de2abd7265e938740aa8c594c47c7717e572d5652557075fa59f0f33fcc",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "cal",
+          "shape": [
+            26,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0012967714720157086,
+          "mae": 0.013577296995395161
+        },
+        {
+          "split": "eval",
+          "shape": [
+            27,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.001022145486817635,
+          "mae": 0.012847959720939226
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\iTransformer\\traffic\\fold4\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "2edccf642930d5a131ea26e127e20b30b0bec84c70e74e6f1360c24ca7483e76",
+      "backbone": "iTransformer",
+      "dataset": "traffic",
+      "fold": 4,
+      "seed": 42,
+      "prediction_sha256": "1d9fd8867a9e8b48e48b2ee049a6238c67bf9e9265d53322687c010c076fb0f5",
+      "checkpoint_sha256": "4b2693a16969147379363c6e47cb02f3bb5273de47cb8bffcc15bf309d10f363",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "cal",
+          "shape": [
+            26,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0012472013529492866,
+          "mae": 0.013015268744194869
+        },
+        {
+          "split": "eval",
+          "shape": [
+            27,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0009962933130274756,
+          "mae": 0.012374627315345865
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\RAFT\\traffic\\fold4\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "034c00ea69f7512a9f7c183089c2df93312af8992940b165ccb5841c1ac1c55e",
+      "backbone": "RAFT",
+      "dataset": "traffic",
+      "fold": 4,
+      "seed": 42,
+      "prediction_sha256": "5d6247f09a4a751cd3d05e2ffff6e77e8475c46fd28747516bb92143103e5063",
+      "checkpoint_sha256": "e7e6bd9893815a055811afa270bd90bcb94b4787e2dac9fbc60001b97bb9fc46",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "cal",
+          "shape": [
+            26,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0025755481767838276,
+          "mae": 0.029075999888822805
+        },
+        {
+          "split": "eval",
+          "shape": [
+            27,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0020369420267009977,
+          "mae": 0.024070726406299165
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\Chronos-2\\traffic\\fold4\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "716d1d3bc524697984791b41e3d5db1818ea923deb318c79785cc30ebd1508cf",
+      "backbone": "Chronos-2",
+      "dataset": "traffic",
+      "fold": 4,
+      "seed": null,
+      "prediction_sha256": "b4bff8e8bd243ebc17a9ad6b4aa4566471a24fecf2dcdd8cece5122f08371a03",
+      "splits": [
+        {
+          "split": "cal",
+          "shape": [
+            26,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0013845504714208095,
+          "mae": 0.010953903223428195
+        },
+        {
+          "split": "eval",
+          "shape": [
+            27,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0013114909295418673,
+          "mae": 0.011623607217413259
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\Chronos-2\\traffic\\final\\shared\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "177b6bbd9fd37fcca1e4b1e868afd9ce763f606e8ef48f816250281a60ff4dcc",
+      "backbone": "Chronos-2",
+      "dataset": "traffic",
+      "fold": 0,
+      "seed": null,
+      "prediction_sha256": "072cd033ef07b6a9c5403fce5c2bf693d1669563fca5a4348327670da99fd86d",
+      "splits": [
+        {
+          "split": "val",
+          "shape": [
+            3318,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0007545136607226516,
+          "mae": 0.008151124132109928
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\PatchTST\\traffic\\final\\seed42\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "8e29ddeb37f373b472794888384dae30a0879e51cbd15e2c47ab73d1729814f5",
+      "backbone": "PatchTST",
+      "dataset": "traffic",
+      "fold": 0,
+      "seed": 42,
+      "prediction_sha256": "eb200a55bb390424d795430b844571b3218723a5d4ffeb40f402af2d5147a8ba",
+      "checkpoint_sha256": "1b1c830eaaa7eec83b06293c8a59bc65e2022f5b2f939a10785a2db768ed3710",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "val",
+          "shape": [
+            3318,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.000639922194231667,
+          "mae": 0.009772447900057307
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\PatchTST\\traffic\\final\\seed123\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "8b013cb7d8aec2d7b1d1e9f77cad9679f44ddac045332fcaebdde14dae2394e1",
+      "backbone": "PatchTST",
+      "dataset": "traffic",
+      "fold": 0,
+      "seed": 123,
+      "prediction_sha256": "c05822de240662c82976566f057ff57580af60b04228cb00fb585e36eba7a705",
+      "checkpoint_sha256": "aa9bfb926af6f7a4ed8dffc8b618f28001711af663bcc5d344ba58dfa97c48be",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "val",
+          "shape": [
+            3318,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0006404227683653417,
+          "mae": 0.009738032001151658
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\PatchTST\\traffic\\final\\seed2026\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "5a264220868b1b5f45ecc363f8e3b7acd98fe30ff2f5d8bb04400e67ef69dc30",
+      "backbone": "PatchTST",
+      "dataset": "traffic",
+      "fold": 0,
+      "seed": 2026,
+      "prediction_sha256": "858d3353ae56777332a1da714c4310f08a8efba656187de230199d9de25ebf31",
+      "checkpoint_sha256": "2ec359069a22d609115640b0cde523773d0e6acbda1d9aa6cc391ba38b7cb3cf",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "val",
+          "shape": [
+            3318,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.000639229376570635,
+          "mae": 0.009762910977402079
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\iTransformer\\traffic\\final\\seed42\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "3eb5ed096c1ded1515f03afc9ae2a931ffdc823b609e091687f07827f97633f2",
+      "backbone": "iTransformer",
+      "dataset": "traffic",
+      "fold": 0,
+      "seed": 42,
+      "prediction_sha256": "136e384caad13f87e22aa9d2402c2d3226bc84ffe88f2f0a07b68b490bcb4882",
+      "checkpoint_sha256": "132b223219034d634b4e7969e985856d5bba8d85cabe0ec25e37739184646b69",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "val",
+          "shape": [
+            3318,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.000609706541255275,
+          "mae": 0.009464627124343485
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\iTransformer\\traffic\\final\\seed123\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "86fbcb7f7e2a3ad4d056b0509809eccc1ddb9ccabbd286dfc3dc3d4997c6562c",
+      "backbone": "iTransformer",
+      "dataset": "traffic",
+      "fold": 0,
+      "seed": 123,
+      "prediction_sha256": "71108ea996541fc737e13a909ff6c414a7de7046bab3297b3b8384d429721e4f",
+      "checkpoint_sha256": "7971d7873d87c69252f6454c81c4a9bae9d49b0cd9c034f621441afc345d05a7",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "val",
+          "shape": [
+            3318,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0006140168019296091,
+          "mae": 0.009481897370118522
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\iTransformer\\traffic\\final\\seed2026\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "65d8f8bc6dee7c05d0d157d50b5e914f0d9f68d18273ebd774c2a39713c25773",
+      "backbone": "iTransformer",
+      "dataset": "traffic",
+      "fold": 0,
+      "seed": 2026,
+      "prediction_sha256": "9c8ee2e20cc166a9802fd2bd606a63492423f6b123967342491970fb5c6a7084",
+      "checkpoint_sha256": "b57866b9ea2e4b34eb16ab76fd10e8c085686f2275a27e222223e9650774eadb",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "val",
+          "shape": [
+            3318,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0006149350727250077,
+          "mae": 0.009454972786041406
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\RAFT\\traffic\\final\\seed42\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "dbd94597771a86cb8d194eae99ee504bfcf4224d9696a6eecba5446d22f4f443",
+      "backbone": "RAFT",
+      "dataset": "traffic",
+      "fold": 0,
+      "seed": 42,
+      "prediction_sha256": "e7ae8e68c09a0e8f8a796c1009505618fb8dbf86f16de6cda3875cfa759dc8f8",
+      "checkpoint_sha256": "5a2da48a557c0066cee35e1e65452d53f5a1741bef69854a7f9bec04bd05437f",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "val",
+          "shape": [
+            3318,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0009204481035776728,
+          "mae": 0.01592509369388326
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\RAFT\\traffic\\final\\seed123\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "0ed5bf2542f8e38789a5a3d49e5916f9fd28c76d5e30ef30dc988531590e94c1",
+      "backbone": "RAFT",
+      "dataset": "traffic",
+      "fold": 0,
+      "seed": 123,
+      "prediction_sha256": "793b922424e05e84e7612b12bac2b127c6339da7b844d181c8d9c4dcb8a5ea6f",
+      "checkpoint_sha256": "7e0ae1c4cdf0ca55ef32acbd3066934fb7c8faf20c20457cf86c5f258f6d5d7f",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "val",
+          "shape": [
+            3318,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0009749764021653971,
+          "mae": 0.01625019536611097
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\RAFT\\traffic\\final\\seed2026\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "63245727af51458db7928df53340d0292a363ac25265f654717dd380e288d66e",
+      "backbone": "RAFT",
+      "dataset": "traffic",
+      "fold": 0,
+      "seed": 2026,
+      "prediction_sha256": "8a9b1d4a8ddd66f5c99996519c703fcebfe134071fe835447ea1a4460b021c98",
+      "checkpoint_sha256": "2a4a5b2193e59cf4dacf49b29d38a51892af63e7a3ea1ee9ab0452c9b245e317",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "val",
+          "shape": [
+            3318,
+            24
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.001020172601183937,
+          "mae": 0.01660224745778142
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\PatchTST\\exchange_rate\\fold1\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "75ba656d76ed1a0ac1656b11cbb6488edca3883c803897d6f1797eb6598fd451",
+      "backbone": "PatchTST",
+      "dataset": "exchange_rate",
+      "fold": 1,
+      "seed": 42,
+      "prediction_sha256": "9aed77c70bea18c298f78472b5189f50c2c0cf8523b7b4c2c00ba000d443072d",
+      "checkpoint_sha256": "ff69328f7855fb6bde3cf6629eb1413278a9d3f64c7668130edd61880b80bc44",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "cal",
+          "shape": [
+            2,
+            96
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0009209998971704408,
+          "mae": 0.021476324492444594
+        },
+        {
+          "split": "eval",
+          "shape": [
+            3,
+            96
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.00021014308058106248,
+          "mae": 0.01187783893611696
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\iTransformer\\exchange_rate\\fold1\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "71da739f46c2e68b00cadefe788080d5c4b4726ab871b6df6261e20b67c990bb",
+      "backbone": "iTransformer",
+      "dataset": "exchange_rate",
+      "fold": 1,
+      "seed": 42,
+      "prediction_sha256": "60009ec37769f749746ed53fbbd0e7390675d61ef146ae2a1accee4035137d68",
+      "checkpoint_sha256": "65c42f03518b1fb309babd66c060b9655c196aa6c3344f094a74ada564259d26",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "cal",
+          "shape": [
+            2,
+            96
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.000920622444424706,
+          "mae": 0.022765658640613157
+        },
+        {
+          "split": "eval",
+          "shape": [
+            3,
+            96
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.00046232524654188676,
+          "mae": 0.01781334738350577
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\RAFT\\exchange_rate\\fold1\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "77d8f586357ef7563f2e20f6f0e004c5fd2553f8b1ad1f21a998d45e0c61ab7f",
+      "backbone": "RAFT",
+      "dataset": "exchange_rate",
+      "fold": 1,
+      "seed": 42,
+      "prediction_sha256": "076ba52f8b4d1296097c6b7ee948070becbf238d8821b37d1370ee2375bb49a7",
+      "checkpoint_sha256": "4e9d4aad66060e9e85ea170ffc1e99b26c2906b8228d7b864da5ad897afb9c0c",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "cal",
+          "shape": [
+            2,
+            96
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0008164008933133257,
+          "mae": 0.021469296887516975
+        },
+        {
+          "split": "eval",
+          "shape": [
+            3,
+            96
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.00020628155234734332,
+          "mae": 0.011155329955120882
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\Chronos-2\\exchange_rate\\fold1\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "1e71520afd72f999fbf3c147478b7ccc30ec0a4e8ec237184580632a2cc2899f",
+      "backbone": "Chronos-2",
+      "dataset": "exchange_rate",
+      "fold": 1,
+      "seed": null,
+      "prediction_sha256": "da815cf577fca42c29a011b2d5f79cfa7df3e80403e628038024941ea93b3bc9",
+      "splits": [
+        {
+          "split": "cal",
+          "shape": [
+            2,
+            96
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0012414407345059432,
+          "mae": 0.026616592425853014
+        },
+        {
+          "split": "eval",
+          "shape": [
+            3,
+            96
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.00014299033600878895,
+          "mae": 0.009137822832498286
+        }
+      ]
+    },
+    {
+      "marker": "<RUN_ROOT>\\backbones\\PatchTST\\exchange_rate\\fold2\\completed.json",
+      "status": "PASS",
+      "marker_sha256": "166e8838ead1977621c9d287961aa97214c5458639b3c6ff755d1e88063c71af",
+      "backbone": "PatchTST",
+      "dataset": "exchange_rate",
+      "fold": 2,
+      "seed": 42,
+      "prediction_sha256": "44d1896cf696a26bffbf64a545c0c051a7d0d4b35589791366abcf9060d1b6e2",
+      "checkpoint_sha256": "45705b525e4fba8b3e42cfdf5d4fbbf8e1c69cc326ee2184dd25a3d76cabc358",
+      "epochs": 100,
+      "splits": [
+        {
+          "split": "cal",
+          "shape": [
+            2,
+            96
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0005448465764863972,
+          "mae": 0.01841623444731037
+        },
+        {
+          "split": "eval",
+          "shape": [
+            3,
+            96
+          ],
+          "labels_exact": true,
+          "starts_exact": true,
+          "finite": true,
+          "mse": 0.0005302954197956814,
+          "mae": 0.01731276884675026
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "completed_jobs_checked": 31,
+  "prediction_splits_checked": 52,
+  "checkpoints_checked": 25
+}
