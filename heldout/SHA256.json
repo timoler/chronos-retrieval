@@ -1,0 +1,14 @@
+{
+  "frozen_weights.csv": "36c9cec0c6ff894c03e31dc351a41fe5bd770476eccbbc5348e3b03fe751d25e",
+  "observations/labels.npz": "95500dd380b46a28af1e6f8086cab5b5f91d0a31b8e160e57099095d3899506b",
+  "observations/mpi_roof_2021a.zip": "3785931544fef3e66166e0b3cb1ec4496ee5e92042e7de0d1a094fac64311668",
+  "predictions/base_chronos_2.npz": "848726f25155bb1f3181f3bccc1349e2866d79ea5ccc2c67548b4f4c5a9b8721",
+  "predictions/base_itransformer.npz": "20249b1882b2e502a31ed72e9e6b3002b803d24dc2220d94f21ca4c9cea89649",
+  "predictions/base_patchtst.npz": "ca39c34dd08641ffaabc8df096227c7d3473d0378c41c5da8ab7d49d98579a45",
+  "predictions/base_raft.npz": "6bf4d428de1bf22fb1fbf9ab26390e41a39bf5e3a3f5e26983c40315a45377cf",
+  "predictions/memory_paer.npz": "bf10b376126aae2d30e6e636dc12df76409d3db9b321a663ed70f70fd011f930",
+  "predictions/memory_raw_expert.npz": "1f4d62340abe70286a24868314ba77e0d085bdfd270b34764f0ed8253b94ba94",
+  "predictions/memory_retrieval.npz": "d0c6509c94ba3ff9141e8d120e9a0f726d5c51d0f5bf104a7f277fccacc5755e",
+  "protocol.json": "975365c56783bf07499223be7db3333decbbad071e09e29c47d96a7dcb391247",
+  "val_grid.csv": "8565eb59956a17e76a17fcbdb128fe7484d8766f4c8359653d5d3d57459360c8"
+}

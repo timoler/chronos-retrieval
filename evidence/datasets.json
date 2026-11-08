@@ -1,0 +1,219 @@
+[
+  {
+    "dataset": "etth1",
+    "target": "OT (transformer oil temperature)",
+    "frequency": "1h",
+    "calendar": "source_timestamps",
+    "context": 512,
+    "horizon": 96,
+    "rows": 17420,
+    "split_half_open": {
+      "train": [
+        0,
+        10452
+      ],
+      "val": [
+        10452,
+        13936
+      ],
+      "test": [
+        13936,
+        17420
+      ]
+    },
+    "window_counts": {
+      "train": 9845,
+      "val": 2877,
+      "test": 2877
+    },
+    "series_sha256": "44b0cbae91e66e1d8d5e4986927d88fede6ea25fc912e6971e365dcd75516148",
+    "window_indices_sha256": "26540006f92d9781ed59ba328b1d5bcb666b15e1820be8e07ec20543c93d68ed",
+    "source": "https://github.com/zhouhaoyi/ETDataset"
+  },
+  {
+    "dataset": "etth2",
+    "target": "OT (transformer oil temperature)",
+    "frequency": "hourly",
+    "calendar": "source_timestamps",
+    "context": 168,
+    "horizon": 24,
+    "rows": 17420,
+    "split_half_open": {
+      "train": [
+        0,
+        10452
+      ],
+      "val": [
+        10452,
+        13936
+      ],
+      "test": [
+        13936,
+        17420
+      ]
+    },
+    "window_counts": {
+      "train": 10261,
+      "val": 3293,
+      "test": 3293
+    },
+    "series_sha256": "ab66fef3c2a622c606d5ad9d1622917bb6bc5918fb34b697c1b92e968168a56c",
+    "window_indices_sha256": "e94c13b4fb6c585dc3c526b194a18174cc66747988a477ca0b476a690ab45811",
+    "source": "https://github.com/zhouhaoyi/ETDataset"
+  },
+  {
+    "dataset": "exchange_rate",
+    "target": "Seventh original exchange-rate column, zero-based index 6, calendar features disabled",
+    "frequency": "daily",
+    "calendar": "disabled",
+    "context": 512,
+    "horizon": 96,
+    "rows": 7588,
+    "split_half_open": {
+      "train": [
+        0,
+        4552
+      ],
+      "val": [
+        4552,
+        6070
+      ],
+      "test": [
+        6070,
+        7588
+      ]
+    },
+    "window_counts": {
+      "train": 3945,
+      "val": 911,
+      "test": 911
+    },
+    "series_sha256": "937fb091e76d6f165566c0b5e48db90293cbb8307e6ff8874735fa242e0936a1",
+    "window_indices_sha256": "0d229ebba641059777bd1d677e9001c99136c295da840c6582a5df19ef92c2e3",
+    "source": "https://github.com/laiguokun/multivariate-time-series-data"
+  },
+  {
+    "dataset": "traffic",
+    "target": "Sensor_000 occupancy",
+    "frequency": "hourly",
+    "calendar": "reconstructed_source_calendar",
+    "context": 168,
+    "horizon": 24,
+    "rows": 17544,
+    "split_half_open": {
+      "train": [
+        0,
+        10526
+      ],
+      "val": [
+        10526,
+        14035
+      ],
+      "test": [
+        14035,
+        17544
+      ]
+    },
+    "window_counts": {
+      "train": 10335,
+      "val": 3318,
+      "test": 3318
+    },
+    "series_sha256": "c20ffa64d441ab6e427fc5680df801568c97f1a672c1b03fc07acf32afffef30",
+    "window_indices_sha256": "d714e1bfe6b901403aa54e32dc8db3a999a3bcf909871f481e0b93cdfc267072",
+    "source": "https://github.com/laiguokun/multivariate-time-series-data"
+  },
+  {
+    "dataset": "weather",
+    "target": "CO2 (ppm); causally forward-filled sentinel observations",
+    "frequency": "10min",
+    "calendar": "source_timestamps",
+    "context": 512,
+    "horizon": 96,
+    "rows": 52696,
+    "split_half_open": {
+      "train": [
+        0,
+        31617
+      ],
+      "val": [
+        31617,
+        42156
+      ],
+      "test": [
+        42156,
+        52696
+      ]
+    },
+    "window_counts": {
+      "train": 31010,
+      "val": 9932,
+      "test": 9933
+    },
+    "series_sha256": "1331d66ae72827d4b9a58e0a2f2c002a68364e2e70f7ef88ac0bfb078dc2f9e5",
+    "window_indices_sha256": "06416be7b7399c37530c478b72b6eb66dfb1a4118f7579a32cedc6d95c4ad671",
+    "source": "https://www.bgc-jena.mpg.de/wetter/weather_data.html"
+  },
+  {
+    "dataset": "solar",
+    "target": "Sum of 137 generation series",
+    "frequency": "10min",
+    "calendar": "reconstructed_source_calendar",
+    "context": 512,
+    "horizon": 96,
+    "rows": 52560,
+    "split_half_open": {
+      "train": [
+        0,
+        31536
+      ],
+      "val": [
+        31536,
+        42048
+      ],
+      "test": [
+        42048,
+        52560
+      ]
+    },
+    "window_counts": {
+      "train": 30929,
+      "val": 9905,
+      "test": 9905
+    },
+    "series_sha256": "2f8be7d58f2f50c475671de1508ead550436816d3d40bd133cd54e6f74df7e8c",
+    "window_indices_sha256": "cda19db052105f73535498d04fb3f5e1a8a42cee93e684ce59fc4e82ccac1a9b",
+    "source": "https://github.com/laiguokun/multivariate-time-series-data"
+  },
+  {
+    "dataset": "electricity",
+    "target": "Sum of 370 original customer load series; retain original zero values",
+    "frequency": "15min",
+    "calendar": "source_timestamps",
+    "context": 512,
+    "horizon": 96,
+    "rows": 140256,
+    "split_half_open": {
+      "train": [
+        0,
+        84153
+      ],
+      "val": [
+        84153,
+        112204
+      ],
+      "test": [
+        112204,
+        140256
+      ]
+    },
+    "window_counts": {
+      "train": 83546,
+      "val": 27444,
+      "test": 27445
+    },
+    "series_sha256": "b3a92fd3b1dec6e23b8c7e3befe24e956bf7bf3661fd81356b04a1d7e2f50297",
+    "window_indices_sha256": "dcf9f515adc9e8b7e810e887ca97fef44e519583769de23cc3bbb9cc140fadcf",
+    "source": "https://doi.org/10.24432/C58C86"
+  }
+]

@@ -1,27 +1,10 @@
-# Python / environments
 __pycache__/
 *.py[cod]
-.venv/
-venv/
 *.egg-info/
-build/
-dist/
-
-# Machine-specific paths, credentials and generated outputs
+.venv/
+.pytest_cache/
 .env
 .env.*
-!.env.example
-.claude/
-configs/run_paths.local.json
 runs/
-cache/
-results/*
-!results/README.md
-data/_raw/
-data/learned_critic_datasets/
-
-# Editors
-.DS_Store
-Thumbs.db
-.idea/
-.vscode/
+dist/
+build/

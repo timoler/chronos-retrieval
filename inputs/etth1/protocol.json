@@ -1,0 +1,28 @@
+{
+  "rows": 17420,
+  "context": 512,
+  "horizon": 96,
+  "split": {
+    "train": [
+      0,
+      10452
+    ],
+    "val": [
+      10452,
+      13936
+    ],
+    "test": [
+      13936,
+      17420
+    ]
+  },
+  "num_windows": {
+    "train": 9845,
+    "val": 2877,
+    "test": 2877
+  },
+  "frequency": "1h",
+  "dataset": "etth1",
+  "calendar": "source_timestamps",
+  "target": "OT"
+}

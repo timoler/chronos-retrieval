@@ -1,0 +1,94 @@
+[
+  {
+    "id": "E1",
+    "mechanism": "High recent volatility tends to persist over short observation horizons, so historical windows with similarly high recent volatility contain more relevant follow-through dynamics.",
+    "scope": "high recent_volatility regime",
+    "activation_condition": "when recent_volatility is high over the current context window",
+    "failure_condition": "when the high volatility comes from an isolated one-step shock that immediately decays",
+    "observables": [
+      "recent_volatility"
+    ],
+    "retrieval_action": "Up-weight retrieved historical segments whose recent_volatility is high and down-weight low-volatility segments.",
+    "reason": "Volatility clustering makes similar volatility states more predictive than unconditional retrieval.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "recent_volatility",
+          "qualifier": "high"
+        }
+      ]
+    },
+    "expected_effect": "The retrieved future paths should better match the magnitude and persistence of large moves expected in high-volatility conditions.",
+    "replaced": false
+  },
+  {
+    "id": "E3",
+    "mechanism": "High recent_slope_magnitude indicates a strong directional move that may continue by momentum.",
+    "scope": "strong-trend regime",
+    "activation_condition": "when recent_slope_magnitude is high",
+    "failure_condition": "when the strong slope is near trend exhaustion and a reversal follows",
+    "observables": [
+      "recent_slope_magnitude"
+    ],
+    "retrieval_action": "Prefer historical segments with high recent_slope_magnitude to capture continuation behavior.",
+    "reason": "Momentum states often share similar order-flow continuation patterns, so matching slope magnitude aligns future directionality.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "recent_slope_magnitude",
+          "qualifier": "high"
+        }
+      ]
+    },
+    "expected_effect": "Retrieved future paths should contain more continued-direction moves and less flat or reverting behavior.",
+    "replaced": false
+  },
+  {
+    "id": "E5",
+    "mechanism": "High recent_diff_magnitude reflects abrupt observation-to-observation changes, and post-jump behavior may have a distinct continuation or reversal signature.",
+    "scope": "jump/abrupt-move regime",
+    "activation_condition": "when recent_diff_magnitude is high",
+    "failure_condition": "when the jump is a single outlier with no subsequent effect over the 96-step forecast horizon",
+    "observables": [
+      "recent_diff_magnitude"
+    ],
+    "retrieval_action": "Prefer historical segments with high recent_diff_magnitude, especially those with similar jump-size dynamics.",
+    "reason": "Large transitions can trigger follow-through or correction; matching recent_diff_magnitude aligns the conditional response.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "recent_diff_magnitude",
+          "qualifier": "high"
+        }
+      ]
+    },
+    "expected_effect": "Retrieved futures should match the after-shock behavior seen following large observation-to-observation moves.",
+    "replaced": false
+  },
+  {
+    "id": "E6",
+    "mechanism": "High recent_autocorr indicates strong persistence in the observed signal, making recent trend-like history more relevant than distant uncorrelated history.",
+    "scope": "persistent autocorrelated regime",
+    "activation_condition": "when recent_autocorr is high",
+    "failure_condition": "when the autocorrelation is high but a regime break occurs within the forecast horizon",
+    "observables": [
+      "recent_autocorr"
+    ],
+    "retrieval_action": "Prefer historical segments with high recent_autocorr and use shorter-lag segments to emphasize the most recent persistence pattern.",
+    "reason": "High autocorrelation often means information decays slowly, so recent-past and similarly persistent segments carry more predictive weight.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "recent_autocorr",
+          "qualifier": "high"
+        }
+      ]
+    },
+    "expected_effect": "Retrieved futures should show smoother continuation consistent with persistent dynamics.",
+    "replaced": false
+  }
+]

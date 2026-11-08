@@ -1,0 +1,296 @@
+{
+  "1": [
+    {
+      "id": "E1",
+      "mechanism": "When recent volatility is low and recent slope magnitude is low, the series is in a stable low-variation regime, so same-hour historical segments are more predictive.",
+      "scope": "stable low-volatility, low-slope periods",
+      "activation_condition": "when recent_volatility is low and recent_slope_magnitude is low",
+      "failure_condition": "when volatility or slope magnitude is high, during holidays, or when sudden load shifts occur",
+      "observables": [
+        "recent_volatility",
+        "recent_slope_magnitude",
+        "hour_of_day"
+      ],
+      "retrieval_action": "Prefer historical segments with the same hour_of_day and down-weight strongly; lower preference weight than before.",
+      "reason": "The previous broad low-volatility activation showed mixed and partly large negative fold rewards; adding a low-slope constraint removes transition ambiguity and reduces risk.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "recent_volatility",
+            "qualifier": "low"
+          },
+          {
+            "feature": "recent_slope_magnitude",
+            "qualifier": "low"
+          }
+        ]
+      },
+      "expected_effect": "Restricts activation to less ambiguous calm conditions and reduces over-reliance on hour-of-day, which should limit previously mixed and partly negative fold rewards.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E1"
+    },
+    {
+      "id": "E2",
+      "mechanism": "When recent volatility is high, volatility tends to cluster, so historical segments with similarly high volatility and large recent differences are more informative.",
+      "scope": "high-volatility regime",
+      "activation_condition": "when recent_volatility is high",
+      "failure_condition": "when volatility is low or the high volatility is caused by a one-off event with no historical analog",
+      "observables": [
+        "recent_volatility",
+        "recent_diff_magnitude"
+      ],
+      "retrieval_action": "Prefer historical segments with similar recent_volatility and similar recent_diff_magnitude over calendar-only matches.",
+      "reason": "High volatility clusters and its dynamics differ from stable periods, so matching volatility and recent movement improves transfer.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "recent_volatility",
+            "qualifier": "high"
+          }
+        ]
+      },
+      "expected_effect": "Retrieved futures should better match current shock propagation and uncertainty, reducing over-smoothing.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E2"
+    },
+    {
+      "id": "E3",
+      "mechanism": "When recent slope magnitude is high, the series is in a ramp phase, and the shape of similar ramps at the same hour is more predictive.",
+      "scope": "morning/evening ramp periods",
+      "activation_condition": "when recent_slope_magnitude is high",
+      "failure_condition": "when the ramp is about to reverse or slope magnitude is low",
+      "observables": [
+        "recent_slope_magnitude",
+        "hour_of_day"
+      ],
+      "retrieval_action": "Prefer historical segments with similar recent_slope_magnitude and the same hour_of_day.",
+      "reason": "High slope magnitude identifies load ramps that are strongly time-of-day dependent; matching slope and hour aligns retrieval to the ramp phase.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "recent_slope_magnitude",
+            "qualifier": "high"
+          }
+        ]
+      },
+      "expected_effect": "Retrieved futures should better capture ramp persistence, peak timing, and ramp-down shape.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E3"
+    },
+    {
+      "id": "E5",
+      "mechanism": "On weekends and non-working days, aggregate load lacks workday industrial/commercial demand, so restricting to non-working history and using the same hour of day with lower weight is more predictive.",
+      "scope": "weekends and non-working days",
+      "activation_condition": "when day_of_week is weekend and working_day is non_working",
+      "failure_condition": "on workdays or during special events that mimic workday load patterns",
+      "observables": [
+        "day_of_week",
+        "working_day",
+        "hour_of_day"
+      ],
+      "retrieval_action": "Restrict retrieval to non_working historical segments and prefer the same hour_of_day with lower weight.",
+      "reason": "The previous weekend-only retrieval had unstable fold rewards and a large negative fold; adding working_day non_working and lowering hour weight narrows to the intended day type and reduces over-reliance.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "day_of_week",
+            "qualifier": "weekend"
+          },
+          {
+            "feature": "working_day",
+            "qualifier": "non_working"
+          }
+        ]
+      },
+      "expected_effect": "Strengthens weekend/non-working support and reduces hour-of-day weight, lowering the large negative fold risk while retaining day-type structure.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E5"
+    },
+    {
+      "id": "E6",
+      "mechanism": "In summer and winter, seasonal heating/cooling demand creates distinct load level and shape regimes, so same-season historical segments are more predictive.",
+      "scope": "summer and winter seasons",
+      "activation_condition": "when seasonal_level is summer or winter",
+      "failure_condition": "in spring/autumn transition periods or when weather deviates strongly from seasonal norms",
+      "observables": [
+        "seasonal_level",
+        "recent_level"
+      ],
+      "retrieval_action": "Prefer historical segments from the same seasonal_level and with similar recent_level.",
+      "reason": "Heating and cooling loads dominate winter/summer and shift both level and intraday patterns; seasonal matching reduces this mismatch.",
+      "condition_spec": {
+        "logic": "OR",
+        "conditions": [
+          {
+            "feature": "seasonal_level",
+            "qualifier": "summer"
+          },
+          {
+            "feature": "seasonal_level",
+            "qualifier": "winter"
+          }
+        ]
+      },
+      "expected_effect": "Retrieved futures should match seasonal demand intensity and avoid cross-season shape mismatches.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E6"
+    },
+    {
+      "id": "E7",
+      "mechanism": "When recent autocorrelation is low, the recent trajectory is noisy and less informative, so calendar structure should dominate retrieval.",
+      "scope": "noisy, weakly autocorrelated periods",
+      "activation_condition": "when recent_autocorr is low",
+      "failure_condition": "when autocorrelation is high and recent dynamics contain a strong signal",
+      "observables": [
+        "recent_autocorr",
+        "hour_of_day",
+        "working_day"
+      ],
+      "retrieval_action": "Rely on same hour_of_day and same working_day rather than matching noisy recent movements.",
+      "reason": "Low autocorrelation means recent observations are weakly related to the near future; calendar-based retrieval reduces variance and overfitting.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "recent_autocorr",
+            "qualifier": "low"
+          }
+        ]
+      },
+      "expected_effect": "Retrieved futures should be more stable and match the typical calendar profile instead of fitting noise.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E7"
+    }
+  ],
+  "2": [
+    {
+      "id": "E3",
+      "mechanism": "When recent slope magnitude is high and recent volatility is low, the series is in a stable ramp, so similar stable ramps at the same hour are more predictive.",
+      "scope": "stable ramp periods",
+      "activation_condition": "when recent_slope_magnitude is high and recent_volatility is low",
+      "failure_condition": "when recent_volatility is high, recent_slope_magnitude is low, or the ramp is near reversal",
+      "observables": [
+        "recent_slope_magnitude",
+        "recent_volatility",
+        "hour_of_day"
+      ],
+      "retrieval_action": "Prefer historical segments with similar recent_slope_magnitude and the same hour_of_day.",
+      "reason": "High slope magnitude plus low volatility identifies stable ramps; matching slope and hour aligns retrieval to the ramp phase while excluding turbulent ramps.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "recent_slope_magnitude",
+            "qualifier": "high"
+          },
+          {
+            "feature": "recent_volatility",
+            "qualifier": "low"
+          }
+        ]
+      },
+      "expected_effect": "Retrieved futures should better capture stable ramp persistence, peak timing, and ramp-down shape without fitting noisy ramps.",
+      "replaced": false,
+      "revision_round": 2,
+      "lineage_id": "E3"
+    },
+    {
+      "id": "E5",
+      "mechanism": "On non-working days with low recent level, load is structurally lower and smoother, so same non-working-day and hour history is more predictive.",
+      "scope": "low-demand non-working periods",
+      "activation_condition": "when working_day is non_working and recent_level is low",
+      "failure_condition": "on workdays, high-demand non-working events, or when recent_level is high",
+      "observables": [
+        "working_day",
+        "recent_level",
+        "hour_of_day"
+      ],
+      "retrieval_action": "Restrict retrieval to non-working historical segments and prefer the same hour_of_day.",
+      "reason": "Low recent level confirms a low-demand non-working period; restricting to non-working days avoids workday structural mismatch.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "working_day",
+            "qualifier": "non_working"
+          },
+          {
+            "feature": "recent_level",
+            "qualifier": "low"
+          }
+        ]
+      },
+      "expected_effect": "Retrieved futures should match the lower, smoother non-working profile instead of importing workday peaks.",
+      "replaced": false,
+      "revision_round": 2,
+      "lineage_id": "E5"
+    },
+    {
+      "id": "E6",
+      "mechanism": "In summer with high recent level, cooling demand is active and creates distinct load level and shape regimes, so same-season similar-level history is more predictive.",
+      "scope": "high-demand summer cooling periods",
+      "activation_condition": "when seasonal_level is summer and recent_level is high",
+      "failure_condition": "in winter, spring/autumn, or summer periods with low recent_level",
+      "observables": [
+        "seasonal_level",
+        "recent_level"
+      ],
+      "retrieval_action": "Prefer historical segments from the same seasonal_level and with similar recent_level.",
+      "reason": "High recent level in summer marks active cooling demand; same-season and similar-level matching reduces seasonal and intensity mismatch.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "seasonal_level",
+            "qualifier": "summer"
+          },
+          {
+            "feature": "recent_level",
+            "qualifier": "high"
+          }
+        ]
+      },
+      "expected_effect": "Retrieved futures should match active cooling demand intensity and avoid mild-day or cross-season mismatches.",
+      "replaced": false,
+      "revision_round": 2,
+      "lineage_id": "E6"
+    },
+    {
+      "id": "E7",
+      "mechanism": "When recent volatility is high, recent movements are noisy and less informative, so calendar structure should dominate retrieval.",
+      "scope": "noisy high-volatility periods",
+      "activation_condition": "when recent_volatility is high",
+      "failure_condition": "when recent_volatility is low and recent dynamics contain a reliable signal",
+      "observables": [
+        "recent_volatility",
+        "hour_of_day",
+        "working_day"
+      ],
+      "retrieval_action": "Rely on same hour_of_day and same working_day rather than matching noisy recent movements.",
+      "reason": "High recent volatility means recent observations are weakly related to the near future; calendar-based retrieval reduces variance and overfitting.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "recent_volatility",
+            "qualifier": "high"
+          }
+        ]
+      },
+      "expected_effect": "Retrieved futures should be more stable and match the typical calendar profile instead of fitting noise.",
+      "replaced": true,
+      "revision_round": 2,
+      "lineage_id": "E7"
+    }
+  ]
+}

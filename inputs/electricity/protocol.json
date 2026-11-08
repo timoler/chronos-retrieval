@@ -1,0 +1,28 @@
+{
+  "rows": 140256,
+  "context": 512,
+  "horizon": 96,
+  "split": {
+    "train": [
+      0,
+      84153
+    ],
+    "val": [
+      84153,
+      112204
+    ],
+    "test": [
+      112204,
+      140256
+    ]
+  },
+  "num_windows": {
+    "train": 83546,
+    "val": 27444,
+    "test": 27445
+  },
+  "frequency": "15min",
+  "dataset": "electricity",
+  "calendar": "source_timestamps",
+  "target": "sum of 370 users"
+}

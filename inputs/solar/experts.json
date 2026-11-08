@@ -1,0 +1,112 @@
+[
+  {
+    "id": "E1",
+    "mechanism": "At night, aggregate solar generation is at or near zero and lacks the daytime solar variability signal.",
+    "scope": "global night periods",
+    "activation_condition": "when hour_of_day is night",
+    "failure_condition": "non-zero night values from data errors or non-solar generation; also near dawn/dusk when the night category may not match true sun elevation",
+    "observables": [
+      "hour_of_day"
+    ],
+    "retrieval_action": "Restrict historical retrieval to night-time windows and do not mix with daytime segments.",
+    "reason": "Solar output is physically zero without sunlight, so night segments are nearly deterministic and only other night segments provide relevant baseline behavior.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "hour_of_day",
+          "qualifier": "night"
+        }
+      ]
+    },
+    "expected_effect": "The retrieved futures will be near-zero night and early-morning shapes, avoiding daytime variability that would inflate forecast error.",
+    "replaced": false
+  },
+  {
+    "id": "E2",
+    "mechanism": "During midday with low volatility and high recent autocorrelation, aggregate solar generation follows a smooth clear-sky curve determined by sun angle and season.",
+    "scope": "midday clear-sky periods",
+    "activation_condition": "when hour_of_day is midday AND recent_volatility is low AND recent_autocorr is high",
+    "failure_condition": "when clouds or aerosols create abrupt ramps; when low volatility is only a short calm interval before a front",
+    "observables": [
+      "hour_of_day",
+      "recent_volatility",
+      "recent_autocorr",
+      "recent_level",
+      "seasonal_level"
+    ],
+    "retrieval_action": "Restrict retrieval to midday history and prefer windows with similar recent_level and the same seasonal_level.",
+    "reason": "Clear-sky solar generation is highly repeatable for a given time of day and season; matching level and season aligns the current clear-sky baseline with analogous past segments.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "hour_of_day",
+          "qualifier": "midday"
+        },
+        {
+          "feature": "recent_volatility",
+          "qualifier": "low"
+        },
+        {
+          "feature": "recent_autocorr",
+          "qualifier": "high"
+        }
+      ]
+    },
+    "expected_effect": "Matches the clear-sky baseline amplitude and diurnal shape for the current season and current output level, reducing bias.",
+    "replaced": false
+  },
+  {
+    "id": "E3",
+    "mechanism": "High recent volatility indicates active cloud cover, so the near future is dominated by cloud-driven fluctuations rather than the clear-sky diurnal cycle.",
+    "scope": "high volatility regimes",
+    "activation_condition": "when recent_volatility is high",
+    "failure_condition": "when high volatility is caused by a passing frontal edge that will leave the region within the horizon; also near sunrise/sunset when low sun angle can inflate volatility",
+    "observables": [
+      "recent_volatility",
+      "recent_diff_magnitude",
+      "hour_of_day"
+    ],
+    "retrieval_action": "Prefer historical windows with similarly high recent_volatility and large recent_diff_magnitude, and use shorter lags to focus on fast cloud dynamics.",
+    "reason": "Cloud cover has persistence and characteristic variability; matching volatility and recent diff magnitude aligns the current cloud regime with analogous past regimes.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "recent_volatility",
+          "qualifier": "high"
+        }
+      ]
+    },
+    "expected_effect": "Retrieved futures will contain realistic cloud-induced dips and ramps at similar timescales, reducing bias from clear-sky retrievals.",
+    "replaced": false
+  },
+  {
+    "id": "E8",
+    "mechanism": "Workdays may have distinct aerosol loading and operational behavior, so workday retrieval may reduce weekday/weekend bias.",
+    "scope": "workday periods",
+    "activation_condition": "when working_day is workday",
+    "failure_condition": "when large-scale weather dominates the workday effect; when the solar fleet is insensitive to local aerosol or grid operations",
+    "observables": [
+      "working_day",
+      "recent_level",
+      "recent_volatility"
+    ],
+    "retrieval_action": "Prefer historical workday windows with similar recent_level and recent_volatility.",
+    "reason": "Workday emissions and grid conditions may modulate solar output; same day-type retrieval can remove a systematic weekly calibration error.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "working_day",
+          "qualifier": "workday"
+        }
+      ]
+    },
+    "expected_effect": "Retrieves futures from the same weekly aerosol and operational regime, improving level and ramp timing relative to mixed day types.",
+    "replaced": true,
+    "revision_round": 2,
+    "lineage_id": "E8"
+  }
+]

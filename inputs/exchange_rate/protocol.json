@@ -1,0 +1,28 @@
+{
+  "rows": 7588,
+  "context": 512,
+  "horizon": 96,
+  "split": {
+    "train": [
+      0,
+      4552
+    ],
+    "val": [
+      4552,
+      6070
+    ],
+    "test": [
+      6070,
+      7588
+    ]
+  },
+  "num_windows": {
+    "train": 3945,
+    "val": 911,
+    "test": 911
+  },
+  "frequency": "daily",
+  "dataset": "exchange_rate",
+  "calendar": "disabled",
+  "target": "seventh currency series"
+}

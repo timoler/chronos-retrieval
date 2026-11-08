@@ -1,0 +1,314 @@
+{
+  "1": [
+    {
+      "id": "E1",
+      "mechanism": "Large thermal mass smooths short-lived fluctuations, so oil temperature is most persistent when recent volatility is low and autocorrelation is high.",
+      "scope": "workday low-volatility high-persistence regime",
+      "activation_condition": "when recent_volatility is low and recent_autocorr is high and working_day is workday",
+      "failure_condition": "when recent volatility is high, recent autocorrelation is low, or the day is non-working",
+      "observables": [
+        "recent_volatility",
+        "recent_autocorr",
+        "working_day"
+      ],
+      "retrieval_action": "Restrict retrieval to recent workday windows with low recent_volatility and high recent_autocorr; use short matching horizons and avoid long smooth-window extrapolation.",
+      "reason": "The broad low-volatility high-autocorrelation rule had high coverage but inconsistent train fold utility; adding workday scope and short lag is a conservative narrowing aimed at the most structured smooth-load periods.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "recent_volatility",
+            "qualifier": "low"
+          },
+          {
+            "feature": "recent_autocorr",
+            "qualifier": "high"
+          },
+          {
+            "feature": "working_day",
+            "qualifier": "workday"
+          }
+        ]
+      },
+      "expected_effect": "Retrieved windows share both the smooth thermal state and workday load structure, reducing stale or non-workday analogues and stabilizing short-term trajectories.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E1"
+    },
+    {
+      "id": "E2",
+      "mechanism": "A sudden load change puts the transformer in a transient heating or cooling phase whose trajectory depends on the recent rate, size, and volatility of the change.",
+      "scope": "high-change high-volatility thermal transients",
+      "activation_condition": "when recent_slope_magnitude is high and recent_diff_magnitude is high and recent_volatility is high",
+      "failure_condition": "when recent volatility, slope magnitude, or diff magnitude is low, or the high change is only an isolated noisy spike",
+      "observables": [
+        "recent_slope_magnitude",
+        "recent_diff_magnitude",
+        "recent_volatility",
+        "recent_level"
+      ],
+      "retrieval_action": "Retrieve short recent windows with high recent_slope_magnitude, high recent_diff_magnitude, and high recent_volatility, and prefer similar recent_level to match the transient state.",
+      "reason": "The original high-slope high-diff rule was too sparse and had one severe negative fold; adding high volatility confirms a sustained transient and reduces risk of matching isolated spikes.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "recent_slope_magnitude",
+            "qualifier": "high"
+          },
+          {
+            "feature": "recent_diff_magnitude",
+            "qualifier": "high"
+          },
+          {
+            "feature": "recent_volatility",
+            "qualifier": "high"
+          }
+        ]
+      },
+      "expected_effect": "Historical transient periods with matched change and volatility characteristics better capture the lagged heating/cooling path, reducing worst-fold errors from noisy or low-volatility transients.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E2"
+    },
+    {
+      "id": "E4",
+      "mechanism": "High recent volatility implies rapidly varying load and intermittent heat input, so short-term local dynamics and similarly erratic workday histories are informative.",
+      "scope": "workday high-volatility fluctuating-load regime",
+      "activation_condition": "when recent_volatility is high and working_day is workday",
+      "failure_condition": "when recent volatility is low or the day is non-working, indicating stable or different load dynamics",
+      "observables": [
+        "recent_volatility",
+        "working_day"
+      ],
+      "retrieval_action": "Restrict retrieval to recent workday windows with high recent_volatility and use short matching horizons, downweighting stable or non-workday windows.",
+      "reason": "The original high-volatility rule had one strongly negative fold; restricting to workdays narrows the rule to systematic load-driven fluctuations while retaining the high-volatility signal.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "recent_volatility",
+            "qualifier": "high"
+          },
+          {
+            "feature": "working_day",
+            "qualifier": "workday"
+          }
+        ]
+      },
+      "expected_effect": "Matched high-variance workday segments reflect the current fluctuating load and avoid averaging with stable or weekend periods that have different short-term dynamics.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E4"
+    },
+    {
+      "id": "E5",
+      "mechanism": "High summer ambient temperature reduces oil-to-air heat transfer efficiency, so workday load-driven temperature increases are larger and cooling is slower.",
+      "scope": "summer workday season",
+      "activation_condition": "when seasonal_level is summer and working_day is workday",
+      "failure_condition": "in cooler seasons or on non-working days where the load-driven thermal response is weaker or shifted",
+      "observables": [
+        "seasonal_level",
+        "working_day"
+      ],
+      "retrieval_action": "Retrieve historical summer workday windows, prioritizing similar hour_of_day and recent_level, instead of pooling all summer days or all seasons.",
+      "reason": "The summer-only rule had very low coverage and one severe negative fold; adding workday scope removes a likely day-type mismatch while preserving structured summer load periods.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "seasonal_level",
+            "qualifier": "summer"
+          },
+          {
+            "feature": "working_day",
+            "qualifier": "workday"
+          }
+        ]
+      },
+      "expected_effect": "Season- and day-type-matched retrieval captures reduced cooling efficiency and workday load peaks, avoiding summer weekends or non-summer analogues that dilute the thermal response.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E5"
+    },
+    {
+      "id": "E6",
+      "mechanism": "Cold winter ambient air increases heat loss from the transformer, so the cold baseline is most representative when recent temperature level is also low.",
+      "scope": "low-level winter regime",
+      "activation_condition": "when seasonal_level is winter and recent_level is low",
+      "failure_condition": "in warm seasons or when the recent temperature level is high, indicating a departure from the colder baseline",
+      "observables": [
+        "seasonal_level",
+        "recent_level"
+      ],
+      "retrieval_action": "Retrieve historical winter windows with low recent_level; use short matching horizons and avoid warm or high-level winter periods.",
+      "reason": "The broad winter rule had one severe negative fold and only marginal median reward; narrowing to low recent_level focuses on the colder baseline that the mechanism actually implies.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "seasonal_level",
+            "qualifier": "winter"
+          },
+          {
+            "feature": "recent_level",
+            "qualifier": "low"
+          }
+        ]
+      },
+      "expected_effect": "Low-level winter analogues isolate periods of strong cooling and lower equilibrium, reducing contamination from high-level or less representative winter states.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E6"
+    },
+    {
+      "id": "E7",
+      "mechanism": "Working days have a systematic industrial/commercial load profile, producing a recurring daily cycle in transformer oil temperature with a lagged response.",
+      "scope": "workday with exact hour-of-day matching",
+      "activation_condition": "when working_day is workday",
+      "failure_condition": "on non-working days, or when the hour-of-day is not matched, where the load profile differs",
+      "observables": [
+        "working_day",
+        "hour_of_day"
+      ],
+      "retrieval_action": "Restrict retrieval to historical workday segments and the exact same hour_of_day, using short recent windows to stay within the current daily cycle.",
+      "reason": "The broad workday rule had high coverage but one severe negative fold; enforcing exact hour-of-day matching preserves the day-type mechanism while removing weak cross-hour analogues.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "working_day",
+            "qualifier": "workday"
+          }
+        ]
+      },
+      "expected_effect": "Exact workday and hour matching captures the corresponding phase of the daily thermal cycle and reduces variance from pooling different hours, especially avoiding the strongly negative fold.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E7"
+    }
+  ],
+  "2": [
+    {
+      "id": "E1",
+      "mechanism": "Large thermal mass smooths short-lived fluctuations, so when recent volatility is low and autocorrelation is high the oil temperature is in a persistent, slowly evolving state.",
+      "scope": "global low-volatility high-persistence regime",
+      "activation_condition": "when recent_volatility is low and recent_autocorr is high",
+      "failure_condition": "when recent volatility is high or recent autocorrelation is low, indicating transient or noisy thermal conditions",
+      "observables": [
+        "recent_volatility",
+        "recent_autocorr"
+      ],
+      "retrieval_action": "Upweight historical windows that also had low recent volatility and high recent autocorrelation to better match the current persistent smooth dynamics.",
+      "reason": "Thermal inertia integrates heat input over time, so stable low-volatility states with high persistence are best represented by similarly smooth past periods.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "recent_volatility",
+            "qualifier": "low"
+          },
+          {
+            "feature": "recent_autocorr",
+            "qualifier": "high"
+          }
+        ]
+      },
+      "expected_effect": "Retrieved windows match the current persistent smooth dynamics, reducing noise and providing stable future trajectories instead of erratic short-term analogues.",
+      "replaced": false,
+      "revision_round": 2,
+      "lineage_id": "E1"
+    },
+    {
+      "id": "E5",
+      "mechanism": "Warm ambient conditions reduce oil-to-air cooling efficiency, so heat accumulates more when the season is summer or the recent temperature level is already high.",
+      "scope": "warm-season or high recent-level thermal regime",
+      "activation_condition": "when seasonal_level is summer or recent_level is high",
+      "failure_condition": "in cool seasons with low recent level, where cooling is more effective and the thermal response differs",
+      "observables": [
+        "seasonal_level",
+        "recent_level",
+        "hour_of_day"
+      ],
+      "retrieval_action": "Retrieve historical windows in the warm condition and prefer similar recent_level and hour_of_day to capture the current warm-state time-of-day response.",
+      "reason": "The previous summer-only rule had low coverage and unstable rewards; adding high recent_level captures other warm thermal states without requiring the calendar to be summer.",
+      "condition_spec": {
+        "logic": "OR",
+        "conditions": [
+          {
+            "feature": "seasonal_level",
+            "qualifier": "summer"
+          },
+          {
+            "feature": "recent_level",
+            "qualifier": "high"
+          }
+        ]
+      },
+      "expected_effect": "Broadened warm-state retrieval avoids the very sparse summer-only subset, while still matching warm thermal baselines and reducing cool-season contamination.",
+      "replaced": false,
+      "revision_round": 2,
+      "lineage_id": "E5"
+    },
+    {
+      "id": "E6",
+      "mechanism": "Cold winter ambient air increases heat loss from the transformer, so the cold baseline is most representative when recent temperature level is also low.",
+      "scope": "low-level winter regime",
+      "activation_condition": "when seasonal_level is winter and recent_level is low",
+      "failure_condition": "in warm seasons or when the recent temperature level is high, indicating a departure from the colder baseline",
+      "observables": [
+        "seasonal_level",
+        "recent_level"
+      ],
+      "retrieval_action": "Retrieve historical winter windows with low recent_level; use short matching horizons and avoid warm or high-level winter periods.",
+      "reason": "The broad winter rule had one severe negative fold and only marginal median reward; narrowing to low recent_level focuses on the colder baseline that the mechanism actually implies.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "seasonal_level",
+            "qualifier": "winter"
+          },
+          {
+            "feature": "recent_level",
+            "qualifier": "low"
+          }
+        ]
+      },
+      "expected_effect": "Low-level winter analogues isolate periods of strong cooling and lower equilibrium, reducing contamination from high-level or less representative winter states.",
+      "replaced": false,
+      "revision_round": 2,
+      "lineage_id": "E6"
+    },
+    {
+      "id": "E7",
+      "mechanism": "Working days have a systematic industrial/commercial load profile, producing a recurring daily cycle in transformer oil temperature with a lagged response; the morning load ramp is a key repeating phase.",
+      "scope": "workday mornings",
+      "activation_condition": "when working_day is workday and hour_of_day is morning",
+      "failure_condition": "on non-working days or outside morning hours, where the load profile is flatter or shifted and the daily oil-temperature pattern differs",
+      "observables": [
+        "working_day",
+        "hour_of_day"
+      ],
+      "retrieval_action": "Restrict retrieval to historical workday morning segments and use short lag matching to avoid broad all-workday contamination.",
+      "reason": "The all-workday condition was too broad and contained severe negative folds; narrowing to morning workdays targets the recurring load ramp without pooling all workday periods.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "working_day",
+            "qualifier": "workday"
+          },
+          {
+            "feature": "hour_of_day",
+            "qualifier": "morning"
+          }
+        ]
+      },
+      "expected_effect": "Workday morning analogues focus on the systematic load ramp, reducing negative all-workday analogues from other periods while retaining the recurrent daily cycle.",
+      "replaced": false,
+      "revision_round": 2,
+      "lineage_id": "E7"
+    }
+  ]
+}

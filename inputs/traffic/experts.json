@@ -1,0 +1,73 @@
+[
+  {
+    "id": "E2",
+    "mechanism": "Non-working days have a distinct later-start and leisure-driven traffic pattern, so non-working historical segments should be preferred.",
+    "scope": "non-working days",
+    "activation_condition": "when working_day is non_working",
+    "failure_condition": "special events or holiday return traffic create unusual local peaks",
+    "observables": [
+      "hour_of_day",
+      "working_day"
+    ],
+    "retrieval_action": "Prefer historical non-working days and restrict to the same hour-of-day window.",
+    "reason": "Working and non-working days have systematically different traffic demand, so separating them prevents mixing weekday commute profiles into weekend forecasts.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "working_day",
+          "qualifier": "non_working"
+        }
+      ]
+    },
+    "expected_effect": "The retrieved futures will match the flatter morning onset and different daily occupancy profile of non-working days.",
+    "replaced": false
+  },
+  {
+    "id": "E3",
+    "mechanism": "High recent volatility indicates an unstable traffic regime, so historical segments with similar volatility are more informative than stable segments.",
+    "scope": "high volatility regime",
+    "activation_condition": "when recent_volatility is high",
+    "failure_condition": "the volatility is caused by a one-off incident that is resolved before the forecast horizon",
+    "observables": [
+      "recent_volatility"
+    ],
+    "retrieval_action": "Prefer historical segments with similarly high recent_volatility.",
+    "reason": "Volatile periods have different short-term dynamics than calm periods; matching volatility helps align the distribution of possible future trajectories.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "recent_volatility",
+          "qualifier": "high"
+        }
+      ]
+    },
+    "expected_effect": "Retrieved futures should better reflect rapid fluctuations and uncertainty in near-term occupancy.",
+    "replaced": false
+  },
+  {
+    "id": "E7",
+    "mechanism": "High recent autocorrelation implies persistent occupancy dynamics, so past segments with similar recent level should be especially informative.",
+    "scope": "persistent regime",
+    "activation_condition": "when recent_autocorr is high",
+    "failure_condition": "a regime shift or non-recurring incident interrupts the persistent dynamics",
+    "observables": [
+      "recent_autocorr",
+      "recent_level"
+    ],
+    "retrieval_action": "Prefer historical segments with similar recent_level.",
+    "reason": "When autocorrelation is high, the current level dominates short-horizon predictions, so matching recent level reduces irrelevant historical variation.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "recent_autocorr",
+          "qualifier": "high"
+        }
+      ]
+    },
+    "expected_effect": "Retrieved futures will preserve the current occupancy state and its likely persistence into the near future.",
+    "replaced": false
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "rows": 52696,
+  "context": 512,
+  "horizon": 96,
+  "split": {
+    "train": [
+      0,
+      31617
+    ],
+    "val": [
+      31617,
+      42156
+    ],
+    "test": [
+      42156,
+      52696
+    ]
+  },
+  "num_windows": {
+    "train": 31010,
+    "val": 9932,
+    "test": 9933
+  },
+  "frequency": "10min",
+  "dataset": "weather",
+  "calendar": "source_timestamps",
+  "target": "CO2 (ppm)"
+}

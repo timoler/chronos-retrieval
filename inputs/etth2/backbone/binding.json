@@ -1,0 +1,14 @@
+[
+  {
+    "split": "val",
+    "released_file": "chronos2_val.npz",
+    "released_sha256": "5d77f9bef6be6d8641aeb4b38038721d7aac99869ae12833ef990b18d0508540",
+    "source_forecast_sha256": "933409b15dbbe573290de26edf26d717e2d2612fb03995eeef9cb4578535d7f9"
+  },
+  {
+    "split": "test",
+    "released_file": "chronos2_test.npz",
+    "released_sha256": "10b6310c4619f4596cf8b42368e1b325e74ef4e054dec4945a48231d1334038d",
+    "source_forecast_sha256": "2fafa72c5b382a87183ff7c9dfce8bde4e67e9e9ea70debf6df882cb0bbf43b2"
+  }
+]

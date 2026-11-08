@@ -1,0 +1,28 @@
+{
+  "rows": 17544,
+  "context": 168,
+  "horizon": 24,
+  "split": {
+    "train": [
+      0,
+      10526
+    ],
+    "val": [
+      10526,
+      14035
+    ],
+    "test": [
+      14035,
+      17544
+    ]
+  },
+  "num_windows": {
+    "train": 10335,
+    "val": 3318,
+    "test": 3318
+  },
+  "frequency": "hourly",
+  "dataset": "traffic",
+  "calendar": "reconstructed_source_calendar",
+  "target": "Sensor_000"
+}

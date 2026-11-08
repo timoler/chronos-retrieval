@@ -1,0 +1,191 @@
+[
+  {
+    "id": "E1",
+    "mechanism": "High recent volatility tends to persist over short observation horizons, so historical windows with similarly high recent volatility contain more relevant follow-through dynamics.",
+    "scope": "high recent_volatility regime",
+    "activation_condition": "when recent_volatility is high over the current context window",
+    "failure_condition": "when the high volatility comes from an isolated one-step shock that immediately decays",
+    "observables": [
+      "recent_volatility"
+    ],
+    "retrieval_action": "Up-weight retrieved historical segments whose recent_volatility is high and down-weight low-volatility segments.",
+    "reason": "Volatility clustering makes similar volatility states more predictive than unconditional retrieval.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "recent_volatility",
+          "qualifier": "high"
+        }
+      ]
+    },
+    "expected_effect": "The retrieved future paths should better match the magnitude and persistence of large moves expected in high-volatility conditions.",
+    "replaced": false
+  },
+  {
+    "id": "E2",
+    "mechanism": "Low recent volatility tends to persist, so historical windows with low recent volatility are more informative for small-range continuation.",
+    "scope": "low recent_volatility regime",
+    "activation_condition": "when recent_volatility is low over the current context window",
+    "failure_condition": "when a breakout or volatility expansion starts despite low recent volatility",
+    "observables": [
+      "recent_volatility"
+    ],
+    "retrieval_action": "Up-weight historical segments with low recent_volatility and down-weight high-volatility segments.",
+    "reason": "Calm states often repeat until a structural break; matching calm segments reduces irrelevant large-move futures.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "recent_volatility",
+          "qualifier": "low"
+        }
+      ]
+    },
+    "expected_effect": "Retrieved future paths better match stable small-move behavior expected after calm observations.",
+    "replaced": false
+  },
+  {
+    "id": "E3",
+    "mechanism": "High recent_slope_magnitude indicates a strong directional move that may continue by momentum.",
+    "scope": "strong-trend regime",
+    "activation_condition": "when recent_slope_magnitude is high",
+    "failure_condition": "when the strong slope is near trend exhaustion and a reversal follows",
+    "observables": [
+      "recent_slope_magnitude"
+    ],
+    "retrieval_action": "Prefer historical segments with high recent_slope_magnitude to capture continuation behavior.",
+    "reason": "Momentum states often share similar order-flow continuation patterns, so matching slope magnitude aligns future directionality.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "recent_slope_magnitude",
+          "qualifier": "high"
+        }
+      ]
+    },
+    "expected_effect": "Retrieved future paths should contain more continued-direction moves and less flat or reverting behavior.",
+    "replaced": false
+  },
+  {
+    "id": "E4",
+    "mechanism": "Low recent_slope_magnitude combined with low recent_volatility indicates a range-bound state where future moves typically stay small and mean-reverting.",
+    "scope": "range-bound calm regime",
+    "activation_condition": "when recent_slope_magnitude is low and recent_volatility is low",
+    "failure_condition": "when the range resolves into a sustained breakout",
+    "observables": [
+      "recent_slope_magnitude",
+      "recent_volatility"
+    ],
+    "retrieval_action": "Prefer historical segments with both low recent_slope_magnitude and low recent_volatility.",
+    "reason": "Flat calm conditions share a characteristic lack of directional pressure, so conditioning on both features reduces false trend matches.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "recent_slope_magnitude",
+          "qualifier": "low"
+        },
+        {
+          "feature": "recent_volatility",
+          "qualifier": "low"
+        }
+      ]
+    },
+    "expected_effect": "Retrieved futures should reflect repeated small oscillations rather than large trend continuation.",
+    "replaced": false
+  },
+  {
+    "id": "E5",
+    "mechanism": "High recent_diff_magnitude reflects abrupt observation-to-observation changes, and post-jump behavior may have a distinct continuation or reversal signature.",
+    "scope": "jump/abrupt-move regime",
+    "activation_condition": "when recent_diff_magnitude is high",
+    "failure_condition": "when the jump is a single outlier with no subsequent effect over the 96-step forecast horizon",
+    "observables": [
+      "recent_diff_magnitude"
+    ],
+    "retrieval_action": "Prefer historical segments with high recent_diff_magnitude, especially those with similar jump-size dynamics.",
+    "reason": "Large transitions can trigger follow-through or correction; matching recent_diff_magnitude aligns the conditional response.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "recent_diff_magnitude",
+          "qualifier": "high"
+        }
+      ]
+    },
+    "expected_effect": "Retrieved futures should match the after-shock behavior seen following large observation-to-observation moves.",
+    "replaced": false
+  },
+  {
+    "id": "E6",
+    "mechanism": "High recent_autocorr indicates strong persistence in the observed signal, making recent trend-like history more relevant than distant uncorrelated history.",
+    "scope": "persistent autocorrelated regime",
+    "activation_condition": "when recent_autocorr is high",
+    "failure_condition": "when the autocorrelation is high but a regime break occurs within the forecast horizon",
+    "observables": [
+      "recent_autocorr"
+    ],
+    "retrieval_action": "Prefer historical segments with high recent_autocorr and use shorter-lag segments to emphasize the most recent persistence pattern.",
+    "reason": "High autocorrelation often means information decays slowly, so recent-past and similarly persistent segments carry more predictive weight.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "recent_autocorr",
+          "qualifier": "high"
+        }
+      ]
+    },
+    "expected_effect": "Retrieved futures should show smoother continuation consistent with persistent dynamics.",
+    "replaced": false
+  },
+  {
+    "id": "E7",
+    "mechanism": "Low recent_autocorr suggests weak persistence and more choppy, potentially mean-reverting behavior, so similarly low-autocorrelation history is more informative.",
+    "scope": "low-persistence/noisy regime",
+    "activation_condition": "when recent_autocorr is low",
+    "failure_condition": "when low autocorrelation is only a brief noise patch before a new persistent trend",
+    "observables": [
+      "recent_autocorr"
+    ],
+    "retrieval_action": "Prefer historical segments with low recent_autocorr and use short-lag retrieval to avoid stale trend information.",
+    "reason": "Low autocorrelation states have weak memory, so recent windows with similar weak memory better match near-term reversals or noise.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "recent_autocorr",
+          "qualifier": "low"
+        }
+      ]
+    },
+    "expected_effect": "Retrieved futures should reflect choppy or mean-reverting outcomes rather than smooth trend continuation.",
+    "replaced": false
+  },
+  {
+    "id": "E8",
+    "mechanism": "High recent_level relative to the recent window indicates an elevated observation state that may be associated with reversion or distinct volatility behavior.",
+    "scope": "elevated-level regime",
+    "activation_condition": "when recent_level is high over the current context window",
+    "failure_condition": "when the elevated level is part of a sustained breakout to new highs and reversion does not occur",
+    "observables": [
+      "recent_level"
+    ],
+    "retrieval_action": "Prefer historical segments with similar high recent_level so retrieved futures share the same elevated-state response.",
+    "reason": "Level-dependent behavior can exist in exchange-rate observations; matching recent_level avoids mixing high-state and low-state regimes.",
+    "condition_spec": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "feature": "recent_level",
+          "qualifier": "high"
+        }
+      ]
+    },
+    "expected_effect": "Retrieved future paths should better reflect the conditional behavior after elevated levels, whether reversion or continuation is supported by the training data.",
+    "replaced": false
+  }
+]

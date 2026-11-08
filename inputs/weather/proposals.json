@@ -1,0 +1,73 @@
+{
+  "1": [
+    {
+      "id": "E2",
+      "mechanism": "Summer and midday each independently provide strengthened CO2 drawdown or atmospheric mixing; the exact summer-midday conjunction is too sparse, so broader summer or midday periods are used.",
+      "scope": "summer periods or midday hours",
+      "activation_condition": "when seasonal_level is summer OR hour_of_day is midday",
+      "failure_condition": "when clouds, rain, polluted air masses, or non-summer non-midday stable periods dominate",
+      "observables": [
+        "seasonal_level",
+        "hour_of_day"
+      ],
+      "retrieval_action": "Retrieve historical segments from summer periods or midday hours, preferring the same season and same hour-of-day category without requiring both simultaneously.",
+      "reason": "The exact summer AND midday condition covered only 2.78% of the sample and gave near-zero, single-fold reward evidence. Broadening to summer OR midday retains the seasonal and time-of-day signals while increasing coverage to reduce noise.",
+      "condition_spec": {
+        "logic": "OR",
+        "conditions": [
+          {
+            "feature": "seasonal_level",
+            "qualifier": "summer"
+          },
+          {
+            "feature": "hour_of_day",
+            "qualifier": "midday"
+          }
+        ]
+      },
+      "expected_effect": "The retrieved future should better match broadened summer or midday period patterns and increase coverage enough for stable conditional predictive utility.",
+      "replaced": true,
+      "revision_round": 1,
+      "lineage_id": "E2"
+    }
+  ],
+  "2": [
+    {
+      "id": "E2",
+      "mechanism": "The prior summer-midday low-CO2 retrieval rule is not supported by conditional predictive utility and is withdrawn as a positive retrieval preference.",
+      "scope": "global fallback; no active seasonal or hour-of-day preference",
+      "activation_condition": "when seasonal_level is autumn OR spring OR summer OR winter",
+      "failure_condition": "not applicable because no retrieval preference is applied",
+      "observables": [
+        "seasonal_level"
+      ],
+      "retrieval_action": "Do not apply the summer-midday positive retrieval preference; use baseline retrieval without seasonal or hour-of-day restriction.",
+      "reason": "The feedback shows no positive leave-one-out reward and very low coverage for the summer-midday rule, and the evidence does not identify a supported replacement, so E2 should be disabled.",
+      "condition_spec": {
+        "logic": "OR",
+        "conditions": [
+          {
+            "feature": "seasonal_level",
+            "qualifier": "autumn"
+          },
+          {
+            "feature": "seasonal_level",
+            "qualifier": "spring"
+          },
+          {
+            "feature": "seasonal_level",
+            "qualifier": "summer"
+          },
+          {
+            "feature": "seasonal_level",
+            "qualifier": "winter"
+          }
+        ]
+      },
+      "expected_effect": "Avoids introducing a retrieval constraint that had zero or negative leave-one-out conditional reward in the available folds.",
+      "replaced": true,
+      "revision_round": 2,
+      "lineage_id": "E2"
+    }
+  ]
+}

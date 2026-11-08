@@ -1,0 +1,91 @@
+dataset,arm,reference,model,metric,negative_means_improvement,primary_length,mean_delta,ci_low,ci_high,block_length,approximate_blocks,replicates,interval_scope,short_series_warning
+weather,PAER,Revision without acceptance,memory,mse,True,False,56.754442687906,26.20184376525832,86.13719741241945,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,memory,mse,True,True,56.754442687906,9.955962708936898,107.97565751517728,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,memory,mse,True,False,56.754442687906,4.133274322867509,114.85834049995071,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,memory,mae,True,False,1.4095425890524669,0.7931066326797691,2.005483661272273,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,memory,mae,True,True,1.4095425890524669,0.5428533050757175,2.320183346928591,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,memory,mae,True,False,1.4095425890524669,0.442584638792411,2.4602280782509944,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,Chronos-2,mse,True,False,-2.604451372876393,-5.800814187932648,0.5254677354658748,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,Chronos-2,mse,True,True,-2.604451372876393,-4.756131034537619,-0.5246629724383578,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,Chronos-2,mse,True,False,-2.604451372876393,-4.334127572025801,-0.8985236848425632,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,Chronos-2,mae,True,False,-0.08846055298053038,-0.19829158582181328,0.01888299466253845,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,Chronos-2,mae,True,True,-0.08846055298053038,-0.17475324481072546,0.005440111982562256,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,Chronos-2,mae,True,False,-0.08846055298053038,-0.17115987646378605,0.004865189990142025,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,PatchTST,mse,True,False,1.3489994247291763,0.21549554967649645,2.5517655632365908,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,PatchTST,mse,True,True,1.3489994247291763,-0.14544754323264003,2.820231699690347,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,PatchTST,mse,True,False,1.3489994247291763,0.04330627649367977,2.7145308889065936,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,PatchTST,mae,True,False,0.03004759548139296,-0.00013748185445634198,0.058612207509742886,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,PatchTST,mae,True,True,0.03004759548139296,-0.009253994839656561,0.0662870470364201,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,PatchTST,mae,True,False,0.03004759548139296,-0.015352655489709965,0.06873634221634202,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,iTransformer,mse,True,False,0.6197994191569108,-1.4789818431280293,2.8835628021746746,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,iTransformer,mse,True,True,0.6197994191569108,-0.9571649896049654,2.468981202837459,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,iTransformer,mse,True,False,0.6197994191569108,-0.7748164949890357,2.0696593267752896,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,iTransformer,mae,True,False,0.017628658947859623,-0.04343583751076785,0.0803926462946696,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,iTransformer,mae,True,True,0.017628658947859623,-0.0313775762839782,0.06727751097301321,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,iTransformer,mae,True,False,0.017628658947859623,-0.028952477214618258,0.06365305626771589,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,RAFT,mse,True,False,-0.761170345338509,-2.0899183845700757,0.5921070101331142,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,RAFT,mse,True,True,-0.761170345338509,-1.6682313880609798,0.02158998256983331,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,RAFT,mse,True,False,-0.761170345338509,-1.5511862959715175,-0.09096647808319985,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,RAFT,mae,True,False,-0.020167230651629082,-0.05553361971792979,0.014548746166634879,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,RAFT,mae,True,True,-0.020167230651629082,-0.04824613069040306,0.009361138929170372,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Revision without acceptance,RAFT,mae,True,False,-0.020167230651629082,-0.04516420456942593,0.005944674602289703,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,memory,mse,True,False,31.45768846261697,15.435951455260762,47.15043622991221,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,memory,mse,True,True,31.45768846261697,16.027709205218905,48.04172225024154,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,memory,mse,True,False,31.45768846261697,14.937691897188143,50.06936182719151,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,memory,mae,True,False,0.6390030239671958,0.28791238772703864,0.99554108681852,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,memory,mae,True,True,0.6390030239671958,0.3212163240104938,0.9619428496919871,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,memory,mae,True,False,0.6390030239671958,0.3002108786753176,0.9844741474649957,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,Chronos-2,mse,True,False,0.4491597160303856,-1.8412434095479009,2.684655843555491,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,Chronos-2,mse,True,True,0.4491597160303856,-1.3952153802267404,2.1744760232421347,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,Chronos-2,mse,True,False,0.4491597160303856,-1.3844696300266197,2.2340612545824143,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,Chronos-2,mae,True,False,0.04268969560383163,-0.03015196320019895,0.11872596273461673,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,Chronos-2,mae,True,True,0.04268969560383163,-0.024807215810507904,0.10719483793440786,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,Chronos-2,mae,True,False,0.04268969560383163,-0.024378020515458256,0.11181983727996611,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,PatchTST,mse,True,False,0.0,0.0,0.0,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,PatchTST,mse,True,True,0.0,0.0,0.0,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,PatchTST,mse,True,False,0.0,0.0,0.0,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,PatchTST,mae,True,False,0.0,0.0,0.0,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,PatchTST,mae,True,True,0.0,0.0,0.0,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,PatchTST,mae,True,False,0.0,0.0,0.0,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,iTransformer,mse,True,False,-0.941384819529201,-2.1023096082636687,0.06616231988216638,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,iTransformer,mse,True,True,-0.941384819529201,-2.0562646848742405,0.1032945299983239,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,iTransformer,mse,True,False,-0.941384819529201,-2.272271470225364,0.16811786232068424,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,iTransformer,mae,True,False,-0.01966572467595354,-0.0577976927401209,0.01952768516425905,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,iTransformer,mae,True,True,-0.01966572467595354,-0.05467017670765195,0.012706073430619101,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,iTransformer,mae,True,False,-0.01966572467595354,-0.052244041052319765,0.011075460982574432,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,RAFT,mse,True,False,-0.20727901074078292,-0.8848034698170555,0.4106562287448073,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,RAFT,mse,True,True,-0.20727901074078292,-0.6782229603841119,0.2313360670757263,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,RAFT,mse,True,False,-0.20727901074078292,-0.7154787327442551,0.26046510137875856,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,RAFT,mae,True,False,0.002769631007902109,-0.020253829858981283,0.024580571978267234,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,RAFT,mae,True,True,0.002769631007902109,-0.014733664158688979,0.018940976815281833,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,PAER,Raw Expert,RAFT,mae,True,False,0.002769631007902109,-0.014739119759007744,0.019262780896555472,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,memory,mse,True,False,-25.296754225289035,-51.844592693418896,2.2668507416687143,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,memory,mse,True,True,-25.296754225289035,-65.2374186916386,13.595254533724564,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,memory,mse,True,False,-25.296754225289035,-72.33028491561691,20.15954289948865,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,memory,mae,True,False,-0.7705395650852712,-1.2969654965736341,-0.21858371138249585,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,memory,mae,True,True,-0.7705395650852712,-1.5610660753717789,-0.023524819758815714,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,memory,mae,True,False,-0.7705395650852712,-1.6405555033715444,0.06478883550994155,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,Chronos-2,mse,True,False,3.053611088906779,-0.28089821340222354,6.1727596472343915,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,Chronos-2,mse,True,True,3.053611088906779,0.8636028181300853,5.444927557341917,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,Chronos-2,mse,True,False,3.053611088906779,0.9068089893223336,5.2759574404745,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,Chronos-2,mae,True,False,0.131150248584362,0.023066082671525722,0.24004142762420985,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,Chronos-2,mae,True,True,0.131150248584362,0.05545534501662513,0.20803693722356045,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,Chronos-2,mae,True,False,0.131150248584362,0.06643989784270023,0.2003582911583991,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,PatchTST,mse,True,False,-1.3489994247291763,-2.551765563236591,-0.2154955496764982,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,PatchTST,mse,True,True,-1.3489994247291763,-2.82023169969035,0.14544754323263911,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,PatchTST,mse,True,False,-1.3489994247291763,-2.714530888906594,-0.043306276493682766,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,PatchTST,mae,True,False,-0.03004759548139296,-0.058612207509742914,0.00013748185445629918,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,PatchTST,mae,True,True,-0.03004759548139296,-0.0662870470364201,0.009253994839656535,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,PatchTST,mae,True,False,-0.03004759548139296,-0.06873634221634203,0.01535265548970994,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,iTransformer,mse,True,False,-1.561184238686112,-3.799130158136229,0.325564599645958,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,iTransformer,mse,True,True,-1.561184238686112,-3.7852284532402307,0.07040633079852118,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,iTransformer,mse,True,False,-1.561184238686112,-3.520283546942351,-0.016213279259894187,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,iTransformer,mae,True,False,-0.03729438362381317,-0.09159489424943125,0.017010569159615293,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,iTransformer,mae,True,True,-0.03729438362381317,-0.08519258341713362,0.006922374680818338,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,iTransformer,mae,True,False,-0.03729438362381317,-0.08009712256096076,0.0024576522423386607,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,RAFT,mse,True,False,0.5538913345977259,-0.7773987488987114,1.7513052982022894,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,RAFT,mse,True,True,0.5538913345977259,-0.20864788718989233,1.325978369238571,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,RAFT,mse,True,False,0.5538913345977259,-0.02551621176403936,1.2382816726848977,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,RAFT,mae,True,False,0.0229368616595312,-0.01168294575195176,0.05606536514567456,96,103.46875,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,RAFT,mae,True,True,0.0229368616595312,-0.004290177246974778,0.050324604914252724,608,16.33717105263158,2000,conditional paired time-block percentile; exploratory,False
+weather,Revision without acceptance,Raw Expert,RAFT,mae,True,False,0.0229368616595312,0.002510733920478901,0.04327125098333213,1216,8.16858552631579,2000,conditional paired time-block percentile; exploratory,False

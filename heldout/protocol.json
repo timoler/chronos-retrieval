@@ -1,0 +1,295 @@
+{
+  "dataset": "weather",
+  "site": "MPI-BGC Jena, Beutenberg roof",
+  "target": "CO2 (ppm)",
+  "time_reference": "10-minute timestamps as published by the station",
+  "period_start_exclusive": "2021-01-01T00:00:00",
+  "period_end_inclusive": "2021-02-01T00:00:00",
+  "L": 512,
+  "H": 96,
+  "stride": 1,
+  "observation_rows": 4464,
+  "windows": 3857,
+  "observed_target_cells": 370272,
+  "missing_values": 0,
+  "seeds": [
+    42,
+    123,
+    2026
+  ],
+  "prediction_files": {
+    "Chronos-2": "predictions/base_chronos_2.npz",
+    "PatchTST": "predictions/base_patchtst.npz",
+    "iTransformer": "predictions/base_itransformer.npz",
+    "RAFT": "predictions/base_raft.npz",
+    "Retrieval without experts": "predictions/memory_retrieval.npz",
+    "Raw Expert": "predictions/memory_raw_expert.npz",
+    "PAER": "predictions/memory_paer.npz"
+  },
+  "array_details": {
+    "predictions/base_chronos_2.npz": {
+      "shared": {
+        "dtype": "float32",
+        "shape": [
+          3857,
+          96
+        ]
+      }
+    },
+    "predictions/base_patchtst.npz": {
+      "seed42": {
+        "dtype": "float32",
+        "shape": [
+          3857,
+          96
+        ]
+      },
+      "seed123": {
+        "dtype": "float32",
+        "shape": [
+          3857,
+          96
+        ]
+      },
+      "seed2026": {
+        "dtype": "float32",
+        "shape": [
+          3857,
+          96
+        ]
+      }
+    },
+    "predictions/base_itransformer.npz": {
+      "seed42": {
+        "dtype": "float32",
+        "shape": [
+          3857,
+          96
+        ]
+      },
+      "seed123": {
+        "dtype": "float32",
+        "shape": [
+          3857,
+          96
+        ]
+      },
+      "seed2026": {
+        "dtype": "float32",
+        "shape": [
+          3857,
+          96
+        ]
+      }
+    },
+    "predictions/base_raft.npz": {
+      "seed42": {
+        "dtype": "float32",
+        "shape": [
+          3857,
+          96
+        ]
+      },
+      "seed123": {
+        "dtype": "float32",
+        "shape": [
+          3857,
+          96
+        ]
+      },
+      "seed2026": {
+        "dtype": "float32",
+        "shape": [
+          3857,
+          96
+        ]
+      }
+    },
+    "predictions/memory_retrieval.npz": {
+      "seed42": {
+        "dtype": "float64",
+        "shape": [
+          3857,
+          96
+        ]
+      },
+      "seed123": {
+        "dtype": "float64",
+        "shape": [
+          3857,
+          96
+        ]
+      },
+      "seed2026": {
+        "dtype": "float64",
+        "shape": [
+          3857,
+          96
+        ]
+      }
+    },
+    "predictions/memory_raw_expert.npz": {
+      "seed42": {
+        "dtype": "float64",
+        "shape": [
+          3857,
+          96
+        ]
+      },
+      "seed123": {
+        "dtype": "float64",
+        "shape": [
+          3857,
+          96
+        ]
+      },
+      "seed2026": {
+        "dtype": "float64",
+        "shape": [
+          3857,
+          96
+        ]
+      }
+    },
+    "predictions/memory_paer.npz": {
+      "seed42": {
+        "dtype": "float64",
+        "shape": [
+          3857,
+          96
+        ]
+      },
+      "seed123": {
+        "dtype": "float64",
+        "shape": [
+          3857,
+          96
+        ]
+      },
+      "seed2026": {
+        "dtype": "float64",
+        "shape": [
+          3857,
+          96
+        ]
+      }
+    }
+  },
+  "original_prediction_npy_sha256": {
+    "predictions/base_chronos_2.npz": {
+      "shared": "b5ee70a586400bbdf5968b694a1b8e4b7ed48e43229c2b3cbcdf0f7935cc6031"
+    },
+    "predictions/base_patchtst.npz": {
+      "seed42": "f9f34b6d68199791a5b3b04bdc95959ded40d28a104aa3ab8d8fd8ba2195178c",
+      "seed123": "e32ad94dd523a2275059cb3406a0d479a1a7345ea337e9f83d356e9a391399ad",
+      "seed2026": "9e93ed67c556c75c401ec884c661ad3aab8863b10334bf8f140e51db3182343f"
+    },
+    "predictions/base_itransformer.npz": {
+      "seed42": "0ef0dd0df20b7ed6f0ead57f9450fc165fcd797f37ec3d28649329f68a71f599",
+      "seed123": "d513bd557661f00540367ecddb9406bf10c9bcc96e0f6a51b4be662cdbd741f7",
+      "seed2026": "8b7597069ed51fca2421e0abfb86f8d77d5d5fb8ca81a56f53eda37c80bef9fc"
+    },
+    "predictions/base_raft.npz": {
+      "seed42": "37d77c5eaa38da724dc1edd4113ac20e3633504919757eeb8ab84db88a6ee4ad",
+      "seed123": "58100dab1804e1a84cde0f54a5d5973bd9ee514e7f18b30915325df54a6bc623",
+      "seed2026": "4307573cedcb9d7dde73b8db60f9c289363489fde643a8fed83e4eabfa89eb90"
+    },
+    "predictions/memory_retrieval.npz": {
+      "seed42": "e0246cb5d43e22317529ed978c79e49faab466816b7694a469bff4676db3a9ba",
+      "seed123": "64b3fe2f84f0362af62b9930ead6515dcd80a4db7395060ab1b1cb0c98dad231",
+      "seed2026": "0dde021e9e2861c36547dbb089d4de413cf4e7d25ff422a365a0c809712a4757"
+    },
+    "predictions/memory_raw_expert.npz": {
+      "seed42": "075595613361e10c82862de07389cd591c7bd43f4ba5ca50e014e455060fed23",
+      "seed123": "cabc4c15690c99bfdfb0e11de6365cf20ee6231afabae1f4a350f95b35dbb4f6",
+      "seed2026": "8b9876bac19e1acac4f97484bef7b5bc8d8607d45459a0654b3bcda04fac37c1"
+    },
+    "predictions/memory_paer.npz": {
+      "seed42": "2b3d0e109719fa4a3b645db28bcb56b7b28518478571630f11578cdc0795ded5",
+      "seed123": "c236373ea33177ba986c318301f2c503c4ae2df89094bd753899a8b977bcd98a",
+      "seed2026": "f528b1a5ce49acfb486e5ed6c23ae3b1dcf634847359c1d26ef4e7d5ca4dfb61"
+    }
+  },
+  "base_share": "Chronos-2 has identical forecasts in all three runs. The shared array is stored once.",
+  "weight_file_sha256_in_original_precommit": [
+    {
+      "arm": "Retrieval without experts",
+      "seed": 123,
+      "frozen_weight_record_sha256": "08593f9b07946515a3fc1954f7b1430f5cfb1099eed2058b3512b35721f950d1"
+    },
+    {
+      "arm": "Retrieval without experts",
+      "seed": 2026,
+      "frozen_weight_record_sha256": "37b7be9a94f7443185ad546923d1903ee159a2d65eda83dea618d9134809c0f5"
+    },
+    {
+      "arm": "Retrieval without experts",
+      "seed": 42,
+      "frozen_weight_record_sha256": "33f1ed58d06d78d6201f829c07cc8ecabd5e2b1ea97a43624c22ed4ee10b429b"
+    },
+    {
+      "arm": "PAER",
+      "seed": 123,
+      "frozen_weight_record_sha256": "a7ef7b024b979578ad0df3d5b453e79326e7ddf1b6ccc12c164c629faa9e0e16"
+    },
+    {
+      "arm": "PAER",
+      "seed": 2026,
+      "frozen_weight_record_sha256": "5e000b3fca7a1d7a7b0f43533bf06ba830b1020955b80dc63bdf0bcc40907b40"
+    },
+    {
+      "arm": "PAER",
+      "seed": 42,
+      "frozen_weight_record_sha256": "4b6a5c05d2301fcd1b4b2de5066fe7362ff07286eee3fae910a9010a5ca3b171"
+    },
+    {
+      "arm": "Raw Expert",
+      "seed": 123,
+      "frozen_weight_record_sha256": "e8bf3e83a03724b0a882cb5a7e3c14cf79261ae4ad0b6eb96a06d078fd342f7d"
+    },
+    {
+      "arm": "Raw Expert",
+      "seed": 2026,
+      "frozen_weight_record_sha256": "44d0ca0e9c020c50714c7e10ff12ab9e4bb3cfdfd0baea2d457c4be39aaa4c46"
+    },
+    {
+      "arm": "Raw Expert",
+      "seed": 42,
+      "frozen_weight_record_sha256": "12e6dc9333915d42d224ba15eb1e036a19627780dfaa788c51f4785c70ae031c"
+    }
+  ],
+  "val_choice": "Minimum MSE over original validation weights, exact ties resolved in favor of the smaller weight.",
+  "original_precommit_created_utc": "2026-11-08T09:13:33.395680+00:00",
+  "original_precommit_sha256": "a33fac322d34052857b35e184a79a161f4d9f6429123fccafc88b8d62e64d5bb",
+  "original_protocol_sha256": "f2d999d911cbdca6b4c299f9e6c204a0a64bd5f80f8f3038192014f77f92e997",
+  "original_precommit_input_count": 51,
+  "old_weather_source_identity": {
+    "rows": 52696,
+    "history_end": "2021-01-01T00:00:00",
+    "sha256_series": "1331d66ae72827d4b9a58e0a2f2c002a68364e2e70f7ef88ac0bfb078dc2f9e5",
+    "raw_2020_archives": {
+      "mpi_roof_2020a.zip": "6a0be0552a2a26a04c3b41a5281d4a55ae251d4c65ce630971a8662f43b31f9f",
+      "mpi_roof_2020b.zip": "c37eca910ee2803b17b8c587f3194bc7625abf994576c50f32538dd7cb65ac77"
+    }
+  },
+  "replay_on_original_validation": {
+    "memory_top5_indices_raw_and_aligned_predictions": "exact for 32 origins, all three arms and seeds",
+    "base_predictions": "exact for 1024 origins in every backbone and seed; Chronos-2 shared"
+  },
+  "bootstrap": {
+    "block_length": 608,
+    "replicates": 2000,
+    "seed": 42,
+    "quantiles": [
+      0.025,
+      0.975
+    ],
+    "sampling": "uniform moving blocks, averaged three-seed losses per origin. Draw one 2000-vector of start indices per block position; shorten last block to the original number of origins."
+  },
+  "provider": {
+    "url": "https://www.bgc-jena.mpg.de/wetter/data/mpi_roof_2021a.zip",
+    "archive_sha256": "3785931544fef3e66166e0b3cb1ec4496ee5e92042e7de0d1a094fac64311668",
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": "Max Planck Institute for Biogeochemistry, Jena; Weather Station Beutenberg, CC BY 4.0"
+  }
+}

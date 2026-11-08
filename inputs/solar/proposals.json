@@ -1,0 +1,418 @@
+{
+  "1": [
+    {
+      "id": "E1",
+      "mechanism": "At night, aggregate solar generation is at or near zero and lacks the daytime solar variability signal.",
+      "scope": "global night periods",
+      "activation_condition": "when hour_of_day is night",
+      "failure_condition": "non-zero night values from data errors or non-solar generation; also near dawn/dusk when the night category may not match true sun elevation",
+      "observables": [
+        "hour_of_day"
+      ],
+      "retrieval_action": "Restrict historical retrieval to night-time windows and do not mix with daytime segments.",
+      "reason": "Solar output is physically zero without sunlight, so night segments are nearly deterministic and only other night segments provide relevant baseline behavior.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "hour_of_day",
+            "qualifier": "night"
+          }
+        ]
+      },
+      "expected_effect": "The retrieved futures will be near-zero night and early-morning shapes, avoiding daytime variability that would inflate forecast error.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E1"
+    },
+    {
+      "id": "E2",
+      "mechanism": "During midday with low volatility and high recent autocorrelation, aggregate solar generation follows a smooth clear-sky curve determined by sun angle and season.",
+      "scope": "midday clear-sky periods",
+      "activation_condition": "when hour_of_day is midday AND recent_volatility is low AND recent_autocorr is high",
+      "failure_condition": "when clouds or aerosols create abrupt ramps; when low volatility is only a short calm interval before a front",
+      "observables": [
+        "hour_of_day",
+        "recent_volatility",
+        "recent_autocorr",
+        "recent_level",
+        "seasonal_level"
+      ],
+      "retrieval_action": "Restrict retrieval to midday history and prefer windows with similar recent_level and the same seasonal_level.",
+      "reason": "Clear-sky solar generation is highly repeatable for a given time of day and season; matching level and season aligns the current clear-sky baseline with analogous past segments.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "hour_of_day",
+            "qualifier": "midday"
+          },
+          {
+            "feature": "recent_volatility",
+            "qualifier": "low"
+          },
+          {
+            "feature": "recent_autocorr",
+            "qualifier": "high"
+          }
+        ]
+      },
+      "expected_effect": "Matches the clear-sky baseline amplitude and diurnal shape for the current season and current output level, reducing bias.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E2"
+    },
+    {
+      "id": "E4",
+      "mechanism": "Morning solar ramp-up creates a steep positive slope; the shape of the ramp depends on sun angle and cloudiness.",
+      "scope": "morning ramp periods",
+      "activation_condition": "when hour_of_day is morning AND recent_slope_magnitude is high",
+      "failure_condition": "when high slope is due to a cloud edge rather than normal sunrise; when morning ramp is obscured by fog or heavy overcast",
+      "observables": [
+        "hour_of_day",
+        "recent_slope_magnitude",
+        "recent_level"
+      ],
+      "retrieval_action": "Restrict retrieval to morning history and prefer windows with similar recent_slope_magnitude and recent_level.",
+      "reason": "The morning ramp is a semi-deterministic diurnal feature whose slope and level contain information about clear-sky versus cloudy conditions; the evidence is mixed, so this refinement is provisional.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "hour_of_day",
+            "qualifier": "morning"
+          },
+          {
+            "feature": "recent_slope_magnitude",
+            "qualifier": "high"
+          }
+        ]
+      },
+      "expected_effect": "Historical morning ramps with similar steepness should provide better forecasts of ramp timing and magnitude over the next hours.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E4"
+    },
+    {
+      "id": "E5",
+      "mechanism": "Evening ramp-down is a steep negative slope dominated by declining sun angle; the shape is repeatable for the same hour and season but cloud edges can distort it.",
+      "scope": "evening ramp periods",
+      "activation_condition": "when hour_of_day is evening AND recent_slope_magnitude is high",
+      "failure_condition": "when high slope is caused by clearing clouds rather than sunset, or when seasonal sunset time shifts significantly within the broad evening category",
+      "observables": [
+        "hour_of_day",
+        "recent_slope_magnitude",
+        "recent_level"
+      ],
+      "retrieval_action": "Restrict retrieval to evening history and prefer windows with similar recent_slope_magnitude and recent_level.",
+      "reason": "Evening ramp-down is the mirror of the morning ramp but occurs at different sun angles and often with different cloud climatology; the evidence is mixed, so this refinement is provisional.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "hour_of_day",
+            "qualifier": "evening"
+          },
+          {
+            "feature": "recent_slope_magnitude",
+            "qualifier": "high"
+          }
+        ]
+      },
+      "expected_effect": "Better captures evening decay rate and duration, avoiding morning or midday segments with opposite sign dynamics.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E5"
+    },
+    {
+      "id": "E6",
+      "mechanism": "Summer has higher clear-sky capacity and longer day length, so the seasonal baseline level differs markedly from other seasons.",
+      "scope": "summer",
+      "activation_condition": "when seasonal_level is summer",
+      "failure_condition": "during summer monsoon/cloudy periods or smoke events that make the typical summer clear-sky baseline unrepresentative",
+      "observables": [
+        "seasonal_level",
+        "recent_level"
+      ],
+      "retrieval_action": "Restrict retrieval to summer historical segments and prefer windows with similar recent_level.",
+      "reason": "Solar generation is strongly seasonally dependent; the train evidence is weak, so this seasonal restriction is maintained only as a prior.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "seasonal_level",
+            "qualifier": "summer"
+          }
+        ]
+      },
+      "expected_effect": "Keeps seasonal sun angle and day length consistent, reducing seasonal bias in the future shape.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E6"
+    },
+    {
+      "id": "E7",
+      "mechanism": "Winter has lower sun angle, shorter days, and lower clear-sky output, so winter segments are most predictive of other winter days.",
+      "scope": "winter",
+      "activation_condition": "when seasonal_level is winter",
+      "failure_condition": "snow cover may temporarily increase reflected irradiance and make winter segments atypical; very stormy winter periods also fail",
+      "observables": [
+        "seasonal_level",
+        "recent_level"
+      ],
+      "retrieval_action": "Restrict retrieval to winter historical segments and prefer windows with similar recent_level.",
+      "reason": "Winter solar generation has a distinct diurnal envelope and lower typical level; same-season retrieval reduces seasonal mismatch.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "seasonal_level",
+            "qualifier": "winter"
+          }
+        ]
+      },
+      "expected_effect": "Avoids mixing in high summer generation futures and matches winter daylight length and low sun angle.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E7"
+    },
+    {
+      "id": "E8",
+      "mechanism": "Non-working days may have lower aerosol loading and different aggregate demand or curtailment, leading to slightly different solar generation levels or shapes.",
+      "scope": "non-working days",
+      "activation_condition": "when working_day is non_working",
+      "failure_condition": "when large-scale weather changes dominate the day-type effect; or if the solar fleet is mostly utility-scale and insensitive to weekly activity",
+      "observables": [
+        "working_day",
+        "recent_level",
+        "recent_volatility"
+      ],
+      "retrieval_action": "Prefer historical non-working-day windows with similar recent_level and recent_volatility instead of mixing workdays and non-working days.",
+      "reason": "Weekly cycles in aerosols, cloud condensation nuclei, or grid operations can modulate aggregate solar output; the evidence is mixed, so this day-type preference is provisional.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "working_day",
+            "qualifier": "non_working"
+          }
+        ]
+      },
+      "expected_effect": "Retrieves futures with the same weekly atmospheric and operational signature, improving daily level and ramp timing.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E8"
+    }
+  ],
+  "2": [
+    {
+      "id": "E1",
+      "mechanism": "Stable low-volatility, low-diff periods imply a persistent generation regime where the future should resemble calm history.",
+      "scope": "low volatility and low recent changes",
+      "activation_condition": "when recent_volatility is low AND recent_diff_magnitude is low",
+      "failure_condition": "when a front or cloud edge arrives immediately after the calm window; when low volatility is caused by data staleness",
+      "observables": [
+        "recent_volatility",
+        "recent_diff_magnitude",
+        "recent_level",
+        "recent_autocorr"
+      ],
+      "retrieval_action": "Retrieve historical windows with similar recent_level and recent_autocorr from stable low-variability periods.",
+      "reason": "Low recent volatility and small recent differences identify a stable local process; conditioning on similar level and autocorrelation preserves amplitude and persistence while excluding regime-change examples.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "recent_volatility",
+            "qualifier": "low"
+          },
+          {
+            "feature": "recent_diff_magnitude",
+            "qualifier": "low"
+          }
+        ]
+      },
+      "expected_effect": "The retrieved futures should be smoother and more persistent, reducing noise from high-variance historical segments.",
+      "replaced": true,
+      "revision_round": 2,
+      "lineage_id": "E1"
+    },
+    {
+      "id": "E2",
+      "mechanism": "Smooth conditions with high autocorrelation and low slope indicate a stable cloud-free or uniformly overcast sky, so future shape is persistent.",
+      "scope": "smooth periods",
+      "activation_condition": "when recent_autocorr is high AND recent_slope_magnitude is low",
+      "failure_condition": "when a developing convective cloud or front breaks the smooth state; when low slope is due to a flat midday plateau that precedes an evening ramp",
+      "observables": [
+        "recent_autocorr",
+        "recent_slope_magnitude",
+        "recent_level",
+        "hour_of_day"
+      ],
+      "retrieval_action": "Prefer historical windows with similar recent_level and the same hour_of_day category from smooth periods.",
+      "reason": "High autocorrelation and low slope quantify smoothness; matching hour and level retains the current diurnal position while excluding transition periods.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "recent_autocorr",
+            "qualifier": "high"
+          },
+          {
+            "feature": "recent_slope_magnitude",
+            "qualifier": "low"
+          }
+        ]
+      },
+      "expected_effect": "Aligns diurnal phase and amplitude with stable past segments, reducing mismatch from ramp or cloudy histories.",
+      "replaced": true,
+      "revision_round": 2,
+      "lineage_id": "E2"
+    },
+    {
+      "id": "E4",
+      "mechanism": "High slope and high volatility together indicate an active ramp caused by clouds or boundary-layer transitions, so similar active ramp histories are informative.",
+      "scope": "active ramp periods",
+      "activation_condition": "when recent_slope_magnitude is high AND recent_volatility is high",
+      "failure_condition": "when high slope is a normal sunrise or sunset ramp rather than a cloud-driven event; when volatility is high but the slope sign reverses immediately",
+      "observables": [
+        "recent_slope_magnitude",
+        "recent_volatility",
+        "recent_diff_magnitude",
+        "recent_level"
+      ],
+      "retrieval_action": "Retrieve historical windows with similar recent_slope_magnitude and recent_diff_magnitude, giving more weight to active periods.",
+      "reason": "Active ramps have distinct short-term dynamics; matching slope and diff magnitude selects comparable transition intensities.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "recent_slope_magnitude",
+            "qualifier": "high"
+          },
+          {
+            "feature": "recent_volatility",
+            "qualifier": "high"
+          }
+        ]
+      },
+      "expected_effect": "The retrieved futures should include active ramp evolution and magnitude rather than smooth baselines, improving transition forecasts.",
+      "replaced": true,
+      "revision_round": 2,
+      "lineage_id": "E4"
+    },
+    {
+      "id": "E5",
+      "mechanism": "Large recent differences identify sudden changes in the generation process; the future after such changes tends to remain unsettled.",
+      "scope": "large recent change periods",
+      "activation_condition": "when recent_diff_magnitude is high",
+      "failure_condition": "when the large difference is a one-time data correction or a single step that does not continue; when the change saturates at zero or peak output",
+      "observables": [
+        "recent_diff_magnitude",
+        "recent_level",
+        "recent_volatility"
+      ],
+      "retrieval_action": "Retrieve historical large-change windows and prefer similar recent_level and recent_volatility.",
+      "reason": "Recent difference magnitude marks periods just after a structural or meteorological shift; matching level and volatility preserves the new operating point.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "recent_diff_magnitude",
+            "qualifier": "high"
+          }
+        ]
+      },
+      "expected_effect": "Historical segments after comparable jumps should capture the post-change future trajectory, avoiding flat baseline analogues.",
+      "replaced": true,
+      "revision_round": 2,
+      "lineage_id": "E5"
+    },
+    {
+      "id": "E6",
+      "mechanism": "Summer clear-sky periods with low volatility are highly repeatable and dominated by the seasonal daylight envelope.",
+      "scope": "stable summer clear-sky periods",
+      "activation_condition": "when seasonal_level is summer AND recent_volatility is low",
+      "failure_condition": "when summer convective clouds or smoke create abrupt ramps despite low recent volatility; when low volatility is only a short clear gap between storms",
+      "observables": [
+        "seasonal_level",
+        "recent_volatility",
+        "recent_level",
+        "hour_of_day"
+      ],
+      "retrieval_action": "Restrict retrieval to summer history from low-volatility periods and prefer similar recent_level and hour_of_day.",
+      "reason": "Stable summer periods have a strong seasonal baseline; matching hour and level further aligns the clear-sky curve without mixing in cloudy summer or winter futures.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "seasonal_level",
+            "qualifier": "summer"
+          },
+          {
+            "feature": "recent_volatility",
+            "qualifier": "low"
+          }
+        ]
+      },
+      "expected_effect": "Same-season stable analogues align daylight length and clear-sky amplitude, reducing seasonal and diurnal bias.",
+      "replaced": false,
+      "revision_round": 2,
+      "lineage_id": "E6"
+    },
+    {
+      "id": "E7",
+      "mechanism": "Autumn has transitional sun angle and variable cloud climatology; same-season autumn retrievals may share daylight envelope and weather patterns better than other seasons.",
+      "scope": "autumn periods",
+      "activation_condition": "when seasonal_level is autumn",
+      "failure_condition": "when early autumn behaves like summer or late autumn like winter; when strong storm systems dominate the seasonal baseline",
+      "observables": [
+        "seasonal_level",
+        "recent_level",
+        "recent_volatility"
+      ],
+      "retrieval_action": "Restrict retrieval to autumn history and prefer windows with similar recent_level and recent_volatility.",
+      "reason": "Autumn solar generation has a distinct combination of day length and frontal variability; same-season retrieval avoids the bias from summer and winter baselines.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "seasonal_level",
+            "qualifier": "autumn"
+          }
+        ]
+      },
+      "expected_effect": "Keeps the transitional daylight envelope and autumn cloud climatology aligned with the current period.",
+      "replaced": true,
+      "revision_round": 2,
+      "lineage_id": "E7"
+    },
+    {
+      "id": "E8",
+      "mechanism": "Workdays may have distinct aerosol loading and operational behavior, so workday retrieval may reduce weekday/weekend bias.",
+      "scope": "workday periods",
+      "activation_condition": "when working_day is workday",
+      "failure_condition": "when large-scale weather dominates the workday effect; when the solar fleet is insensitive to local aerosol or grid operations",
+      "observables": [
+        "working_day",
+        "recent_level",
+        "recent_volatility"
+      ],
+      "retrieval_action": "Prefer historical workday windows with similar recent_level and recent_volatility.",
+      "reason": "Workday emissions and grid conditions may modulate solar output; same day-type retrieval can remove a systematic weekly calibration error.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "working_day",
+            "qualifier": "workday"
+          }
+        ]
+      },
+      "expected_effect": "Retrieves futures from the same weekly aerosol and operational regime, improving level and ramp timing relative to mixed day types.",
+      "replaced": true,
+      "revision_round": 2,
+      "lineage_id": "E8"
+    }
+  ]
+}

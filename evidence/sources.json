@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "tables": {
+    "main/per_seed.csv": {
+      "source_role": "Seven-task seed-level fusion scores",
+      "source_sha256": "27959e86ffc24e25b8864eb2043a8d0479b6257cf45879d43ee25c4464457ca8",
+      "public_sha256": "1d1e9b07a3b41b1fec2ec1cee58252667a667dbdddf27323b700e8ba7875a67d",
+      "records": 252
+    },
+    "main/summary.csv": {
+      "source_role": "Seven-task fusion score summaries",
+      "source_sha256": "047d3fdc87634efe52b686f420dc33f82ac740252d87aff67937bda7c223aad9",
+      "public_sha256": "4768ea1b7d1c9fecb5a761b9ac74025eaebdaa448398f4b2e44e06381749c4ba",
+      "records": 84
+    },
+    "main/comparisons.csv": {
+      "source_role": "Seven-task paired differences on seed means",
+      "source_sha256": "51b8b1aa09050a3f2581d94b2763e920ff0fd01e27068e83e30c2fb6adfde862",
+      "public_sha256": "b90735fd129d90bbf5b9929dbf1f56b3ca32bedf286fd848699219e7dce9544e",
+      "records": 84
+    },
+    "main/memory_per_seed.csv": {
+      "source_role": "Seven-task aligned and unaligned memory scores",
+      "source_sha256": "18d38d7a137d82cb3f37087e7a252a48f66fd3b84895acb53358ece623626959",
+      "public_sha256": "f7ab6c67cfa4ba6fec209a5bb916c8e370315ec308c9a5a37982236cd3120583",
+      "records": 63
+    },
+    "main/revision_acceptance.csv": {
+      "source_role": "Mean four-fold contribution-context proposal comparisons",
+      "source_sha256": "c9e8c343ca2356c7dc5ec06f118fa439e1a8aa136b3401e4eb674b03aff189f8",
+      "public_sha256": "9acc1a5bd442a47b4774bb9a1c27b7a7421f8dd104d7d3bdc021198fa4d06509",
+      "records": 70
+    },
+    "main/block_intervals/electricity_block_bootstrap.csv": {
+      "source_role": "Paired time-block interval records for electricity",
+      "source_sha256": "2156b0ad6e553bbc18b5d48848c4fe3de05e593c0ecf00618208d474b8dfa99b",
+      "public_sha256": "0de5aa9ec8c986e0bc22ccab6153f049df5300f10565ad9ad3229218228bee1d",
+      "records": 90
+    },
+    "main/block_intervals/etth1_block_bootstrap.csv": {
+      "source_role": "Paired time-block interval records for etth1",
+      "source_sha256": "ef3a48f7d7829789fac94926c59ff0082edc19fd81065c9fbb0944fcfbcbd43e",
+      "public_sha256": "49d51c08ec1bcbd42a6e41a297192db5b978bd028108b8691b2300c0d4cdb8a1",
+      "records": 90
+    },
+    "main/block_intervals/etth2_block_bootstrap.csv": {
+      "source_role": "Paired time-block interval records for etth2",
+      "source_sha256": "26b4b3d39f75cba8fa09acf4556d4e6da1e4890bcd1d040e48720535fe0bc581",
+      "public_sha256": "0881a01158a7b804254309127c8d05bce062f0fce2683b50b62b85345a8dfe6c",
+      "records": 90
+    },
+    "main/block_intervals/exchange_rate_block_bootstrap.csv": {
+      "source_role": "Paired time-block interval records for exchange_rate",
+      "source_sha256": "fff32cfe8be252100f32a206a82e3d3160aece6ec748aa34c7912e819751bad4",
+      "public_sha256": "127771aa59b163cd855dbf4e4d048beaba7b081b30cd8f55436d74b24f46e3c3",
+      "records": 90
+    },
+    "main/block_intervals/solar_block_bootstrap.csv": {
+      "source_role": "Paired time-block interval records for solar",
+      "source_sha256": "0cc8cf71b138b93288d758dab63b065cda441b4ad667eab14183e1bc7545e832",
+      "public_sha256": "f9a44e9bf9c66336cd526defff1fd46316bbc834487735342c43a58f3dcbc7d0",
+      "records": 90
+    },
+    "main/block_intervals/traffic_block_bootstrap.csv": {
+      "source_role": "Paired time-block interval records for traffic",
+      "source_sha256": "165568a4d295562e305dec508b53bdc8566729696fe9038acbc5cd6fedb3c151",
+      "public_sha256": "11271d8b231bda51f3c62c20d7e8dba8ba176e0063cee2a9c98f0753c6134aba",
+      "records": 90
+    },
+    "main/block_intervals/weather_block_bootstrap.csv": {
+      "source_role": "Paired time-block interval records for weather",
+      "source_sha256": "9f09e9b3d3e2f8aa12789829b86dae2522b8c7530a9aec2e39468b99429f0644",
+      "public_sha256": "006bea9aa55eae0131ba1ed81889f89db940a2e7a63ad6db6260f6ca56b36a65",
+      "records": 90
+    },
+    "controls/per_seed.csv": {
+      "source_role": "Five-task capacity-matched component controls",
+      "source_sha256": "e25a07a24315a0eae8eb0ce157ad995c9b2a5afed9c03f1c03e4fcaf0d5f984f",
+      "public_sha256": "8dac58642d72196b9eb5159caa246e92c19583a4212274f440fe34c692a58598",
+      "records": 480
+    },
+    "weather_2021_01/per_seed.csv": {
+      "source_role": "Weather January external evaluation per_seed",
+      "source_sha256": "5260753486abdb7c70de524b5accc5d928fba4608478d34ced3a6add7457bf1c",
+      "public_sha256": "5644453ff4a7222fb83c06bd0c5591ec0724e9f3bc7dbbd3896c3af39c9ae728",
+      "records": 48
+    },
+    "weather_2021_01/summary.csv": {
+      "source_role": "Weather January external evaluation summary",
+      "source_sha256": "ad99cec5b99fbe675b6b6c60496a7349429972e729f0ccc60d44552b55533c78",
+      "public_sha256": "324e324ce4b4d5a4475287430143b5973c6017f1fd7bb26793fe159e5e6280c2",
+      "records": 16
+    },
+    "weather_2021_01/comparisons.csv": {
+      "source_role": "Weather January external evaluation comparisons",
+      "source_sha256": "225d5df20c2e082c3ee25904c62b77ed5cfbc26dc9ddda39fbe02ea58b507693",
+      "public_sha256": "3831085c6ce6d0a55f75bc338dfc5a8926b62d9c34d214b311435ef7e0c752e7",
+      "records": 24
+    }
+  },
+  "inputs": {
+    "seven_task_protocol_sha256": "7bb3a7cd2e9604887e222265a8aad2d3365c76443a3bf807166709933be27696",
+    "seven_task_status_sha256": "46e084e2d71b005ec98148353cf8aaf5d072802fe7c5e5521e2b517af969ba5d",
+    "dataset_configuration_sha256": {
+      "etth1": "6ba357dd9bde51fa0fdf59e7509589879e19c1bbee1c426560a8db0728869356",
+      "etth2": "93063bc2a181439971d8c61cfb9b62a023b03679826be44e0414e13beec6cc26",
+      "exchange_rate": "e4c38fd8cf54b32388a0f67de8e306de83788e51ce0f60133ab8d50d0c49c270",
+      "traffic": "b3ccd6bab2769714af053028066baaadc326c22c4ffebf93d09b4a91b63e4c56",
+      "weather": "2ab5359b4d2f34d68037ba3e49775f0a3addd4dd9d4961736a0a6a83d0041705",
+      "solar": "3c94209cf602ac57a75063874cec875169dd9bc48b6dc695da562c8b5b51d0ee",
+      "electricity": "37a8f0e8549421ed8ecb25aea8e317b99ba0e4f306292cb63f73ed6318d930d6"
+    },
+    "weather_external_precommit_sha256": "a33fac322d34052857b35e184a79a161f4d9f6429123fccafc88b8d62e64d5bb",
+    "weather_data_receipt_sha256": "af4e1a024e0c76a126b27cc4d48fdfa50e9012491dc4c2f22b12c9853d1d9b00",
+    "weather_independent_audit_sha256": "bde05252ff64f5b5639014ca190ab58a3979fba1689c115811b4798e169eeb53",
+    "weather_end_to_end_replay_check_sha256": "0e62a78bff73f4b33a9842e8b13adea6aa6e0852924e937ac0a0b154148e2508"
+  },
+  "metadata": {
+    "datasets.json": "345276e21425b49de8c3688ba7e4ac2404a763ec7a63043d02b74a9f318886e4",
+    "weather_2021_01/data_source.json": "2fbd9152cb2cfad018142e4edecd447ab890dde1110411e053daa7c11de0fb6b"
+  }
+}

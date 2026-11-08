@@ -1,0 +1,55 @@
+{
+  "task": "weather",
+  "station": "MPI-BGC Jena, Beutenberg roof",
+  "sensor": "CO2 (ppm)",
+  "attribution": "Max Planck Institute for Biogeochemistry, Jena; Weather Station Beutenberg, CC BY 4.0",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "official_directory": "https://www.bgc-jena.mpg.de/wetter/weather_data.html",
+  "period_start_exclusive": "2021-01-01T00:00:00.000000000",
+  "period_end_inclusive": "2021-02-01T00:00:00.000000000",
+  "context": 512,
+  "horizon": 96,
+  "stride": 1,
+  "preprocessing": "Preserve source order; split at every timestamp other than +10 minutes. Forward-fill only -9999 from an earlier actual observation within the segment; omit leading unfillable rows. Windows fully inside January segment.",
+  "period": {
+    "first_new_row": "2021-01-01T00:10:00.000000000",
+    "last_new_row": "2021-02-01T00:00:00.000000000",
+    "actual_source_rows": 4464,
+    "nominal_rows": 4464,
+    "unique_timestamps": 4464,
+    "discontinuities_before_rows": [],
+    "segments": [
+      [
+        0,
+        4464
+      ]
+    ],
+    "raw_sentinels": 0,
+    "causally_filled_rows": 0,
+    "unfilled_leading_rows": 0,
+    "windows": 3857,
+    "first_prediction_origin": "2021-01-04T13:30:00.000000000",
+    "last_prediction_origin": "2021-01-31T08:10:00.000000000",
+    "label_entries": 370272,
+    "observed_label_entries": 370272,
+    "context_entries_filled": 0
+  },
+  "precommit_sha256": "a33fac322d34052857b35e184a79a161f4d9f6429123fccafc88b8d62e64d5bb",
+  "archives": {
+    "mpi_roof_2020a.zip": {
+      "official_url": "https://www.bgc-jena.mpg.de/wetter/data/mpi_roof_2020a.zip",
+      "sha256": "6a0be0552a2a26a04c3b41a5281d4a55ae251d4c65ce630971a8662f43b31f9f",
+      "bytes": 1292650
+    },
+    "mpi_roof_2020b.zip": {
+      "official_url": "https://www.bgc-jena.mpg.de/wetter/data/mpi_roof_2020b.zip",
+      "sha256": "c37eca910ee2803b17b8c587f3194bc7625abf994576c50f32538dd7cb65ac77",
+      "bytes": 1298224
+    },
+    "mpi_roof_2021a.zip": {
+      "official_url": "https://www.bgc-jena.mpg.de/wetter/data/mpi_roof_2021a.zip",
+      "sha256": "3785931544fef3e66166e0b3cb1ec4496ee5e92042e7de0d1a094fac64311668",
+      "bytes": 1280703
+    }
+  }
+}

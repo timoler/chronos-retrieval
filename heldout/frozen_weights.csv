@@ -1,0 +1,37 @@
+model,arm,seed,lambda_value
+Chronos-2,Retrieval without experts,123,0.2
+PatchTST,Retrieval without experts,123,0.1
+iTransformer,Retrieval without experts,123,0.1
+RAFT,Retrieval without experts,123,0.05
+Chronos-2,Retrieval without experts,2026,0.2
+PatchTST,Retrieval without experts,2026,0.1
+iTransformer,Retrieval without experts,2026,0.1
+RAFT,Retrieval without experts,2026,0.05
+Chronos-2,Retrieval without experts,42,0.2
+PatchTST,Retrieval without experts,42,0.1
+iTransformer,Retrieval without experts,42,0.1
+RAFT,Retrieval without experts,42,0.1
+Chronos-2,PAER,123,0.2
+PatchTST,PAER,123,0
+iTransformer,PAER,123,0.1
+RAFT,PAER,123,0.05
+Chronos-2,PAER,2026,0.2
+PatchTST,PAER,2026,0
+iTransformer,PAER,2026,0.05
+RAFT,PAER,2026,0.05
+Chronos-2,PAER,42,0.2
+PatchTST,PAER,42,0
+iTransformer,PAER,42,0.1
+RAFT,PAER,42,0.05
+Chronos-2,Raw Expert,123,0.2
+PatchTST,Raw Expert,123,0
+iTransformer,Raw Expert,123,0.1
+RAFT,Raw Expert,123,0.05
+Chronos-2,Raw Expert,2026,0.2
+PatchTST,Raw Expert,2026,0
+iTransformer,Raw Expert,2026,0.05
+RAFT,Raw Expert,2026,0.05
+Chronos-2,Raw Expert,42,0.2
+PatchTST,Raw Expert,42,0
+iTransformer,Raw Expert,42,0.1
+RAFT,Raw Expert,42,0.05

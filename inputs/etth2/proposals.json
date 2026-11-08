@@ -1,0 +1,321 @@
+{
+  "1": [
+    {
+      "id": "E1",
+      "mechanism": "When recent volatility and recent difference magnitude are both high, temperature is in a transient-dominated regime, so historical windows with similarly high volatility and difference magnitude are more predictive.",
+      "scope": "global high-volatility / high-diff regime",
+      "activation_condition": "when recent_volatility is high AND recent_diff_magnitude is high",
+      "failure_condition": "low or moderate recent volatility, or low recent_diff_magnitude; stable periods",
+      "observables": [
+        "recent_volatility",
+        "recent_diff_magnitude"
+      ],
+      "retrieval_action": "Upweight historical windows whose recent_volatility and recent_diff_magnitude were both high.",
+      "reason": "High recent_volatility alone was too broad and produced mixed fold rewards. Adding high recent_diff_magnitude is a conservative executable narrowing; evidence does not identify the exact cutoff.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "recent_volatility",
+            "qualifier": "high"
+          },
+          {
+            "feature": "recent_diff_magnitude",
+            "qualifier": "high"
+          }
+        ]
+      },
+      "expected_effect": "Narrows the previous broad high-volatility condition to large transient moves, reducing exposure to negative reward cases while retaining high-volatility transient matching.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E1"
+    },
+    {
+      "id": "E2",
+      "mechanism": "When recent slope is nearly flat and volatility is low at night, cooling dominates and the future trajectory tends to follow the typical calm nighttime decay.",
+      "scope": "night / low-slope / low-volatility regime",
+      "activation_condition": "when recent_slope_magnitude is low AND recent_volatility is low AND hour_of_day is night",
+      "failure_condition": "day hours, high recent slope magnitude, or high recent volatility",
+      "observables": [
+        "recent_slope_magnitude",
+        "recent_volatility",
+        "hour_of_day"
+      ],
+      "retrieval_action": "Restrict retrieval to nighttime hours and prefer historical windows with low recent slope magnitude and low recent volatility.",
+      "reason": "The prior night and low-slope rule was too broad. Requiring low recent_volatility narrows to stable nighttime decay; evidence does not identify the exact cutoff.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "recent_slope_magnitude",
+            "qualifier": "low"
+          },
+          {
+            "feature": "recent_volatility",
+            "qualifier": "low"
+          },
+          {
+            "feature": "hour_of_day",
+            "qualifier": "night"
+          }
+        ]
+      },
+      "expected_effect": "A more specific calm-night cooling condition should reduce the negative folds by excluding unstable or high-volatility nights.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E2"
+    },
+    {
+      "id": "E3",
+      "mechanism": "When the transformer is already at high temperature in summer, future temperature behavior is more sensitive to cooling limitations and should be inferred from hot summer days.",
+      "scope": "summer / high recent level",
+      "activation_condition": "when seasonal_level is summer AND recent_level is high",
+      "failure_condition": "cool seasons or low recent level",
+      "observables": [
+        "seasonal_level",
+        "recent_level"
+      ],
+      "retrieval_action": "Restrict retrieval to summer history and prefer windows with high recent level.",
+      "reason": "High ambient and high oil temperature alter cooling rates and overload risk, making hot summer segments more representative.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "seasonal_level",
+            "qualifier": "summer"
+          },
+          {
+            "feature": "recent_level",
+            "qualifier": "high"
+          }
+        ]
+      },
+      "expected_effect": "Matches seasonal ambient conditions and high thermal state, reducing bias from cooler-season dynamics.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E3"
+    },
+    {
+      "id": "E4",
+      "mechanism": "On workdays with strong recent slope, industrial and commercial load ramps dominate, so same workday ramp history is more predictive.",
+      "scope": "workday / high-slope regime",
+      "activation_condition": "when working_day is workday AND recent_slope_magnitude is high",
+      "failure_condition": "non-working days or low recent slope magnitude",
+      "observables": [
+        "working_day",
+        "recent_slope_magnitude"
+      ],
+      "retrieval_action": "Restrict retrieval to workdays and prefer historical windows with high recent slope magnitude.",
+      "reason": "Workday load schedules drive strong temperature rises; weekend history is misleading during such ramps.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "working_day",
+            "qualifier": "workday"
+          },
+          {
+            "feature": "recent_slope_magnitude",
+            "qualifier": "high"
+          }
+        ]
+      },
+      "expected_effect": "Matches weekday load ramp timing and amplitude, improving forecasts during active work periods.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E4"
+    },
+    {
+      "id": "E5",
+      "mechanism": "On non-working days with low volatility, transformer load is typically lower and smoother, so future behavior resembles past stable non-working-day periods.",
+      "scope": "non-working / low-volatility regime",
+      "activation_condition": "when working_day is non_working AND recent_volatility is low",
+      "failure_condition": "workdays or high recent volatility",
+      "observables": [
+        "working_day",
+        "recent_volatility"
+      ],
+      "retrieval_action": "Restrict retrieval to non-working days and prefer windows with low recent volatility.",
+      "reason": "Non-working days have distinct load profiles; low volatility indicates a stable non-working regime.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "working_day",
+            "qualifier": "non_working"
+          },
+          {
+            "feature": "recent_volatility",
+            "qualifier": "low"
+          }
+        ]
+      },
+      "expected_effect": "Uses weekend-specific lower-load dynamics and avoids workday load patterns.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E5"
+    },
+    {
+      "id": "E6",
+      "mechanism": "High recent autocorrelation with low recent volatility indicates persistent, stable thermal inertia, so future temperature is best inferred from similarly stable high-autocorrelation past segments.",
+      "scope": "global high-autocorrelation / low-volatility regime",
+      "activation_condition": "when recent_autocorr is high AND recent_volatility is low",
+      "failure_condition": "low recent autocorrelation, high recent volatility, or rapid regime changes",
+      "observables": [
+        "recent_autocorr",
+        "recent_volatility"
+      ],
+      "retrieval_action": "Prefer historical windows with high recent autocorrelation and low recent volatility.",
+      "reason": "Global high recent_autocorr did not isolate any subset. Adding low recent_volatility retains thermal inertia while excluding high-volatility transients; evidence does not identify the exact narrowing.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "recent_autocorr",
+            "qualifier": "high"
+          },
+          {
+            "feature": "recent_volatility",
+            "qualifier": "low"
+          }
+        ]
+      },
+      "expected_effect": "Narrows the previous global high-autocorrelation rule from full coverage to stable persistent periods, improving conditional consistency.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E6"
+    },
+    {
+      "id": "E8",
+      "mechanism": "In autumn with low recent volatility, moderate ambient and load conditions make historical segments from low-volatility autumn periods more predictive than summer or winter extremes.",
+      "scope": "autumn / low-volatility regime",
+      "activation_condition": "when seasonal_level is autumn AND recent_volatility is low",
+      "failure_condition": "spring, summer or winter extremes, or high recent volatility",
+      "observables": [
+        "seasonal_level",
+        "recent_volatility"
+      ],
+      "retrieval_action": "Prefer autumn historical windows with low recent volatility.",
+      "reason": "The original spring/autumn OR condition was too broad and mixed. Evidence does not identify which transitional-season branch is better, so this retains a conservative autumn low-volatility subset.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "seasonal_level",
+            "qualifier": "autumn"
+          },
+          {
+            "feature": "recent_volatility",
+            "qualifier": "low"
+          }
+        ]
+      },
+      "expected_effect": "Narrows the previous broad spring/autumn condition to a single transitional season and stable volatility, reducing mixed-season exposure.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E8"
+    }
+  ],
+  "2": [
+    {
+      "id": "E4",
+      "mechanism": "On workdays with strong recent slope and low recent volatility, industrial and commercial load ramps are more stable and comparable across similar workdays.",
+      "scope": "workday / high recent slope / low recent volatility",
+      "activation_condition": "when working_day is workday AND recent_slope_magnitude is high AND recent_volatility is low",
+      "failure_condition": "non-working days, low recent slope magnitude, or high recent volatility",
+      "observables": [
+        "working_day",
+        "recent_slope_magnitude",
+        "recent_volatility"
+      ],
+      "retrieval_action": "Restrict retrieval to workdays and prefer historical windows with high recent slope magnitude and low recent volatility.",
+      "reason": "The prior broad workday high-slope condition had mostly negative train-fold reward and unstable folds; adding low recent volatility is a candidate restriction to lower coverage and worst-fold loss, though the evidence does not identify a unique modification.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "working_day",
+            "qualifier": "workday"
+          },
+          {
+            "feature": "recent_slope_magnitude",
+            "qualifier": "high"
+          },
+          {
+            "feature": "recent_volatility",
+            "qualifier": "low"
+          }
+        ]
+      },
+      "expected_effect": "Narrows activation to more stable workday ramps, reducing the volatile workday high-slope cases that showed negative train-fold rewards.",
+      "replaced": false,
+      "revision_round": 2,
+      "lineage_id": "E4"
+    },
+    {
+      "id": "E5",
+      "mechanism": "On non-working nights with low recent volatility, transformer load is lower and smoother, so future behavior resembles past stable non-working-night periods.",
+      "scope": "non-working / night / low recent volatility",
+      "activation_condition": "when working_day is non_working AND hour_of_day is night AND recent_volatility is low",
+      "failure_condition": "workdays, non-night hours, or high recent volatility",
+      "observables": [
+        "working_day",
+        "hour_of_day",
+        "recent_volatility"
+      ],
+      "retrieval_action": "Restrict retrieval to non-working nights and prefer historical windows with low recent volatility.",
+      "reason": "The prior broad non-working low-volatility condition had mixed but net negative mean and worst-fold loss; adding night is a candidate restriction to reduce coverage and unstable folds, though the evidence does not identify a unique modification.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "working_day",
+            "qualifier": "non_working"
+          },
+          {
+            "feature": "hour_of_day",
+            "qualifier": "night"
+          },
+          {
+            "feature": "recent_volatility",
+            "qualifier": "low"
+          }
+        ]
+      },
+      "expected_effect": "Narrows to a very stable low-load nighttime regime, reducing the worst-fold loss seen in the broader non-working low-volatility condition.",
+      "replaced": false,
+      "revision_round": 2,
+      "lineage_id": "E5"
+    },
+    {
+      "id": "E8",
+      "mechanism": "In spring with low recent volatility, moderate ambient and load conditions make historical segments from the same spring season more predictive than summer or winter extremes.",
+      "scope": "spring / low recent volatility",
+      "activation_condition": "when seasonal_level is spring AND recent_volatility is low",
+      "failure_condition": "non-spring seasons or high recent volatility",
+      "observables": [
+        "seasonal_level",
+        "recent_volatility"
+      ],
+      "retrieval_action": "Restrict retrieval to the current spring season and prefer historical windows with low recent volatility.",
+      "reason": "The prior autumn-or-spring condition had high coverage, negative median reward, and only one positive fold; this is a lower-coverage candidate restriction, but the evidence does not identify the best subset.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "seasonal_level",
+            "qualifier": "spring"
+          },
+          {
+            "feature": "recent_volatility",
+            "qualifier": "low"
+          }
+        ]
+      },
+      "expected_effect": "Reduces the broad transitional-season coverage and focuses on a quieter spring low-volatility subset where same-season history may be more stable.",
+      "replaced": false,
+      "revision_round": 2,
+      "lineage_id": "E8"
+    }
+  ]
+}

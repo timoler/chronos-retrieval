@@ -1,0 +1,251 @@
+{
+  "1": [
+    {
+      "id": "E2",
+      "mechanism": "Low recent volatility combined with low recent movement magnitude identifies a calmer subset of history where small-range continuation may be more similar.",
+      "scope": "low recent_volatility and low recent_diff_magnitude regime",
+      "activation_condition": "when recent_volatility is low and recent_diff_magnitude is low",
+      "failure_condition": "when a volatility expansion begins despite low recent_volatility and low recent_diff_magnitude",
+      "observables": [
+        "recent_volatility",
+        "recent_diff_magnitude"
+      ],
+      "retrieval_action": "Up-weight historical segments with both low recent_volatility and low recent_diff_magnitude.",
+      "reason": "The original low recent_volatility condition had negative train expanding-fold reward, so the revision tightens the active subset with an available low qualifier; exact threshold is not identified.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "recent_volatility",
+            "qualifier": "low"
+          },
+          {
+            "feature": "recent_diff_magnitude",
+            "qualifier": "low"
+          }
+        ]
+      },
+      "expected_effect": "Restricts retrieval to a stricter calm low-move subset, reducing large-move futures that contributed to negative train reward.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E2"
+    },
+    {
+      "id": "E4",
+      "mechanism": "Joint low slope, low volatility, and low movement magnitude defines a stricter range-bound calm state, reducing trend contamination.",
+      "scope": "range-bound calm regime with low slope, volatility, and movement",
+      "activation_condition": "when recent_slope_magnitude is low, recent_volatility is low, and recent_diff_magnitude is low",
+      "failure_condition": "when the range resolves into a sustained breakout despite low recent_slope_magnitude, low recent_volatility, and low recent_diff_magnitude",
+      "observables": [
+        "recent_slope_magnitude",
+        "recent_volatility",
+        "recent_diff_magnitude"
+      ],
+      "retrieval_action": "Prefer historical segments matching all three low conditions: low recent_slope_magnitude, low recent_volatility, and low recent_diff_magnitude.",
+      "reason": "Prior joint low-slope/low-volatility activation had net negative train reward; adding low recent_diff_magnitude tightens the low-tail intersection, though no exact quantile is identified.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "recent_slope_magnitude",
+            "qualifier": "low"
+          },
+          {
+            "feature": "recent_volatility",
+            "qualifier": "low"
+          },
+          {
+            "feature": "recent_diff_magnitude",
+            "qualifier": "low"
+          }
+        ]
+      },
+      "expected_effect": "Further restricts retrieval to very flat calm histories, reducing false trend matches and oversized futures.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E4"
+    },
+    {
+      "id": "E7",
+      "mechanism": "High recent autocorrelation indicates persistent behavior, so history with similar high recent_autocorr is more informative than weak-memory history.",
+      "scope": "high-persistence regime",
+      "activation_condition": "when recent_autocorr is high over the current context window",
+      "failure_condition": "when high recent_autocorr is only a transient high-memory patch before a shift to noisy or mean-reverting behavior",
+      "observables": [
+        "recent_autocorr"
+      ],
+      "retrieval_action": "Prefer historical segments with high recent_autocorr; do not use the prior short-lag retrieval unless a supported active subset is confirmed.",
+      "reason": "The prior low recent_autocorr condition had zero train activation coverage, so it was not evaluable; switching to high recent_autocorr gives an executable active condition, but isolated utility is not yet identified.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "recent_autocorr",
+            "qualifier": "high"
+          }
+        ]
+      },
+      "expected_effect": "Retrieved futures should reflect persistent continuation rather than choppy noise.",
+      "replaced": true,
+      "revision_round": 1,
+      "lineage_id": "E7"
+    },
+    {
+      "id": "E8",
+      "mechanism": "High recent level with low recent volatility defines a calmer elevated state, avoiding mixed high-level breakout effects.",
+      "scope": "high recent_level and low recent_volatility regime",
+      "activation_condition": "when recent_level is high and recent_volatility is low",
+      "failure_condition": "when the elevated level is part of a low-volatility drift that later reverses or breaks out",
+      "observables": [
+        "recent_level",
+        "recent_volatility"
+      ],
+      "retrieval_action": "Prefer historical segments with both high recent_level and low recent_volatility.",
+      "reason": "Single high recent_level activations had mixed net negative train reward; tightening with low recent_volatility creates a more specific subset, but exact level threshold is not identified.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "recent_level",
+            "qualifier": "high"
+          },
+          {
+            "feature": "recent_volatility",
+            "qualifier": "low"
+          }
+        ]
+      },
+      "expected_effect": "Matches retrieved futures to a narrower high-level calm state, reducing contamination from volatile high-level paths.",
+      "replaced": false,
+      "revision_round": 1,
+      "lineage_id": "E8"
+    }
+  ],
+  "2": [
+    {
+      "id": "E2",
+      "mechanism": "Low recent volatility combined with low movement magnitude tends to persist as range-bound behavior, so historical windows with both features low are more informative.",
+      "scope": "low recent_volatility and low recent_diff_magnitude calm regime",
+      "activation_condition": "when recent_volatility is low and recent_diff_magnitude is low over the current context window",
+      "failure_condition": "when a breakout or volatility expansion begins despite both low recent_volatility and low recent_diff_magnitude",
+      "observables": [
+        "recent_volatility",
+        "recent_diff_magnitude"
+      ],
+      "retrieval_action": "Prefer historical segments with both low recent_volatility and low recent_diff_magnitude; down-weight high-volatility or large-move segments.",
+      "reason": "Calm states often repeat until a structural break; adding low recent_diff_magnitude tightens the range-bound filter to reduce the severe negative-fold contribution.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "recent_volatility",
+            "qualifier": "low"
+          },
+          {
+            "feature": "recent_diff_magnitude",
+            "qualifier": "low"
+          }
+        ]
+      },
+      "expected_effect": "Retrieved futures better match stable small-move behavior expected after calm observations, while reducing larger-move contamination.",
+      "replaced": false,
+      "revision_round": 2,
+      "lineage_id": "E2"
+    },
+    {
+      "id": "E4",
+      "mechanism": "Joint low slope, low volatility, low movement magnitude, and low recent level defines a stricter depressed range-bound state, reducing trend and elevated-level contamination.",
+      "scope": "range-bound depressed regime with low slope, volatility, movement, and level",
+      "activation_condition": "when recent_slope_magnitude is low, recent_volatility is low, recent_diff_magnitude is low, and recent_level is low",
+      "failure_condition": "when the range resolves into a sustained breakout despite all four low conditions",
+      "observables": [
+        "recent_slope_magnitude",
+        "recent_volatility",
+        "recent_diff_magnitude",
+        "recent_level"
+      ],
+      "retrieval_action": "Prefer historical segments matching all four low conditions: low recent_slope_magnitude, low recent_volatility, low recent_diff_magnitude, and low recent_level.",
+      "reason": "Prior three-condition low-slope/low-volatility/low-diff activation still had a severe negative train fold; adding low recent_level is a candidate tightening not identified by current train-fold evidence.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "recent_slope_magnitude",
+            "qualifier": "low"
+          },
+          {
+            "feature": "recent_volatility",
+            "qualifier": "low"
+          },
+          {
+            "feature": "recent_diff_magnitude",
+            "qualifier": "low"
+          },
+          {
+            "feature": "recent_level",
+            "qualifier": "low"
+          }
+        ]
+      },
+      "expected_effect": "Further restricts retrieval to very flat calm histories with depressed level, reducing false trend matches and oversized futures.",
+      "replaced": false,
+      "revision_round": 2,
+      "lineage_id": "E4"
+    },
+    {
+      "id": "E7",
+      "mechanism": "Weak persistence and noisy conditions can appear as either low recent autocorrelation or high recent volatility, so similarly noisy histories are more informative.",
+      "scope": "low-persistence/noisy regime with low autocorrelation or high volatility",
+      "activation_condition": "when recent_autocorr is low or recent_volatility is high over the current context window",
+      "failure_condition": "when the noisy state is only a brief patch before a new persistent trend",
+      "observables": [
+        "recent_autocorr",
+        "recent_volatility"
+      ],
+      "retrieval_action": "Prefer historical segments with low recent_autocorr or high recent_volatility; use short-lag retrieval to avoid stale trend information.",
+      "reason": "Low autocorrelation alone had zero train coverage; OR with high recent_volatility preserves the noisy-regime idea while producing usable activation.",
+      "condition_spec": {
+        "logic": "OR",
+        "conditions": [
+          {
+            "feature": "recent_autocorr",
+            "qualifier": "low"
+          },
+          {
+            "feature": "recent_volatility",
+            "qualifier": "high"
+          }
+        ]
+      },
+      "expected_effect": "Retrieved futures should better reflect choppy or mean-reverting outcomes rather than smooth trend continuation.",
+      "replaced": false,
+      "revision_round": 2,
+      "lineage_id": "E7"
+    },
+    {
+      "id": "E8",
+      "mechanism": "Low recent_level relative to the recent window indicates a depressed observation state that may be associated with support or reversion behavior.",
+      "scope": "depressed-level regime",
+      "activation_condition": "when recent_level is low over the current context window",
+      "failure_condition": "when the depressed level is part of a sustained breakdown to new lows and reversion does not occur",
+      "observables": [
+        "recent_level"
+      ],
+      "retrieval_action": "Prefer historical segments with similarly low recent_level so retrieved futures share the same depressed-state response.",
+      "reason": "High recent_level was rejected by train folds; this candidate uses the opposite activation and is not evidence-confirmed by current train expanding-fold differences.",
+      "condition_spec": {
+        "logic": "AND",
+        "conditions": [
+          {
+            "feature": "recent_level",
+            "qualifier": "low"
+          }
+        ]
+      },
+      "expected_effect": "Retrieved future paths should better reflect the conditional behavior after depressed levels, without mixing high-level regimes rejected by train folds.",
+      "replaced": true,
+      "revision_round": 2,
+      "lineage_id": "E8"
+    }
+  ]
+}
